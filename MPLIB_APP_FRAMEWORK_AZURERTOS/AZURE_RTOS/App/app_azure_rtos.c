@@ -23,7 +23,7 @@
 #include "app_touchgfx.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,7 +69,16 @@ static TX_BYTE_POOL touchgfx_app_byte_pool;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-
+void errorThreadx(uint8_t count, uint32_t delay) {
+	printf("error...\n");
+//	for(int i=0; i<count; i++)
+//	{
+////		HAL_Delay(delay);
+//		BSP_LED_Off(LED1);
+//		HAL_Delay(delay);
+//		BSP_LED_On(LED1);
+//	}
+}
 /* USER CODE END PFP */
 
 /**
@@ -89,7 +98,8 @@ VOID tx_application_define(VOID *first_unused_memory)
   if (tx_byte_pool_create(&tx_app_byte_pool, "Tx App memory pool", tx_byte_pool_buffer, TX_APP_MEM_POOL_SIZE) != TX_SUCCESS)
   {
     /* USER CODE BEGIN TX_Byte_Pool_Error */
-
+	  printf("ERROR TX_Byte_Pool_Error\n");
+	  errorThreadx(5,200);
     /* USER CODE END TX_Byte_Pool_Error */
   }
   else
@@ -103,9 +113,8 @@ VOID tx_application_define(VOID *first_unused_memory)
     if (status != TX_SUCCESS)
     {
       /* USER CODE BEGIN  App_ThreadX_Init_Error */
-      while(1)
-      {
-      }
+    	printf("ERROR App_ThreadX_Init_Error\n");
+    	errorThreadx(10,200);
       /* USER CODE END  App_ThreadX_Init_Error */
     }
     /* USER CODE BEGIN  App_ThreadX_Init_Success */

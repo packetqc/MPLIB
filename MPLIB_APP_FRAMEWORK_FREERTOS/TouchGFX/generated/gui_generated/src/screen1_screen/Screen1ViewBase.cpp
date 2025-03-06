@@ -7,7 +7,8 @@
 
 Screen1ViewBase::Screen1ViewBase() :
     frameCountInteraction1Interval(0),
-    frameCountInteraction2Interval(0)
+    frameCountInteraction2Interval(0),
+    frameCountLED_ToggleInterval(0)
 {
     __background.setPosition(0, 0, 240, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -70,5 +71,15 @@ void Screen1ViewBase::handleTickEvent()
         boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
         boxWithBorder1.invalidate();
         frameCountInteraction2Interval = 0;
+    }
+
+    frameCountLED_ToggleInterval++;
+    if(frameCountLED_ToggleInterval == TICK_LED_TOGGLE_INTERVAL)
+    {
+        //LED_Toggle
+        //When every N tick call virtual function
+        //Call LED_Toggle
+        LED_Toggle();
+        frameCountLED_ToggleInterval = 0;
     }
 }

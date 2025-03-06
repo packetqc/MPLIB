@@ -97,6 +97,17 @@
               },
               "ActionComponent": "boxWithBorder1"
             }
+          },
+          {
+            "InteractionName": "LED_Toggle",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 57
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "LED_Toggle"
+            }
           }
         ]
       }

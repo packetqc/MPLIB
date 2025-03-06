@@ -19,6 +19,14 @@ public:
     virtual void setupScreen();
     virtual void handleTickEvent();
 
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void LED_Toggle()
+    {
+        // Override and implement this function in Screen1
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
@@ -42,6 +50,8 @@ private:
     uint32_t frameCountInteraction1Interval;
     static const uint32_t TICK_INTERACTION2_INTERVAL = 200;
     uint32_t frameCountInteraction2Interval;
+    static const uint32_t TICK_LED_TOGGLE_INTERVAL = 57;
+    uint32_t frameCountLED_ToggleInterval;
 
 };
 

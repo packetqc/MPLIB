@@ -24,7 +24,7 @@
 #include "cmsis_os2.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -142,10 +142,14 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN defaultTask */
   /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+	printf("THREADX START\n");
+	while(1) {
+		printf("THREADX\n");
+		osDelay(1000);
+		BSP_LED_Off(LED1);
+		osDelay(1000);
+		BSP_LED_On(LED1);
+	}
   /* USER CODE END defaultTask */
 }
 

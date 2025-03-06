@@ -97,6 +97,17 @@
               },
               "ActionComponent": "boxWithBorder1"
             }
+          },
+          {
+            "InteractionName": "LED_Toggle",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 57
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "LED_Toggle"
+            }
           }
         ]
       }
@@ -152,7 +163,7 @@
     "SubFamily": "STM32H563/H573",
     "Toolchain": "STM32CubeIDE",
     "Platform": "m33",
-    "ProjectFile": "../STM32H573I-DK_EXT-FLASH.ioc",
+    "ProjectFile": "../MPLIB_APP_FRAMEWORK_AZURERTOS.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [],
     "AdditionalFeatures": [
