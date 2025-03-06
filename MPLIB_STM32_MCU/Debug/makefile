@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -9,7 +9,12 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include subdir.mk
+-include Drivers/STM32H5xx_HAL_Driver/Src/subdir.mk
+-include Drivers/BSP/STM32H573I-DK/subdir.mk
+-include Drivers/BSP/Components/tcpp0203/subdir.mk
+-include Drivers/BSP/Components/st7789h2/subdir.mk
+-include Drivers/BSP/Components/cs42l51/subdir.mk
+-include Core/Src/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

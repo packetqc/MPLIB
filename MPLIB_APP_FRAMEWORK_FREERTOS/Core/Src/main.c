@@ -24,6 +24,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+
+//#include "MPLibs.h"
+#include "MPSystem.h"
+//MPSystem SYS = SYS->getInstance();
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

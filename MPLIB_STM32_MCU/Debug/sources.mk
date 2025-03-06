@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 C++M_SRCS := 
@@ -34,5 +34,10 @@ CPP_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-. \
+Core/Src \
+Drivers/BSP/Components/cs42l51 \
+Drivers/BSP/Components/st7789h2 \
+Drivers/BSP/Components/tcpp0203 \
+Drivers/BSP/STM32H573I-DK \
+Drivers/STM32H5xx_HAL_Driver/Src \
 

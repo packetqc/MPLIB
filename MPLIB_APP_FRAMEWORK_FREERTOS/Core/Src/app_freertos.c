@@ -24,6 +24,7 @@
 #include "cmsis_os2.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "MPSystem.h"
 #include "stdio.h"
 /* USER CODE END Includes */
 
@@ -45,6 +46,14 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 
+/* Definitions for SystemServiceTask */
+osThreadId_t SystemServiceTaskHandle;
+const osThreadAttr_t SystemServiceTask_attributes = {
+  .name = "SystemServiceTask",
+  .stack_size = 1024 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -60,6 +69,7 @@ const osThreadAttr_t GUI_Task_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 8192 * 4
 };
+
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -124,6 +134,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  SystemServiceTaskHandle = osThreadNew(StartSystemServices, NULL, &SystemServiceTask_attributes);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -138,11 +149,13 @@ void MX_FREERTOS_Init(void) {
 * @retval None
 */
 /* USER CODE END Header_StartDefaultTask */
+//extern MPSystem *SYS;
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN defaultTask */
   /* Infinite loop */
-	printf("THREADX START\n");
+	printf("DEFAULT TASK STARTED\n");
+
 	while(1) {
 		printf("THREADX\n");
 		osDelay(1000);
