@@ -10,9 +10,9 @@
 ### STRUCTURE
 
 ```mermaid
-flowchart TD
-  MPLIB_STM32_MCU --> MPSystem
-  MPLIB_STM32_MCU --> MPDataService (en migration)
+graph TD
+  MPLIB_STM32_MCU --> MPSystem;
+  MPLIB_STM32_MCU --> MPDataService (en migration);
 ```
 
 ### WORKFLOW
