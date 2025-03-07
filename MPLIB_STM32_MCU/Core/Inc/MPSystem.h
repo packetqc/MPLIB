@@ -2,7 +2,7 @@
  * MPSystem.h
  *
  *  Created on: Mar 6, 2025
- *      Author: admin
+ *      Author: Packet
  */
 
 #ifndef MPSYSTEM_H_
@@ -29,7 +29,12 @@
 extern "C" {
 #endif
 
+#if defined(FREERTOS)
 void StartSystemServices(void *argument);
+#elif defined(AZRTOS)
+#include "tx_api.h"
+void StartSystemServices(ULONG thread_input);
+#endif
 
 #ifdef __cplusplus
 }
@@ -41,10 +46,10 @@ void StartSystemServices(void *argument);
 class MPSystem {
 	static int iSYS;
 	static MPSystem *instance;
-    static char *name;
+	static char *name;
 public:
-//	MPSystem();
-//	virtual ~MPSystem();
+
+
     static MPSystem* CreateInstance() {
     		if(iSYS==0) {
     			instance =new MPSystem;

@@ -16,7 +16,7 @@
 
 - /MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/libMPLIB_STM32_MCU.a
     
-    MPLIB_STM32_MCU
+    :libMPLIB_STM32_MCU.a
 
 #### AZURE RTOS
 
@@ -30,21 +30,46 @@
 
 ## USAGE
 
+### AZRTOS
+
+#### app_threadx.c
+
+/* USER CODE BEGIN PV */
+uint8_t *MPSystemThreadStack;
+TX_THREAD MPSystemThreadHandle;
+/* USER CODE END PV */
+
+
 ### FREERTOS
 
 #### app_freertos.c
+
+/* USER CODE BEGIN Includes */
+
 #include "MPSystem.h"
 
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN Variables */
+
 /* Definitions for SystemServiceTask */
+
 osThreadId_t SystemServiceTaskHandle;
 const osThreadAttr_t SystemServiceTask_attributes = {
   .name = "SystemServiceTask",
   .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* USER CODE END Variables */
+
 
 void MX_FREERTOS_Init(void) {
-    // ...
-    SystemServiceTaskHandle = osThreadNew(StartSystemServices, NULL, &SystemServiceTask_attributes);
-    // ...
+  /* USER CODE BEGIN RTOS_THREADS */
+
+  /* add threads, ... */
+
+  SystemServiceTaskHandle = osThreadNew(StartSystemServices, NULL, &SystemServiceTask_attributes);
+
+  /* USER CODE END RTOS_THREADS */
 }

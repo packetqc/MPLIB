@@ -2,7 +2,7 @@
  * MPSystem.cpp
  *
  *  Created on: Mar 6, 2025
- *      Author: admin
+ *      Author: Packet
  */
 
 #include <MPSystem.h>
@@ -25,28 +25,7 @@ MPSystem *MPSystem::instance=NULL;
 
 char* MPSystem::name = (char*)pvPortMalloc(CAT_LENGTH * sizeof(char));
 
-#elif defined(AZRTOS)
-
-#include "tx_api.h"
-#include "cmsis_os.h"
-char* MPSystem::name = (char*)pvPortMalloc(CAT_LENGTH * sizeof(char));
-
-#endif
-
-
-void MPSystem::blinkLED(uint8_t times) {
-	for(uint8_t i=0; i<=times; i++) {
-		BSP_LED_Toggle(LED);
-		#if defined(FREERTOS)
-			osDelay(100);
-		#elif defined(AZRTOS)
-			tx_thread_sleep(100);
-		#endif
-	}
-}
-
 void StartSystemServices(void *argument) {
-	uint8_t event;
 	uint32_t tickstart = HAL_GetTick();
 
 
@@ -62,6 +41,52 @@ void StartSystemServices(void *argument) {
 			  SYS->blinkLED(2);
 			  tickstart = HAL_GetTick();
 		  }
+	}
+}
+
+#elif defined(AZRTOS)
+
+//TO BE OPTIMIZED...
+#include <stdlib.h>
+char* MPSystem::name = (char*)malloc(CAT_LENGTH*sizeof(char));
+
+void StartSystemServices(ULONG thread_input) {
+	uint32_t tickstart = HAL_GetTick();
+
+
+	if(!SYS->isStarted())
+	{
+		SYS->init();
+	}
+
+	/* Infinite Loop */
+	for( ;; )
+	{
+//		tx_thread_sleep(100);
+#if defined(FREERTOS)
+		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+			  SYS->blinkLED(2);
+			  tickstart = HAL_GetTick();
+		  }
+#elif defined(AZRTOS)
+		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+			  SYS->blinkLED(2);
+			  tickstart = HAL_GetTick();
+		  }
+#endif
+	}
+}
+#endif
+
+
+void MPSystem::blinkLED(uint8_t times) {
+	for(uint8_t i=0; i<=times; i++) {
+		BSP_LED_Toggle(LED);
+		#if defined(FREERTOS)
+			osDelay(100);
+		#elif defined(AZRTOS)
+			tx_thread_sleep(10);
+		#endif
 	}
 }
 

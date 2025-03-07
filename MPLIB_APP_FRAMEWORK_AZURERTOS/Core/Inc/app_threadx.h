@@ -48,7 +48,8 @@ extern "C" {
 #define TX_APP_THREAD_PRIO                      10
 
 /* USER CODE BEGIN PD */
-
+#define TX_MPLIB_THREAD_PRIO                      15
+#define TX_MPLIB_THREAD_PREEMPTION_THRESHOLD      TX_MPLIB_THREAD_PRIO
 /* USER CODE END PD */
 
 /* Main thread defines -------------------------------------------------------*/

@@ -4243,3 +4243,42 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.e4.ui.model.applicati
 
 !ENTRY org.eclipse.cdt.core 1 0 2025-03-06 13:37:09.961
 !MESSAGE Indexed 'MPLIB_STM32_MCU' (37 sources, 221 headers) in 8.67 sec: 28,881 declarations; 134,585 references; 2 unresolved inclusions; 119 syntax errors; 1,022 unresolved names (0.62%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-03-06 14:48:34.450
+!MESSAGE Indexed 'MPLIB_APP_FRAMEWORK_AZURERTOS' (243 sources, 674 headers) in 19.1 sec: 72,178 declarations; 213,849 references; 11 unresolved inclusions; 592 syntax errors; 1,104 unresolved names (0.38%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2025-03-06 16:30:16.477
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-03-06 17:11:13.128
+!MESSAGE Indexed 'MPLIB_APP_FRAMEWORK_AZURERTOS' (243 sources, 676 headers) in 21 sec: 72,211 declarations; 213,884 references; 11 unresolved inclusions; 592 syntax errors; 1,104 unresolved names (0.38%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-03-06 17:12:28.815
+!MESSAGE Indexed 'Tx_Thread_Creation' (180 sources, 97 headers) in 4.6 sec: 9,859 declarations; 73,936 references; 7 unresolved inclusions; 101 syntax errors; 2,532 unresolved names (2.9%)
+!SESSION 2025-03-07 09:59:46.583 -----------------------------------------------
+eclipse.buildId=Version 1.18.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-07 10:00:02.081
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-07 10:00:02.083
+!MESSAGE Log4j2 initialized with config file D:\MPLIB\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-07 10:00:19.046
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2025-03-07 10:16:08.378
+!MESSAGE Request for monitor: '56^error,msg="Unable to read memory."' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2025-03-07 10:16:08.378
+!MESSAGE Failed to execute MI command:
+-data-read-memory 0xe000ee08 d 1 1 4
+Error message from debugger back end:
+Unable to read memory.
+!STACK 0
+java.lang.Exception: Unable to read memory.
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1024)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:853)

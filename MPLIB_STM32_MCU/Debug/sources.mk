@@ -40,4 +40,6 @@ Drivers/BSP/Components/st7789h2 \
 Drivers/BSP/Components/tcpp0203 \
 Drivers/BSP/STM32H573I-DK \
 Drivers/STM32H5xx_HAL_Driver/Src \
+Middlewares/ST/threadx/common/src \
+Middlewares/ST/threadx/ports/cortex_m33/gnu/src \
 

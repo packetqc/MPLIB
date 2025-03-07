@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "stm32h573i_discovery.h"
+#include "MPSystem.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +46,9 @@
 /* Private variables ---------------------------------------------------------*/
 TX_THREAD tx_app_thread;
 /* USER CODE BEGIN PV */
-
+//char *MPSystemThreadStack;
+//uint8_t *MPSystemThreadStack[TX_APP_STACK_SIZE];
+TX_THREAD MPSystemThreadHandle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,6 +86,22 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   }
 
   /* USER CODE BEGIN App_ThreadX_Init */
+
+  /* Allocate the stack for MPSystem thread  */
+  if (tx_byte_allocate(byte_pool, (VOID**) &pointer,
+                         TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+    {
+      return TX_POOL_ERROR;
+    }
+
+  /* Create MPSystem thread.  */
+  if (tx_thread_create(&MPSystemThreadHandle, "MPSystem", StartSystemServices, 0, pointer,
+	TX_APP_STACK_SIZE, TX_MPLIB_THREAD_PRIO, TX_MPLIB_THREAD_PREEMPTION_THRESHOLD,
+	TX_NO_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+  {
+	  return TX_THREAD_ERROR;
+  }
+
   /* USER CODE END App_ThreadX_Init */
 
   return ret;
