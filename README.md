@@ -9,6 +9,12 @@
 
 ### STRUCTURE
 
+```mermaid
+flowchart TD
+  MPLIB_STM32_MCU --> MPSystem.hpp/cpp
+  MPLIB_STM32_MCU --> MPDataService.hpp/cpp (en migration)
+```
+
 ### WORKFLOW
 
 
