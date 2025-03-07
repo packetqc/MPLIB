@@ -14,13 +14,13 @@
 
 #### FREERTOS
 
-- /MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/libMPLIB_STM32_MCU.a
-    
-    :libMPLIB_STM32_MCU.a
+/MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/  
+:libMPLIB_STM32_MCU.a
 
 #### AZURE RTOS
 
-- /MPLIB_APP_FRAMEWORK_AZRTOS/Core/Lib/libMPLIB_STM32_MCU.a
+/MPLIB_APP_FRAMEWORK_AZRTOS/Core/Lib/  
+:libMPLIB_STM32_MCU.a
 
 ### INCLUDE
 
@@ -35,9 +35,33 @@
 #### app_threadx.c
 
 /* USER CODE BEGIN PV */
-uint8_t *MPSystemThreadStack;
-TX_THREAD MPSystemThreadHandle;
+
+TX_THREAD MPSystemThreadHandler;
+
 /* USER CODE END PV */
+
+//App_ThreadX_Init
+
+/* USER CODE BEGIN App_ThreadX_Init */
+
+  /* Allocate the stack for MPSystem thread  */
+
+  if (tx_byte_allocate(byte_pool, (VOID**) &pointer,
+                         TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+    {
+      return TX_POOL_ERROR;
+    }
+
+  /* Create MPSystem thread.  */
+
+  if (tx_thread_create(&MPSystemThreadHandler, "MPSystem", StartSystemServices, 0, pointer,
+	TX_APP_STACK_SIZE, TX_MPLIB_THREAD_PRIO, TX_MPLIB_THREAD_PREEMPTION_THRESHOLD,
+	TX_NO_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+  {
+	  return TX_THREAD_ERROR;
+  }
+
+  /* USER CODE END App_ThreadX_Init */
 
 
 ### FREERTOS
