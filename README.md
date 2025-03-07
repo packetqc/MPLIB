@@ -3,7 +3,29 @@
 
 # STM32 LIB
 
-## CONFIGS
+![demo](mplibsreadyforcodemigration.gif)
+
+## MPLIB STRUCTURE AND WORKFLOW
+
+### STRUCTURE
+
+### WORKFLOW
+
+
+```mermaid
+flowchart LR
+  Start --> Stop
+```
+
+```mermaid
+flowchart LR
+  Start --> Stop
+```
+
+## IDE PROJECT CONFIGS
+
+<details>
+<summary>Click to view details</summary>
 
 ### SYMBOLS
 
@@ -28,7 +50,12 @@
 
     ![alt text](image-1.png)
 
-## USAGE
+</details>
+
+## IDE PROJECT USAGE
+
+<details>
+<summary>Click to view details</summary>
 
 ### AZRTOS
 
@@ -97,3 +124,5 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE END RTOS_THREADS */
 }
+
+</details>
