@@ -11,8 +11,8 @@
 
 ```mermaid
 graph TD
-  MPLIB_STM32_MCU --> MPSystem;
-  MPLIB_STM32_MCU --> MPDataService (en migration);
+  MPLIB_STM32_MCU --> MPSystem
+  MPLIB_STM32_MCU --> MPDataService
 ```
 
 ### WORKFLOW
