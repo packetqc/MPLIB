@@ -14,13 +14,10 @@
 
 ```mermaid
 flowchart LR
-  Start --> Stop
+  MPLIB_STM32_MCU --> libMPLIB_STM32_MCU.a --> MPLIB_APP_FRAMEWORK_FREERTOS
+  MPLIB_STM32_MCU --> libMPLIB_STM32_MCU.a --> MPLIB_APP_FRAMEWORK_AZRTOS
 ```
 
-```mermaid
-flowchart LR
-  Start --> Stop
-```
 
 ## IDE PROJECT CONFIGS
 
