@@ -11,8 +11,8 @@
 
 ```mermaid
 flowchart TD
-  MPLIB_STM32_MCU --> MPSystem.hpp/cpp
-  MPLIB_STM32_MCU --> MPDataService.hpp/cpp (en migration)
+  MPLIB_STM32_MCU --> MPSystem
+  MPLIB_STM32_MCU --> MPDataService (en migration)
 ```
 
 ### WORKFLOW
