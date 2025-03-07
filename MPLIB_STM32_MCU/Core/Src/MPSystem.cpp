@@ -62,18 +62,10 @@ void StartSystemServices(ULONG thread_input) {
 	/* Infinite Loop */
 	for( ;; )
 	{
-//		tx_thread_sleep(100);
-#if defined(FREERTOS)
 		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			  SYS->blinkLED(2);
 			  tickstart = HAL_GetTick();
 		  }
-#elif defined(AZRTOS)
-		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
-			  SYS->blinkLED(2);
-			  tickstart = HAL_GetTick();
-		  }
-#endif
 	}
 }
 #endif
@@ -88,6 +80,10 @@ void MPSystem::blinkLED(uint8_t times) {
 			tx_thread_sleep(10);
 		#endif
 	}
+}
+
+char* MPSystem::getSystemDescription() {
+	return systemDescr;
 }
 
 bool MPSystem::isStarted() {

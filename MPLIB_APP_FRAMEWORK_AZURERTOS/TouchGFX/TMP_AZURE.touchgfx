@@ -38,7 +38,7 @@
             "X": 97,
             "Y": 147,
             "Width": 47,
-            "Height": 20,
+            "Height": 24,
             "TextId": "__SingleUse_HACC",
             "TextRotation": "0",
             "Color": {
@@ -50,10 +50,10 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textArea3",
-            "X": 85,
+            "Name": "systemDescriptionTextArea",
+            "X": 48,
             "Y": 192,
-            "Width": 70,
+            "Width": 146,
             "Height": 12,
             "TextId": "__SingleUse_HD5T",
             "TextRotation": "0",
@@ -62,7 +62,12 @@
               "Green": 147,
               "Blue": 250
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_LCDJ",
+              "UseBuffer": true,
+              "BufferSize": 25
+            }
           }
         ],
         "Interactions": [
@@ -107,6 +112,16 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "LED_Toggle"
+            }
+          },
+          {
+            "InteractionName": "updateSystemDescription",
+            "Trigger": {
+              "Type": "TriggerScreenEntered"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateSystemDescription"
             }
           }
         ]

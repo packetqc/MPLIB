@@ -10,7 +10,8 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    0,  // T___SINGLEUSE_HD5T: "(Free RTOS)"
-    19, // T___SINGLEUSE_HACC: "LIBS"
-    12  // T___SINGLEUSE_85SS: "PaCKeT"
+    0,  // T___SINGLEUSE_LCDJ: "( no system description )"
+    26, // T___SINGLEUSE_HD5T: "( <> )"
+    39, // T___SINGLEUSE_HACC: "LIBS"
+    32  // T___SINGLEUSE_85SS: "PaCKeT"
 };

@@ -32,11 +32,14 @@ Screen1ViewBase::Screen1ViewBase() :
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HACC));
     add(textArea2);
 
-    textArea3.setXY(88, 192);
-    textArea3.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    textArea3.setLinespacing(0);
-    textArea3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HD5T));
-    add(textArea3);
+    systemDescriptionTextArea.setXY(48, 192);
+    systemDescriptionTextArea.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    systemDescriptionTextArea.setLinespacing(0);
+    Unicode::snprintf(systemDescriptionTextAreaBuffer, SYSTEMDESCRIPTIONTEXTAREA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_LCDJ).getText());
+    systemDescriptionTextArea.setWildcard(systemDescriptionTextAreaBuffer);
+    systemDescriptionTextArea.resizeToCurrentText();
+    systemDescriptionTextArea.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HD5T));
+    add(systemDescriptionTextArea);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -82,4 +85,12 @@ void Screen1ViewBase::handleTickEvent()
         LED_Toggle();
         frameCountLED_ToggleInterval = 0;
     }
+}
+
+void Screen1ViewBase::afterTransition()
+{
+    //updateSystemDescription
+    //When screen transition ends call virtual function
+    //Call updateSystemDescription
+    updateSystemDescription();
 }

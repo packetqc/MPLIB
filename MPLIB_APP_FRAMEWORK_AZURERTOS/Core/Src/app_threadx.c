@@ -114,7 +114,7 @@ void StartDefaultTask(ULONG thread_input)
   /* USER CODE BEGIN StartDefaultTask */
 	printf("THREADX START\n");
 	while(1) {
-		printf("THREADX\n");
+//		printf("THREADX\n");
 		tx_thread_sleep(100);
 		BSP_LED_Off(LED1);
 		tx_thread_sleep(100);

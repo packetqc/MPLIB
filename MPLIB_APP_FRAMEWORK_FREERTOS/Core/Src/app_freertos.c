@@ -157,7 +157,7 @@ void StartDefaultTask(void *argument)
 	printf("DEFAULT TASK STARTED\n");
 
 	while(1) {
-		printf("THREADX\n");
+//		printf("THREADX\n");
 		osDelay(1000);
 		BSP_LED_Off(LED1);
 		osDelay(1000);

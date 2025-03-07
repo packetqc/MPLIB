@@ -10,6 +10,7 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -18,11 +19,16 @@ public:
     virtual ~Screen1ViewBase();
     virtual void setupScreen();
     virtual void handleTickEvent();
+    virtual void afterTransition();
 
     /*
      * Virtual Action Handlers
      */
     virtual void LED_Toggle()
+    {
+        // Override and implement this function in Screen1
+    }
+    virtual void updateSystemDescription()
     {
         // Override and implement this function in Screen1
     }
@@ -39,7 +45,13 @@ protected:
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea2;
-    touchgfx::TextArea textArea3;
+    touchgfx::TextAreaWithOneWildcard systemDescriptionTextArea;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t SYSTEMDESCRIPTIONTEXTAREA_SIZE = 25;
+    touchgfx::Unicode::UnicodeChar systemDescriptionTextAreaBuffer[SYSTEMDESCRIPTIONTEXTAREA_SIZE];
 
 private:
 

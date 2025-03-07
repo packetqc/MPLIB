@@ -63,6 +63,7 @@ public:
     	bool 	isStarted();
     	char* 	getName();
     	bool  	getStatus();
+    	char*	getSystemDescription();
     	uint8_t getStatusStorage();
     	void 	blinkLED(uint8_t times);
 
@@ -77,6 +78,11 @@ protected:
 
     	char 		log[LOG_LENGTH];
 
+#if defined(FREERTOS)
+    	char		systemDescr[25] = "Free RTOS";
+#elif defined(AZRTOS)
+    	char		systemDescr[25] = "Azure Eclipse RTOS";
+#endif
 };
 
 extern MPSystem *SYS;
