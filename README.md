@@ -1,6 +1,8 @@
 # MPLIB
  MP Library stm32 and arduino
 
+![](mplibsreadyforcodemigration.gif)
+
 # STM32 LIB
 
 ## CONFIGS
