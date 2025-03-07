@@ -1,11 +1,32 @@
 # MPLIB
  MP Library stm32 and arduino
 
-![demo](mplibsreadyforcodemigration.gif)
-
 # STM32 LIB
 
-## CONFIGS
+![demo](mplibsreadyforcodemigration.gif)
+
+## MPLIB STRUCTURE AND WORKFLOW
+
+### STRUCTURE
+
+```mermaid
+graph TD
+  MPLIB_STM32_MCU --> MPSystem
+  MPLIB_STM32_MCU --> MPDataService
+```
+
+### WORKFLOW
+
+```mermaid
+flowchart LR
+  MPLIB_STM32_MCU --> libMPLIB_STM32_MCU.a --> MPLIB_APP_FRAMEWORK_FREERTOS
+  libMPLIB_STM32_MCU.a --> MPLIB_APP_FRAMEWORK_AZRTOS
+```
+
+## IDE PROJECT CONFIGS
+
+<details>
+<summary>Click to view details</summary>
 
 ### SYMBOLS
 
@@ -30,7 +51,12 @@
 
     ![alt text](image-1.png)
 
-## USAGE
+</details>
+
+## IDE PROJECT USAGE
+
+<details>
+<summary>Click to view details</summary>
 
 ### AZRTOS
 
@@ -99,3 +125,5 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE END RTOS_THREADS */
 }
+
+</details>
