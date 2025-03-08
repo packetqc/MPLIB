@@ -7,6 +7,7 @@
 
 #include <MPSystem.h>
 
+#include <MPDataServices.h>
 //=======================================================================================
 //
 //=======================================================================================
@@ -112,13 +113,13 @@ void MPSystem::SYS_Initialize(void)
 	if (isInitialized == 0)
 	{
 		isInitialized = 1;
-//    	snprintf(log, LOG_LENGTH, "SYS card detected and initialized");
-//      	DS->pushToLogsMon(name, LOG_OK, log);
+    	snprintf(log, LOG_LENGTH, "System initialized");
+      	DS->pushToLogsMon(name, LOG_OK, log);
     }
     else {
 		isInitialized = 0;
-//    	snprintf(log, LOG_LENGTH, "SYS card initialization failed");
-//    	DS->pushToLogsMon(name, LOG_WARNING, log);
+    	snprintf(log, LOG_LENGTH, "System initialization failed");
+    	DS->pushToLogsMon(name, LOG_WARNING, log);
     }
 }
 
@@ -152,13 +153,14 @@ bool MPSystem::init() {
 	linked = true;
 	started = true;
 
-	SYS_Initialize();
-//	snprintf(log, LOG_LENGTH, "System services initialization");
-//	DS->pushToLogsMon(name, LOG_OK, log);
+	snprintf(log, LOG_LENGTH, "System services initialization...");
+	DS->pushToLogsMon(name, LOG_OK, log);
 	retour = true;
 
-//	snprintf(log, LOG_LENGTH, "System initialization completed");
-//	DS->pushToLogsMon(name, LOG_OK, log);
+	SYS_Initialize();
+
+	snprintf(log, LOG_LENGTH, "System initialization completed");
+	DS->pushToLogsMon(name, LOG_OK, log);
 
 	return retour;
 }

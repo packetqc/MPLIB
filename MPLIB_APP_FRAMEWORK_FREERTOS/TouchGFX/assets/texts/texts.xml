@@ -6,6 +6,24 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_JH5V" Alignment="Left" TypographyId="LOGS">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_UMFH" Alignment="Left" TypographyId="LOGS">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_VD7Q" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_KEQV" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_HH9Y" Alignment="Left" TypographyId="LOGS">
+        <Translation Language="GB">NOCAT</Translation>
+      </Text>
+      <Text Id="__SingleUse_BYSC" Alignment="Left" TypographyId="LOGS">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_LCDJ" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">( no system description )</Translation>
       </Text>
@@ -21,8 +39,13 @@
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9,A-Z,a-z,\ , ,-" WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9,A-Z,a-z" WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9,A-Z,a-z" WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters="0-9,A-Z,a-z,\ , ,-,.,:," WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="LOGS" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters=" ,.,:,;,[,],(,),{,},0-9,A-Z,a-z,_,\,/,*,#,&quot;" WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="Button_IOT" Font="verdana.ttf" Size="27" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9" WildcardCharacterRanges="0-9" />
+    <Typography Id="MAC_ADDR" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters=":,0-9,A-F,a-f" WildcardCharacterRanges="0-9,A-F,a-f" />
+    <Typography Id="IPv4_ADDR" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters=".,0-9" WildcardCharacterRanges="0-9" />
+    <Typography Id="Labels" Font="arial.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="-,.,\,, ,0-9,a-z,A-Z" WildcardCharacterRanges="a-z,A-Z,0-9" />
   </Typographies>
 </TextDatabase>

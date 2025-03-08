@@ -2,72 +2,112 @@
   "Application": {
     "Screens": [
       {
-        "Name": "Screen1",
+        "Name": "ScreenLogs",
         "Components": [
           {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithBorder1",
+            "Type": "SwipeContainer",
+            "Name": "PagesMenu",
             "Width": 240,
             "Height": 240,
-            "BorderColor": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "BorderSize": 5
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 46,
-            "Y": 79,
-            "Width": 148,
-            "Height": 41,
-            "TextId": "__SingleUse_85SS",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea2",
-            "X": 97,
-            "Y": 147,
-            "Width": 47,
-            "Height": 24,
-            "TextId": "__SingleUse_HACC",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "systemDescriptionTextArea",
-            "X": 48,
-            "Y": 192,
-            "Width": 146,
-            "Height": 12,
-            "TextId": "__SingleUse_HD5T",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_LCDJ",
-              "UseBuffer": true,
-              "BufferSize": 25
-            }
+            "SwipeCutoff": 50,
+            "ShowPageIndicator": true,
+            "PageIndicatorX": 108,
+            "PageIndicatorY": 219,
+            "CenteredX": true,
+            "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_small_off_normal.png",
+            "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_small_on_active.png",
+            "EndSwipeElasticWidth": 50,
+            "SelectedPage": "Logs",
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "Welcome",
+                "Width": 240,
+                "Height": 240,
+                "Components": [
+                  {
+                    "Type": "BoxWithBorder",
+                    "Name": "boxWithBorder1",
+                    "Width": 240,
+                    "Height": 240,
+                    "BorderColor": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "BorderSize": 5
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "textArea1",
+                    "X": 46,
+                    "Y": 79,
+                    "Width": 148,
+                    "Height": 48,
+                    "TextId": "__SingleUse_85SS",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "textArea2",
+                    "X": 97,
+                    "Y": 147,
+                    "Width": 47,
+                    "Height": 24,
+                    "TextId": "__SingleUse_HACC",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "systemDescriptionTextArea",
+                    "X": 48,
+                    "Y": 192,
+                    "Width": 146,
+                    "Height": 12,
+                    "TextId": "__SingleUse_HD5T",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_LCDJ",
+                      "UseBuffer": true,
+                      "BufferSize": 25
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "Logs",
+                "Width": 240,
+                "Height": 240,
+                "Components": [
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "logPanel1",
+                    "Width": 235,
+                    "Height": 235,
+                    "CustomContainerDefinitionName": "LogPanel"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "Interactions": [
@@ -127,14 +167,192 @@
         ]
       }
     ],
-    "CustomContainerDefinitions": [],
+    "CustomContainerDefinitions": [
+      {
+        "Name": "LogItem",
+        "Width": 240,
+        "Height": 34,
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "LogStatus",
+            "X": 180,
+            "Width": 448,
+            "Height": 34,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "BorderColor": {
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
+            },
+            "BorderSize": 1
+          },
+          {
+            "Type": "TextArea",
+            "Name": "LogText",
+            "X": 190,
+            "Y": 11,
+            "Width": 47,
+            "Height": 12,
+            "TextId": "__SingleUse_UMFH",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 117,
+              "Green": 117,
+              "Blue": 117
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_JH5V",
+              "UseBuffer": true,
+              "BufferSize": 150
+            }
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "BackgroundStamp",
+            "X": 40,
+            "Width": 42,
+            "Height": 34,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "BorderColor": {
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
+            },
+            "BorderSize": 1
+          },
+          {
+            "Type": "TextArea",
+            "Name": "LogStamper",
+            "X": 55,
+            "Y": 12,
+            "Width": 6,
+            "Height": 12,
+            "TextId": "__SingleUse_KEQV",
+            "TextRotation": "0",
+            "Wildcard1": {
+              "TextId": "__SingleUse_VD7Q",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "BackgroundCategory",
+            "X": 82,
+            "Width": 98,
+            "Height": 34,
+            "Color": {
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
+            },
+            "BorderColor": {
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
+            },
+            "Alpha": 50
+          },
+          {
+            "Type": "TextArea",
+            "Name": "LogCategory",
+            "X": 93,
+            "Y": 12,
+            "Width": 35,
+            "Height": 12,
+            "TextId": "__SingleUse_BYSC",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 120,
+              "Green": 120,
+              "Blue": 120
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_HH9Y",
+              "UseBuffer": true,
+              "BufferSize": 15
+            }
+          },
+          {
+            "Type": "Box",
+            "Name": "BackgroundImage",
+            "Width": 40,
+            "Height": 34,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "LogImage",
+            "X": 7,
+            "Y": 4,
+            "Width": 26,
+            "Height": 24,
+            "RelativeFilename": "warning.png"
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "LogPanel",
+        "X": 5,
+        "Y": 5,
+        "Width": 235,
+        "Height": 235,
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1",
+            "Width": 240,
+            "Height": 240,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "ScrollList",
+            "Name": "LogListDONOTUSE",
+            "X": 5,
+            "Y": 4,
+            "Width": 240,
+            "Height": 210,
+            "Snapping": true,
+            "ItemTemplateName": "LogItem",
+            "ItemMargin": 2,
+            "Easing": "Linear",
+            "EasingOption": "Out",
+            "SwipeAcceleration": 1.0,
+            "DragAcceleration": 1.0,
+            "OverShootPercentage": 75,
+            "Clickable": true
+          }
+        ],
+        "Interactions": []
+      }
+    ],
     "Name": "MyApplication",
     "Resolution": {
       "Width": 240,
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "ScreenLogs",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

@@ -20,10 +20,14 @@
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\common\FrontendApplicationBase.cpp"/>
     <ClCompile Include="..\..\gui\src\model\Model.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen1_screen\Screen1Presenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen1_screen\Screen1View.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen1_screen\Screen1ViewBase.cpp"/>
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\LogItem.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\LogItemBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\LogPanel.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\LogPanelBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenlogs_screen\ScreenLogsPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenlogs_screen\ScreenLogsView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenlogs_screen\ScreenLogsViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -172,11 +176,15 @@
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\MJPEGDecoder.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1Presenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1View.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen1_screen\Screen1ViewBase.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\SimConstants.hpp"/>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\LogItem.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\LogItemBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\LogPanel.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\LogPanelBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenlogs_screen\ScreenLogsPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenlogs_screen\ScreenLogsView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenlogs_screen\ScreenLogsViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

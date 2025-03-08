@@ -24,9 +24,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
-
 //#include "MPLibs.h"
-#include "MPSystem.h"
+//#include "MPSystem.h"
 //MPSystem SYS = SYS->getInstance();
 /* USER CODE END Includes */
 
@@ -124,7 +123,7 @@ int main(void)
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
-  printf("MAIN ON\n");
+//  printf("MAIN ON\n");
   HAL_Delay(500);
   BSP_LED_On(LED1);
   HAL_Delay(500);
@@ -570,6 +569,8 @@ resetTouch();
 }
 
 /* USER CODE BEGIN 4 */
+
+
 /**
   * @brief  Retargets the C library printf function to the USART.
   *   None

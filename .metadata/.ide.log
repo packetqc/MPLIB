@@ -317,3 +317,7 @@
 2025-03-07 10:00:47,664 [INFO] ThirdParty:978 - Integrity check success = true
 2025-03-07 10:00:47,664 [INFO] IntegrityCheckThread:100 - exiting critical section [integrity check]
 2025-03-07 10:00:47,664 [INFO] IntegrityCheckThread:103 - End integrity checks thread
+2025-03-07 14:25:42,980 [INFO] WebApp:194 - Connection lost
+2025-03-07 15:42:09,843 [INFO] WebApp:191 - Connection restablished
+2025-03-07 15:42:12,811 [INFO] WebApp:194 - Connection lost
+2025-03-07 15:42:13,014 [INFO] WebApp:191 - Connection restablished

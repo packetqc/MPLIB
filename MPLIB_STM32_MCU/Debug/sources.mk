@@ -42,4 +42,12 @@ Drivers/BSP/STM32H573I-DK \
 Drivers/STM32H5xx_HAL_Driver/Src \
 Middlewares/ST/threadx/common/src \
 Middlewares/ST/threadx/ports/cortex_m33/gnu/src \
+Middlewares/ST/touchgfx/framework/source/touchgfx/containers \
+Middlewares/ST/touchgfx/framework/source/touchgfx/containers/clock \
+Middlewares/ST/touchgfx/framework/source/touchgfx/containers/progress_indicators \
+Middlewares/ST/touchgfx/framework/source/touchgfx/containers/scrollers \
+Middlewares/ST/touchgfx/framework/source/touchgfx/widgets \
+Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/canvas \
+Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/graph \
+Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/utils \
 
