@@ -3,7 +3,7 @@
 
 #include <gui_generated/containers/LogItemBase.hpp>
 #include <MPLibs.h>
-
+#include <MPDisplayServices.h>
 
 class LogItem : public LogItemBase
 {
@@ -17,7 +17,7 @@ public:
     virtual void initialize();
 
     void ClearLogs();
-    void setValueLog(uint8_t index, touchgfx::Unicode::UnicodeChar* category, touchgfx::Unicode::UnicodeChar* alog, uint16_t bitmap, uint32_t color=COLOR_STATUS_OK);
+    void setValueLog(uint8_t index, touchgfx::Unicode::UnicodeChar* category, touchgfx::Unicode::UnicodeChar* alog, uint16_t bitmap, uint32_t color=COLOR_STATUS_OK_LITE);
 
 protected:
 };

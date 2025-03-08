@@ -8,12 +8,13 @@
 #include <mvp/View.hpp>
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/containers/SwipeContainer.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <gui/containers/LogPanel.hpp>
+#include <touchgfx/widgets/ToggleButton.hpp>
 
 class ScreenLogsViewBase : public touchgfx::View<ScreenLogsPresenter>
 {
@@ -39,6 +40,10 @@ public:
     {
         // Override and implement this function in ScreenLogs
     }
+    virtual void SetDisplayColor()
+    {
+        // Override and implement this function in ScreenLogs
+    }
 
 protected:
     FrontendApplication& application() {
@@ -49,9 +54,9 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::BoxWithBorder Background;
     touchgfx::SwipeContainer PagesMenu;
     touchgfx::Container WelcomePage;
-    touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea2;
     touchgfx::TextAreaWithOneWildcard systemDescriptionTextArea;
@@ -59,7 +64,8 @@ protected:
     LogPanel Logs;
     touchgfx::Container Stats;
     touchgfx::TextAreaWithOneWildcard numberLogsDataServices;
-    touchgfx::TextAreaWithOneWildcard numberOfLogListItems;
+    touchgfx::Container Panel;
+    touchgfx::ToggleButton screenLight;
 
     /*
      * Wildcard Buffers
@@ -68,8 +74,6 @@ protected:
     touchgfx::Unicode::UnicodeChar systemDescriptionTextAreaBuffer[SYSTEMDESCRIPTIONTEXTAREA_SIZE];
     static const uint16_t NUMBERLOGSDATASERVICES_SIZE = 10;
     touchgfx::Unicode::UnicodeChar numberLogsDataServicesBuffer[NUMBERLOGSDATASERVICES_SIZE];
-    static const uint16_t NUMBEROFLOGLISTITEMS_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar numberOfLogListItemsBuffer[NUMBEROFLOGLISTITEMS_SIZE];
 
 private:
 
@@ -84,6 +88,16 @@ private:
     uint32_t frameCountLED_ToggleInterval;
     static const uint32_t TICK_UPDATEUI_INTERVAL = 100;
     uint32_t frameCountUpdateUIInterval;
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<ScreenLogsViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

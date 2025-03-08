@@ -14,6 +14,7 @@ LogItemBase::LogItemBase()
     LogStatus.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     LogStatus.setBorderColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogStatus.setBorderSize(1);
+    LogStatus.setVisible(false);
     add(LogStatus);
 
     LogText.setXY(190, 11);
@@ -29,6 +30,7 @@ LogItemBase::LogItemBase()
     BackgroundStamp.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     BackgroundStamp.setBorderColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     BackgroundStamp.setBorderSize(1);
+    BackgroundStamp.setVisible(false);
     add(BackgroundStamp);
 
     LogStamper.setPosition(55, 12, 6, 12);
@@ -43,6 +45,7 @@ LogItemBase::LogItemBase()
     BackgroundCategory.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     BackgroundCategory.setBorderColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     BackgroundCategory.setBorderSize(1);
+    BackgroundCategory.setVisible(false);
     add(BackgroundCategory);
 
     LogCategory.setPosition(93, 11, 35, 12);
@@ -55,6 +58,7 @@ LogItemBase::LogItemBase()
 
     BackgroundImage.setPosition(0, 0, 40, 34);
     BackgroundImage.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    BackgroundImage.setAlpha(0);
     BackgroundImage.setVisible(false);
     add(BackgroundImage);
 

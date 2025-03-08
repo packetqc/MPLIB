@@ -5,6 +5,18 @@
         "Name": "ScreenLogs",
         "Components": [
           {
+            "Type": "BoxWithBorder",
+            "Name": "Background",
+            "Width": 240,
+            "Height": 240,
+            "BorderColor": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "BorderSize": 3
+          },
+          {
             "Type": "SwipeContainer",
             "Name": "PagesMenu",
             "Width": 240,
@@ -12,12 +24,12 @@
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
             "PageIndicatorX": 108,
-            "PageIndicatorY": 219,
+            "PageIndicatorY": 217,
             "CenteredX": true,
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_small_off_normal.png",
             "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_small_on_active.png",
             "EndSwipeElasticWidth": 50,
-            "SelectedPage": "LogsPage",
+            "SelectedPage": "WelcomePage",
             "Components": [
               {
                 "Type": "Container",
@@ -26,22 +38,10 @@
                 "Height": 240,
                 "Components": [
                   {
-                    "Type": "BoxWithBorder",
-                    "Name": "boxWithBorder1",
-                    "Width": 240,
-                    "Height": 240,
-                    "BorderColor": {
-                      "Red": 57,
-                      "Green": 147,
-                      "Blue": 250
-                    },
-                    "BorderSize": 5
-                  },
-                  {
                     "Type": "TextArea",
                     "Name": "textArea1",
                     "X": 46,
-                    "Y": 51,
+                    "Y": 59,
                     "Width": 148,
                     "Height": 48,
                     "TextId": "__SingleUse_85SS",
@@ -57,7 +57,7 @@
                     "Type": "TextArea",
                     "Name": "textArea2",
                     "X": 97,
-                    "Y": 119,
+                    "Y": 124,
                     "Width": 47,
                     "Height": 24,
                     "TextId": "__SingleUse_HACC",
@@ -72,9 +72,9 @@
                   {
                     "Type": "TextArea",
                     "Name": "systemDescriptionTextArea",
-                    "X": 48,
-                    "Y": 164,
-                    "Width": 146,
+                    "X": 56,
+                    "Y": 169,
+                    "Width": 128,
                     "Height": 12,
                     "TextId": "__SingleUse_HD5T",
                     "TextRotation": "0",
@@ -101,8 +101,9 @@
                   {
                     "Type": "CustomContainerInstance",
                     "Name": "Logs",
+                    "Y": 44,
                     "Width": 240,
-                    "Height": 204,
+                    "Height": 161,
                     "CustomContainerDefinitionName": "LogPanel"
                   }
                 ]
@@ -119,8 +120,8 @@
               {
                 "Type": "TextArea",
                 "Name": "numberLogsDataServices",
-                "X": 29,
-                "Y": 15,
+                "X": 18,
+                "Y": 13,
                 "Width": 38,
                 "Height": 12,
                 "TextId": "__SingleUse_E30B",
@@ -136,29 +137,27 @@
                   "UseBuffer": true,
                   "BufferSize": 10
                 }
-              },
-              {
-                "Type": "TextArea",
-                "Name": "numberOfLogListItems",
-                "X": 172,
-                "Y": 15,
-                "Width": 44,
-                "Height": 12,
-                "TextId": "__SingleUse_Z5X2",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 57,
-                  "Green": 147,
-                  "Blue": 250
-                },
-                "AutoSize": true,
-                "Wildcard1": {
-                  "TextId": "__SingleUse_1NAF",
-                  "UseBuffer": true,
-                  "BufferSize": 10
-                }
               }
             ]
+          },
+          {
+            "Type": "Container",
+            "Name": "Panel",
+            "Width": 240,
+            "Height": 240,
+            "Components": []
+          },
+          {
+            "Type": "ToggleButton",
+            "Name": "screenLight",
+            "X": 171,
+            "Y": 10,
+            "Width": 62,
+            "Height": 34,
+            "InitialStatePressed": true,
+            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_active.png",
+            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_light.png",
+            "Preset": "alternate_theme\\presets\\togglebutton\\small\\round_neutral_active.json"
           }
         ],
         "Interactions": [
@@ -175,7 +174,7 @@
                 "Green": 250,
                 "Blue": 142
               },
-              "ActionComponent": "boxWithBorder1"
+              "ActionComponent": "Background"
             }
           },
           {
@@ -191,7 +190,7 @@
                 "Green": 147,
                 "Blue": 250
               },
-              "ActionComponent": "boxWithBorder1"
+              "ActionComponent": "Background"
             }
           },
           {
@@ -225,6 +224,17 @@
               "Type": "ActionCustom",
               "FunctionName": "UpdateUI"
             }
+          },
+          {
+            "InteractionName": "SetDisplayColor",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "screenLight"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "SetDisplayColor"
+            }
           }
         ]
       }
@@ -241,6 +251,7 @@
             "X": 180,
             "Width": 448,
             "Height": 34,
+            "Visible": false,
             "BorderColor": {
               "Red": 70,
               "Green": 153,
@@ -275,6 +286,7 @@
             "X": 40,
             "Width": 42,
             "Height": 34,
+            "Visible": false,
             "BorderColor": {
               "Red": 70,
               "Green": 153,
@@ -308,6 +320,7 @@
             "X": 82,
             "Width": 98,
             "Height": 34,
+            "Visible": false,
             "BorderColor": {
               "Red": 70,
               "Green": 153,
@@ -345,7 +358,8 @@
               "Red": 255,
               "Green": 255,
               "Blue": 255
-            }
+            },
+            "Alpha": 0
           },
           {
             "Type": "Image",
@@ -361,20 +375,15 @@
       },
       {
         "Name": "LogPanel",
+        "Y": 43,
         "Width": 240,
-        "Height": 204,
+        "Height": 161,
         "Components": [
-          {
-            "Type": "Box",
-            "Name": "BackgroundLogPanel",
-            "Width": 240,
-            "Height": 240
-          },
           {
             "Type": "ScrollList",
             "Name": "LogListDONOTUSE",
             "Width": 628,
-            "Height": 204,
+            "Height": 161,
             "Snapping": true,
             "ItemTemplateName": "LogItem",
             "ItemMargin": 3,

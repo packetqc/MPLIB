@@ -4,6 +4,7 @@
 #include <touchgfx/Color.hpp>
 
 #include "MPDataServices.h"
+#include <MPDisplayServices.h>
 
 LogPanel::LogPanel():
 	updateItemCallback2(this, &LogPanel::updateItemCallbackHandler)
@@ -13,7 +14,7 @@ LogPanel::LogPanel():
     setWidth(240);
     setHeight(204);
 
-    LogList.setPosition(0, 0, 628, 204);
+    LogList.setPosition(0, 0, 628, 161);
 	LogList.setHorizontal(false);
 	LogList.setCircular(false);
 	LogList.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
@@ -105,37 +106,37 @@ void LogPanel::setReverse(bool value) {
 }
 
 void LogPanel::setLog(LogItem& item, int16_t itemIndex) {
-	uint32_t color;
 	uint16_t bitmap;
 	uint8_t severity = DS->getLogSeverity(itemIndex);
+	uint32_t color = DISPLAY->getColorLog(severity);
 
 	switch(severity) {
 	case LOG_OK:
-		color = COLOR_STATUS_OK;
+//		color = COLOR_STATUS_OK;
 		bitmap = BITMAP_OK_ID;
 		break;
 	case LOG_INFO:
-		color = COLOR_STATUS_INFO;
+//		color = COLOR_STATUS_INFO;
 		bitmap = BITMAP_INFO_ID;
 		break;
 	case LOG_WARNING:
-		color = COLOR_STATUS_WARNING;
+//		color = COLOR_STATUS_WARNING;
 		bitmap = BITMAP_WARNING_ID;
 		break;
 	case LOG_ERROR:
-		color = COLOR_STATUS_ERROR;
+//		color = COLOR_STATUS_ERROR;
 		bitmap = BITMAP_ERROR_ID;
 		break;
 	case LOG_CRITICAL:
-		color = COLOR_STATUS_CRITICAL;
+//		color = COLOR_STATUS_CRITICAL;
 		bitmap = BITMAP_CRITICAL_ID;
 		break;
 	case LOG_DEBUG:
-			color = COLOR_STATUS_DEBUG;
+//			color = COLOR_STATUS_DEBUG;
 			bitmap = BITMAP_INFO_ID;
 		break;
 	default:
-		color = COLOR_STATUS_INFO;
+//		color = COLOR_STATUS_INFO;
 		bitmap = BITMAP_INFO_ID;
 		break;
 	}

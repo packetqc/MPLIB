@@ -4846,3 +4846,40 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-08 11:48:46.916
 !MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-03-08 13:03:17.650 -----------------------------------------------
+eclipse.buildId=Version 1.18.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  D:\MPLIB\MPLIB_APP_FRAMEWORK_FREERTOS\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 D:\MPLIB\MPLIB_APP_FRAMEWORK_FREERTOS\.cproject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-08 13:04:54.569
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-08 13:04:54.571
+!MESSAGE Log4j2 initialized with config file D:\MPLIB\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-08 13:05:11.640
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-03-08 13:09:07.452
+!MESSAGE Indexed 'MPLIB_APP_FRAMEWORK_FREERTOS' (142 sources, 439 headers) in 17.2 sec: 42,705 declarations; 149,418 references; 0 unresolved inclusions; 1 syntax errors; 3 unresolved names (0.0016%)
+!SESSION 2025-03-08 15:32:36.276 -----------------------------------------------
+eclipse.buildId=Version 1.18.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data file:/D:/MPLIB/
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-08 15:32:45.064
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-08 15:32:45.066
+!MESSAGE Log4j2 initialized with config file D:\MPLIB\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-08 15:33:02.164
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2025-03-08 16:24:01.392
+!MESSAGE Won't launch debug session since we failed to locate the binary.

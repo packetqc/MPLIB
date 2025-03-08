@@ -34,7 +34,9 @@ public:
 	void getNumberLogsDataServices();
 	void getMemHeap();
 
+	void SetDisplayColor();
 protected:
+
 private:
 	HeapStats_t heapit;
 };

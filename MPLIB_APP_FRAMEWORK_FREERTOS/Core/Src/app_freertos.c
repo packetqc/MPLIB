@@ -26,6 +26,7 @@
 /* USER CODE BEGIN Includes */
 #include "MPDataServices.h"
 #include "MPSystem.h"
+#include "MPDisplayServices.h"
 #include "stdio.h"
 /* USER CODE END Includes */
 

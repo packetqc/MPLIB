@@ -6,12 +6,6 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_1NAF" Alignment="Left" TypographyId="Small">
-        <Translation Language="GB">0</Translation>
-      </Text>
-      <Text Id="__SingleUse_Z5X2" Alignment="Left" TypographyId="Small">
-        <Translation Language="GB">Items: &lt;val&gt;</Translation>
-      </Text>
       <Text Id="__SingleUse_Y1H3" Alignment="Left" TypographyId="Small">
         <Translation Language="GB">0</Translation>
       </Text>
@@ -37,7 +31,7 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_LCDJ" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">( no system description )</Translation>
+        <Translation Language="GB">no system description</Translation>
       </Text>
       <Text Id="__SingleUse_HD5T" Alignment="Center" TypographyId="Small">
         <Translation Language="GB">( &lt;var&gt; )</Translation>

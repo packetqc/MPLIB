@@ -10,38 +10,40 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     frameCountInteraction1Interval(0),
     frameCountInteraction2Interval(0),
     frameCountLED_ToggleInterval(0),
-    frameCountUpdateUIInterval(0)
+    frameCountUpdateUIInterval(0),
+    buttonCallback(this, &ScreenLogsViewBase::buttonCallbackHandler)
 {
     __background.setPosition(0, 0, 240, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
+    Background.setPosition(0, 0, 240, 240);
+    Background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Background.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    Background.setBorderSize(3);
+    add(Background);
+
     PagesMenu.setXY(0, 0);
     PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_SMALL_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_SMALL_ON_ACTIVE_ID));
-    PagesMenu.setPageIndicatorXY(108, 219);
+    PagesMenu.setPageIndicatorXY(108, 217);
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
 
-    WelcomePage.setPosition(0, 0, 240, 240);
-    boxWithBorder1.setPosition(0, 0, 240, 240);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    boxWithBorder1.setBorderSize(5);
-    WelcomePage.add(boxWithBorder1);
-
-    textArea1.setXY(46, 51);
+    WelcomePage.setWidth(240);
+    WelcomePage.setHeight(240);
+    textArea1.setXY(46, 59);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_85SS));
     WelcomePage.add(textArea1);
 
-    textArea2.setXY(97, 119);
+    textArea2.setXY(97, 124);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HACC));
     WelcomePage.add(textArea2);
 
-    systemDescriptionTextArea.setXY(48, 164);
+    systemDescriptionTextArea.setXY(56, 169);
     systemDescriptionTextArea.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     systemDescriptionTextArea.setLinespacing(0);
     Unicode::snprintf(systemDescriptionTextAreaBuffer, SYSTEMDESCRIPTIONTEXTAREA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_LCDJ).getText());
@@ -52,17 +54,18 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.add(WelcomePage);
 
-    LogsPage.setPosition(0, 0, 240, 240);
-    Logs.setXY(0, 0);
+    LogsPage.setWidth(240);
+    LogsPage.setHeight(240);
+    Logs.setXY(0, 44);
     LogsPage.add(Logs);
 
     PagesMenu.add(LogsPage);
 
-    PagesMenu.setSelectedPage(1);
+    PagesMenu.setSelectedPage(0);
     add(PagesMenu);
 
     Stats.setPosition(0, 204, 240, 36);
-    numberLogsDataServices.setXY(29, 15);
+    numberLogsDataServices.setXY(18, 13);
     numberLogsDataServices.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     numberLogsDataServices.setLinespacing(0);
     Unicode::snprintf(numberLogsDataServicesBuffer, NUMBERLOGSDATASERVICES_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y1H3).getText());
@@ -71,16 +74,16 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     numberLogsDataServices.setTypedText(touchgfx::TypedText(T___SINGLEUSE_E30B));
     Stats.add(numberLogsDataServices);
 
-    numberOfLogListItems.setXY(172, 15);
-    numberOfLogListItems.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    numberOfLogListItems.setLinespacing(0);
-    Unicode::snprintf(numberOfLogListItemsBuffer, NUMBEROFLOGLISTITEMS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_1NAF).getText());
-    numberOfLogListItems.setWildcard(numberOfLogListItemsBuffer);
-    numberOfLogListItems.resizeToCurrentText();
-    numberOfLogListItems.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Z5X2));
-    Stats.add(numberOfLogListItems);
-
     add(Stats);
+
+    Panel.setPosition(0, 0, 240, 240);
+    add(Panel);
+
+    screenLight.setXY(171, 10);
+    screenLight.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_SMALL_ROUND_SMALL_OFF_LIGHT_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_SMALL_ROUND_SMALL_ON_ACTIVE_ID));
+    screenLight.forceState(true);
+    screenLight.setAction(buttonCallback);
+    add(screenLight);
 }
 
 ScreenLogsViewBase::~ScreenLogsViewBase()
@@ -93,16 +96,27 @@ void ScreenLogsViewBase::setupScreen()
     Logs.initialize();
 }
 
+void ScreenLogsViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+{
+    if (&src == &screenLight)
+    {
+        //SetDisplayColor
+        //When screenLight clicked call virtual function
+        //Call SetDisplayColor
+        SetDisplayColor();
+    }
+}
+
 void ScreenLogsViewBase::handleTickEvent()
 {
     frameCountInteraction1Interval++;
     if(frameCountInteraction1Interval == TICK_INTERACTION1_INTERVAL)
     {
         //Interaction1
-        //When every N tick change border color of boxWithBorder1
-        //Set RGB border color R:117, G:250, B:142 on boxWithBorder1
-        boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(117, 250, 142));
-        boxWithBorder1.invalidate();
+        //When every N tick change border color of Background
+        //Set RGB border color R:117, G:250, B:142 on Background
+        Background.setBorderColor(touchgfx::Color::getColorFromRGB(117, 250, 142));
+        Background.invalidate();
         frameCountInteraction1Interval = 0;
     }
 
@@ -110,10 +124,10 @@ void ScreenLogsViewBase::handleTickEvent()
     if(frameCountInteraction2Interval == TICK_INTERACTION2_INTERVAL)
     {
         //Interaction2
-        //When every N tick change border color of boxWithBorder1
-        //Set RGB border color R:57, G:147, B:250 on boxWithBorder1
-        boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-        boxWithBorder1.invalidate();
+        //When every N tick change border color of Background
+        //Set RGB border color R:57, G:147, B:250 on Background
+        Background.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+        Background.invalidate();
         frameCountInteraction2Interval = 0;
     }
 
