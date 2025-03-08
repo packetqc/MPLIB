@@ -9,6 +9,14 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/utils/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/graph/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/canvas/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/widgets/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/containers/scrollers/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/containers/progress_indicators/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/containers/clock/subdir.mk
+-include Middlewares/ST/touchgfx/framework/source/touchgfx/containers/subdir.mk
 -include Middlewares/ST/threadx/ports/cortex_m33/gnu/src/subdir.mk
 -include Middlewares/ST/threadx/common/src/subdir.mk
 -include Drivers/STM32H5xx_HAL_Driver/Src/subdir.mk

@@ -8,6 +8,41 @@
 #ifndef CORE_INC_MPLIBS_H_
 #define CORE_INC_MPLIBS_H_
 
+#include "stdlib.h"
+#include "stdint.h"
+
+//=======================================================================================
+//
+//=======================================================================================
+#define DARK
+//void Error_Handler(void);
+#ifdef DARK
+#define COLOR_STATUS_OK			0x3993FA
+#define COLOR_STATUS_INFO		0x3993FA
+#else
+#define COLOR_STATUS_OK			0xFFFFFF
+#define COLOR_STATUS_INFO		0xFFFFFF
+#endif
+#define COLOR_STATUS_DEBUG		0xF3E1FF
+#define COLOR_STATUS_ERROR		0xF7BCBC
+#define COLOR_STATUS_CRITICAL	0xF7BCBC
+#define COLOR_STATUS_WARNING	0xFFF8C4
+#define COLOR_IMAGE_WARNING		0xFAEE14
+#define COLOR_STATUS_CATEGORY	0xEBEBEB
+
+
+//=======================================================================================
+//
+//=======================================================================================
+#if defined(STM32H743xx)
+#include "cmsis_os.h"
+#include "stm32h743i_eval.h"
+#include "stm32h743i_eval_io.h"
+#include "stm32h7xx_hal.h"
+#elif defined(STM32H573xx)
+#include "stm32h5xx_hal.h"
+#include "stm32h573i_discovery.h"
+#endif
 
 //=======================================================================================
 //
@@ -15,7 +50,8 @@
 #define LOG_LENGTH			150U
 #define CAT_LENGTH 			15U
 #define THREAD_HEARTBEAT	1000
-
+#define TEXTLOGS_SIZE 		20
+#define TEXTBUFF_SIZE 		150
 
 //=======================================================================================
 //
@@ -62,5 +98,27 @@ typedef struct {
 
 typedef aLogStruct* aLogStructPtr;
 
+
+//=======================================================================================
+//
+//=======================================================================================
+//void Error_Handler(void)
+//{
+//  /* USER CODE BEGIN Error_Handler_Debug */
+//  /* User can add his own implementation to report the HAL error return state */
+//	  BSP_LED_Off(LED_GREEN);
+//	  BSP_LED_Off(LED_ORANGE);
+//	  BSP_LED_Off(LED_BLUE);
+//	  BSP_LED_Off(LED_RED);
+//
+//	  while(1) {
+//		  BSP_LED_Toggle(LED_GREEN);
+//		  BSP_LED_Toggle(LED_ORANGE);
+//		  BSP_LED_Toggle(LED_RED);
+//		  BSP_LED_Toggle(LED_BLUE);
+//		  HAL_Delay(400);
+//	  }
+//  /* USER CODE END Error_Handler_Debug */
+//}
 
 #endif /* CORE_INC_MPLIBS_H_ */

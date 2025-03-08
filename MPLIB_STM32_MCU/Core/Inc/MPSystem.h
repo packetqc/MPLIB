@@ -78,6 +78,7 @@ public:
     	char*	getSystemDescription();
     	uint8_t getStatusStorage();
     	void 	blinkLED(uint8_t times);
+    	void	heartBeat();
 
     	void 	SYS_Initialize(void);
 protected:
@@ -88,6 +89,7 @@ protected:
     	bool 		debug 		= false;
     	bool 		started 	= false;
 
+private:
     	char 		log[LOG_LENGTH];
 
 #if defined(FREERTOS)

@@ -24,6 +24,7 @@
 #include "cmsis_os2.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "MPDataServices.h"
 #include "MPSystem.h"
 #include "stdio.h"
 /* USER CODE END Includes */
@@ -45,6 +46,27 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+extern osMutexId_t canLogHandle;
+extern osMessageQueueId_t ConnectionEventHandle;
+extern osMessageQueueId_t logsmon_msgHandle;
+extern osMessageQueueId_t gui_logs_msgHandle;
+extern osMessageQueueId_t logs_msgHandle;
+extern osMessageQueueId_t gui_msgHandle;
+
+extern osMessageQueueAttr_t gui_msg_attributes;
+extern osMessageQueueAttr_t logs_msg_attributes;
+extern osMessageQueueAttr_t gui_logs_msg_attributes;
+extern osMessageQueueAttr_t logsmon_msg_attributes;
+extern osMessageQueueAttr_t ConnectionEvent_attributes;
+extern osMutexAttr_t canLog_attributes;
+
+/* Definitions for DataServicesTas */
+osThreadId_t DataServicesTasHandle;
+const osThreadAttr_t DataServicesTas_attributes = {
+  .name = "DataServicesTas",
+  .stack_size = 4096 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 /* Definitions for SystemServiceTask */
 osThreadId_t SystemServiceTaskHandle;
@@ -77,6 +99,7 @@ extern portBASE_TYPE IdleTaskHook(void* p);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+
 extern void TouchGFX_Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -113,6 +136,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
+	canLogHandle = osMutexNew(&canLog_attributes);
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
@@ -124,7 +148,24 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
+
+	/* add queues, ... */
+
+	/* creation of gui_msg */
+	gui_msgHandle = osMessageQueueNew (15, sizeof(uint8_t), &gui_msg_attributes);
+
+	/* creation of logs_msg */
+	logs_msgHandle = osMessageQueueNew (15, sizeof(char*), &logs_msg_attributes);
+
+	/* creation of gui_logs_msg */
+	gui_logs_msgHandle = osMessageQueueNew (30, sizeof(uint8_t), &gui_logs_msg_attributes);
+
+	/* creation of logsmon_msg */
+	logsmon_msgHandle = osMessageQueueNew (50, sizeof(void*), &logsmon_msg_attributes);
+
+	/* creation of ConnectionEvent */
+	ConnectionEventHandle = osMessageQueueNew (16, sizeof(uint8_t), &ConnectionEvent_attributes);
+
   /* USER CODE END RTOS_QUEUES */
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
@@ -133,8 +174,15 @@ void MX_FREERTOS_Init(void) {
   GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
+
   /* add threads, ... */
+
+  /* creation of DataServicesTas */
+  DataServicesTasHandle = osThreadNew(StartDataServices, NULL, &DataServicesTas_attributes);
+
+  /* creation of SystemServicesTas */
   SystemServiceTaskHandle = osThreadNew(StartSystemServices, NULL, &SystemServiceTask_attributes);
+
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -153,8 +201,9 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN defaultTask */
+
   /* Infinite loop */
-	printf("DEFAULT TASK STARTED\n");
+//	printf("DEFAULT TASK STARTED\n");
 
 	while(1) {
 //		printf("THREADX\n");

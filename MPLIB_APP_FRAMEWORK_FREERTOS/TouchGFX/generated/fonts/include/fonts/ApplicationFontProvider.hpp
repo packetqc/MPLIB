@@ -16,14 +16,24 @@ struct Typography
     static const touchgfx::FontId DEFAULT = 0;
     static const touchgfx::FontId LARGE = 1;
     static const touchgfx::FontId SMALL = 2;
+    static const touchgfx::FontId LOGS = 3;
+    static const touchgfx::FontId BUTTON_IOT = 4;
+    static const touchgfx::FontId MAC_ADDR = 5;
+    static const touchgfx::FontId IPV4_ADDR = 6;
+    static const touchgfx::FontId LABELS = 7;
 };
 
 struct TypographyFontIndex
 {
-    static const touchgfx::FontId DEFAULT = 0; // verdana_20_4bpp
-    static const touchgfx::FontId LARGE = 1;   // verdana_40_4bpp
-    static const touchgfx::FontId SMALL = 2;   // verdana_10_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 3;
+    static const touchgfx::FontId DEFAULT = 0;    // verdana_20_4bpp
+    static const touchgfx::FontId LARGE = 1;      // verdana_40_4bpp
+    static const touchgfx::FontId SMALL = 2;      // verdana_10_4bpp
+    static const touchgfx::FontId LOGS = 2;       // verdana_10_4bpp
+    static const touchgfx::FontId BUTTON_IOT = 3; // verdana_27_4bpp
+    static const touchgfx::FontId MAC_ADDR = 2;   // verdana_10_4bpp
+    static const touchgfx::FontId IPV4_ADDR = 2;  // verdana_10_4bpp
+    static const touchgfx::FontId LABELS = 4;     // arial_12_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 5;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider

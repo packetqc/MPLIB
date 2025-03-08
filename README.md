@@ -32,6 +32,7 @@ flowchart LR
 
 - FREERTOS
 - AZRTOS
+- TOUCHGFX
 
 ### LIBS
 
