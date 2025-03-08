@@ -86,7 +86,7 @@ MPDataServices *DS = MPDataServices::CreateInstance();
 //=======================================================================================
 //
 //=======================================================================================
-char *alog;
+//char *ds_log;
 aLogStructPtr aLogToGo;
 
 //=======================================================================================
@@ -114,6 +114,8 @@ void StartDataServices(void *argument) {
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			BSP_LED_Toggle(LED_GREEN);
 			tickstart = HAL_GetTick();
+
+			DS->heartBeat();
 		}
 
 		osDelay(100);
@@ -132,6 +134,14 @@ void MPDataServices::init() {
 	started = true;
 
 	DS->pushToLogsMon(name, LOG_OK, "Initialization completed");
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPDataServices::heartBeat() {
+	snprintf(log, LOG_LENGTH, "Heartbeat");
+	DS->pushToLogsMon(name, LOG_INFO, log);
 }
 
 //=======================================================================================

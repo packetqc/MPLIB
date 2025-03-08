@@ -35,6 +35,10 @@ public:
     {
         // Override and implement this function in ScreenLogs
     }
+    virtual void UpdateUI()
+    {
+        // Override and implement this function in ScreenLogs
+    }
 
 protected:
     FrontendApplication& application() {
@@ -46,19 +50,26 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::SwipeContainer PagesMenu;
-    touchgfx::Container Welcome;
+    touchgfx::Container WelcomePage;
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea2;
     touchgfx::TextAreaWithOneWildcard systemDescriptionTextArea;
-    touchgfx::Container Logs;
-    LogPanel logPanel1;
+    touchgfx::Container LogsPage;
+    LogPanel Logs;
+    touchgfx::Container Stats;
+    touchgfx::TextAreaWithOneWildcard numberLogsDataServices;
+    touchgfx::TextAreaWithOneWildcard numberOfLogListItems;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t SYSTEMDESCRIPTIONTEXTAREA_SIZE = 25;
     touchgfx::Unicode::UnicodeChar systemDescriptionTextAreaBuffer[SYSTEMDESCRIPTIONTEXTAREA_SIZE];
+    static const uint16_t NUMBERLOGSDATASERVICES_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar numberLogsDataServicesBuffer[NUMBERLOGSDATASERVICES_SIZE];
+    static const uint16_t NUMBEROFLOGLISTITEMS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar numberOfLogListItemsBuffer[NUMBEROFLOGLISTITEMS_SIZE];
 
 private:
 
@@ -71,6 +82,8 @@ private:
     uint32_t frameCountInteraction2Interval;
     static const uint32_t TICK_LED_TOGGLE_INTERVAL = 57;
     uint32_t frameCountLED_ToggleInterval;
+    static const uint32_t TICK_UPDATEUI_INTERVAL = 100;
+    uint32_t frameCountUpdateUIInterval;
 
 };
 

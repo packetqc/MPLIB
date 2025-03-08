@@ -27,6 +27,13 @@ public:
 
     virtual ~ScreenLogsPresenter() {}
 
+	void UpdateStatusNavigationBar();
+	void UpdateLogs(uint8_t index);
+	void getMemHeap();
+	void getNumberItemsList();
+	void getNumberOfLogListDrawables();
+	void getNumberLogsDataServices();
+
 private:
     ScreenLogsPresenter();
 

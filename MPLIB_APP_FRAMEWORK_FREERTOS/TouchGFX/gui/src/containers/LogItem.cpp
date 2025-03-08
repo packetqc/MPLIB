@@ -84,6 +84,7 @@ void LogItem::setValueLog(uint8_t index, touchgfx::Unicode::UnicodeChar* categor
 	touchgfx::Unicode::snprintf(LogTextBuffer, sizeLog, alog);
 	LogText.resizeToCurrentText();
 	LogText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UMFH));
+	LogText.setColor(color);
 	LogText.invalidate();
 
 	touchgfx::Unicode::snprintf(LogCategoryBuffer, CAT_LENGTH, category);
@@ -94,6 +95,6 @@ void LogItem::setValueLog(uint8_t index, touchgfx::Unicode::UnicodeChar* categor
 	LogImage.setBitmap(touchgfx::Bitmap(bitmap));
 	LogImage.invalidate();
 
-	LogStatus.setColor(color);
-	LogStatus.invalidate();
+//	LogStatus.setColor(color);
+//	LogStatus.invalidate();
 }

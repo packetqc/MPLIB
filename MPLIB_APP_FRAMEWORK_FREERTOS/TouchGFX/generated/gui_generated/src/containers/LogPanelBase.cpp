@@ -7,15 +7,13 @@
 LogPanelBase::LogPanelBase() :
     updateItemCallback(this, &LogPanelBase::updateItemCallbackHandler)
 {
-    setWidth(235);
-    setHeight(235);
-    boxWithBorder1.setPosition(0, 0, 240, 240);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    boxWithBorder1.setBorderSize(5);
-    add(boxWithBorder1);
+    setWidth(240);
+    setHeight(204);
+    BackgroundLogPanel.setPosition(0, 0, 240, 240);
+    BackgroundLogPanel.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    add(BackgroundLogPanel);
 
-    LogListDONOTUSE.setPosition(5, 4, 240, 210);
+    LogListDONOTUSE.setPosition(0, 0, 628, 204);
     LogListDONOTUSE.setHorizontal(false);
     LogListDONOTUSE.setCircular(false);
     LogListDONOTUSE.setEasingEquation(touchgfx::EasingEquations::linearEaseOut);
@@ -25,7 +23,7 @@ LogPanelBase::LogPanelBase() :
     LogListDONOTUSE.setPadding(0, 0);
     LogListDONOTUSE.setSnapping(true);
     LogListDONOTUSE.setOvershootPercentage(75);
-    LogListDONOTUSE.setDrawableSize(34, 2);
+    LogListDONOTUSE.setDrawableSize(34, 3);
     LogListDONOTUSE.setDrawables(LogListDONOTUSEListItems, updateItemCallback);
     add(LogListDONOTUSE);
 }

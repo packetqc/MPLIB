@@ -8,16 +8,16 @@
 
 LogItemBase::LogItemBase()
 {
-    setWidth(240);
+    setWidth(628);
     setHeight(34);
     LogStatus.setPosition(180, 0, 448, 34);
-    LogStatus.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    LogStatus.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     LogStatus.setBorderColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogStatus.setBorderSize(1);
     add(LogStatus);
 
     LogText.setXY(190, 11);
-    LogText.setColor(touchgfx::Color::getColorFromRGB(117, 117, 117));
+    LogText.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogText.setLinespacing(0);
     Unicode::snprintf(LogTextBuffer, LOGTEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JH5V).getText());
     LogText.setWildcard(LogTextBuffer);
@@ -26,13 +26,13 @@ LogItemBase::LogItemBase()
     add(LogText);
 
     BackgroundStamp.setPosition(40, 0, 42, 34);
-    BackgroundStamp.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    BackgroundStamp.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     BackgroundStamp.setBorderColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     BackgroundStamp.setBorderSize(1);
     add(BackgroundStamp);
 
     LogStamper.setPosition(55, 12, 6, 12);
-    LogStamper.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    LogStamper.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogStamper.setLinespacing(0);
     Unicode::snprintf(LogStamperBuffer, LOGSTAMPER_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VD7Q).getText());
     LogStamper.setWildcard(LogStamperBuffer);
@@ -40,14 +40,13 @@ LogItemBase::LogItemBase()
     add(LogStamper);
 
     BackgroundCategory.setPosition(82, 0, 98, 34);
-    BackgroundCategory.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
+    BackgroundCategory.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     BackgroundCategory.setBorderColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
-    BackgroundCategory.setBorderSize(0);
-    BackgroundCategory.setAlpha(50);
+    BackgroundCategory.setBorderSize(1);
     add(BackgroundCategory);
 
-    LogCategory.setPosition(93, 12, 35, 12);
-    LogCategory.setColor(touchgfx::Color::getColorFromRGB(120, 120, 120));
+    LogCategory.setPosition(93, 11, 35, 12);
+    LogCategory.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogCategory.setLinespacing(0);
     Unicode::snprintf(LogCategoryBuffer, LOGCATEGORY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_HH9Y).getText());
     LogCategory.setWildcard(LogCategoryBuffer);
@@ -56,6 +55,7 @@ LogItemBase::LogItemBase()
 
     BackgroundImage.setPosition(0, 0, 40, 34);
     BackgroundImage.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    BackgroundImage.setVisible(false);
     add(BackgroundImage);
 
     LogImage.setXY(7, 4);

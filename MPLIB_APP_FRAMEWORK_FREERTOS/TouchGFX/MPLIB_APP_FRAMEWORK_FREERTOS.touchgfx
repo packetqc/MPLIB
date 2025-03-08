@@ -17,11 +17,11 @@
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_small_off_normal.png",
             "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_small_on_active.png",
             "EndSwipeElasticWidth": 50,
-            "SelectedPage": "Logs",
+            "SelectedPage": "LogsPage",
             "Components": [
               {
                 "Type": "Container",
-                "Name": "Welcome",
+                "Name": "WelcomePage",
                 "Width": 240,
                 "Height": 240,
                 "Components": [
@@ -41,7 +41,7 @@
                     "Type": "TextArea",
                     "Name": "textArea1",
                     "X": 46,
-                    "Y": 79,
+                    "Y": 51,
                     "Width": 148,
                     "Height": 48,
                     "TextId": "__SingleUse_85SS",
@@ -57,7 +57,7 @@
                     "Type": "TextArea",
                     "Name": "textArea2",
                     "X": 97,
-                    "Y": 147,
+                    "Y": 119,
                     "Width": 47,
                     "Height": 24,
                     "TextId": "__SingleUse_HACC",
@@ -73,7 +73,7 @@
                     "Type": "TextArea",
                     "Name": "systemDescriptionTextArea",
                     "X": 48,
-                    "Y": 192,
+                    "Y": 164,
                     "Width": 146,
                     "Height": 12,
                     "TextId": "__SingleUse_HD5T",
@@ -94,18 +94,69 @@
               },
               {
                 "Type": "Container",
-                "Name": "Logs",
+                "Name": "LogsPage",
                 "Width": 240,
                 "Height": 240,
                 "Components": [
                   {
                     "Type": "CustomContainerInstance",
-                    "Name": "logPanel1",
-                    "Width": 235,
-                    "Height": 235,
+                    "Name": "Logs",
+                    "Width": 240,
+                    "Height": 204,
                     "CustomContainerDefinitionName": "LogPanel"
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "Stats",
+            "Y": 204,
+            "Width": 240,
+            "Height": 36,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "numberLogsDataServices",
+                "X": 29,
+                "Y": 15,
+                "Width": 38,
+                "Height": 12,
+                "TextId": "__SingleUse_E30B",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_Y1H3",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "numberOfLogListItems",
+                "X": 172,
+                "Y": 15,
+                "Width": 44,
+                "Height": 12,
+                "TextId": "__SingleUse_Z5X2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_1NAF",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
               }
             ]
           }
@@ -163,6 +214,17 @@
               "Type": "ActionCustom",
               "FunctionName": "updateSystemDescription"
             }
+          },
+          {
+            "InteractionName": "UpdateUI",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 100
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "UpdateUI"
+            }
           }
         ]
       }
@@ -170,7 +232,7 @@
     "CustomContainerDefinitions": [
       {
         "Name": "LogItem",
-        "Width": 240,
+        "Width": 628,
         "Height": 34,
         "Components": [
           {
@@ -179,11 +241,6 @@
             "X": 180,
             "Width": 448,
             "Height": 34,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
             "BorderColor": {
               "Red": 70,
               "Green": 153,
@@ -196,14 +253,14 @@
             "Name": "LogText",
             "X": 190,
             "Y": 11,
-            "Width": 47,
+            "Width": 32,
             "Height": 12,
             "TextId": "__SingleUse_UMFH",
             "TextRotation": "0",
             "Color": {
-              "Red": 117,
-              "Green": 117,
-              "Blue": 117
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
             },
             "AutoSize": true,
             "Wildcard1": {
@@ -218,11 +275,6 @@
             "X": 40,
             "Width": 42,
             "Height": 34,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
             "BorderColor": {
               "Red": 70,
               "Green": 153,
@@ -239,6 +291,11 @@
             "Height": 12,
             "TextId": "__SingleUse_KEQV",
             "TextRotation": "0",
+            "Color": {
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
+            },
             "Wildcard1": {
               "TextId": "__SingleUse_VD7Q",
               "UseBuffer": true,
@@ -251,31 +308,26 @@
             "X": 82,
             "Width": 98,
             "Height": 34,
-            "Color": {
-              "Red": 70,
-              "Green": 153,
-              "Blue": 242
-            },
             "BorderColor": {
               "Red": 70,
               "Green": 153,
               "Blue": 242
             },
-            "Alpha": 50
+            "BorderSize": 1
           },
           {
             "Type": "TextArea",
             "Name": "LogCategory",
             "X": 93,
-            "Y": 12,
+            "Y": 11,
             "Width": 35,
             "Height": 12,
             "TextId": "__SingleUse_BYSC",
             "TextRotation": "0",
             "Color": {
-              "Red": 120,
-              "Green": 120,
-              "Blue": 120
+              "Red": 70,
+              "Green": 153,
+              "Blue": 242
             },
             "Wildcard1": {
               "TextId": "__SingleUse_HH9Y",
@@ -288,6 +340,7 @@
             "Name": "BackgroundImage",
             "Width": 40,
             "Height": 34,
+            "Visible": false,
             "Color": {
               "Red": 255,
               "Green": 255,
@@ -308,33 +361,23 @@
       },
       {
         "Name": "LogPanel",
-        "X": 5,
-        "Y": 5,
-        "Width": 235,
-        "Height": 235,
+        "Width": 240,
+        "Height": 204,
         "Components": [
           {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithBorder1",
+            "Type": "Box",
+            "Name": "BackgroundLogPanel",
             "Width": 240,
-            "Height": 240,
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "BorderSize": 5
+            "Height": 240
           },
           {
             "Type": "ScrollList",
             "Name": "LogListDONOTUSE",
-            "X": 5,
-            "Y": 4,
-            "Width": 240,
-            "Height": 210,
+            "Width": 628,
+            "Height": 204,
             "Snapping": true,
             "ItemTemplateName": "LogItem",
-            "ItemMargin": 2,
+            "ItemMargin": 3,
             "Easing": "Linear",
             "EasingOption": "Out",
             "SwipeAcceleration": 1.0,

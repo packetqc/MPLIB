@@ -103,6 +103,8 @@ public:
     void setLogMode(uint8_t value);
     bool isLogModeCircular();
 
+    void heartBeat();
+
 #ifdef TOUCHGFX
     touchgfx::Unicode::UnicodeChar* getLogBuffer(uint8_t index);
     touchgfx::Unicode::UnicodeChar* getLogCategory(uint8_t index);
@@ -120,9 +122,12 @@ protected:
     uint32_t qtyLogs = 0;
 
 	bool debug = false;
-	char *log;
+
 	bool pause = false;
 	bool started = false;
+
+private:
+	char 		log[LOG_LENGTH];
 };
 
 //=======================================================================================

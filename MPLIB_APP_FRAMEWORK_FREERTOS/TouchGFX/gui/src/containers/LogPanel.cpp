@@ -10,10 +10,10 @@ LogPanel::LogPanel():
 {
 	remove(LogListDONOTUSE);
 
-    setWidth(235);
-    setHeight(235);
+    setWidth(240);
+    setHeight(204);
 
-    LogList.setPosition(6, 35, 235, 235);
+    LogList.setPosition(0, 0, 628, 204);
 	LogList.setHorizontal(false);
 	LogList.setCircular(false);
 	LogList.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);

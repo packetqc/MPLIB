@@ -6,8 +6,8 @@
  */
 
 #include <MPSystem.h>
-
 #include <MPDataServices.h>
+
 //=======================================================================================
 //
 //=======================================================================================
@@ -15,7 +15,7 @@ static 	__IO 	\
 uint8_t statusChanged = 0;
 uint8_t isInitialized = 0;
 
-
+char *sys_log;
 //=======================================================================================
 //
 //=======================================================================================
@@ -31,6 +31,9 @@ MPSystem *MPSystem::instance=NULL;
 
 char* MPSystem::name = (char*)pvPortMalloc(CAT_LENGTH * sizeof(char));
 
+//=======================================================================================
+//
+//=======================================================================================
 void StartSystemServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
 
@@ -46,6 +49,8 @@ void StartSystemServices(void *argument) {
 		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			  SYS->blinkLED(2);
 			  tickstart = HAL_GetTick();
+
+			  SYS->heartBeat();
 		  }
 	}
 }
@@ -103,6 +108,14 @@ char* MPSystem::getSystemDescription() {
 //=======================================================================================
 bool MPSystem::isStarted() {
 	return started;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSystem::heartBeat() {
+	snprintf(log, LOG_LENGTH, "Heartbeat");
+	DS->pushToLogsMon(name, LOG_INFO, log);
 }
 
 //=======================================================================================

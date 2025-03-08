@@ -10,14 +10,18 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    25, // T___SINGLEUSE_JH5V: ""
-    32, // T___SINGLEUSE_UMFH: "<>"
-    52, // T___SINGLEUSE_VD7Q: "0"
-    32, // T___SINGLEUSE_KEQV: "<>"
-    41, // T___SINGLEUSE_HH9Y: "NOCAT"
-    32, // T___SINGLEUSE_BYSC: "<>"
+    74, // T___SINGLEUSE_1NAF: "0"
+    26, // T___SINGLEUSE_Z5X2: "Items: <>"
+    74, // T___SINGLEUSE_Y1H3: "0"
+    35, // T___SINGLEUSE_E30B: "Logs: <>"
+    49, // T___SINGLEUSE_JH5V: "No log"
+    33, // T___SINGLEUSE_UMFH: "<>"
+    74, // T___SINGLEUSE_VD7Q: "0"
+    33, // T___SINGLEUSE_KEQV: "<>"
+    63, // T___SINGLEUSE_HH9Y: "NOCAT"
+    33, // T___SINGLEUSE_BYSC: "<>"
     0,  // T___SINGLEUSE_LCDJ: "( no system description )"
-    26, // T___SINGLEUSE_HD5T: "( <> )"
-    47, // T___SINGLEUSE_HACC: "LIBS"
-    34  // T___SINGLEUSE_85SS: "PaCKeT"
+    43, // T___SINGLEUSE_HD5T: "( <> )"
+    69, // T___SINGLEUSE_HACC: "LIBS"
+    56  // T___SINGLEUSE_85SS: "PaCKeT"
 };

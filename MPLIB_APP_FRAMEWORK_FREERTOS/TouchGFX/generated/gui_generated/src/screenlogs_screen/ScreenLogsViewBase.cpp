@@ -9,7 +9,8 @@
 ScreenLogsViewBase::ScreenLogsViewBase() :
     frameCountInteraction1Interval(0),
     frameCountInteraction2Interval(0),
-    frameCountLED_ToggleInterval(0)
+    frameCountLED_ToggleInterval(0),
+    frameCountUpdateUIInterval(0)
 {
     __background.setPosition(0, 0, 240, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -21,44 +22,65 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
 
-    Welcome.setPosition(0, 0, 240, 240);
+    WelcomePage.setPosition(0, 0, 240, 240);
     boxWithBorder1.setPosition(0, 0, 240, 240);
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     boxWithBorder1.setBorderSize(5);
-    Welcome.add(boxWithBorder1);
+    WelcomePage.add(boxWithBorder1);
 
-    textArea1.setXY(46, 79);
+    textArea1.setXY(46, 51);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_85SS));
-    Welcome.add(textArea1);
+    WelcomePage.add(textArea1);
 
-    textArea2.setXY(97, 147);
+    textArea2.setXY(97, 119);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HACC));
-    Welcome.add(textArea2);
+    WelcomePage.add(textArea2);
 
-    systemDescriptionTextArea.setXY(48, 192);
+    systemDescriptionTextArea.setXY(48, 164);
     systemDescriptionTextArea.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     systemDescriptionTextArea.setLinespacing(0);
     Unicode::snprintf(systemDescriptionTextAreaBuffer, SYSTEMDESCRIPTIONTEXTAREA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_LCDJ).getText());
     systemDescriptionTextArea.setWildcard(systemDescriptionTextAreaBuffer);
     systemDescriptionTextArea.resizeToCurrentText();
     systemDescriptionTextArea.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HD5T));
-    Welcome.add(systemDescriptionTextArea);
+    WelcomePage.add(systemDescriptionTextArea);
 
-    PagesMenu.add(Welcome);
+    PagesMenu.add(WelcomePage);
 
-    Logs.setPosition(0, 0, 240, 240);
-    logPanel1.setXY(0, 0);
-    Logs.add(logPanel1);
+    LogsPage.setPosition(0, 0, 240, 240);
+    Logs.setXY(0, 0);
+    LogsPage.add(Logs);
 
-    PagesMenu.add(Logs);
+    PagesMenu.add(LogsPage);
 
     PagesMenu.setSelectedPage(1);
     add(PagesMenu);
+
+    Stats.setPosition(0, 204, 240, 36);
+    numberLogsDataServices.setXY(29, 15);
+    numberLogsDataServices.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    numberLogsDataServices.setLinespacing(0);
+    Unicode::snprintf(numberLogsDataServicesBuffer, NUMBERLOGSDATASERVICES_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y1H3).getText());
+    numberLogsDataServices.setWildcard(numberLogsDataServicesBuffer);
+    numberLogsDataServices.resizeToCurrentText();
+    numberLogsDataServices.setTypedText(touchgfx::TypedText(T___SINGLEUSE_E30B));
+    Stats.add(numberLogsDataServices);
+
+    numberOfLogListItems.setXY(172, 15);
+    numberOfLogListItems.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    numberOfLogListItems.setLinespacing(0);
+    Unicode::snprintf(numberOfLogListItemsBuffer, NUMBEROFLOGLISTITEMS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_1NAF).getText());
+    numberOfLogListItems.setWildcard(numberOfLogListItemsBuffer);
+    numberOfLogListItems.resizeToCurrentText();
+    numberOfLogListItems.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Z5X2));
+    Stats.add(numberOfLogListItems);
+
+    add(Stats);
 }
 
 ScreenLogsViewBase::~ScreenLogsViewBase()
@@ -68,7 +90,7 @@ ScreenLogsViewBase::~ScreenLogsViewBase()
 
 void ScreenLogsViewBase::setupScreen()
 {
-    logPanel1.initialize();
+    Logs.initialize();
 }
 
 void ScreenLogsViewBase::handleTickEvent()
@@ -103,6 +125,16 @@ void ScreenLogsViewBase::handleTickEvent()
         //Call LED_Toggle
         LED_Toggle();
         frameCountLED_ToggleInterval = 0;
+    }
+
+    frameCountUpdateUIInterval++;
+    if(frameCountUpdateUIInterval == TICK_UPDATEUI_INTERVAL)
+    {
+        //UpdateUI
+        //When every N tick call virtual function
+        //Call UpdateUI
+        UpdateUI();
+        frameCountUpdateUIInterval = 0;
     }
 }
 
