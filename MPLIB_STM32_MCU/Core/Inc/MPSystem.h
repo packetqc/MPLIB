@@ -60,8 +60,6 @@ class MPSystem {
 	static MPSystem *instance;
 	static char *name;
 public:
-
-
     static MPSystem* CreateInstance() {
     		if(iSYS==0) {
     			instance =new MPSystem;

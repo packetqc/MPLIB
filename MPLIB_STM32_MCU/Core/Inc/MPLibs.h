@@ -11,25 +11,6 @@
 #include "stdlib.h"
 #include "stdint.h"
 
-//=======================================================================================
-//
-//=======================================================================================
-#define DARK
-//void Error_Handler(void);
-#ifdef DARK
-#define COLOR_STATUS_OK			0x3993FA
-#define COLOR_STATUS_INFO		0x3993FA
-#else
-#define COLOR_STATUS_OK			0xFFFFFF
-#define COLOR_STATUS_INFO		0xFFFFFF
-#endif
-#define COLOR_STATUS_DEBUG		0xF3E1FF
-#define COLOR_STATUS_ERROR		0xF7BCBC
-#define COLOR_STATUS_CRITICAL	0xF7BCBC
-#define COLOR_STATUS_WARNING	0xFFF8C4
-#define COLOR_IMAGE_WARNING		0xFAEE14
-#define COLOR_STATUS_CATEGORY	0xEBEBEB
-
 
 //=======================================================================================
 //
@@ -71,7 +52,9 @@ enum {
 	CONTROL_PAUSE,
 	CONTROL_PLAY,
 	SYSTEM_NOTOK,
-	SYSTEM_OK
+	SYSTEM_OK,
+	DISPLAY_NOTOK,
+	DISPLAY_OK
 };
 
 //=======================================================================================

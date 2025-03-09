@@ -1,4 +1,5 @@
 "./Core/Src/MPDataServices.o"
+"./Core/Src/MPDisplayServices.o"
 "./Core/Src/MPSystem.o"
 "./Drivers/BSP/Components/cs42l51/cs42l51.o"
 "./Drivers/BSP/Components/cs42l51/cs42l51_reg.o"

@@ -1,11 +1,13 @@
 #include <gui/screenlogs_screen/ScreenLogsView.hpp>
 
 #include "stm32h573i_discovery.h"
-#include "MPSystem.h"
-#include "stdio.h"
 
+#include <stdio.h>
 #include <stdlib.h>
-#include "MPDataServices.h"
+
+#include <MPDataServices.h>
+#include <MPSystem.h>
+#include <MPDisplayServices.h>
 
 
 ScreenLogsView::ScreenLogsView()
@@ -16,6 +18,7 @@ ScreenLogsView::ScreenLogsView()
 void ScreenLogsView::setupScreen()
 {
     ScreenLogsViewBase::setupScreen();
+    SetDisplayColor();
 }
 
 void ScreenLogsView::tearDownScreen()
@@ -26,6 +29,13 @@ void ScreenLogsView::tearDownScreen()
 void ScreenLogsView::LED_Toggle()
 {
 	BSP_LED_Toggle(LED2);
+}
+
+void ScreenLogsView::SetDisplayColor()
+{
+    Background.setColor(DISPLAY->getColorMode(screenLight.getState()));
+    Background.invalidate();
+//    invalidate();
 }
 
 void ScreenLogsView::updateSystemDescription()
@@ -83,9 +93,9 @@ void ScreenLogsView::UpdateLogs(uint8_t index) {
 }
 
 void ScreenLogsView::getNumberItemsList() {
-	touchgfx::Unicode::snprintf(numberOfLogListItemsBuffer, 10, "%d", Logs.getNumberItemsList());
-	numberOfLogListItems.resizeToCurrentText();
-	numberOfLogListItems.invalidate();
+//	touchgfx::Unicode::snprintf(numberOfLogListItemsBuffer, 10, "%d", Logs.getNumberItemsList());
+//	numberOfLogListItems.resizeToCurrentText();
+//	numberOfLogListItems.invalidate();
 }
 
 void ScreenLogsView::getNumberOfLogListDrawables() {

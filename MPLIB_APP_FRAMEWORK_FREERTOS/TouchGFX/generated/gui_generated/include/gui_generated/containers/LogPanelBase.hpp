@@ -6,7 +6,6 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/containers/scrollers/ScrollList.hpp>
 #include <gui/containers/LogItem.hpp>
 #include <touchgfx/mixins/ClickListener.hpp>
@@ -31,7 +30,6 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::Box BackgroundLogPanel;
     touchgfx::ClickListener< touchgfx::ScrollList > LogListDONOTUSE;
     touchgfx::DrawableListItems<LogItem, 7> LogListDONOTUSEListItems;
 
