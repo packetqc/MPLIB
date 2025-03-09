@@ -23,11 +23,10 @@
             "Height": 240,
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
-            "PageIndicatorX": 108,
-            "PageIndicatorY": 217,
-            "CenteredX": true,
-            "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_small_off_normal.png",
-            "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_small_on_active.png",
+            "PageIndicatorX": 128,
+            "PageIndicatorY": 212,
+            "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
+            "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_active.png",
             "EndSwipeElasticWidth": 50,
             "SelectedPage": "WelcomePage",
             "Components": [
@@ -101,9 +100,8 @@
                   {
                     "Type": "CustomContainerInstance",
                     "Name": "Logs",
-                    "Y": 44,
                     "Width": 240,
-                    "Height": 161,
+                    "Height": 204,
                     "CustomContainerDefinitionName": "LogPanel"
                   }
                 ]
@@ -120,10 +118,10 @@
               {
                 "Type": "TextArea",
                 "Name": "numberLogsDataServices",
-                "X": 18,
-                "Y": 13,
-                "Width": 38,
-                "Height": 12,
+                "X": 9,
+                "Y": 5,
+                "Width": 74,
+                "Height": 24,
                 "TextId": "__SingleUse_E30B",
                 "TextRotation": "0",
                 "Color": {
@@ -150,14 +148,13 @@
           {
             "Type": "ToggleButton",
             "Name": "screenLight",
-            "X": 171,
-            "Y": 10,
-            "Width": 62,
-            "Height": 34,
+            "X": 208,
+            "Y": 209,
+            "Width": 24,
+            "Height": 24,
             "InitialStatePressed": true,
-            "Pressed": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_on_active.png",
-            "Released": "__generated\\alternate_theme_images_widgets_togglebutton_small_round_small_off_light.png",
-            "Preset": "alternate_theme\\presets\\togglebutton\\small\\round_neutral_active.json"
+            "Pressed": "__generated\\alternate_theme_images_widgets_radiobutton_radio_small_round_off_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_radiobutton_radio_small_round_off.png"
           }
         ],
         "Interactions": [
@@ -242,14 +239,14 @@
     "CustomContainerDefinitions": [
       {
         "Name": "LogItem",
-        "Width": 628,
-        "Height": 34,
+        "Width": 240,
+        "Height": 35,
         "Components": [
           {
             "Type": "BoxWithBorder",
             "Name": "LogStatus",
-            "X": 180,
-            "Width": 448,
+            "X": 135,
+            "Width": 493,
             "Height": 34,
             "Visible": false,
             "BorderColor": {
@@ -262,8 +259,8 @@
           {
             "Type": "TextArea",
             "Name": "LogText",
-            "X": 190,
-            "Y": 11,
+            "X": 147,
+            "Y": 13,
             "Width": 32,
             "Height": 12,
             "TextId": "__SingleUse_UMFH",
@@ -273,7 +270,6 @@
               "Green": 153,
               "Blue": 242
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_JH5V",
               "UseBuffer": true,
@@ -284,7 +280,7 @@
             "Type": "BoxWithBorder",
             "Name": "BackgroundStamp",
             "X": 40,
-            "Width": 42,
+            "Width": 24,
             "Height": 34,
             "Visible": false,
             "BorderColor": {
@@ -297,8 +293,8 @@
           {
             "Type": "TextArea",
             "Name": "LogStamper",
-            "X": 55,
-            "Y": 12,
+            "X": 49,
+            "Y": 14,
             "Width": 6,
             "Height": 12,
             "TextId": "__SingleUse_KEQV",
@@ -317,8 +313,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "BackgroundCategory",
-            "X": 82,
-            "Width": 98,
+            "X": 67,
+            "Width": 67,
             "Height": 34,
             "Visible": false,
             "BorderColor": {
@@ -331,8 +327,8 @@
           {
             "Type": "TextArea",
             "Name": "LogCategory",
-            "X": 93,
-            "Y": 11,
+            "X": 83,
+            "Y": 14,
             "Width": 35,
             "Height": 12,
             "TextId": "__SingleUse_BYSC",
@@ -375,15 +371,14 @@
       },
       {
         "Name": "LogPanel",
-        "Y": 43,
         "Width": 240,
-        "Height": 161,
+        "Height": 204,
         "Components": [
           {
             "Type": "ScrollList",
             "Name": "LogListDONOTUSE",
-            "Width": 628,
-            "Height": 161,
+            "Width": 240,
+            "Height": 204,
             "Snapping": true,
             "ItemTemplateName": "LogItem",
             "ItemMargin": 3,

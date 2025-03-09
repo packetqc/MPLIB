@@ -7,14 +7,16 @@
 #include <MPDisplayServices.h>
 
 LogPanel::LogPanel():
-	updateItemCallback2(this, &LogPanel::updateItemCallbackHandler)
+	updateItemCallback2(this, &LogPanel::updateItemCallbackHandler)//,
+//	buttonCallback2(this, &LogPanel::buttonCallbackHandler),
+//	flexButtonCallback2(this, &LogPanel::flexButtonCallbackHandler)
 {
 	remove(LogListDONOTUSE);
 
     setWidth(240);
-    setHeight(204);
+    setHeight(199);
 
-    LogList.setPosition(0, 0, 628, 161);
+    LogList.setPosition(0, 0, 628, 204);
 	LogList.setHorizontal(false);
 	LogList.setCircular(false);
 	LogList.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
@@ -85,6 +87,46 @@ void LogPanel::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* i
 		}
 //	}
 }
+
+//void LogPanel::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+//{
+//    if (&src == &FilterSeverityInfo)
+//    {
+//        //SetFilterSeverity
+//        //When FilterSeverityInfo clicked call virtual function
+//        //Call SetFilterSeverity
+//        SetFilterSeverity();
+//
+//        //Interaction2
+//        //When FilterSeverityInfo clicked reset timer LogPanelConfig
+//        //reset expanded state timer on LogPanelConfig
+//        LogPanelConfig.resetExpandedStateTimer();
+//    }
+//    if (&src == &FilterSeverityOk)
+//    {
+//        //SetFilterSeverityOk
+//        //When FilterSeverityOk clicked call virtual function
+//        //Call SetFilterSeverity
+//        SetFilterSeverity();
+//
+//        //Interaction3
+//        //When FilterSeverityOk clicked reset timer LogPanelConfig
+//        //reset expanded state timer on LogPanelConfig
+//        LogPanelConfig.resetExpandedStateTimer();
+//    }
+//    if (&src == &FilterListNetwork)
+//    {
+//        //SetFilterCategory
+//        //When FilterListNetwork clicked call virtual function
+//        //Call SetFilterCategory
+//        SetFilterCategory();
+//
+//        //Interaction4
+//        //When FilterListNetwork clicked reset timer LogPanelConfig
+//        //reset expanded state timer on LogPanelConfig
+//        LogPanelConfig.resetExpandedStateTimer();
+//    }
+//}
 
 void LogPanel::LogListUpdateItem(LogItem& item, int16_t itemIndex) {
 //	item.setValueLog(itemIndex, DS->getLogBuffer(itemIndex), BITMAP_WARNING_ID);

@@ -30,13 +30,13 @@ void ScreenLogsPresenter::getMemHeap() {
 }
 
 void ScreenLogsPresenter::getNumberItemsList() {
-	view.getNumberItemsList();
+//	view.getNumberItemsList();
 }
 
 void ScreenLogsPresenter::getNumberOfLogListDrawables() {
-//	view.getNumberOfLogListDrawables();
+	view.getNumberOfLogListDrawables();
 }
 
 void ScreenLogsPresenter::getNumberLogsDataServices() {
-	view.getNumberLogsDataServices();
+//	view.getNumberLogsDataServices();
 }

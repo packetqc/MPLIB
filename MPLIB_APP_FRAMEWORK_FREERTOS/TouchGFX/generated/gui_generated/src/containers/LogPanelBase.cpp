@@ -7,8 +7,8 @@ LogPanelBase::LogPanelBase() :
     updateItemCallback(this, &LogPanelBase::updateItemCallbackHandler)
 {
     setWidth(240);
-    setHeight(161);
-    LogListDONOTUSE.setPosition(0, 0, 628, 161);
+    setHeight(204);
+    LogListDONOTUSE.setPosition(0, 0, 240, 204);
     LogListDONOTUSE.setHorizontal(false);
     LogListDONOTUSE.setCircular(false);
     LogListDONOTUSE.setEasingEquation(touchgfx::EasingEquations::linearEaseOut);
@@ -18,7 +18,7 @@ LogPanelBase::LogPanelBase() :
     LogListDONOTUSE.setPadding(0, 0);
     LogListDONOTUSE.setSnapping(true);
     LogListDONOTUSE.setOvershootPercentage(75);
-    LogListDONOTUSE.setDrawableSize(34, 3);
+    LogListDONOTUSE.setDrawableSize(35, 3);
     LogListDONOTUSE.setDrawables(LogListDONOTUSEListItems, updateItemCallback);
     add(LogListDONOTUSE);
 }

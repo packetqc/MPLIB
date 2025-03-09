@@ -24,8 +24,8 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     add(Background);
 
     PagesMenu.setXY(0, 0);
-    PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_SMALL_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_SMALL_ON_ACTIVE_ID));
-    PagesMenu.setPageIndicatorXY(108, 217);
+    PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_ON_ACTIVE_ID));
+    PagesMenu.setPageIndicatorXY(128, 212);
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
 
@@ -56,7 +56,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     LogsPage.setWidth(240);
     LogsPage.setHeight(240);
-    Logs.setXY(0, 44);
+    Logs.setXY(0, 0);
     LogsPage.add(Logs);
 
     PagesMenu.add(LogsPage);
@@ -65,7 +65,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     add(PagesMenu);
 
     Stats.setPosition(0, 204, 240, 36);
-    numberLogsDataServices.setXY(18, 13);
+    numberLogsDataServices.setXY(9, 5);
     numberLogsDataServices.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     numberLogsDataServices.setLinespacing(0);
     Unicode::snprintf(numberLogsDataServicesBuffer, NUMBERLOGSDATASERVICES_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y1H3).getText());
@@ -79,8 +79,8 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     Panel.setPosition(0, 0, 240, 240);
     add(Panel);
 
-    screenLight.setXY(171, 10);
-    screenLight.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_SMALL_ROUND_SMALL_OFF_LIGHT_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_TOGGLEBUTTON_SMALL_ROUND_SMALL_ON_ACTIVE_ID));
+    screenLight.setXY(208, 209);
+    screenLight.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_RADIOBUTTON_RADIO_SMALL_ROUND_OFF_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_RADIOBUTTON_RADIO_SMALL_ROUND_OFF_PRESSED_ID));
     screenLight.forceState(true);
     screenLight.setAction(buttonCallback);
     add(screenLight);

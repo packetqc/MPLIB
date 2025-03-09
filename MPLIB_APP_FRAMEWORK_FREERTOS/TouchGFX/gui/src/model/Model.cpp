@@ -26,19 +26,19 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
-//	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
-//	{
-//		switch(statusDeviceConnected) {
-//		case CLEAR_LOGS:
-//			modelListener->ClearLogs();
-//			break;
-//		default:
-//			modelListener->UpdateStatusNavigationBar();
-//			break;
-//		}
-//
-//		return;
-//	}
+	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
+	{
+		switch(statusDeviceConnected) {
+		case CLEAR_LOGS:
+			modelListener->ClearLogs();
+			break;
+		default:
+			modelListener->UpdateStatusNavigationBar();
+			break;
+		}
+
+		return;
+	}
 
 	if(osMessageQueueGet(gui_logs_msgHandle, &(aguilog), NULL, 0) == osOK)
 	{
@@ -46,12 +46,12 @@ void Model::tick()
 		return;
 	}
 
-//	if(HAL_GetTick() - tickstart > 1000 ) {
+	if(HAL_GetTick() - tickstart > 1000 ) {
 //		modelListener->getNumberItemsList();
 //		modelListener->getNumberOfLogListDrawables();
 //		modelListener->getNumberLogsDataServices();
 //		modelListener->getMemHeap();
-//		tickstart = HAL_GetTick();
-//		return;
-//	}
+		tickstart = HAL_GetTick();
+		return;
+	}
 }

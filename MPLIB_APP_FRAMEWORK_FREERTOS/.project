@@ -33,4 +33,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>MPLIB_STM32_MCU</name>
+			<type>2</type>
+			<location>D:/MPLIB/MPLIB_STM32_MCU</location>
+		</link>
+	</linkedResources>
 </projectDescription>

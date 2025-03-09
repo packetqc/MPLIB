@@ -31,7 +31,7 @@ protected:
      * Member Declarations
      */
     touchgfx::ClickListener< touchgfx::ScrollList > LogListDONOTUSE;
-    touchgfx::DrawableListItems<LogItem, 6> LogListDONOTUSEListItems;
+    touchgfx::DrawableListItems<LogItem, 7> LogListDONOTUSEListItems;
 
 private:
 

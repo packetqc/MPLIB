@@ -47,19 +47,18 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-extern osMutexId_t canLogHandle;
-extern osMessageQueueId_t ConnectionEventHandle;
-extern osMessageQueueId_t logsmon_msgHandle;
-extern osMessageQueueId_t gui_logs_msgHandle;
-extern osMessageQueueId_t logs_msgHandle;
-extern osMessageQueueId_t gui_msgHandle;
-
-extern osMessageQueueAttr_t gui_msg_attributes;
-extern osMessageQueueAttr_t logs_msg_attributes;
-extern osMessageQueueAttr_t gui_logs_msg_attributes;
-extern osMessageQueueAttr_t logsmon_msg_attributes;
-extern osMessageQueueAttr_t ConnectionEvent_attributes;
-extern osMutexAttr_t canLog_attributes;
+//extern osMutexId_t canLogHandle;
+//extern osMessageQueueId_t ConnectionEventHandle;
+//extern osMessageQueueId_t logsmon_msgHandle;
+//extern osMessageQueueId_t gui_logs_msgHandle;
+//extern osMessageQueueId_t logs_msgHandle;
+//extern osMessageQueueId_t gui_msgHandle;
+//extern osMessageQueueAttr_t gui_msg_attributes;
+//extern osMessageQueueAttr_t logs_msg_attributes;
+//extern osMessageQueueAttr_t gui_logs_msg_attributes;
+//extern osMessageQueueAttr_t logsmon_msg_attributes;
+//extern osMessageQueueAttr_t ConnectionEvent_attributes;
+//extern osMutexAttr_t canLog_attributes;
 
 /* Definitions for DataServicesTas */
 osThreadId_t DataServicesTasHandle;
@@ -93,6 +92,36 @@ const osThreadAttr_t GUI_Task_attributes = {
   .stack_size = 8192 * 4
 };
 
+/* Definitions for gui_msg */
+osMessageQueueId_t gui_msgHandle;
+const osMessageQueueAttr_t gui_msg_attributes = {
+  .name = "gui_msg"
+};
+/* Definitions for logs_msg */
+osMessageQueueId_t logs_msgHandle;
+const osMessageQueueAttr_t logs_msg_attributes = {
+  .name = "logs_msg"
+};
+/* Definitions for gui_logs_msg */
+osMessageQueueId_t gui_logs_msgHandle;
+const osMessageQueueAttr_t gui_logs_msg_attributes = {
+  .name = "gui_logs_msg"
+};
+/* Definitions for logsmon_msg */
+osMessageQueueId_t logsmon_msgHandle;
+const osMessageQueueAttr_t logsmon_msg_attributes = {
+  .name = "logsmon_msg"
+};
+/* Definitions for ConnectionEvent */
+osMessageQueueId_t ConnectionEventHandle;
+const osMessageQueueAttr_t ConnectionEvent_attributes = {
+  .name = "ConnectionEvent"
+};
+/* Definitions for canLog */
+osMutexId_t canLogHandle;
+const osMutexAttr_t canLog_attributes = {
+  .name = "canLog"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -153,10 +182,10 @@ void MX_FREERTOS_Init(void) {
 	/* add queues, ... */
 
 	/* creation of gui_msg */
-	gui_msgHandle = osMessageQueueNew (15, sizeof(uint8_t), &gui_msg_attributes);
+	gui_msgHandle = osMessageQueueNew (30, sizeof(uint8_t), &gui_msg_attributes);
 
 	/* creation of logs_msg */
-	logs_msgHandle = osMessageQueueNew (15, sizeof(char*), &logs_msg_attributes);
+	logs_msgHandle = osMessageQueueNew (30, sizeof(char*), &logs_msg_attributes);
 
 	/* creation of gui_logs_msg */
 	gui_logs_msgHandle = osMessageQueueNew (30, sizeof(uint8_t), &gui_logs_msg_attributes);

@@ -29,36 +29,49 @@
 #include "task.h"
 #include "cmsis_os2.h"
 
-/* Definitions for gui_msg */
-osMessageQueueId_t gui_msgHandle;
-osMessageQueueAttr_t gui_msg_attributes = {
-  .name = "gui_msg"
-};
-/* Definitions for logs_msg */
-osMessageQueueId_t logs_msgHandle;
-osMessageQueueAttr_t logs_msg_attributes = {
-  .name = "logs_msg"
-};
-/* Definitions for gui_logs_msg */
-osMessageQueueId_t gui_logs_msgHandle;
-osMessageQueueAttr_t gui_logs_msg_attributes = {
-  .name = "gui_logs_msg"
-};
-/* Definitions for logsmon_msg */
-osMessageQueueId_t logsmon_msgHandle;
-osMessageQueueAttr_t logsmon_msg_attributes = {
-  .name = "logsmon_msg"
-};
-/* Definitions for ConnectionEvent */
-osMessageQueueId_t ConnectionEventHandle;
-osMessageQueueAttr_t ConnectionEvent_attributes = {
-  .name = "ConnectionEvent"
-};
-/* Definitions for canLog */
-osMutexId_t canLogHandle;
-osMutexAttr_t canLog_attributes = {
-  .name = "canLog"
-};
+extern osMutexId_t canLogHandle;
+extern osMessageQueueId_t ConnectionEventHandle;
+extern osMessageQueueId_t logsmon_msgHandle;
+extern osMessageQueueId_t gui_logs_msgHandle;
+extern osMessageQueueId_t logs_msgHandle;
+extern osMessageQueueId_t gui_msgHandle;
+extern osMessageQueueAttr_t gui_msg_attributes;
+extern osMessageQueueAttr_t logs_msg_attributes;
+extern osMessageQueueAttr_t gui_logs_msg_attributes;
+extern osMessageQueueAttr_t logsmon_msg_attributes;
+extern osMessageQueueAttr_t ConnectionEvent_attributes;
+extern osMutexAttr_t canLog_attributes;
+
+///* Definitions for gui_msg */
+//osMessageQueueId_t gui_msgHandle;
+//const osMessageQueueAttr_t gui_msg_attributes = {
+//  .name = "gui_msg"
+//};
+///* Definitions for logs_msg */
+//osMessageQueueId_t logs_msgHandle;
+//const osMessageQueueAttr_t logs_msg_attributes = {
+//  .name = "logs_msg"
+//};
+///* Definitions for gui_logs_msg */
+//osMessageQueueId_t gui_logs_msgHandle;
+//const osMessageQueueAttr_t gui_logs_msg_attributes = {
+//  .name = "gui_logs_msg"
+//};
+///* Definitions for logsmon_msg */
+//osMessageQueueId_t logsmon_msgHandle;
+//const osMessageQueueAttr_t logsmon_msg_attributes = {
+//  .name = "logsmon_msg"
+//};
+///* Definitions for ConnectionEvent */
+//osMessageQueueId_t ConnectionEventHandle;
+//const osMessageQueueAttr_t ConnectionEvent_attributes = {
+//  .name = "ConnectionEvent"
+//};
+///* Definitions for canLog */
+//osMutexId_t canLogHandle;
+//const osMutexAttr_t canLog_attributes = {
+//  .name = "canLog"
+//};
 #endif
 
 //=======================================================================================
@@ -455,7 +468,7 @@ void MPDataServices::setPause() {
 	pause = true;
 
 #if defined(FREERTOS)
-	osMessageQueuePut(gui_msgHandle, (uint8_t*)CONTROL_PAUSE,0,0);
+//	osMessageQueuePut(gui_msgHandle, (uint8_t*)CONTROL_PAUSE,0,0);
 #elif defined(AZRTOS)
 	;
 #endif
@@ -468,7 +481,7 @@ void MPDataServices::setPlay() {
 	pause = false;
 
 #if defined(FREERTOS)
-	osMessageQueuePut(gui_msgHandle, (uint8_t*)CONTROL_PLAY,0,0);
+//	osMessageQueuePut(gui_msgHandle, (uint8_t*)CONTROL_PLAY,0,0);
 #elif defined(AZRTOS)
 	;
 #endif

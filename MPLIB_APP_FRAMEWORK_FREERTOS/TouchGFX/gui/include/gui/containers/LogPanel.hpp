@@ -39,7 +39,7 @@ protected:
 
 //    touchgfx::Callback<LogPanel, const touchgfx::AbstractButton&> buttonCallback2;
 //    touchgfx::Callback<LogPanel, const touchgfx::AbstractButtonContainer&> flexButtonCallback2;
-
+//
 //    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 //    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 };

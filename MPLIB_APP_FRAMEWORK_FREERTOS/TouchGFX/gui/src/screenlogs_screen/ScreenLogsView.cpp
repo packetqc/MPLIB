@@ -35,7 +35,7 @@ void ScreenLogsView::SetDisplayColor()
 {
     Background.setColor(DISPLAY->getColorMode(screenLight.getState()));
     Background.invalidate();
-    invalidate();
+//    invalidate();
 }
 
 void ScreenLogsView::updateSystemDescription()
