@@ -26,7 +26,7 @@ enum {
 //
 //=======================================================================================
 #define COLOR_MODE_DARK	0x000000
-#define COLOR_MODE_LITE 0xFFFFFF
+#define COLOR_MODE_LITE 0xE6EAFA //0xFFFFFF
 
 #define COLOR_STATUS_OK_DARK		0x3993FA
 #define COLOR_STATUS_INFO_DARK		0x3993FA
@@ -37,7 +37,7 @@ enum {
 #define COLOR_STATUS_DEBUG		0xF3E1FF
 #define COLOR_STATUS_ERROR		0xF7BCBC
 #define COLOR_STATUS_CRITICAL	0xF7BCBC
-#define COLOR_STATUS_WARNING	0xFFF8C4
+#define COLOR_STATUS_WARNING	0x3993FA //0xFFF8C4
 #define COLOR_IMAGE_WARNING		0xFAEE14
 #define COLOR_STATUS_CATEGORY	0xEBEBEB
 
@@ -86,9 +86,13 @@ public:
 
     	uint32_t getColorMode(bool pressed);
     	uint32_t getColorLog(uint8_t code);
+    	void 	blinkLED(uint8_t times);
+    	void	heartBeat();
+
 
     	void 	DISPLAY_Initialize(void);
 protected:
+    	Led_TypeDef LED 		= LED_BLUE;
         uint8_t 	status_DISPLAY 	= DISPLAY_NOTOK;
         bool 		status_ok 	= false;
         bool 		linked 		= false;

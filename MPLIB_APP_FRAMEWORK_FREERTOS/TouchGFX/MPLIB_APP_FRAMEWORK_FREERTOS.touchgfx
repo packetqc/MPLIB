@@ -9,6 +9,11 @@
             "Name": "Background",
             "Width": 240,
             "Height": 240,
+            "Color": {
+              "Red": 230,
+              "Green": 234,
+              "Blue": 250
+            },
             "BorderColor": {
               "Red": 57,
               "Green": 147,

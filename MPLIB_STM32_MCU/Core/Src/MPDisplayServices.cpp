@@ -42,9 +42,9 @@ void StartDisplayServices(void *argument) {
 	for( ;; )
 	{
 		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
-//			  DISPLAY->blinkLED(2);
+			  DISPLAY->blinkLED(2);
 			  tickstart = HAL_GetTick();
-//			  DISPLAY->heartBeat();
+			  DISPLAY->heartBeat();
 		  }
 	}
 }
@@ -81,6 +81,30 @@ void StartDisplayServices(ULONG thread_input) {
 //=======================================================================================
 MPDisplayServices *DISPLAY = MPDisplayServices::CreateInstance();
 
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPDisplayServices::blinkLED(uint8_t times) {
+	BSP_LED_Off(LED);
+	for(uint8_t i=0; i<=times; i++) {
+		BSP_LED_Toggle(LED);
+		#if defined(FREERTOS)
+		HAL_Delay(100);
+		#elif defined(AZRTOS)
+			tx_thread_sleep(10);
+		#endif
+	}
+	BSP_LED_Off(LED);
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPDisplayServices::heartBeat() {
+	snprintf(log, LOG_LENGTH, "Heartbeat");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+}
 
 //=======================================================================================
 //

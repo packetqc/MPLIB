@@ -103,6 +103,7 @@ public:
     void setLogMode(uint8_t value);
     bool isLogModeCircular();
 
+    void blinkLED(uint8_t times);
     void heartBeat();
 
 #ifdef TOUCHGFX
@@ -116,6 +117,7 @@ public:
 
 
 protected:
+    Led_TypeDef LED 		= LED_ORANGE;
     bool runOnce = false;
     bool circular = true;
     uint8_t status_app;

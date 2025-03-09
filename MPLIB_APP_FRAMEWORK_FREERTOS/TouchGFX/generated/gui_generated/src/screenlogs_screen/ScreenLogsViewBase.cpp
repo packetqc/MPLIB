@@ -18,7 +18,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     add(__background);
 
     Background.setPosition(0, 0, 240, 240);
-    Background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Background.setColor(touchgfx::Color::getColorFromRGB(230, 234, 250));
     Background.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     Background.setBorderSize(3);
     add(Background);

@@ -86,14 +86,16 @@ void StartSystemServices(ULONG thread_input) {
 //
 //=======================================================================================
 void MPSystem::blinkLED(uint8_t times) {
+	BSP_LED_Off(LED);
 	for(uint8_t i=0; i<=times; i++) {
 		BSP_LED_Toggle(LED);
 		#if defined(FREERTOS)
-			osDelay(100);
+			HAL_Delay(100);
 		#elif defined(AZRTOS)
 			tx_thread_sleep(10);
 		#endif
 	}
+	BSP_LED_Off(LED);
 }
 
 //=======================================================================================

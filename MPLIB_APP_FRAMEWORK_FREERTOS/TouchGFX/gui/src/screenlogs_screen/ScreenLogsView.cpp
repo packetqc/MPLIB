@@ -28,8 +28,16 @@ void ScreenLogsView::tearDownScreen()
 
 void ScreenLogsView::LED_Toggle()
 {
-	BSP_LED_Toggle(LED2);
-}
+	BSP_LED_Off(LED1);
+	for(uint8_t i=0; i<=2; i++) {
+		BSP_LED_Toggle(LED1);
+		#if defined(FREERTOS)
+		HAL_Delay(100);
+		#elif defined(AZRTOS)
+			tx_thread_sleep(10);
+		#endif
+	}
+	BSP_LED_Off(LED1);}
 
 void ScreenLogsView::SetDisplayColor()
 {

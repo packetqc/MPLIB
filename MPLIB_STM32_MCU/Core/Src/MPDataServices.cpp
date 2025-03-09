@@ -84,6 +84,7 @@ MPDataServices *MPDataServices::instance=NULL;
 
 char* MPDataServices::name = (char*)pvPortMalloc(CAT_LENGTH * sizeof(char));
 static __attribute__ ((used,section(".freertosheap"))) aLogStructTGFXPtr LOGSMON[TEXTLOGS_SIZE];
+//static aLogStructTGFXPtr LOGSMON[TEXTLOGS_SIZE];
 
 #elif defined(AZRTOS)
 ;
@@ -108,6 +109,10 @@ aLogStructPtr aLogToGo;
 void StartDataServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
 
+//	char alog[25];
+//	snprintf(alog, LOG_LENGTH, "DATA Started");
+//	printf("[%d\t%d]\t%s\n\n", 0, 0, alog);
+
 	DS->init();
 
 #ifdef FREERTOS
@@ -125,13 +130,13 @@ void StartDataServices(void *argument) {
 		}
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
-			BSP_LED_Toggle(LED_GREEN);
+			DS->blinkLED(2);
 			tickstart = HAL_GetTick();
 
 			DS->heartBeat();
 		}
 
-		osDelay(100);
+//		osDelay(100);
 	}
 #endif
 
@@ -143,10 +148,17 @@ void StartDataServices(void *argument) {
 //=======================================================================================
 //
 //=======================================================================================
-void MPDataServices::init() {
-	started = true;
-
-	DS->pushToLogsMon(name, LOG_OK, "Initialization completed");
+void MPDataServices::blinkLED(uint8_t times) {
+	BSP_LED_Off(LED);
+	for(uint8_t i=0; i<=times; i++) {
+		BSP_LED_Toggle(LED);
+		#if defined(FREERTOS)
+		HAL_Delay(100);
+		#elif defined(AZRTOS)
+			tx_thread_sleep(10);
+		#endif
+	}
+	BSP_LED_Off(LED);
 }
 
 //=======================================================================================
@@ -154,7 +166,21 @@ void MPDataServices::init() {
 //=======================================================================================
 void MPDataServices::heartBeat() {
 	snprintf(log, LOG_LENGTH, "Heartbeat");
+
+//	printf("[%d\t%d]\t%s\n\n", 0, 0, log);
 	DS->pushToLogsMon(name, LOG_INFO, log);
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPDataServices::init() {
+	started = true;
+
+	snprintf(log, LOG_LENGTH, "Initialization completed");
+
+//	printf("[%d\t%d]\t%s\n\n", 0, 0, log);
+	DS->pushToLogsMon(name, LOG_OK, log);
 }
 
 //=======================================================================================
