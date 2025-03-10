@@ -34,6 +34,12 @@ char* MPSystem::name = (char*)pvPortMalloc(CAT_LENGTH * sizeof(char));
 //=======================================================================================
 //
 //=======================================================================================
+MPSystem *SYS = MPSystem::CreateInstance();
+
+
+//=======================================================================================
+//
+//=======================================================================================
 void StartSystemServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
 
@@ -47,10 +53,16 @@ void StartSystemServices(void *argument) {
 	for( ;; )
 	{
 		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
-			  SYS->blinkLED(2);
-			  tickstart = HAL_GetTick();
+			  SYS->SYS_ReadMemory();
+		  }
 
+		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+			  SYS->blinkLED(2);
 			  SYS->heartBeat();
+		  }
+
+		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+			  tickstart = HAL_GetTick();
 		  }
 	}
 }
@@ -81,6 +93,14 @@ void StartSystemServices(ULONG thread_input) {
 }
 #endif
 
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSystem::SYS_ReadMemory(void)
+{
+	vPortGetHeapStats( &heapit );
+}
 
 //=======================================================================================
 //
@@ -183,5 +203,56 @@ bool MPSystem::init() {
 //=======================================================================================
 //
 //=======================================================================================
-MPSystem *SYS = MPSystem::CreateInstance();
+size_t	MPSystem::getAvailableHeapSpaceInBytes()
+{
+	return this->heapit.xAvailableHeapSpaceInBytes;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+size_t	MPSystem::getSizeOfLargestFreeBlockInBytes()
+{
+	return this->heapit.xSizeOfLargestFreeBlockInBytes;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+size_t	MPSystem::getSizeOfSmallestFreeBlockInBytes()
+{
+	return this->heapit.xSizeOfSmallestFreeBlockInBytes;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+size_t	MPSystem::getNumberOfFreeBlocks()
+{
+	return this->heapit.xNumberOfFreeBlocks;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+size_t	MPSystem::getMinimumEverFreeBytesRemaining()
+{
+	return this->heapit.xMinimumEverFreeBytesRemaining;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+size_t	MPSystem::getNumberOfSuccessfulAllocations()
+{
+	return this->heapit.xNumberOfSuccessfulAllocations;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+size_t	MPSystem::getNumberOfSuccessfulFrees()
+{
+	return this->heapit.xNumberOfSuccessfulFrees;
+}
 

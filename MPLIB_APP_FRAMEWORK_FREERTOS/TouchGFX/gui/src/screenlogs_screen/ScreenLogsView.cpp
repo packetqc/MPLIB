@@ -37,7 +37,20 @@ void ScreenLogsView::LED_Toggle()
 			tx_thread_sleep(10);
 		#endif
 	}
-	BSP_LED_Off(LED1);}
+	BSP_LED_Off(LED1);
+}
+
+void ScreenLogsView::UpdateTitle()
+{
+//	Unicode::UnicodeChar buffer[15];
+//
+//	PagesMenu.
+//	Unicode::strncpy(buffer, SYS->getSystemDescription(), 15);
+//	touchgfx::Unicode::snprintf(systemDescriptionTextAreaBuffer, 15, "%s", buffer );
+//	systemDescriptionTextArea.resizeToCurrentText();
+//	systemDescriptionTextArea.invalidate();
+//	systemDescriptionTextArea.centerX();
+}
 
 void ScreenLogsView::SetDisplayColor()
 {
@@ -85,14 +98,14 @@ void ScreenLogsView::UpdateStatusNavigationBar()
 }
 
 void ScreenLogsView::ClearLogs() {
-	Logs.ClearLogs();
+	LogsListe.ClearLogs();
 	getNumberItemsList();
 	getNumberOfLogListDrawables();
 	getNumberLogsDataServices();
 }
 
 void ScreenLogsView::UpdateLogs(uint8_t index) {
-	Logs.Update(index);
+	LogsListe.Update(index);
 
 //	qtyLogs++;
 	getNumberItemsList();
@@ -101,13 +114,13 @@ void ScreenLogsView::UpdateLogs(uint8_t index) {
 }
 
 void ScreenLogsView::getNumberItemsList() {
-	touchgfx::Unicode::snprintf(numberOfLogListItemsBuffer, 10, "%d", Logs.getNumberItemsList());
+	touchgfx::Unicode::snprintf(numberOfLogListItemsBuffer, 10, "%d", LogsListe.getNumberItemsList());
 	numberOfLogListItems.resizeToCurrentText();
 	numberOfLogListItems.invalidate();
 }
 
 void ScreenLogsView::getNumberOfLogListDrawables() {
-	touchgfx::Unicode::snprintf(numberOfLogListDrawablesBuffer, 10, "%d", Logs.getNumberDrawablesList());
+	touchgfx::Unicode::snprintf(numberOfLogListDrawablesBuffer, 10, "%d", LogsListe.getNumberDrawablesList());
 	numberOfLogListDrawables.resizeToCurrentText();
 	numberOfLogListDrawables.invalidate();
 }
@@ -118,49 +131,35 @@ void ScreenLogsView::getNumberLogsDataServices() {
 	numberLogsDataServices.invalidate();
 }
 
-///* Prototype of the vPortGetHeapStats() function. */
-void vPortGetHeapStats( HeapStats_t *xHeapStats );
-
-/* Definition of the Heap_stats_t structure. */
-//typedef struct xHeapStats
-//{
-//	size_t xAvailableHeapSpaceInBytes;      /* The total heap size currently available - this is the sum of all the free blocks, not the largest block that can be allocated. */
-//	size_t xSizeOfLargestFreeBlockInBytes; 	/* The maximum size, in bytes, of all the free blocks within the heap at the time vPortGetHeapStats() is called. */
-//	size_t xSizeOfSmallestFreeBlockInBytes; /* The minimum size, in bytes, of all the free blocks within the heap at the time vPortGetHeapStats() is called. */
-//	size_t xNumberOfFreeBlocks;		/* The number of free memory blocks within the heap at the time vPortGetHeapStats() is called. */
-//	size_t xMinimumEverFreeBytesRemaining;	/* The minimum amount of total free memory (sum of all free blocks) there has been in the heap since the system booted. */
-//	size_t xNumberOfSuccessfulAllocations;	/* The number of calls to pvPortMalloc() that have returned a valid memory block. */
-//	size_t xNumberOfSuccessfulFrees;	/* The number of calls to vPortFree() that has successfully freed a block of memory. */
-//} HeapStats_t;
 
 void ScreenLogsView::getMemHeap() {
-	vPortGetHeapStats( &heapit );
+//	vPortGetHeapStats( &heapit );
 
-	touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", heapit.xAvailableHeapSpaceInBytes );
+	touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
 	memHeapFreeSize.resizeToCurrentText();
 	memHeapFreeSize.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapLargestBuffer, 10, "%d", heapit.xSizeOfLargestFreeBlockInBytes );
+	touchgfx::Unicode::snprintf(memHeapLargestBuffer, 10, "%d", SYS->getSizeOfLargestFreeBlockInBytes() );
 	memHeapLargest.resizeToCurrentText();
 	memHeapLargest.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapSmalestBuffer, 10, "%d", heapit.xSizeOfSmallestFreeBlockInBytes );
+	touchgfx::Unicode::snprintf(memHeapSmalestBuffer, 10, "%d", SYS->getSizeOfSmallestFreeBlockInBytes() );
 	memHeapSmalest.resizeToCurrentText();
 	memHeapSmalest.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapFreeBlocksBuffer, 10, "%d", heapit.xNumberOfFreeBlocks );
+	touchgfx::Unicode::snprintf(memHeapFreeBlocksBuffer, 10, "%d", SYS->getNumberOfFreeBlocks() );
 	memHeapFreeBlocks.resizeToCurrentText();
 	memHeapFreeBlocks.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapEverFreeBuffer, 10, "%d", heapit.xMinimumEverFreeBytesRemaining );
+	touchgfx::Unicode::snprintf(memHeapEverFreeBuffer, 10, "%d", SYS->getMinimumEverFreeBytesRemaining() );
 	memHeapEverFree.resizeToCurrentText();
 	memHeapEverFree.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapAllocSuccessBuffer, 10, "%d", heapit.xNumberOfSuccessfulAllocations );
+	touchgfx::Unicode::snprintf(memHeapAllocSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulAllocations() );
 	memHeapAllocSuccess.resizeToCurrentText();
 	memHeapAllocSuccess.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapFreeSuccessBuffer, 10, "%d", heapit.xNumberOfSuccessfulFrees );
+	touchgfx::Unicode::snprintf(memHeapFreeSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulFrees() );
 	memHeapFreeSuccess.resizeToCurrentText();
 	memHeapFreeSuccess.invalidate();
 }

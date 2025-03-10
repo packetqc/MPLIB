@@ -31,6 +31,7 @@
 
 #include "MPLibs.h"
 
+
 //=======================================================================================
 //
 //=======================================================================================
@@ -54,6 +55,30 @@ void StartSystemServices(ULONG thread_input);
 //
 //=======================================================================================
 #ifdef __cplusplus
+
+#if defined(FREERTOS)
+#include "FreeRTOS.h"
+//=======================================================================================
+//
+//=======================================================================================
+/* Definition of the Heap_stats_t structure. */
+//typedef struct xHeapStats
+//{
+//	size_t xAvailableHeapSpaceInBytes;      /* The total heap size currently available - this is the sum of all the free blocks, not the largest block that can be allocated. */
+//	size_t xSizeOfLargestFreeBlockInBytes; 	/* The maximum size, in bytes, of all the free blocks within the heap at the time vPortGetHeapStats() is called. */
+//	size_t xSizeOfSmallestFreeBlockInBytes; /* The minimum size, in bytes, of all the free blocks within the heap at the time vPortGetHeapStats() is called. */
+//	size_t xNumberOfFreeBlocks;		/* The number of free memory blocks within the heap at the time vPortGetHeapStats() is called. */
+//	size_t xMinimumEverFreeBytesRemaining;	/* The minimum amount of total free memory (sum of all free blocks) there has been in the heap since the system booted. */
+//	size_t xNumberOfSuccessfulAllocations;	/* The number of calls to pvPortMalloc() that have returned a valid memory block. */
+//	size_t xNumberOfSuccessfulFrees;	/* The number of calls to vPortFree() that has successfully freed a block of memory. */
+//} HeapStats_t;
+
+///* Prototype of the vPortGetHeapStats() function. */
+void vPortGetHeapStats( HeapStats_t *xHeapStats );
+
+#elif defined(AZRTOS)
+;
+#endif
 
 class MPSystem {
 	static int iSYS;
@@ -79,6 +104,16 @@ public:
     	void	heartBeat();
 
     	void 	SYS_Initialize(void);
+    	void	SYS_ReadMemory(void);
+
+    	size_t	getAvailableHeapSpaceInBytes();
+    	size_t	getSizeOfLargestFreeBlockInBytes();
+    	size_t	getSizeOfSmallestFreeBlockInBytes();
+    	size_t	getNumberOfFreeBlocks();
+    	size_t	getMinimumEverFreeBytesRemaining();
+    	size_t	getNumberOfSuccessfulAllocations();
+    	size_t	getNumberOfSuccessfulFrees();
+
 protected:
     	Led_TypeDef LED 		= LED_RED;
         uint8_t 	status_SYS 	= SYSTEM_NOTOK;
@@ -88,13 +123,21 @@ protected:
     	bool 		started 	= false;
 
 private:
-    	char 		log[LOG_LENGTH];
+	char 		log[LOG_LENGTH];
 
 #if defined(FREERTOS)
-    	char		systemDescr[25] = "Free RTOS";
+	char		systemDescr[25] = "Free RTOS";
 #elif defined(AZRTOS)
-    	char		systemDescr[25] = "Azure Eclipse RTOS";
+	char		systemDescr[25] = "Azure Eclipse RTOS";
 #endif
+
+private:
+#if defined(FREERTOS)
+	HeapStats_t heapit;
+#elif defined(AZRTOS)
+;
+#endif
+
 };
 
 //=======================================================================================

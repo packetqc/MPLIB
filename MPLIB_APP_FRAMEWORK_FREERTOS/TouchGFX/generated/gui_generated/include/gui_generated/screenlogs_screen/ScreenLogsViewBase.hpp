@@ -9,6 +9,7 @@
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <gui/containers/ScreenTitle.hpp>
 #include <touchgfx/containers/SwipeContainer.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
@@ -50,6 +51,10 @@ public:
     {
         // Override and implement this function in ScreenLogs
     }
+    virtual void UpdateTitle()
+    {
+        // Override and implement this function in ScreenLogs
+    }
 
 protected:
     FrontendApplication& application() {
@@ -61,15 +66,13 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::BoxWithBorder Background;
+    ScreenTitle screenTitle;
     touchgfx::SwipeContainer PagesMenu;
-    touchgfx::Container WelcomePage;
+    touchgfx::Container Welcome;
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea2;
     touchgfx::TextAreaWithOneWildcard systemDescriptionTextArea;
-    touchgfx::Container NetPage;
-    touchgfx::Container LogsPage;
-    LogPanel Logs;
-    touchgfx::Container MemPage;
+    touchgfx::Container Memory;
     touchgfx::TextAreaWithOneWildcard numberOfLogListDrawables;
     touchgfx::TextAreaWithOneWildcard numberOfLogListItems;
     touchgfx::TextAreaWithOneWildcard numberLogsDataServices;
@@ -80,6 +83,9 @@ protected:
     touchgfx::TextAreaWithOneWildcard memHeapEverFree;
     touchgfx::TextAreaWithOneWildcard memHeapAllocSuccess;
     touchgfx::TextAreaWithOneWildcard memHeapFreeSuccess;
+    touchgfx::Container Logs;
+    LogPanel LogsListe;
+    touchgfx::Container Network;
     StatusNavigationBar StatusNavigationBar1;
     touchgfx::ToggleButton screenLight;
 

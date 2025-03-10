@@ -35,10 +35,11 @@ public:
 	void getMemHeap();
 
 	void SetDisplayColor();
+	void UpdateTitle();
 protected:
 
-private:
-	HeapStats_t heapit;
+//private:
+//	HeapStats_t heapit;
 };
 
 #endif // SCREENLOGSVIEW_HPP

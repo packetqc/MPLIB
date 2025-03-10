@@ -122,13 +122,13 @@ int main(void)
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
 //  printf("MAIN ON\n");
-  HAL_Delay(500);
+//  HAL_Delay(500);
   BSP_LED_On(LED1);
-  HAL_Delay(500);
+//  HAL_Delay(500);
   BSP_LED_On(LED2);
-  HAL_Delay(500);
+//  HAL_Delay(500);
   BSP_LED_On(LED3);
-  HAL_Delay(500);
+//  HAL_Delay(500);
   BSP_LED_On(LED4);
   /* USER CODE END 2 */
 

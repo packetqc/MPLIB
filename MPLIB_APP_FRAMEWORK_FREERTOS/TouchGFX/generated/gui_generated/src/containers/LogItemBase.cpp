@@ -17,7 +17,7 @@ LogItemBase::LogItemBase()
     LogStatus.setVisible(false);
     add(LogStatus);
 
-    LogText.setXY(158, 10);
+    LogText.setXY(155, 10);
     LogText.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogText.setLinespacing(0);
     Unicode::snprintf(LogTextBuffer, LOGTEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JH5V).getText());
@@ -49,7 +49,7 @@ LogItemBase::LogItemBase()
     BackgroundCategory.setVisible(false);
     add(BackgroundCategory);
 
-    LogCategory.setXY(82, 10);
+    LogCategory.setXY(79, 10);
     LogCategory.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogCategory.setLinespacing(0);
     Unicode::snprintf(LogCategoryBuffer, LOGCATEGORY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_HH9Y).getText());

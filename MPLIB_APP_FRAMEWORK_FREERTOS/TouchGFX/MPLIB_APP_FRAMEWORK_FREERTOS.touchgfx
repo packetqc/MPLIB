@@ -22,31 +22,39 @@
             "BorderSize": 3
           },
           {
+            "Type": "CustomContainerInstance",
+            "Name": "screenTitle",
+            "Width": 240,
+            "Height": 40,
+            "CustomContainerDefinitionName": "ScreenTitle"
+          },
+          {
             "Type": "SwipeContainer",
             "Name": "PagesMenu",
+            "Y": 40,
             "Width": 240,
-            "Height": 240,
+            "Height": 200,
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
             "PageIndicatorX": 80,
-            "PageIndicatorY": 212,
+            "PageIndicatorY": 171,
             "CenteredX": true,
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
             "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_active.png",
             "EndSwipeElasticWidth": 50,
-            "SelectedPage": "MemPage",
+            "SelectedPage": "Welcome",
             "Components": [
               {
                 "Type": "Container",
-                "Name": "WelcomePage",
+                "Name": "Welcome",
                 "Width": 240,
-                "Height": 240,
+                "Height": 200,
                 "Components": [
                   {
                     "Type": "TextArea",
                     "Name": "textArea1",
                     "X": 46,
-                    "Y": 59,
+                    "Y": 22,
                     "Width": 148,
                     "Height": 48,
                     "TextId": "__SingleUse_85SS",
@@ -62,7 +70,7 @@
                     "Type": "TextArea",
                     "Name": "textArea2",
                     "X": 97,
-                    "Y": 124,
+                    "Y": 87,
                     "Width": 47,
                     "Height": 24,
                     "TextId": "__SingleUse_HACC",
@@ -78,7 +86,7 @@
                     "Type": "TextArea",
                     "Name": "systemDescriptionTextArea",
                     "X": 56,
-                    "Y": 169,
+                    "Y": 132,
                     "Width": 128,
                     "Height": 12,
                     "TextId": "__SingleUse_HD5T",
@@ -99,37 +107,15 @@
               },
               {
                 "Type": "Container",
-                "Name": "NetPage",
+                "Name": "Memory",
                 "Width": 240,
-                "Height": 240,
-                "Components": []
-              },
-              {
-                "Type": "Container",
-                "Name": "LogsPage",
-                "Width": 240,
-                "Height": 240,
-                "Components": [
-                  {
-                    "Type": "CustomContainerInstance",
-                    "Name": "Logs",
-                    "Width": 240,
-                    "Height": 192,
-                    "CustomContainerDefinitionName": "LogPanel"
-                  }
-                ]
-              },
-              {
-                "Type": "Container",
-                "Name": "MemPage",
-                "Width": 240,
-                "Height": 240,
+                "Height": 200,
                 "Components": [
                   {
                     "Type": "TextArea",
                     "Name": "numberOfLogListDrawables",
-                    "X": 17,
-                    "Y": 31,
+                    "X": 14,
+                    "Y": 10,
                     "Width": 82,
                     "Height": 18,
                     "TextId": "__SingleUse_0A4I",
@@ -149,8 +135,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "numberOfLogListItems",
-                    "X": 127,
-                    "Y": 31,
+                    "X": 122,
+                    "Y": 10,
                     "Width": 66,
                     "Height": 18,
                     "TextId": "__SingleUse_8Q8R",
@@ -170,8 +156,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "numberLogsDataServices",
-                    "X": 132,
-                    "Y": 59,
+                    "X": 127,
+                    "Y": 38,
                     "Width": 61,
                     "Height": 18,
                     "TextId": "__SingleUse_E30B",
@@ -191,8 +177,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "memHeapFreeSize",
-                    "X": 16,
-                    "Y": 111,
+                    "X": 13,
+                    "Y": 83,
                     "Width": 70,
                     "Height": 18,
                     "TextId": "__SingleUse_CM19",
@@ -212,8 +198,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "memHeapLargest",
-                    "X": 17,
-                    "Y": 136,
+                    "X": 14,
+                    "Y": 108,
                     "Width": 63,
                     "Height": 18,
                     "TextId": "__SingleUse_5N8E",
@@ -233,8 +219,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "memHeapSmalest",
-                    "X": 16,
-                    "Y": 163,
+                    "X": 13,
+                    "Y": 135,
                     "Width": 64,
                     "Height": 18,
                     "TextId": "__SingleUse_0MRP",
@@ -276,8 +262,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "memHeapEverFree",
-                    "X": 131,
-                    "Y": 163,
+                    "X": 126,
+                    "Y": 135,
                     "Width": 60,
                     "Height": 18,
                     "TextId": "__SingleUse_LUQY",
@@ -297,8 +283,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "memHeapAllocSuccess",
-                    "X": 130,
-                    "Y": 136,
+                    "X": 125,
+                    "Y": 108,
                     "Width": 62,
                     "Height": 18,
                     "TextId": "__SingleUse_CWCT",
@@ -318,8 +304,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "memHeapFreeSuccess",
-                    "X": 129,
-                    "Y": 111,
+                    "X": 124,
+                    "Y": 83,
                     "Width": 64,
                     "Height": 18,
                     "TextId": "__SingleUse_6MCN",
@@ -337,6 +323,28 @@
                     }
                   }
                 ]
+              },
+              {
+                "Type": "Container",
+                "Name": "Logs",
+                "Width": 240,
+                "Height": 200,
+                "Components": [
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "LogsListe",
+                    "Width": 240,
+                    "Height": 160,
+                    "CustomContainerDefinitionName": "LogPanel"
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "Network",
+                "Width": 240,
+                "Height": 200,
+                "Components": []
               }
             ]
           },
@@ -445,6 +453,16 @@
               "Type": "ActionCustom",
               "FunctionName": "UpdateStatusNavigationBar"
             }
+          },
+          {
+            "InteractionName": "UpdateTitle",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "UpdateTitle"
+            }
           }
         ]
       }
@@ -472,7 +490,7 @@
           {
             "Type": "TextArea",
             "Name": "LogText",
-            "X": 158,
+            "X": 155,
             "Y": 10,
             "Width": 47,
             "Height": 18,
@@ -542,7 +560,7 @@
           {
             "Type": "TextArea",
             "Name": "LogCategory",
-            "X": 82,
+            "X": 79,
             "Y": 10,
             "Width": 51,
             "Height": 18,
@@ -587,14 +605,15 @@
       },
       {
         "Name": "LogPanel",
+        "Y": 40,
         "Width": 240,
-        "Height": 192,
+        "Height": 160,
         "Components": [
           {
             "Type": "ScrollList",
             "Name": "LogListDONOTUSE",
             "Width": 240,
-            "Height": 192,
+            "Height": 160,
             "Snapping": true,
             "ItemTemplateName": "LogItem",
             "ItemMargin": 3,
@@ -648,7 +667,7 @@
               {
                 "Type": "FlexButton",
                 "Name": "Control_Play",
-                "X": 10,
+                "X": 32,
                 "Y": 7,
                 "Width": 24,
                 "Height": 24,
@@ -666,7 +685,7 @@
               {
                 "Type": "FlexButton",
                 "Name": "Control_Pause",
-                "X": 32,
+                "X": 10,
                 "Y": 7,
                 "Width": 24,
                 "Height": 24,
@@ -708,6 +727,46 @@
             }
           }
         ]
+      },
+      {
+        "Name": "ScreenTitle",
+        "Width": 240,
+        "Height": 40,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "background",
+            "Width": 240,
+            "Height": 40,
+            "Color": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "Alpha": 75
+          },
+          {
+            "Type": "TextArea",
+            "Name": "title",
+            "X": 61,
+            "Y": 8,
+            "Width": 119,
+            "Height": 24,
+            "TextId": "__SingleUse_1UXT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_YZI5",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          }
+        ],
+        "Interactions": []
       }
     ],
     "Name": "MyApplication",

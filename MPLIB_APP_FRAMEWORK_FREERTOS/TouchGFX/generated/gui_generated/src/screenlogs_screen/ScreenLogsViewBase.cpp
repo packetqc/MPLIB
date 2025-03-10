@@ -23,101 +23,95 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     Background.setBorderSize(3);
     add(Background);
 
-    PagesMenu.setXY(0, 0);
+    screenTitle.setXY(0, 0);
+    add(screenTitle);
+
+    PagesMenu.setXY(0, 40);
     PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_ON_ACTIVE_ID));
-    PagesMenu.setPageIndicatorXY(80, 212);
+    PagesMenu.setPageIndicatorXY(80, 171);
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
 
-    WelcomePage.setWidth(240);
-    WelcomePage.setHeight(240);
-    textArea1.setXY(46, 59);
+    Welcome.setWidth(240);
+    Welcome.setHeight(200);
+    textArea1.setXY(46, 22);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_85SS));
-    WelcomePage.add(textArea1);
+    Welcome.add(textArea1);
 
-    textArea2.setXY(97, 124);
+    textArea2.setXY(97, 87);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HACC));
-    WelcomePage.add(textArea2);
+    Welcome.add(textArea2);
 
-    systemDescriptionTextArea.setXY(56, 169);
+    systemDescriptionTextArea.setXY(56, 132);
     systemDescriptionTextArea.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     systemDescriptionTextArea.setLinespacing(0);
     Unicode::snprintf(systemDescriptionTextAreaBuffer, SYSTEMDESCRIPTIONTEXTAREA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_LCDJ).getText());
     systemDescriptionTextArea.setWildcard(systemDescriptionTextAreaBuffer);
     systemDescriptionTextArea.resizeToCurrentText();
     systemDescriptionTextArea.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HD5T));
-    WelcomePage.add(systemDescriptionTextArea);
+    Welcome.add(systemDescriptionTextArea);
 
-    PagesMenu.add(WelcomePage);
+    PagesMenu.add(Welcome);
 
-    NetPage.setPosition(0, 0, 240, 240);
-    PagesMenu.add(NetPage);
-
-    LogsPage.setWidth(240);
-    LogsPage.setHeight(240);
-    Logs.setXY(0, 0);
-    LogsPage.add(Logs);
-
-    PagesMenu.add(LogsPage);
-
-    MemPage.setPosition(0, 0, 240, 240);
-    numberOfLogListDrawables.setXY(17, 31);
+    Memory.setWidth(240);
+    Memory.setHeight(200);
+    numberOfLogListDrawables.setXY(14, 10);
     numberOfLogListDrawables.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     numberOfLogListDrawables.setLinespacing(0);
     Unicode::snprintf(numberOfLogListDrawablesBuffer, NUMBEROFLOGLISTDRAWABLES_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_NHL1).getText());
     numberOfLogListDrawables.setWildcard(numberOfLogListDrawablesBuffer);
     numberOfLogListDrawables.resizeToCurrentText();
     numberOfLogListDrawables.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0A4I));
-    MemPage.add(numberOfLogListDrawables);
+    Memory.add(numberOfLogListDrawables);
 
-    numberOfLogListItems.setXY(127, 31);
+    numberOfLogListItems.setXY(122, 10);
     numberOfLogListItems.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     numberOfLogListItems.setLinespacing(0);
     Unicode::snprintf(numberOfLogListItemsBuffer, NUMBEROFLOGLISTITEMS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RHXE).getText());
     numberOfLogListItems.setWildcard(numberOfLogListItemsBuffer);
     numberOfLogListItems.resizeToCurrentText();
     numberOfLogListItems.setTypedText(touchgfx::TypedText(T___SINGLEUSE_8Q8R));
-    MemPage.add(numberOfLogListItems);
+    Memory.add(numberOfLogListItems);
 
-    numberLogsDataServices.setXY(132, 59);
+    numberLogsDataServices.setXY(127, 38);
     numberLogsDataServices.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     numberLogsDataServices.setLinespacing(0);
     Unicode::snprintf(numberLogsDataServicesBuffer, NUMBERLOGSDATASERVICES_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y1H3).getText());
     numberLogsDataServices.setWildcard(numberLogsDataServicesBuffer);
     numberLogsDataServices.resizeToCurrentText();
     numberLogsDataServices.setTypedText(touchgfx::TypedText(T___SINGLEUSE_E30B));
-    MemPage.add(numberLogsDataServices);
+    Memory.add(numberLogsDataServices);
 
-    memHeapFreeSize.setXY(16, 111);
+    memHeapFreeSize.setXY(13, 83);
     memHeapFreeSize.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     memHeapFreeSize.setLinespacing(0);
     Unicode::snprintf(memHeapFreeSizeBuffer, MEMHEAPFREESIZE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_G84X).getText());
     memHeapFreeSize.setWildcard(memHeapFreeSizeBuffer);
     memHeapFreeSize.resizeToCurrentText();
     memHeapFreeSize.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CM19));
-    MemPage.add(memHeapFreeSize);
+    Memory.add(memHeapFreeSize);
 
-    memHeapLargest.setXY(17, 136);
+    memHeapLargest.setXY(14, 108);
     memHeapLargest.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     memHeapLargest.setLinespacing(0);
     Unicode::snprintf(memHeapLargestBuffer, MEMHEAPLARGEST_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_ZB3V).getText());
     memHeapLargest.setWildcard(memHeapLargestBuffer);
     memHeapLargest.resizeToCurrentText();
     memHeapLargest.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5N8E));
-    MemPage.add(memHeapLargest);
+    Memory.add(memHeapLargest);
 
-    memHeapSmalest.setXY(16, 163);
+    memHeapSmalest.setXY(13, 135);
     memHeapSmalest.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     memHeapSmalest.setLinespacing(0);
     Unicode::snprintf(memHeapSmalestBuffer, MEMHEAPSMALEST_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_8OLZ).getText());
     memHeapSmalest.setWildcard(memHeapSmalestBuffer);
     memHeapSmalest.resizeToCurrentText();
     memHeapSmalest.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0MRP));
-    MemPage.add(memHeapSmalest);
+    Memory.add(memHeapSmalest);
 
     memHeapFreeBlocks.setXY(124, 186);
     memHeapFreeBlocks.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
@@ -127,38 +121,49 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     memHeapFreeBlocks.resizeToCurrentText();
     memHeapFreeBlocks.setTypedText(touchgfx::TypedText(T___SINGLEUSE_38OA));
     memHeapFreeBlocks.setVisible(false);
-    MemPage.add(memHeapFreeBlocks);
+    Memory.add(memHeapFreeBlocks);
 
-    memHeapEverFree.setXY(131, 163);
+    memHeapEverFree.setXY(126, 135);
     memHeapEverFree.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     memHeapEverFree.setLinespacing(0);
     Unicode::snprintf(memHeapEverFreeBuffer, MEMHEAPEVERFREE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_OHU5).getText());
     memHeapEverFree.setWildcard(memHeapEverFreeBuffer);
     memHeapEverFree.resizeToCurrentText();
     memHeapEverFree.setTypedText(touchgfx::TypedText(T___SINGLEUSE_LUQY));
-    MemPage.add(memHeapEverFree);
+    Memory.add(memHeapEverFree);
 
-    memHeapAllocSuccess.setXY(130, 136);
+    memHeapAllocSuccess.setXY(125, 108);
     memHeapAllocSuccess.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     memHeapAllocSuccess.setLinespacing(0);
     Unicode::snprintf(memHeapAllocSuccessBuffer, MEMHEAPALLOCSUCCESS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4RS1).getText());
     memHeapAllocSuccess.setWildcard(memHeapAllocSuccessBuffer);
     memHeapAllocSuccess.resizeToCurrentText();
     memHeapAllocSuccess.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CWCT));
-    MemPage.add(memHeapAllocSuccess);
+    Memory.add(memHeapAllocSuccess);
 
-    memHeapFreeSuccess.setXY(129, 111);
+    memHeapFreeSuccess.setXY(124, 83);
     memHeapFreeSuccess.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     memHeapFreeSuccess.setLinespacing(0);
     Unicode::snprintf(memHeapFreeSuccessBuffer, MEMHEAPFREESUCCESS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_NLIA).getText());
     memHeapFreeSuccess.setWildcard(memHeapFreeSuccessBuffer);
     memHeapFreeSuccess.resizeToCurrentText();
     memHeapFreeSuccess.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6MCN));
-    MemPage.add(memHeapFreeSuccess);
+    Memory.add(memHeapFreeSuccess);
 
-    PagesMenu.add(MemPage);
+    PagesMenu.add(Memory);
 
-    PagesMenu.setSelectedPage(3);
+    Logs.setWidth(240);
+    Logs.setHeight(200);
+    LogsListe.setXY(0, 0);
+    Logs.add(LogsListe);
+
+    PagesMenu.add(Logs);
+
+    Network.setWidth(240);
+    Network.setHeight(200);
+    PagesMenu.add(Network);
+
+    PagesMenu.setSelectedPage(0);
     add(PagesMenu);
 
     StatusNavigationBar1.setXY(0, 200);
@@ -178,7 +183,8 @@ ScreenLogsViewBase::~ScreenLogsViewBase()
 
 void ScreenLogsViewBase::setupScreen()
 {
-    Logs.initialize();
+    screenTitle.initialize();
+    LogsListe.initialize();
     StatusNavigationBar1.initialize();
     transitionBegins();
 }
@@ -253,4 +259,9 @@ void ScreenLogsViewBase::transitionBegins()
     //When screen transition begins call virtual function
     //Call UpdateStatusNavigationBar
     UpdateStatusNavigationBar();
+
+    //UpdateTitle
+    //When screen transition begins call virtual function
+    //Call UpdateTitle
+    UpdateTitle();
 }

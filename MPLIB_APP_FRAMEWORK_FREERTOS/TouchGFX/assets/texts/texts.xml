@@ -6,6 +6,12 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_YZI5" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Screen Title</Translation>
+      </Text>
+      <Text Id="__SingleUse_1UXT" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_RHXE" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">0</Translation>
       </Text>

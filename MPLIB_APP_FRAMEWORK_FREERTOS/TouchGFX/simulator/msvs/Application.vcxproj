@@ -30,6 +30,8 @@
     <ClCompile Include="..\..\generated\gui_generated\src\screenlogs_screen\ScreenLogsViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\StatusNavigationBar.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\StatusNavigationBarBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\ScreenTitle.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ScreenTitleBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -189,6 +191,8 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenlogs_screen\ScreenLogsViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\StatusNavigationBar.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\StatusNavigationBarBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\ScreenTitle.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ScreenTitleBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
