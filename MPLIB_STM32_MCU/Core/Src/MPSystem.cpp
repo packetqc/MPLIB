@@ -42,7 +42,7 @@ MPSystem *SYS = MPSystem::CreateInstance();
 //=======================================================================================
 void StartSystemServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
-
+	uint32_t ticknew = tickstart;
 
 	if(!SYS->isStarted())
 	{
@@ -52,16 +52,17 @@ void StartSystemServices(void *argument) {
 	/* Infinite Loop */
 	for( ;; )
 	{
-		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+		  ticknew = HAL_GetTick()-tickstart;
+		  if((ticknew) > (THREAD_HEARTBEAT)) {
 			  SYS->SYS_ReadMemory();
 		  }
 
-		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+		  if((ticknew) > THREAD_HEARTBEAT) {
 			  SYS->blinkLED(2);
 			  SYS->heartBeat();
 		  }
 
-		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+		  if((ticknew) > THREAD_HEARTBEAT) {
 			  tickstart = HAL_GetTick();
 		  }
 	}
