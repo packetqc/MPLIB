@@ -18,7 +18,7 @@ void ScreenLogsPresenter::deactivate()
 }
 
 void ScreenLogsPresenter::UpdateStatusNavigationBar() {
-//	view.UpdateStatusNavigationBar();
+	view.UpdateStatusNavigationBar();
 }
 
 void ScreenLogsPresenter::UpdateLogs(uint8_t index) {
@@ -26,11 +26,11 @@ void ScreenLogsPresenter::UpdateLogs(uint8_t index) {
 }
 
 void ScreenLogsPresenter::getMemHeap() {
-//	view.getMemHeap();
+	view.getMemHeap();
 }
 
 void ScreenLogsPresenter::getNumberItemsList() {
-//	view.getNumberItemsList();
+	view.getNumberItemsList();
 }
 
 void ScreenLogsPresenter::getNumberOfLogListDrawables() {
@@ -38,5 +38,5 @@ void ScreenLogsPresenter::getNumberOfLogListDrawables() {
 }
 
 void ScreenLogsPresenter::getNumberLogsDataServices() {
-//	view.getNumberLogsDataServices();
+	view.getNumberLogsDataServices();
 }

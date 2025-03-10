@@ -17,11 +17,12 @@ LogItemBase::LogItemBase()
     LogStatus.setVisible(false);
     add(LogStatus);
 
-    LogText.setPosition(147, 13, 32, 12);
+    LogText.setXY(158, 10);
     LogText.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogText.setLinespacing(0);
     Unicode::snprintf(LogTextBuffer, LOGTEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JH5V).getText());
     LogText.setWildcard(LogTextBuffer);
+    LogText.resizeToCurrentText();
     LogText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UMFH));
     add(LogText);
 
@@ -32,11 +33,12 @@ LogItemBase::LogItemBase()
     BackgroundStamp.setVisible(false);
     add(BackgroundStamp);
 
-    LogStamper.setPosition(49, 14, 6, 12);
+    LogStamper.setXY(42, 10);
     LogStamper.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogStamper.setLinespacing(0);
     Unicode::snprintf(LogStamperBuffer, LOGSTAMPER_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VD7Q).getText());
     LogStamper.setWildcard(LogStamperBuffer);
+    LogStamper.resizeToCurrentText();
     LogStamper.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KEQV));
     add(LogStamper);
 
@@ -47,11 +49,12 @@ LogItemBase::LogItemBase()
     BackgroundCategory.setVisible(false);
     add(BackgroundCategory);
 
-    LogCategory.setPosition(83, 14, 35, 12);
+    LogCategory.setXY(82, 10);
     LogCategory.setColor(touchgfx::Color::getColorFromRGB(70, 153, 242));
     LogCategory.setLinespacing(0);
     Unicode::snprintf(LogCategoryBuffer, LOGCATEGORY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_HH9Y).getText());
     LogCategory.setWildcard(LogCategoryBuffer);
+    LogCategory.resizeToCurrentText();
     LogCategory.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BYSC));
     add(LogCategory);
 

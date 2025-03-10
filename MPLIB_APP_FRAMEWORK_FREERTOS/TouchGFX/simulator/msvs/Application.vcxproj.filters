@@ -249,6 +249,12 @@
     <ClCompile Include="..\..\generated\gui_generated\src\screenlogs_screen\ScreenLogsViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screenlogs_screen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\StatusNavigationBar.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\StatusNavigationBarBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml">
@@ -711,6 +717,12 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenlogs_screen\ScreenLogsViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screenlogs_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\StatusNavigationBar.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\StatusNavigationBarBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

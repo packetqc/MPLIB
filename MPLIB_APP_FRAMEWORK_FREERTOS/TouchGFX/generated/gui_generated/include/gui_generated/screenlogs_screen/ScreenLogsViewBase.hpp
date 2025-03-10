@@ -14,6 +14,7 @@
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <gui/containers/LogPanel.hpp>
+#include <gui/containers/StatusNavigationBar.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
 
 class ScreenLogsViewBase : public touchgfx::View<ScreenLogsPresenter>
@@ -24,6 +25,7 @@ public:
     virtual void setupScreen();
     virtual void handleTickEvent();
     virtual void afterTransition();
+    virtual void transitionBegins();
 
     /*
      * Virtual Action Handlers
@@ -44,6 +46,10 @@ public:
     {
         // Override and implement this function in ScreenLogs
     }
+    virtual void UpdateStatusNavigationBar()
+    {
+        // Override and implement this function in ScreenLogs
+    }
 
 protected:
     FrontendApplication& application() {
@@ -60,11 +66,21 @@ protected:
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea2;
     touchgfx::TextAreaWithOneWildcard systemDescriptionTextArea;
+    touchgfx::Container NetPage;
     touchgfx::Container LogsPage;
     LogPanel Logs;
-    touchgfx::Container Stats;
+    touchgfx::Container MemPage;
+    touchgfx::TextAreaWithOneWildcard numberOfLogListDrawables;
+    touchgfx::TextAreaWithOneWildcard numberOfLogListItems;
     touchgfx::TextAreaWithOneWildcard numberLogsDataServices;
-    touchgfx::Container Panel;
+    touchgfx::TextAreaWithOneWildcard memHeapFreeSize;
+    touchgfx::TextAreaWithOneWildcard memHeapLargest;
+    touchgfx::TextAreaWithOneWildcard memHeapSmalest;
+    touchgfx::TextAreaWithOneWildcard memHeapFreeBlocks;
+    touchgfx::TextAreaWithOneWildcard memHeapEverFree;
+    touchgfx::TextAreaWithOneWildcard memHeapAllocSuccess;
+    touchgfx::TextAreaWithOneWildcard memHeapFreeSuccess;
+    StatusNavigationBar StatusNavigationBar1;
     touchgfx::ToggleButton screenLight;
 
     /*
@@ -72,8 +88,26 @@ protected:
      */
     static const uint16_t SYSTEMDESCRIPTIONTEXTAREA_SIZE = 25;
     touchgfx::Unicode::UnicodeChar systemDescriptionTextAreaBuffer[SYSTEMDESCRIPTIONTEXTAREA_SIZE];
+    static const uint16_t NUMBEROFLOGLISTDRAWABLES_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar numberOfLogListDrawablesBuffer[NUMBEROFLOGLISTDRAWABLES_SIZE];
+    static const uint16_t NUMBEROFLOGLISTITEMS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar numberOfLogListItemsBuffer[NUMBEROFLOGLISTITEMS_SIZE];
     static const uint16_t NUMBERLOGSDATASERVICES_SIZE = 10;
     touchgfx::Unicode::UnicodeChar numberLogsDataServicesBuffer[NUMBERLOGSDATASERVICES_SIZE];
+    static const uint16_t MEMHEAPFREESIZE_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapFreeSizeBuffer[MEMHEAPFREESIZE_SIZE];
+    static const uint16_t MEMHEAPLARGEST_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapLargestBuffer[MEMHEAPLARGEST_SIZE];
+    static const uint16_t MEMHEAPSMALEST_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapSmalestBuffer[MEMHEAPSMALEST_SIZE];
+    static const uint16_t MEMHEAPFREEBLOCKS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapFreeBlocksBuffer[MEMHEAPFREEBLOCKS_SIZE];
+    static const uint16_t MEMHEAPEVERFREE_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapEverFreeBuffer[MEMHEAPEVERFREE_SIZE];
+    static const uint16_t MEMHEAPALLOCSUCCESS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapAllocSuccessBuffer[MEMHEAPALLOCSUCCESS_SIZE];
+    static const uint16_t MEMHEAPFREESUCCESS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar memHeapFreeSuccessBuffer[MEMHEAPFREESUCCESS_SIZE];
 
 private:
 

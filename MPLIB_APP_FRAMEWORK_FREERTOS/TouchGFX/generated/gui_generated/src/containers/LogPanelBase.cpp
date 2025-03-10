@@ -7,8 +7,8 @@ LogPanelBase::LogPanelBase() :
     updateItemCallback(this, &LogPanelBase::updateItemCallbackHandler)
 {
     setWidth(240);
-    setHeight(204);
-    LogListDONOTUSE.setPosition(0, 0, 240, 204);
+    setHeight(192);
+    LogListDONOTUSE.setPosition(0, 0, 240, 192);
     LogListDONOTUSE.setHorizontal(false);
     LogListDONOTUSE.setCircular(false);
     LogListDONOTUSE.setEasingEquation(touchgfx::EasingEquations::linearEaseOut);

@@ -47,10 +47,10 @@ void Model::tick()
 	}
 
 	if(HAL_GetTick() - tickstart > 1000 ) {
-//		modelListener->getNumberItemsList();
-//		modelListener->getNumberOfLogListDrawables();
-//		modelListener->getNumberLogsDataServices();
-//		modelListener->getMemHeap();
+		modelListener->getNumberItemsList();
+		modelListener->getNumberOfLogListDrawables();
+		modelListener->getNumberLogsDataServices();
+		modelListener->getMemHeap();
 		tickstart = HAL_GetTick();
 		return;
 	}

@@ -28,12 +28,13 @@
             "Height": 240,
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
-            "PageIndicatorX": 128,
+            "PageIndicatorX": 80,
             "PageIndicatorY": 212,
+            "CenteredX": true,
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
             "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_active.png",
             "EndSwipeElasticWidth": 50,
-            "SelectedPage": "WelcomePage",
+            "SelectedPage": "MemPage",
             "Components": [
               {
                 "Type": "Container",
@@ -98,6 +99,13 @@
               },
               {
                 "Type": "Container",
+                "Name": "NetPage",
+                "Width": 240,
+                "Height": 240,
+                "Components": []
+              },
+              {
+                "Type": "Container",
                 "Name": "LogsPage",
                 "Width": 240,
                 "Height": 240,
@@ -106,49 +114,239 @@
                     "Type": "CustomContainerInstance",
                     "Name": "Logs",
                     "Width": 240,
-                    "Height": 204,
+                    "Height": 192,
                     "CustomContainerDefinitionName": "LogPanel"
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "MemPage",
+                "Width": 240,
+                "Height": 240,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "numberOfLogListDrawables",
+                    "X": 17,
+                    "Y": 31,
+                    "Width": 82,
+                    "Height": 18,
+                    "TextId": "__SingleUse_0A4I",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_NHL1",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "numberOfLogListItems",
+                    "X": 127,
+                    "Y": 31,
+                    "Width": 66,
+                    "Height": 18,
+                    "TextId": "__SingleUse_8Q8R",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_RHXE",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "numberLogsDataServices",
+                    "X": 132,
+                    "Y": 59,
+                    "Width": 61,
+                    "Height": 18,
+                    "TextId": "__SingleUse_E30B",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_Y1H3",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapFreeSize",
+                    "X": 16,
+                    "Y": 111,
+                    "Width": 70,
+                    "Height": 18,
+                    "TextId": "__SingleUse_CM19",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_G84X",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapLargest",
+                    "X": 17,
+                    "Y": 136,
+                    "Width": 63,
+                    "Height": 18,
+                    "TextId": "__SingleUse_5N8E",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_ZB3V",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapSmalest",
+                    "X": 16,
+                    "Y": 163,
+                    "Width": 64,
+                    "Height": 18,
+                    "TextId": "__SingleUse_0MRP",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_8OLZ",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapFreeBlocks",
+                    "X": 124,
+                    "Y": 186,
+                    "Width": 62,
+                    "Height": 18,
+                    "Visible": false,
+                    "TextId": "__SingleUse_38OA",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_WQNG",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapEverFree",
+                    "X": 131,
+                    "Y": 163,
+                    "Width": 60,
+                    "Height": 18,
+                    "TextId": "__SingleUse_LUQY",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_OHU5",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapAllocSuccess",
+                    "X": 130,
+                    "Y": 136,
+                    "Width": 62,
+                    "Height": 18,
+                    "TextId": "__SingleUse_CWCT",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_4RS1",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "memHeapFreeSuccess",
+                    "X": 129,
+                    "Y": 111,
+                    "Width": 64,
+                    "Height": 18,
+                    "TextId": "__SingleUse_6MCN",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 57,
+                      "Green": 147,
+                      "Blue": 250
+                    },
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_NLIA",
+                      "UseBuffer": true,
+                      "BufferSize": 10
+                    }
                   }
                 ]
               }
             ]
           },
           {
-            "Type": "Container",
-            "Name": "Stats",
-            "Y": 204,
-            "Width": 240,
-            "Height": 36,
-            "Components": [
-              {
-                "Type": "TextArea",
-                "Name": "numberLogsDataServices",
-                "X": 9,
-                "Y": 5,
-                "Width": 74,
-                "Height": 24,
-                "TextId": "__SingleUse_E30B",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 57,
-                  "Green": 147,
-                  "Blue": 250
-                },
-                "AutoSize": true,
-                "Wildcard1": {
-                  "TextId": "__SingleUse_Y1H3",
-                  "UseBuffer": true,
-                  "BufferSize": 10
-                }
-              }
-            ]
-          },
-          {
-            "Type": "Container",
-            "Name": "Panel",
-            "Width": 240,
-            "Height": 240,
-            "Components": []
+            "Type": "CustomContainerInstance",
+            "Name": "StatusNavigationBar1",
+            "Y": 200,
+            "Width": 71,
+            "Height": 40,
+            "CustomContainerDefinitionName": "StatusNavigationBar"
           },
           {
             "Type": "ToggleButton",
@@ -237,6 +435,16 @@
               "Type": "ActionCustom",
               "FunctionName": "SetDisplayColor"
             }
+          },
+          {
+            "InteractionName": "UpdateStatusNavigationBar",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "UpdateStatusNavigationBar"
+            }
           }
         ]
       }
@@ -264,10 +472,10 @@
           {
             "Type": "TextArea",
             "Name": "LogText",
-            "X": 147,
-            "Y": 13,
-            "Width": 32,
-            "Height": 12,
+            "X": 158,
+            "Y": 10,
+            "Width": 47,
+            "Height": 18,
             "TextId": "__SingleUse_UMFH",
             "TextRotation": "0",
             "Color": {
@@ -275,6 +483,7 @@
               "Green": 153,
               "Blue": 242
             },
+            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_JH5V",
               "UseBuffer": true,
@@ -298,10 +507,10 @@
           {
             "Type": "TextArea",
             "Name": "LogStamper",
-            "X": 49,
-            "Y": 14,
-            "Width": 6,
-            "Height": 12,
+            "X": 42,
+            "Y": 10,
+            "Width": 10,
+            "Height": 18,
             "TextId": "__SingleUse_KEQV",
             "TextRotation": "0",
             "Color": {
@@ -309,6 +518,7 @@
               "Green": 153,
               "Blue": 242
             },
+            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_VD7Q",
               "UseBuffer": true,
@@ -332,10 +542,10 @@
           {
             "Type": "TextArea",
             "Name": "LogCategory",
-            "X": 83,
-            "Y": 14,
-            "Width": 35,
-            "Height": 12,
+            "X": 82,
+            "Y": 10,
+            "Width": 51,
+            "Height": 18,
             "TextId": "__SingleUse_BYSC",
             "TextRotation": "0",
             "Color": {
@@ -343,6 +553,7 @@
               "Green": 153,
               "Blue": 242
             },
+            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_HH9Y",
               "UseBuffer": true,
@@ -377,13 +588,13 @@
       {
         "Name": "LogPanel",
         "Width": 240,
-        "Height": 204,
+        "Height": 192,
         "Components": [
           {
             "Type": "ScrollList",
             "Name": "LogListDONOTUSE",
             "Width": 240,
-            "Height": 204,
+            "Height": 192,
             "Snapping": true,
             "ItemTemplateName": "LogItem",
             "ItemMargin": 3,
@@ -396,6 +607,107 @@
           }
         ],
         "Interactions": []
+      },
+      {
+        "Name": "StatusNavigationBar",
+        "Y": 200,
+        "Width": 71,
+        "Height": 40,
+        "Components": [
+          {
+            "Type": "Container",
+            "Name": "LayoutControls",
+            "Y": 2,
+            "Width": 71,
+            "Height": 40,
+            "Components": [
+              {
+                "Type": "FlexButton",
+                "Name": "Status_APP",
+                "X": 8,
+                "Y": 53,
+                "Width": 96,
+                "Height": 92,
+                "Visible": false,
+                "ButtonTrigger": {
+                  "Type": "TouchButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "__generated\\icon_theme_images_action_check_circle_outline_50_50_3D3D3D.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_action_check_circle_outline_50_50_009C00.svg.png"
+                  },
+                  {
+                    "Type": "ImageButtonStyle",
+                    "ImageReleased": "glass_theme_images_widgets_button_icon_rounded_tiny_fill_active.png",
+                    "ImagePressed": "glass_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png"
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "Control_Play",
+                "X": 10,
+                "Y": 7,
+                "Width": 24,
+                "Height": 24,
+                "ButtonTrigger": {
+                  "Type": "TouchButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "icon_theme_images_av_play_arrow_24_24_3D3D3D.svg.png",
+                    "IconPressed": "icon_theme_images_av_play_arrow_24_24_4D99EB.svg.png"
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "Control_Pause",
+                "X": 32,
+                "Y": 7,
+                "Width": 24,
+                "Height": 24,
+                "ButtonTrigger": {
+                  "Type": "TouchButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "icon_theme_images_av_pause_24_24_3D3D3D.svg.png",
+                    "IconPressed": "icon_theme_images_av_pause_24_24_4D99EB.svg.png"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "SetPause",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Control_Pause"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "SetPause"
+            }
+          },
+          {
+            "InteractionName": "SetPlay",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "Control_Play"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "SetPlay"
+            }
+          }
+        ]
       }
     ],
     "Name": "MyApplication",

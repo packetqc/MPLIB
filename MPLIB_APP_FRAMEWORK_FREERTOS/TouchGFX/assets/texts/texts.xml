@@ -6,28 +6,82 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_Y1H3" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_RHXE" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_E30B" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Logs: &lt;val&gt;</Translation>
+      <Text Id="__SingleUse_NHL1" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_JH5V" Alignment="Left" TypographyId="LOGS">
+      <Text Id="__SingleUse_G84X" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZB3V" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_8OLZ" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_WQNG" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_OHU5" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_4RS1" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_8Q8R" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Items: &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_0A4I" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Log size: &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_CM19" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Heap:  &lt;value&gt; </Translation>
+      </Text>
+      <Text Id="__SingleUse_5N8E" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Large: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_0MRP" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Small: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_38OA" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Block: &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_LUQY" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Ever:  &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_CWCT" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Alloc:  &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_NLIA" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_6MCN" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Freed: &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y1H3" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_E30B" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Logs:  &lt;val&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_JH5V" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">No log</Translation>
       </Text>
-      <Text Id="__SingleUse_UMFH" Alignment="Left" TypographyId="LOGS">
+      <Text Id="__SingleUse_UMFH" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_VD7Q" Alignment="Left" TypographyId="Small">
+      <Text Id="__SingleUse_VD7Q" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_KEQV" Alignment="Left" TypographyId="Small">
+      <Text Id="__SingleUse_KEQV" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_HH9Y" Alignment="Left" TypographyId="LOGS">
+      <Text Id="__SingleUse_HH9Y" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">NOCAT</Translation>
       </Text>
-      <Text Id="__SingleUse_BYSC" Alignment="Left" TypographyId="LOGS">
+      <Text Id="__SingleUse_BYSC" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_LCDJ" Alignment="Left" TypographyId="Default">
@@ -45,13 +99,14 @@
     </TextGroup>
   </Texts>
   <Typographies>
+    <Typography Id="Stats" Font="verdana.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9,A-Z,a-z,\ , ,-,.,:," WildcardCharacterRanges="0-9,A-Z,a-z" />
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9,A-Z,a-z" WildcardCharacterRanges="0-9,A-Z,a-z" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9,A-Z,a-z" WildcardCharacterRanges="0-9,A-Z,a-z" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters="0-9,A-Z,a-z,\ , ,-,.,:," WildcardCharacterRanges="0-9,A-Z,a-z" />
     <Typography Id="LOGS" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters=" ,.,:,;,[,],(,),{,},0-9,A-Z,a-z,_,\,/,*,#,&quot;" WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="Labels" Font="arial.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="-,.,\,, ,0-9,a-z,A-Z" WildcardCharacterRanges="a-z,A-Z,0-9" />
     <Typography Id="Button_IOT" Font="verdana.ttf" Size="27" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="0-9" WildcardCharacterRanges="0-9" />
     <Typography Id="MAC_ADDR" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters=":,0-9,A-F,a-f" WildcardCharacterRanges="0-9,A-F,a-f" />
     <Typography Id="IPv4_ADDR" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="." WildcardCharacters=".,0-9" WildcardCharacterRanges="0-9" />
-    <Typography Id="Labels" Font="arial.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="-,.,\,, ,0-9,a-z,A-Z" WildcardCharacterRanges="a-z,A-Z,0-9" />
   </Typographies>
 </TextDatabase>
