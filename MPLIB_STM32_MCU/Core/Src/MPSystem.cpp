@@ -8,6 +8,7 @@
 #include <MPSystem.h>
 #include <MPDataServices.h>
 
+
 //=======================================================================================
 //
 //=======================================================================================
@@ -191,12 +192,13 @@ bool MPSystem::init() {
 
 	snprintf(log, LOG_LENGTH, "System services initialization...");
 	DS->pushToLogsMon(name, LOG_OK, log);
-	retour = true;
 
 	SYS_Initialize();
 
-	snprintf(log, LOG_LENGTH, "System initialization completed");
+	snprintf(log, LOG_LENGTH, "System services initialization completed");
 	DS->pushToLogsMon(name, LOG_OK, log);
+
+	retour = true;
 
 	return retour;
 }

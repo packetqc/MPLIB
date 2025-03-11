@@ -14,6 +14,7 @@
 
 #include <MPDataServices.h>
 #include <MPDisplayServices.h>
+#include <MPLibs.h>
 
 LogItem::LogItem(uint8_t index, touchgfx::Unicode::UnicodeChar* category, touchgfx::Unicode::UnicodeChar* alog, uint16_t bitmap, uint32_t color) {
 	setValueLog(index, category, alog, bitmap, color);

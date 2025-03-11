@@ -24,10 +24,24 @@
 #include "cmsis_os2.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "MPDataServices.h"
-#include "MPSystem.h"
-#include "MPDisplayServices.h"
 #include "stdio.h"
+
+//#include "MPDataServices.h"
+//#include "MPSystem.h"
+//#include "MPDisplayServices.h"
+
+#if defined(FREERTOS)
+extern void StartDisplayServices(void *argument);
+extern void StartDataServices(void *argument);
+extern void StartSystemServices(void *argument);
+extern void StartSecureServices(void *argument);
+#elif defined(AZRTOS)
+#include "tx_api.h"
+extern void StartDisplayServices(ULONG thread_input);
+extern void StartSystemServices(ULONG thread_input);
+extern void StartSecureServices(ULONG thread_input);
+#endif
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -122,7 +136,7 @@ osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 256 * 4
+  .stack_size = 128 * 4
 };
 /* Definitions for GUI_Task */
 osThreadId_t GUI_TaskHandle;
@@ -136,24 +150,28 @@ osThreadId_t DataServicesHandle;
 const osThreadAttr_t DataServices_attributes = {
   .name = "DataServices",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 1024 * 4,
-//  .attr_bits = osThreadJoinable
+  .stack_size = 1024 * 4
 };
 /* Definitions for SystemServiceTa */
 osThreadId_t SystemServiceTaHandle;
 const osThreadAttr_t SystemServiceTa_attributes = {
   .name = "SystemServiceTa",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 256 * 4,
-//  .attr_bits = osThreadJoinable
+  .stack_size = 256 * 4
 };
 /* Definitions for DisplayService */
 osThreadId_t DisplayServiceHandle;
 const osThreadAttr_t DisplayService_attributes = {
   .name = "DisplayService",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 256 * 4,
-//  .attr_bits = osThreadJoinable
+  .stack_size = 256 * 4
+};
+/* Definitions for SecureService */
+osThreadId_t SecureServiceHandle;
+const osThreadAttr_t SecureService_attributes = {
+  .name = "SecureService",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 256 * 4
 };
 /* Definitions for canLog */
 osMutexId_t canLogHandle;
@@ -211,6 +229,7 @@ extern void TouchGFX_Task(void *argument);
 extern void StartDataServices(void *argument);
 extern void StartSystemServices(void *argument);
 extern void StartDisplayServices(void *argument);
+extern void StartSecureServices(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -304,11 +323,15 @@ void MX_FREERTOS_Init(void) {
   /* creation of DisplayService */
   DisplayServiceHandle = osThreadNew(StartDisplayServices, NULL, &DisplayService_attributes);
 
+  /* creation of SecureService */
+  SecureServiceHandle = osThreadNew(StartSecureServices, NULL, &SecureService_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
 
   osThreadSuspend(DataServicesHandle);
   osThreadSuspend(SystemServiceTaHandle);
   osThreadSuspend(DisplayServiceHandle);
+  osThreadSuspend(SecureServiceHandle);
   /* add threads, ... */
 
 //  /* creation of DataServicesTas */
@@ -354,6 +377,8 @@ void StartDefaultTask(void *argument)
 //	osThreadJoin(DisplayServiceHandle);
 
 	osThreadResume(DataServicesHandle);
+	HAL_Delay(300);
+	osThreadResume(SecureServiceHandle);
 	HAL_Delay(300);
 	osThreadResume(SystemServiceTaHandle);
 	HAL_Delay(300);

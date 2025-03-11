@@ -187,13 +187,10 @@ void LogPanel::setLog(LogItem& item, int16_t itemIndex) {
 }
 
 void LogPanel::Update(int16_t itemIndex) {
-	uint16_t size = LogListItems.getNumberOfDrawables();
-//	if(itemIndex >= size) {
-//	}
-//	else {
-		LogList.setNumberOfItems(itemIndex+1);
+//	uint16_t size = LogListItems.getNumberOfDrawables();
 
-//	}
+	LogList.setNumberOfItems(itemIndex+1);
+
 	qtyLogs++;
 
 	if(DS->getPlay()) {

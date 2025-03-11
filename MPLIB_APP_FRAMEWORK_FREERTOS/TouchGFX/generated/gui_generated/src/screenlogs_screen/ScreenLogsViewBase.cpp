@@ -28,7 +28,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.setXY(0, 40);
     PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_ON_ACTIVE_ID));
-    PagesMenu.setPageIndicatorXY(80, 171);
+    PagesMenu.setPageIndicatorXY(70, 171);
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
 
@@ -152,6 +152,12 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.add(Memory);
 
+    Secure.setPosition(1, 0, 239, 160);
+    Secure.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    Secure.setScrollbarsAlpha(255);
+    Secure.setScrollbarsPermanentlyVisible();
+    PagesMenu.add(Secure);
+
     Logs.setWidth(240);
     Logs.setHeight(200);
     LogsListe.setXY(0, 0);
@@ -161,9 +167,10 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     Network.setWidth(240);
     Network.setHeight(200);
+    Network.setVisible(false);
     PagesMenu.add(Network);
 
-    PagesMenu.setSelectedPage(0);
+    PagesMenu.setSelectedPage(2);
     add(PagesMenu);
 
     StatusNavigationBar1.setXY(0, 200);

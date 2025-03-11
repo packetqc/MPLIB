@@ -36,13 +36,13 @@
             "Height": 200,
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
-            "PageIndicatorX": 80,
+            "PageIndicatorX": 70,
             "PageIndicatorY": 171,
             "CenteredX": true,
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
             "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_active.png",
             "EndSwipeElasticWidth": 50,
-            "SelectedPage": "Welcome",
+            "SelectedPage": "Secure",
             "Components": [
               {
                 "Type": "Container",
@@ -325,6 +325,19 @@
                 ]
               },
               {
+                "Type": "ScrollableContainer",
+                "Name": "Secure",
+                "X": 1,
+                "Width": 239,
+                "Height": 160,
+                "HorizontalScrollEnabled": true,
+                "VerticalScrollEnabled": true,
+                "ScrollbarsVisible": true,
+                "ScrollbarsVisibleOnPressed": true,
+                "ScrollbarsAlpha": 255,
+                "Components": []
+              },
+              {
                 "Type": "Container",
                 "Name": "Logs",
                 "Width": 240,
@@ -344,6 +357,7 @@
                 "Name": "Network",
                 "Width": 240,
                 "Height": 200,
+                "Visible": false,
                 "Components": []
               }
             ]

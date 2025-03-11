@@ -50,6 +50,10 @@ DMA_HandleTypeDef handle_GPDMA2_Channel6;
 
 I2C_HandleTypeDef hi2c4;
 
+RNG_HandleTypeDef hrng;
+
+CRYP_HandleTypeDef hcryp;
+
 UART_HandleTypeDef huart1;
 
 SRAM_HandleTypeDef hsram1;
@@ -68,6 +72,8 @@ static void MX_ICACHE_Init(void);
 static void MX_I2C4_Init(void);
 static void MX_FMC_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_RNG_Init(void);
+static void MX_SAES_AES_Init(void);
 /* USER CODE BEGIN PFP */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 void resetTouch(void);
@@ -117,6 +123,8 @@ int main(void)
   MX_I2C4_Init();
   MX_FMC_Init();
   MX_USART1_UART_Init();
+  MX_RNG_Init();
+  MX_SAES_AES_Init();
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
@@ -172,8 +180,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLL1_SOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 5;
@@ -356,6 +365,68 @@ static void MX_ICACHE_Init(void)
   /* USER CODE BEGIN ICACHE_Init 2 */
 
   /* USER CODE END ICACHE_Init 2 */
+
+}
+
+/**
+  * @brief RNG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_RNG_Init(void)
+{
+
+  /* USER CODE BEGIN RNG_Init 0 */
+
+  /* USER CODE END RNG_Init 0 */
+
+  /* USER CODE BEGIN RNG_Init 1 */
+
+  /* USER CODE END RNG_Init 1 */
+  hrng.Instance = RNG;
+  hrng.Init.ClockErrorDetection = RNG_CED_ENABLE;
+  if (HAL_RNG_Init(&hrng) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN RNG_Init 2 */
+
+  /* USER CODE END RNG_Init 2 */
+
+}
+
+/**
+  * @brief SAES Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SAES_AES_Init(void)
+{
+
+  /* USER CODE BEGIN SAES_Init 0 */
+
+  /* USER CODE END SAES_Init 0 */
+
+  /* USER CODE BEGIN SAES_Init 1 */
+
+  /* USER CODE END SAES_Init 1 */
+  hcryp.Instance = SAES;
+  hcryp.Init.DataType = CRYP_NO_SWAP;
+  hcryp.Init.KeySize = CRYP_KEYSIZE_256B;
+  hcryp.Init.Algorithm = CRYP_AES_ECB;
+  hcryp.Init.DataWidthUnit = CRYP_DATAWIDTHUNIT_WORD;
+  hcryp.Init.HeaderWidthUnit = CRYP_HEADERWIDTHUNIT_WORD;
+  hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+  hcryp.Init.KeyMode = CRYP_KEYMODE_WRAPPED;
+  hcryp.Init.KeySelect = CRYP_KEYSEL_HW;
+  hcryp.Init.KeyProtection = CRYP_KEYPROT_DISABLE;
+  if (HAL_CRYP_Init(&hcryp) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SAES_Init 2 */
+
+  /* USER CODE END SAES_Init 2 */
 
 }
 

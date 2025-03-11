@@ -14,6 +14,7 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/LogPanel.hpp>
 #include <gui/containers/StatusNavigationBar.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
@@ -83,6 +84,7 @@ protected:
     touchgfx::TextAreaWithOneWildcard memHeapEverFree;
     touchgfx::TextAreaWithOneWildcard memHeapAllocSuccess;
     touchgfx::TextAreaWithOneWildcard memHeapFreeSuccess;
+    touchgfx::ScrollableContainer Secure;
     touchgfx::Container Logs;
     LogPanel LogsListe;
     touchgfx::Container Network;

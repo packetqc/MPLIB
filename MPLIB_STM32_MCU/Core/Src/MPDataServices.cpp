@@ -6,7 +6,7 @@
  */
 
 #include <MPDataServices.h>
-
+#include "MPLibs.h"
 //=======================================================================================
 //
 //=======================================================================================
@@ -305,7 +305,7 @@ void MPDataServices::pushToLogsMon(const char* category, uint8_t severity, char*
 	;
 #endif
 
-	uint8_t size = TEXTBUFF_SIZE;
+//	uint8_t size = TEXTBUFF_SIZE;
 
 	if(qtyLogs >= TEXTLOGS_SIZE) //&& circular)
 	{

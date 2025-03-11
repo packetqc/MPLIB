@@ -19,6 +19,7 @@ void ScreenLogsView::setupScreen()
 {
     ScreenLogsViewBase::setupScreen();
     SetDisplayColor();
+    UpdateTitle();
 }
 
 void ScreenLogsView::tearDownScreen()
@@ -42,14 +43,33 @@ void ScreenLogsView::LED_Toggle()
 
 void ScreenLogsView::UpdateTitle()
 {
-//	Unicode::UnicodeChar buffer[15];
-//
-//	PagesMenu.
-//	Unicode::strncpy(buffer, SYS->getSystemDescription(), 15);
-//	touchgfx::Unicode::snprintf(systemDescriptionTextAreaBuffer, 15, "%s", buffer );
-//	systemDescriptionTextArea.resizeToCurrentText();
-//	systemDescriptionTextArea.invalidate();
-//	systemDescriptionTextArea.centerX();
+	touchgfx::Unicode::UnicodeChar buffer[15];
+
+	uint8_t pageNum = PagesMenu.getSelectedPage();
+
+	switch(pageNum)
+	{
+	case 0:
+		Unicode::strncpy(buffer, "WELCOME", 15);
+		break;
+	case 1:
+		Unicode::strncpy(buffer, "MEMORY", 15);
+		break;
+	case 2:
+		Unicode::strncpy(buffer, "SECURE", 15);
+		break;
+	case 3:
+		Unicode::strncpy(buffer, "LOGS", 15);
+		break;
+	case 4:
+		Unicode::strncpy(buffer, "NETWORK", 15);
+		break;
+	default:
+		Unicode::strncpy(buffer, "UNKNOWN", 15);
+		break;
+	}
+
+	screenTitle.setTitle(buffer);
 }
 
 void ScreenLogsView::SetDisplayColor()
@@ -107,7 +127,6 @@ void ScreenLogsView::ClearLogs() {
 void ScreenLogsView::UpdateLogs(uint8_t index) {
 	LogsListe.Update(index);
 
-//	qtyLogs++;
 	getNumberItemsList();
 	getNumberOfLogListDrawables();
 	getNumberLogsDataServices();
@@ -133,8 +152,6 @@ void ScreenLogsView::getNumberLogsDataServices() {
 
 
 void ScreenLogsView::getMemHeap() {
-//	vPortGetHeapStats( &heapit );
-
 	touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
 	memHeapFreeSize.resizeToCurrentText();
 	memHeapFreeSize.invalidate();

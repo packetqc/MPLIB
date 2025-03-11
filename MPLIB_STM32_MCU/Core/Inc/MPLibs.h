@@ -54,7 +54,9 @@ enum {
 	SYSTEM_NOTOK,
 	SYSTEM_OK,
 	DISPLAY_NOTOK,
-	DISPLAY_OK
+	DISPLAY_OK,
+	SECURE_NOTOK,
+	SECURE_OK
 };
 
 //=======================================================================================
