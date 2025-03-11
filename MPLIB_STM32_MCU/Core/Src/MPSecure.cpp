@@ -82,20 +82,20 @@ void StartSecureServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
 	uint32_t ticknew = tickstart;
 
-//	if(SEC->isItInitialized() == false)
-//	{
+	if(SEC->isStarted() == false)
+	{
 		SEC->init();
-//	}
+	}
 
 	/* Infinite Loop */
 	for( ;; )
 	{
 		  ticknew = HAL_GetTick()-tickstart;
 
-//		  if((ticknew) > THREAD_HEARTBEAT) {
-//			  SEC->blinkLED(2);
-//			  SEC->heartBeat();
-//		  }
+		  if((ticknew) > THREAD_HEARTBEAT) {
+			  SEC->blinkLED(2);
+			  SEC->heartBeat();
+		  }
 
 		  if((ticknew) > THREAD_HEARTBEAT) {
 			  tickstart = HAL_GetTick();

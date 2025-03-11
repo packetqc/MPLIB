@@ -105,6 +105,8 @@ void ScreenLogsView::UpdateUI() {
 
 //	scrollListEndpointsConfigured.invalidate();
 //	netStatsARPTable1.UpdateUI();
+
+//	getMemHeap();
 }
 
 void ScreenLogsView::UpdateStatusNavigationBar()
@@ -152,6 +154,9 @@ void ScreenLogsView::getNumberLogsDataServices() {
 
 
 void ScreenLogsView::getMemHeap() {
+
+//	SYS->SYS_ReadMemory();
+
 	touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
 	memHeapFreeSize.resizeToCurrentText();
 	memHeapFreeSize.invalidate();

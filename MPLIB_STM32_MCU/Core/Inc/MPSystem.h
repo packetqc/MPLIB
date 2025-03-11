@@ -73,8 +73,6 @@ void StartSystemServices(ULONG thread_input);
 //	size_t xNumberOfSuccessfulFrees;	/* The number of calls to vPortFree() that has successfully freed a block of memory. */
 //} HeapStats_t;
 
-///* Prototype of the vPortGetHeapStats() function. */
-void vPortGetHeapStats( HeapStats_t *xHeapStats );
 
 #elif defined(AZRTOS)
 ;
@@ -129,13 +127,6 @@ private:
 	char		systemDescr[25] = "Free RTOS";
 #elif defined(AZRTOS)
 	char		systemDescr[25] = "Azure Eclipse RTOS";
-#endif
-
-private:
-#if defined(FREERTOS)
-	HeapStats_t heapit;
-#elif defined(AZRTOS)
-;
 #endif
 
 };
