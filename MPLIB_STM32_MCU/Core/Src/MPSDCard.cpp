@@ -245,7 +245,7 @@ bool MPSDCard::setSDConfig() {
 	snprintf(log, LOG_LENGTH, "building default config on sd card...");
 	DS->pushToLogsMon(name, LOG_WARNING, log);
 
-	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON,1) != HAL_OK ) {
+	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON, BUFFER_WORD_SIZE) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SD_Erase failed");
 		DS->pushToLogsMon(name, LOG_WARNING, log);
 	}
@@ -394,11 +394,12 @@ bool MPSDCard::getSDConfigInitialized()
 	bool retour = false;
 
 	//READ AND CONFIRM WRITE OK BY COMPARE
-	uint32_t COMPARE[BUFFER_WORD_SIZE];
+//	uint32_t COMPARE[BUFFER_WORD_SIZE];
+//
 	LinkNodeConf.BufferAddress = (uint32_t) COMPARE;
 	LinkNodeConf.BufferSize = BUFFER_SIZE;
 
-	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[0], &LinkNodeConf ) != HAL_OK ) {
+	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[1], &LinkNodeConf ) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 		goto cleanup_read;
@@ -408,7 +409,7 @@ bool MPSDCard::getSDConfigInitialized()
 		DS->pushToLogsMon(name, LOG_OK, log);
 	}
 
-	if(HAL_SDEx_DMALinkedList_InsertNode(&Read_LinkedList, NULL, &pLinkNode[0] ) != HAL_OK ) {
+	if(HAL_SDEx_DMALinkedList_InsertNode(&Read_LinkedList, NULL, &pLinkNode[1] ) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 		goto cleanup_read;
@@ -440,7 +441,7 @@ bool MPSDCard::getSDConfigInitialized()
 	}
 
 	//COMPARE HERE*******************************************************************
-	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK ) {
+	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[1]) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 		goto cleanup_read;
@@ -453,8 +454,9 @@ bool MPSDCard::getSDConfigInitialized()
 
 	//COMPARISON
 	if(COMPARE[MAGIC] != MP_SD_CONFIG_CONFIG_MAGIC) {
-		printf("COMPARE[MAGIC]=%lu\n", COMPARE[MAGIC]);
-		printf("MP_SD_CONFIG_CONFIG_MAGIC=%u\n\n", MP_SD_CONFIG_CONFIG_MAGIC);
+//		printf("COMPARE[MAGIC]=%lu\n", COMPARE[MAGIC]);
+//		printf("MP_SD_CONFIG_CONFIG_MAGIC=%u\n\n", MP_SD_CONFIG_CONFIG_MAGIC);
+//		printf("COMPARE[LIGHT]=%lu\n", COMPARE[LIGHT]);
 
 		snprintf(log, LOG_LENGTH, "COMPARE[0] != MP_SD_CONFIG_CONFIG_MAGIC !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
@@ -466,9 +468,10 @@ bool MPSDCard::getSDConfigInitialized()
 		DS->pushToLogsMon(name, LOG_OK, log);
 	}
 
+	printf("COMPARE[MAGIC]=%lu\n", COMPARE[MAGIC]);
+	printf("COMPARE[LIGHT]=%lu\n", COMPARE[LIGHT]);
 
-
-	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
+	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[1]) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 		goto cleanup_read;
@@ -483,7 +486,7 @@ bool MPSDCard::getSDConfigInitialized()
 
 cleanup_read:
 	//CLEANUP
-	if(HAL_SDEx_DMALinkedList_RemoveNode(&Read_LinkedList,&pLinkNode[0] ) != HAL_OK) {
+	if(HAL_SDEx_DMALinkedList_RemoveNode(&Read_LinkedList,&pLinkNode[1] ) != HAL_OK) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode failed");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 //		retour = false;

@@ -38,7 +38,7 @@
 //=======================================================================================
 enum {
 	MAGIC = 0,
-	LIGHT = 1*sizeof(uint32_t)
+	LIGHT = 1
 };
 
 #define MP_SD_CONFIG_CONFIG_MAGIC 	13131U
@@ -131,7 +131,9 @@ protected:
 	uint8_t		isSDInitialized = 0;
 private:
 	char 		log[LOG_LENGTH];
-	uint32_t	CONFIG[BUFFER_WORD_SIZE] = {1};
+	uint32_t	CONFIG[BUFFER_WORD_SIZE];
+	uint32_t 	COMPARE[BUFFER_WORD_SIZE];
+
 	HAL_SD_CardInfoTypeDef cardInfo;
 
 };
