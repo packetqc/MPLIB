@@ -20,7 +20,8 @@
 #elif defined(STM32H573xx)
 
 #include "stm32h573i_discovery.h"
-#include "stm32h573i_discovery_sd.h"
+//#include "stm32h573i_discovery_sd.h"
+//#include "stm32h5xx_hal_sd.h"
 
 #endif
 
@@ -34,15 +35,15 @@
 #include "MPLibs.h"
 
 
-//=======================================================================================
-//
-//=======================================================================================
-#define MP_SD_CONFIG_CONFIG_MAGIC	13131U
-#define MP_SD_CONFIG_CONFIG_ON		0
-#define MP_SD_CONFIG_SCREENLITE 	1
-#define MP_SD_CONFIG_LOGSTART_ADDR	2
-#define MP_SD_CONFIG_LOGAT_ADDR		3
-#define MP_SD_CONFIG_LOGEND_ADDR	4
+////=======================================================================================
+////
+////=======================================================================================
+//const uint8_t MP_SD_CONFIG_CONFIG_MAGIC[4] = {13,13,13, 13};
+//#define MP_SD_CONFIG_CONFIG_ON		0x00000000
+//#define MP_SD_CONFIG_SCREENLITE 	1
+//#define MP_SD_CONFIG_LOGSTART_ADDR	2
+//#define MP_SD_CONFIG_LOGAT_ADDR		3
+//#define MP_SD_CONFIG_LOGEND_ADDR	4
 
 
 //=======================================================================================
@@ -110,12 +111,12 @@ public:
     	char* 	getName();
     	bool  	getStatus();
     	char*	getSystemDescription();
-    	uint8_t getStatusStorage();
+//    	uint8_t getStatusStorage();
     	void 	blinkLED(uint8_t times);
     	void	heartBeat();
 
     	void 	SYS_Initialize(void);
-    	void	SYS_InitializeSD(void);
+//    	void	SYS_InitializeSD(void);
     	void	SYS_ReadMemory(void);
 
     	size_t	getAvailableHeapSpaceInBytes();
@@ -126,11 +127,11 @@ public:
     	size_t	getNumberOfSuccessfulAllocations();
     	size_t	getNumberOfSuccessfulFrees();
 
-    	bool getSDConfigInitialized();
-    	bool setSDConfig();
-    	bool getSDConfig();
-    	bool setSDConfigScreenLite(uint32_t value);
-    	bool getSDConfigScreenLite(uint32_t value);
+//    	bool getSDConfigInitialized();
+//    	bool setSDConfig();
+//    	bool getSDConfig();
+//    	bool setSDConfigScreenLite(uint32_t value);
+//    	bool getSDConfigScreenLite(uint32_t value);
 
 protected:
     	Led_TypeDef LED 		= LED_RED;
@@ -144,7 +145,8 @@ protected:
     	uint8_t		isSDInitialized = 0;
 private:
 	char 				log[LOG_LENGTH];
-	BSP_SD_CardInfo*  	cardInfo;
+//	BSP_SD_CardInfo*  	cardInfo;
+//	HAL_SD_CardInfoTypeDef cardInfo;
 
 #if defined(FREERTOS)
 	char		systemDescr[25] = "Free RTOS";

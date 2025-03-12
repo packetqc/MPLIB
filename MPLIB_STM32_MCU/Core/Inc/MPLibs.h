@@ -31,7 +31,7 @@
 #define LOG_LENGTH			150U
 #define CAT_LENGTH 			15U
 #define THREAD_HEARTBEAT	1000
-#define TEXTLOGS_SIZE 		20
+#define TEXTLOGS_SIZE 		30
 #define TEXTBUFF_SIZE 		150
 
 //=======================================================================================
@@ -56,7 +56,9 @@ enum {
 	DISPLAY_NOTOK,
 	DISPLAY_OK,
 	SECURE_NOTOK,
-	SECURE_OK
+	SECURE_OK,
+	SD_NOTOK,
+	SD_OK
 };
 
 //=======================================================================================

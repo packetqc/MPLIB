@@ -35,11 +35,13 @@ extern void StartDisplayServices(void *argument);
 extern void StartDataServices(void *argument);
 extern void StartSystemServices(void *argument);
 extern void StartSecureServices(void *argument);
+extern void StartSDServices(void *argument);
 #elif defined(AZRTOS)
 #include "tx_api.h"
 extern void StartDisplayServices(ULONG thread_input);
 extern void StartSystemServices(ULONG thread_input);
 extern void StartSecureServices(ULONG thread_input);
+extern void StartSDServices(void *argument);
 #endif
 
 /* USER CODE END Includes */
@@ -157,7 +159,7 @@ osThreadId_t SystemServiceTaHandle;
 const osThreadAttr_t SystemServiceTa_attributes = {
   .name = "SystemServiceTa",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 1024 * 4
+  .stack_size = 256 * 4
 };
 /* Definitions for DisplayService */
 osThreadId_t DisplayServiceHandle;
@@ -172,6 +174,13 @@ const osThreadAttr_t SecureService_attributes = {
   .name = "SecureService",
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 256 * 4
+};
+/* Definitions for SDService */
+osThreadId_t SDServiceHandle;
+const osThreadAttr_t SDService_attributes = {
+  .name = "SDService",
+  .priority = (osPriority_t) osPriorityNormal,
+  .stack_size = 1024 * 4
 };
 /* Definitions for canLog */
 osMutexId_t canLogHandle;
@@ -230,6 +239,7 @@ extern void StartDataServices(void *argument);
 extern void StartSystemServices(void *argument);
 extern void StartDisplayServices(void *argument);
 extern void StartSecureServices(void *argument);
+extern void StartSDServices(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -284,7 +294,7 @@ void MX_FREERTOS_Init(void) {
   /* creation of gui_logs_msg */
   gui_logs_msgHandle = osMessageQueueNew (15, sizeof(uint8_t), &gui_logs_msg_attributes);
   /* creation of logsmon_msg */
-  logsmon_msgHandle = osMessageQueueNew (15, sizeof(uint32_t), &logsmon_msg_attributes);
+  logsmon_msgHandle = osMessageQueueNew (50, sizeof(uint32_t), &logsmon_msg_attributes);
   /* creation of ConnectionEvent */
   ConnectionEventHandle = osMessageQueueNew (15, sizeof(uint8_t), &ConnectionEvent_attributes);
 
@@ -326,12 +336,16 @@ void MX_FREERTOS_Init(void) {
   /* creation of SecureService */
   SecureServiceHandle = osThreadNew(StartSecureServices, NULL, &SecureService_attributes);
 
+  /* creation of SDService */
+  SDServiceHandle = osThreadNew(StartSDServices, NULL, &SDService_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
 
   osThreadSuspend(DataServicesHandle);
   osThreadSuspend(SystemServiceTaHandle);
   osThreadSuspend(DisplayServiceHandle);
   osThreadSuspend(SecureServiceHandle);
+  osThreadSuspend(SDServiceHandle);
   /* add threads, ... */
 
 //  /* creation of DataServicesTas */
@@ -381,6 +395,8 @@ void StartDefaultTask(void *argument)
 	osThreadResume(SecureServiceHandle);
 	HAL_Delay(300);
 	osThreadResume(SystemServiceTaHandle);
+	HAL_Delay(300);
+	osThreadResume(SDServiceHandle);
 	HAL_Delay(300);
 	osThreadResume(DisplayServiceHandle);
 

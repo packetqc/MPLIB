@@ -84,6 +84,8 @@ public:
     	char* 	getName();
     	bool  	getStatus();
 
+    	uint32_t getLightConfig();
+
     	uint32_t getColorMode(bool pressed);
     	uint32_t getColorLog(uint8_t code);
     	void 	blinkLED(uint8_t times);

@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+//#include "stm32h5xx_hal_sd.h"
 
 /* USER CODE END Includes */
 
@@ -101,8 +102,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -143,6 +143,8 @@ int main(void)
   BSP_LED_On(LED3);
 //  HAL_Delay(500);
   BSP_LED_On(LED4);
+
+//  HAL_SD_ConfigSpeedBusOperation(&hsd1,SDMMC_SPEED_MODE_HIGH);
   /* USER CODE END 2 */
 
   /* Init scheduler */
