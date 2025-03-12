@@ -8,6 +8,11 @@
 #include <MPSystem.h>
 #include <MPDataServices.h>
 
+#include "stm32h5xx_hal_sd.h"
+//#include "stm32h573i_discovery_sd.h"
+
+
+extern SD_HandleTypeDef hsd1;
 
 //=======================================================================================
 //
@@ -16,7 +21,7 @@ static 	__IO 	\
 uint8_t statusChanged = 0;
 uint8_t isInitialized = 0;
 
-char *sys_log;
+//char *sys_log;
 
 
 //=======================================================================================
@@ -52,12 +57,9 @@ MPSystem *SYS = MPSystem::CreateInstance();
 //=======================================================================================
 //
 //=======================================================================================
-/* Prototype of the vPortGetHeapStats() function. */
-//extern void vPortGetHeapStats( HeapStats_t *xHeapStats );
-
 void StartSystemServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
-	uint32_t ticknew = tickstart;
+//	uint32_t ticknew = tickstart;
 
 	if(!SYS->isStarted())
 	{
@@ -71,7 +73,6 @@ void StartSystemServices(void *argument) {
 //		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 //			  SYS->SYS_ReadMemory();
 //		  }
-		SYS->SYS_ReadMemory();
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			SYS->blinkLED(2);
@@ -79,6 +80,7 @@ void StartSystemServices(void *argument) {
 		}
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
+			SYS->SYS_ReadMemory();
 			tickstart = HAL_GetTick();
 		}
 	}
@@ -110,6 +112,160 @@ void StartSystemServices(ULONG thread_input) {
 }
 #endif
 
+
+//=======================================================================================
+//
+//=======================================================================================
+bool MPSystem::init() {
+	bool retour = false;
+
+	linked = true;
+	started = true;
+
+	snprintf(log, LOG_LENGTH, "System services initialization...");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	SYS_Initialize();
+	SYS_InitializeSD();
+
+	getSDConfig();
+
+	snprintf(log, LOG_LENGTH, "System services initialization completed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	retour = true;
+
+	return retour;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSystem::SYS_Initialize(void)
+{
+	if (isInitialized == 0)
+	{
+		isInitialized = 1;
+    	snprintf(log, LOG_LENGTH, "System initialized");
+      	DS->pushToLogsMon(name, LOG_OK, log);
+    }
+    else {
+		isInitialized = 0;
+    	snprintf(log, LOG_LENGTH, "System initialization failed");
+    	DS->pushToLogsMon(name, LOG_WARNING, log);
+    }
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSystem::SYS_InitializeSD(void)
+{
+	snprintf(log, LOG_LENGTH, "SD initialization...");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+//	BSP_SD_CardInfo*  cardInfo;
+
+	cardInfo = new BSP_SD_CardInfo();
+
+	if( BSP_SD_Init(0) != BSP_ERROR_NONE ) {
+		isSDInitialized = 0;
+		snprintf(log, LOG_LENGTH, "SD failed to init !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+		goto retour;
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "SD init succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	while(BSP_SD_GetCardState(0) != SD_TRANSFER_OK)
+	{
+	}
+
+	snprintf(log, LOG_LENGTH, "SD transfer ready");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+
+	BSP_SD_GetCardInfo(0,cardInfo);
+
+	sprintf(log, "SD capacity in KBytes: %lu", (long unsigned int)((cardInfo->BlockNbr * cardInfo->BlockSize)/1024));
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	sprintf(log, "SD card address: %X", (unsigned int)cardInfo->RelCardAdd);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+//	  printf( "card Type: %d", cardInfo->CardType);
+//	  printf( "card Version: %d", cardInfo->CardVersion);
+//	  printf( "class of the card class: %d", cardInfo->Class);
+//	  printf( "relative Card Address: %d", cardInfo->RelCardAdd);
+//	  printf( "card Capacity in blocks: %d", cardInfo->BlockNbr);
+//	  printf( "one block size in bytes: %d", cardInfo->BlockSize);
+//	  printf( "card logical Capacity in blocks: %d", cardInfo->LogBlockNbr);
+//	  printf( "logical block size in bytes: %d", cardInfo->LogBlockSize);
+//	  printf( "card Speed: %d", cardInfo->CardSpeed);
+
+//	HAL_SD_ConfigSpeedBusOperation(&hsd1,SDMMC_SPEED_MODE_HIGH);
+
+retour:
+	if (isSDInitialized == 0) {
+		isSDInitialized = 1;
+    	snprintf(log, LOG_LENGTH, "SD initialized");
+      	DS->pushToLogsMon(name, LOG_OK, log);
+    }
+    else {
+    	isSDInitialized = 0;
+    	snprintf(log, LOG_LENGTH, "SD initialization failed");
+    	DS->pushToLogsMon(name, LOG_WARNING, log);
+    }
+}
+
+
+//=======================================================================================
+//
+//=======================================================================================
+bool MPSystem::setSDConfig() {
+	bool retour = true;
+
+	return retour;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+bool MPSystem::getSDConfig() {
+	bool retour = true;
+
+	if( getSDConfigInitialized() ) {
+		snprintf(log, LOG_LENGTH, "configuration found on sd card");
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "no configuration found on sd card");
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+		setSDConfig();
+	}
+
+	return retour;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+bool MPSystem::getSDConfigInitialized()
+{
+	bool retour = true;
+	uint32_t pData;
+	uint32_t magicNumber = 0;
+
+	BSP_SD_ReadBlocks( 0, &pData, MP_SD_CONFIG_CONFIG_ON, 1);
+
+    if( magicNumber != MP_SD_CONFIG_CONFIG_MAGIC )
+    {
+      retour = false;
+    }
+
+    return retour;
+}
 
 //=======================================================================================
 //
@@ -163,24 +319,6 @@ void MPSystem::heartBeat() {
 //=======================================================================================
 //
 //=======================================================================================
-void MPSystem::SYS_Initialize(void)
-{
-	if (isInitialized == 0)
-	{
-		isInitialized = 1;
-    	snprintf(log, LOG_LENGTH, "System initialized");
-      	DS->pushToLogsMon(name, LOG_OK, log);
-    }
-    else {
-		isInitialized = 0;
-    	snprintf(log, LOG_LENGTH, "System initialization failed");
-    	DS->pushToLogsMon(name, LOG_WARNING, log);
-    }
-}
-
-//=======================================================================================
-//
-//=======================================================================================
 char* MPSystem::getName() {
 	return name;
 }
@@ -197,28 +335,6 @@ bool MPSystem::getStatus() {
 //=======================================================================================
 uint8_t MPSystem::getStatusStorage() {
 	return status_SYS;
-}
-
-//=======================================================================================
-//
-//=======================================================================================
-bool MPSystem::init() {
-	bool retour = false;
-
-	linked = true;
-	started = true;
-
-	snprintf(log, LOG_LENGTH, "System services initialization...");
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	SYS_Initialize();
-
-	snprintf(log, LOG_LENGTH, "System services initialization completed");
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	retour = true;
-
-	return retour;
 }
 
 //=======================================================================================

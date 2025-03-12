@@ -54,6 +54,8 @@ RNG_HandleTypeDef hrng;
 
 CRYP_HandleTypeDef hcryp;
 
+SD_HandleTypeDef hsd1;
+
 UART_HandleTypeDef huart1;
 
 SRAM_HandleTypeDef hsram1;
@@ -74,6 +76,7 @@ static void MX_FMC_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_RNG_Init(void);
 static void MX_SAES_AES_Init(void);
+static void MX_SDMMC1_SD_Init(void);
 /* USER CODE BEGIN PFP */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 void resetTouch(void);
@@ -125,6 +128,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_RNG_Init();
   MX_SAES_AES_Init();
+  MX_SDMMC1_SD_Init();
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
@@ -427,6 +431,37 @@ static void MX_SAES_AES_Init(void)
   /* USER CODE BEGIN SAES_Init 2 */
 
   /* USER CODE END SAES_Init 2 */
+
+}
+
+/**
+  * @brief SDMMC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SDMMC1_SD_Init(void)
+{
+
+  /* USER CODE BEGIN SDMMC1_Init 0 */
+
+  /* USER CODE END SDMMC1_Init 0 */
+
+  /* USER CODE BEGIN SDMMC1_Init 1 */
+
+  /* USER CODE END SDMMC1_Init 1 */
+  hsd1.Instance = SDMMC1;
+  hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_FALLING;
+  hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
+  hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
+  hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
+  hsd1.Init.ClockDiv = 1;
+  if (HAL_SD_Init(&hsd1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SDMMC1_Init 2 */
+
+  /* USER CODE END SDMMC1_Init 2 */
 
 }
 

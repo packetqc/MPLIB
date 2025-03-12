@@ -55,6 +55,7 @@ void DebugMon_Handler(void);
 void EXTI3_IRQHandler(void);
 void EXTI7_IRQHandler(void);
 void TIM6_IRQHandler(void);
+void SDMMC1_IRQHandler(void);
 void GPDMA2_Channel6_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 

@@ -157,7 +157,7 @@ osThreadId_t SystemServiceTaHandle;
 const osThreadAttr_t SystemServiceTa_attributes = {
   .name = "SystemServiceTa",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 256 * 4
+  .stack_size = 1024 * 4
 };
 /* Definitions for DisplayService */
 osThreadId_t DisplayServiceHandle;
