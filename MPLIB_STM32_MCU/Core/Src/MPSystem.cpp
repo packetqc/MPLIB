@@ -225,8 +225,8 @@ retour:
 //=======================================================================================
 bool MPSystem::setSDConfig() {
 	bool retour = true;
-	uint32_t magicNumber[512];
-//	uint32_t confirmNumber[512];
+	uint32_t magicNumber[512/4];
+	uint32_t confirmNumber[512/4];
 //
 	snprintf(log, LOG_LENGTH, "building default config on sd card...");
 	DS->pushToLogsMon(name, LOG_WARNING, log);
@@ -244,7 +244,7 @@ bool MPSystem::setSDConfig() {
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
 
-	if( BSP_SD_ReadBlocks( 0, magicNumber, cardInfo->RelCardAdd, 1) != BSP_ERROR_NONE) {
+	if( BSP_SD_ReadBlocks( 0, confirmNumber, cardInfo->RelCardAdd, 1) != BSP_ERROR_NONE) {
 		snprintf(log, LOG_LENGTH, "failed to read configuration on sd card");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 		retour = false;
@@ -255,18 +255,18 @@ bool MPSystem::setSDConfig() {
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
 
-//    if( confirmNumber[0] != MP_SD_CONFIG_CONFIG_MAGIC )
-//    {
-//		snprintf(log, LOG_LENGTH, "error to set configuration on sd card");
-//		DS->pushToLogsMon(name, LOG_ERROR, log);
-//		retour = false;
-//		goto error;
-//    }
-//
-//
-//	snprintf(log, LOG_LENGTH, "default config built on sd card");
-//	DS->pushToLogsMon(name, LOG_WARNING, log);
-//
+    if( confirmNumber[0] != MP_SD_CONFIG_CONFIG_MAGIC )
+    {
+		snprintf(log, LOG_LENGTH, "error to set configuration on sd card");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+		retour = false;
+		goto error;
+    }
+
+
+	snprintf(log, LOG_LENGTH, "default config built on sd card");
+	DS->pushToLogsMon(name, LOG_WARNING, log);
+
 error:
 
 	return retour;
@@ -299,7 +299,7 @@ bool MPSystem::getSDConfigInitialized()
 {
 	bool retour = true;
 
-	uint32_t magicNumber[512];
+	uint32_t magicNumber[512/4];
 
 //	if( BSP_SD_ReadBlocks( 0, &magicNumber, MP_SD_CONFIG_CONFIG_ON, 1) != BSP_ERROR_NONE ) {
 	if(BSP_SD_ReadBlocks( 0, magicNumber, cardInfo->RelCardAdd, 1 ) != BSP_ERROR_NONE ) {
