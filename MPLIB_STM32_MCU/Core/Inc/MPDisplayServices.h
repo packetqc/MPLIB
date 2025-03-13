@@ -79,20 +79,22 @@ public:
     		return instance;
     	}
 
-    	bool 	init();
-    	bool 	isStarted();
-    	char* 	getName();
-    	bool  	getStatus();
+    	bool 		init();
+    	bool 		isStarted();
+    	char* 		getName();
+    	bool  		getStatus();
 
-    	uint32_t getLightConfig();
+    	uint32_t 	getLightConfig();
+    	uint32_t 	getLightColor();
+    	void 		setLightConfig(uint32_t mode);
 
-    	uint32_t getColorMode(bool pressed);
-    	uint32_t getColorLog(uint8_t code);
-    	void 	blinkLED(uint8_t times);
-    	void	heartBeat();
+    	uint32_t 	getColorMode(bool pressed);
+    	uint32_t 	getColorLog(uint8_t code);
+    	void 		blinkLED(uint8_t times);
+    	void		heartBeat();
 
 
-    	void 	DISPLAY_Initialize(void);
+    	void 		DISPLAY_Initialize(void);
 protected:
     	Led_TypeDef LED 		= LED_BLUE;
         uint8_t 	status_DISPLAY 	= DISPLAY_NOTOK;
@@ -102,7 +104,7 @@ protected:
     	bool 		started 	= false;
 
 private:
-    	uint8_t		modeLight = MODE_LITE;
+    	uint32_t		modeLight = MODE_LITE;
     	char 		log[LOG_LENGTH];
     	uint8_t 	statusChanged = 0;
     	uint8_t 	isInitialized = 0;

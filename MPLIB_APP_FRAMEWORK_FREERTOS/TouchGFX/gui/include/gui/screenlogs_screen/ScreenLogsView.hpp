@@ -11,7 +11,7 @@
 #include "FreeRTOS.h"
 
 #include <MPLibs.h>
-
+#include <MPDisplayServices.h>
 
 class ScreenLogsView : public ScreenLogsViewBase
 {
@@ -36,7 +36,11 @@ public:
 
 	void SetDisplayColor();
 	void UpdateTitle();
+	void setColorMode();
+	uint32_t getColorMode();
+
 protected:
+	uint32_t		modeLight = MODE_LITE;
 
 //private:
 //	HeapStats_t heapit;

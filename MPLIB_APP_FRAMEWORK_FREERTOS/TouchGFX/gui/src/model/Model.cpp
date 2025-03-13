@@ -9,6 +9,8 @@
 #include "cmsis_os2.h"
 
 #include <MPLibs.h>
+#include <MPDisplayServices.h>
+
 
 extern osMessageQueueId_t gui_msgHandle;
 extern osMessageQueueId_t gui_logs_msgHandle;
@@ -26,6 +28,10 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
+	if(modelListener->getColorMode() != DISPLAY->getLightConfig()) {
+
+	}
+
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
 	{
 		switch(statusDeviceConnected) {

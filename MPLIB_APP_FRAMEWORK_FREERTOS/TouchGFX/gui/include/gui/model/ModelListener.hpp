@@ -33,6 +33,9 @@ public:
     virtual void getNumberLogsDataServices() {}
     virtual void getMemHeap() {}
 
+    virtual void setColorMode() {}
+    virtual uint32_t getColorMode() {return 0;}
+
 protected:
     Model* model;
 };

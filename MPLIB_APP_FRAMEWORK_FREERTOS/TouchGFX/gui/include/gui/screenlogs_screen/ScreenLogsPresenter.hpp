@@ -33,6 +33,7 @@ public:
 	void getNumberItemsList();
 	void getNumberOfLogListDrawables();
 	void getNumberLogsDataServices();
+	uint32_t getColorMode();
 
 private:
     ScreenLogsPresenter();

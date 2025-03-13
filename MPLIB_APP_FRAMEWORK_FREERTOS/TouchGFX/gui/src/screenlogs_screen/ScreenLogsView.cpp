@@ -8,6 +8,7 @@
 #include <MPDataServices.h>
 #include <MPSystem.h>
 #include <MPDisplayServices.h>
+#include <MPSDCard.h>
 
 
 ScreenLogsView::ScreenLogsView()
@@ -72,11 +73,24 @@ void ScreenLogsView::UpdateTitle()
 	screenTitle.setTitle(buffer);
 }
 
+uint32_t ScreenLogsView::getColorMode() {
+	return modeLight;
+}
+
+void ScreenLogsView::setColorMode() {
+    Background.setColor(DISPLAY->getLightColor());
+    Background.invalidate();
+    invalidate();
+}
+
 void ScreenLogsView::SetDisplayColor()
 {
     Background.setColor(DISPLAY->getColorMode(screenLight.getState()));
     Background.invalidate();
     invalidate();
+
+    modeLight = DISPLAY->getLightConfig();
+    SD->setSDConfigScreenLite();
 }
 
 void ScreenLogsView::updateSystemDescription()

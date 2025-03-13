@@ -129,6 +129,9 @@ bool MPSDCard::init() {
 	if( !getSDConfig() ) {
 		setSDConfig();
 	}
+	else {
+		getSDConfigScreenLite();
+	}
 
 	snprintf(log, LOG_LENGTH, "services initialization completed");
 	DS->pushToLogsMon(name, LOG_OK, log);
@@ -159,10 +162,148 @@ bool MPSDCard::init() {
 //=======================================================================================
 //
 //=======================================================================================
+void MPSDCard::deinitializeSD(void)
+{
+	if(HAL_SDEx_DMALinkedList_RemoveNode(&Write_LinkedList,&pLinkNode[0] ) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode failed");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode succeed");
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+
+	snprintf(log, LOG_LENGTH, "SD waiting...");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+	while(HAL_SD_GetCardState(&hsd1) != HAL_SD_CARD_TRANSFER)
+	  {
+	  }
+	snprintf(log, LOG_LENGTH, "SD ready");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+
+
+
+	//CLEANUP
+	if(HAL_SDEx_DMALinkedList_RemoveNode(&Read_LinkedList,&pLinkNode[1] ) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode failed");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+//		retour = false;
+//		goto error;
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode succeed");
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+
+	snprintf(log, LOG_LENGTH, "SD waiting...");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+	while(HAL_SD_GetCardState(&hsd1) != HAL_SD_CARD_TRANSFER)
+	  {
+	  }
+	snprintf(log, LOG_LENGTH, "SD ready");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+
+}
+
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::initializeSDRead(void) {
+	LinkNodeConf.BufferAddress = (uint32_t) COMPARE;
+	LinkNodeConf.BufferSize = BUFFER_SIZE;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::initializeSDWrite(void) {
+	LinkNodeConf.BufferAddress = (uint32_t) CONFIG;
+	LinkNodeConf.BufferSize = BUFFER_SIZE;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
 void MPSDCard::initializeSD(void)
 {
 	snprintf(log, LOG_LENGTH, "SD initialization...");
 	DS->pushToLogsMon(name, LOG_OK, log);
+
+	//WRITE CONFIG
+	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[0], &LinkNodeConf ) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	if(HAL_SDEx_DMALinkedList_InsertNode(&Write_LinkedList, NULL, &pLinkNode[0] ) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	if(HAL_SDEx_DMALinkedList_EnableCircularMode(&Write_LinkedList ) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	if(HAL_SDEx_DMALinkedList_WriteBlocks(&hsd1,&Write_LinkedList, MP_SD_CONFIG_CONFIG_ON, BUFFER_WORD_SIZE) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_WriteBlocks failed");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_WriteBlocks succeed");
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+
+	//READ CONFIG
+	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[1], &LinkNodeConf ) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	if(HAL_SDEx_DMALinkedList_InsertNode(&Read_LinkedList, NULL, &pLinkNode[1] ) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+
+	if(HAL_SDEx_DMALinkedList_EnableCircularMode(&Read_LinkedList ) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	if(HAL_SDEx_DMALinkedList_ReadBlocks(&hsd1,&Read_LinkedList,MP_SD_CONFIG_CONFIG_ON,BUFFER_WORD_SIZE) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_ReadBlocks failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_ReadBlocks succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
 
 // VOIR static void MX_SDMMC1_SD_Init(void);
 ////	if( BSP_SD_Init(0) != BSP_ERROR_NONE ) {
@@ -239,6 +380,74 @@ void MPSDCard::initializeSD(void)
 //=======================================================================================
 //
 //=======================================================================================
+void MPSDCard::setSDConfigScreenLite() {
+	initializeSDWrite();
+
+	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	//DMA WRITE HERE
+	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+	CONFIG[LIGHT] = DISPLAY->getLightConfig();
+
+	snprintf(log, LOG_LENGTH, "configuration succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+
+	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::getSDConfigScreenLite() {
+	uint32_t retour;
+
+	initializeSDRead();
+
+	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[1]) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+	retour = COMPARE[LIGHT];
+	DISPLAY->setLightConfig(retour);
+
+	printf("COMPARE[MAGIC]=%lu\n", COMPARE[MAGIC]);
+	printf("COMPARE[LIGHT]=%lu\n\n", COMPARE[LIGHT]);
+
+	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[1]) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+
+//	return retour;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
 bool MPSDCard::setSDConfig() {
 	bool retour = false;
 
@@ -263,51 +472,7 @@ bool MPSDCard::setSDConfig() {
 	DS->pushToLogsMon(name, LOG_INFO, log);
 
 
-	LinkNodeConf.BufferAddress = (uint32_t) CONFIG;
-	LinkNodeConf.BufferSize = BUFFER_SIZE;
-
-	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[0], &LinkNodeConf ) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_write;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
-
-	if(HAL_SDEx_DMALinkedList_InsertNode(&Write_LinkedList, NULL, &pLinkNode[0] ) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_write;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
-
-	if(HAL_SDEx_DMALinkedList_EnableCircularMode(&Write_LinkedList ) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_write;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
-
-	//WRITE
-	if(HAL_SDEx_DMALinkedList_WriteBlocks(&hsd1,&Write_LinkedList, MP_SD_CONFIG_CONFIG_ON, BUFFER_WORD_SIZE) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_WriteBlocks failed");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		retour = false;
-		goto cleanup_write;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_WriteBlocks succeed");
-		DS->pushToLogsMon(name, LOG_INFO, log);
-	}
-
+	initializeSDWrite();
 
 	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
@@ -340,24 +505,6 @@ bool MPSDCard::setSDConfig() {
 	}
 
 cleanup_write:
-	if(HAL_SDEx_DMALinkedList_RemoveNode(&Write_LinkedList,&pLinkNode[0] ) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode failed");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode succeed");
-		DS->pushToLogsMon(name, LOG_INFO, log);
-	}
-
-	snprintf(log, LOG_LENGTH, "SD waiting...");
-	DS->pushToLogsMon(name, LOG_INFO, log);
-	while(HAL_SD_GetCardState(&hsd1) != HAL_SD_CARD_TRANSFER)
-	  {
-	  }
-	snprintf(log, LOG_LENGTH, "SD ready");
-	DS->pushToLogsMon(name, LOG_INFO, log);
-
-
 	//READ AND CONFIRM WRITE OK BY COMPARE
 	retour = getSDConfig();
 
@@ -393,52 +540,8 @@ bool MPSDCard::getSDConfigInitialized()
 {
 	bool retour = false;
 
+	initializeSDRead();
 	//READ AND CONFIRM WRITE OK BY COMPARE
-//	uint32_t COMPARE[BUFFER_WORD_SIZE];
-//
-	LinkNodeConf.BufferAddress = (uint32_t) COMPARE;
-	LinkNodeConf.BufferSize = BUFFER_SIZE;
-
-	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[1], &LinkNodeConf ) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_read;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
-
-	if(HAL_SDEx_DMALinkedList_InsertNode(&Read_LinkedList, NULL, &pLinkNode[1] ) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_read;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_InsertNode succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
-
-
-	if(HAL_SDEx_DMALinkedList_EnableCircularMode(&Read_LinkedList ) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_read;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_EnableCircularMode succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
-
-	if(HAL_SDEx_DMALinkedList_ReadBlocks(&hsd1,&Read_LinkedList,MP_SD_CONFIG_CONFIG_ON,BUFFER_WORD_SIZE) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_ReadBlocks failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-		goto cleanup_read;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_ReadBlocks succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
 
 	//COMPARE HERE*******************************************************************
 	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[1]) != HAL_OK ) {
@@ -454,10 +557,6 @@ bool MPSDCard::getSDConfigInitialized()
 
 	//COMPARISON
 	if(COMPARE[MAGIC] != MP_SD_CONFIG_CONFIG_MAGIC) {
-//		printf("COMPARE[MAGIC]=%lu\n", COMPARE[MAGIC]);
-//		printf("MP_SD_CONFIG_CONFIG_MAGIC=%u\n\n", MP_SD_CONFIG_CONFIG_MAGIC);
-//		printf("COMPARE[LIGHT]=%lu\n", COMPARE[LIGHT]);
-
 		snprintf(log, LOG_LENGTH, "COMPARE[0] != MP_SD_CONFIG_CONFIG_MAGIC !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
 		retour = false;
@@ -469,7 +568,7 @@ bool MPSDCard::getSDConfigInitialized()
 	}
 
 	printf("COMPARE[MAGIC]=%lu\n", COMPARE[MAGIC]);
-	printf("COMPARE[LIGHT]=%lu\n", COMPARE[LIGHT]);
+	printf("COMPARE[LIGHT]=%lu\n\n", COMPARE[LIGHT]);
 
 	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[1]) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
@@ -481,31 +580,9 @@ bool MPSDCard::getSDConfigInitialized()
 		DS->pushToLogsMon(name, LOG_OK, log);
 	}
 
-//	uint32_t toCompare = COMPARE[0];
-//	printf("COMPARE[0]=%lX", toCompare);
 
 cleanup_read:
-	//CLEANUP
-	if(HAL_SDEx_DMALinkedList_RemoveNode(&Read_LinkedList,&pLinkNode[1] ) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode failed");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-//		retour = false;
-//		goto error;
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_RemoveNode succeed");
-		DS->pushToLogsMon(name, LOG_INFO, log);
-	}
 
-	snprintf(log, LOG_LENGTH, "SD waiting...");
-	DS->pushToLogsMon(name, LOG_INFO, log);
-	while(HAL_SD_GetCardState(&hsd1) != HAL_SD_CARD_TRANSFER)
-	  {
-	  }
-	snprintf(log, LOG_LENGTH, "SD ready");
-	DS->pushToLogsMon(name, LOG_INFO, log);
-
-retour:
     return retour;
 }
 

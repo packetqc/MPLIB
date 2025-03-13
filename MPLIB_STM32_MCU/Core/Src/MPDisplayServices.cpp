@@ -110,7 +110,24 @@ void MPDisplayServices::heartBeat() {
 //
 //=======================================================================================
 uint32_t MPDisplayServices::getLightConfig() {
+	return modeLight; //(modeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+uint32_t MPDisplayServices::getLightColor() {
 	return (modeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPDisplayServices::setLightConfig(uint32_t mode) {
+	modeLight = mode;
+
+	sprintf(log, "light config set to: %u", modeLight);
+	DS->pushToLogsMon(name, LOG_INFO, log);
 }
 
 //=======================================================================================

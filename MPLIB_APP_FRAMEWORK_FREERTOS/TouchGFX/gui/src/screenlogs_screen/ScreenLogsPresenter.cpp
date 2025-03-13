@@ -40,3 +40,7 @@ void ScreenLogsPresenter::getNumberOfLogListDrawables() {
 void ScreenLogsPresenter::getNumberLogsDataServices() {
 	view.getNumberLogsDataServices();
 }
+
+uint32_t ScreenLogsPresenter::getColorMode() {
+	return view.getColorMode();
+}

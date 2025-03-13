@@ -112,12 +112,15 @@ public:
 	void	heartBeat();
 
 	void	initializeSD(void);
+	void	initializeSDRead(void);
+	void	initializeSDWrite(void);
+	void	deinitializeSD(void);
 
 	bool 	getSDConfigInitialized();
 	bool 	setSDConfig();
 	bool 	getSDConfig();
-	bool 	setSDConfigScreenLite(uint32_t value);
-	bool 	getSDConfigScreenLite(uint32_t value);
+	void 	setSDConfigScreenLite();
+	void 	getSDConfigScreenLite();
 
 protected:
 	Led_TypeDef LED 		= LED_BLUE;
