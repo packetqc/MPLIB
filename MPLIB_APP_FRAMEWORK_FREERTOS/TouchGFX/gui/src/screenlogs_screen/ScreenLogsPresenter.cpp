@@ -1,3 +1,4 @@
+
 #include <gui/screenlogs_screen/ScreenLogsView.hpp>
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
 
@@ -15,6 +16,15 @@ void ScreenLogsPresenter::activate()
 void ScreenLogsPresenter::deactivate()
 {
 
+}
+
+void ScreenLogsPresenter::setColorMode() {
+	view.setColorMode();
+}
+
+void ScreenLogsPresenter::SetDisplayColor()
+{
+	view.SetDisplayColor();
 }
 
 void ScreenLogsPresenter::UpdateStatusNavigationBar() {

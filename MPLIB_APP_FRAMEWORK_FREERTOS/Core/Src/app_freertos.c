@@ -138,7 +138,7 @@ osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 128 * 4
+  .stack_size = 256 * 4
 };
 /* Definitions for GUI_Task */
 osThreadId_t GUI_TaskHandle;
@@ -180,7 +180,7 @@ osThreadId_t SDServiceHandle;
 const osThreadAttr_t SDService_attributes = {
   .name = "SDService",
   .priority = (osPriority_t) osPriorityNormal,
-  .stack_size = 1024 * 4
+  .stack_size = 512 * 4
 };
 /* Definitions for canLog */
 osMutexId_t canLogHandle;
@@ -391,14 +391,14 @@ void StartDefaultTask(void *argument)
 //	osThreadJoin(DisplayServiceHandle);
 
 	osThreadResume(DataServicesHandle);
-	HAL_Delay(300);
-	osThreadResume(SecureServiceHandle);
-	HAL_Delay(300);
-	osThreadResume(SystemServiceTaHandle);
+	osThreadResume(DisplayServiceHandle);
 	HAL_Delay(300);
 	osThreadResume(SDServiceHandle);
-	HAL_Delay(300);
-	osThreadResume(DisplayServiceHandle);
+	osThreadResume(SecureServiceHandle);
+	osThreadResume(SystemServiceTaHandle);
+
+
+
 
 	while(1) {
 		HAL_Delay(300);

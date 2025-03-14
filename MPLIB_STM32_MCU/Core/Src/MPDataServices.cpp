@@ -136,6 +136,7 @@ void StartDataServices(void *argument) {
 			DS->heartBeat();
 		}
 
+		HAL_Delay(100);
 //		osDelay(100);
 	}
 #endif
@@ -416,6 +417,9 @@ void MPDataServices::createLog(uint16_t index, const char* category, uint8_t sev
 	LOGSMON[index]->severity = severity;
 
 	printf("%d\t%d\t%s\t%s\n\n", index, severity, category, alog);
+
+//	HAL_NVIC_DisableIRQ(SDMMC1_IRQn);
+//	HAL_NVIC_EnableIRQ(SDMMC1_IRQn);
 }
 
 //=======================================================================================

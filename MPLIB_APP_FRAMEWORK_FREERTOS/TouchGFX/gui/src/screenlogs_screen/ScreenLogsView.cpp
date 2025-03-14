@@ -19,7 +19,11 @@ ScreenLogsView::ScreenLogsView()
 void ScreenLogsView::setupScreen()
 {
     ScreenLogsViewBase::setupScreen();
-    SetDisplayColor();
+
+//    if(SD->isStarted())
+//    	SetDisplayColor();
+
+//	UpdateBackground();
     UpdateTitle();
 }
 
@@ -40,6 +44,19 @@ void ScreenLogsView::LED_Toggle()
 		#endif
 	}
 	BSP_LED_Off(LED1);
+}
+
+void ScreenLogsView::UpdateBackground()
+{
+//    Background.setColor();
+//    Background.invalidate();
+//    invalidate();
+
+    modeLight = SD->getSDConfigScreenLite();
+//    DISPLAY->setLightConfig(modeLight);
+//    setColorMode();
+//
+//    SD->setSDConfigScreenLite();
 }
 
 void ScreenLogsView::UpdateTitle()

@@ -35,6 +35,7 @@ public:
 	void getMemHeap();
 
 	void SetDisplayColor();
+	void UpdateBackground();
 	void UpdateTitle();
 	void setColorMode();
 	uint32_t getColorMode();

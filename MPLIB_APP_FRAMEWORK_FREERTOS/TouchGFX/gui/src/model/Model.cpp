@@ -29,7 +29,7 @@ Model::Model() : modelListener(0)
 void Model::tick()
 {
 	if(modelListener->getColorMode() != DISPLAY->getLightConfig()) {
-
+		modelListener->setColorMode();
 	}
 
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)

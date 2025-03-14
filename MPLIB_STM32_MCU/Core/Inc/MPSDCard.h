@@ -114,13 +114,15 @@ public:
 	void	initializeSD(void);
 	void	initializeSDRead(void);
 	void	initializeSDWrite(void);
-	void	deinitializeSD(void);
+	void	deInitializeSDWrite(void);
+	void	deInitializeSDRead(void);
 
 	bool 	getSDConfigInitialized();
 	bool 	setSDConfig();
 	bool 	getSDConfig();
 	void 	setSDConfigScreenLite();
-	void 	getSDConfigScreenLite();
+
+	uint32_t 	getSDConfigScreenLite();
 
 protected:
 	Led_TypeDef LED 		= LED_BLUE;
@@ -134,8 +136,10 @@ protected:
 	uint8_t		isSDInitialized = 0;
 private:
 	char 		log[LOG_LENGTH];
-	uint32_t	CONFIG[BUFFER_WORD_SIZE];
-	uint32_t 	COMPARE[BUFFER_WORD_SIZE];
+//	uint32_t	CONFIG[BUFFER_WORD_SIZE];
+//	uint32_t 	COMPARE[BUFFER_WORD_SIZE];
+//	uint32_t*	CONFIG; //[BUFFER_WORD_SIZE];
+//	uint32_t* 	COMPARE; //[BUFFER_WORD_SIZE];
 
 	HAL_SD_CardInfoTypeDef cardInfo;
 

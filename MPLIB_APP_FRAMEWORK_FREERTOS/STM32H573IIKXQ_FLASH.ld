@@ -164,6 +164,27 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
+  /*MPLIB*/  
+  .compare (NOLOAD):
+  {
+    . = ALIGN(4);
+    _compare_data_begin = .;
+    *(.compare)
+    *(.compare*)
+    . = ALIGN(4);
+    _compare_data_end = .;
+  } >FLASH
+
+  .config (NOLOAD):
+  {
+    . = ALIGN(4);
+    _config_data_begin = .;
+    *(.config)
+    *(.config*)
+    . = ALIGN(4);
+    _config_data_end = .;
+  } >FLASH
+  
   /* User_heap_stack section, used to check that there is enough "RAM" Ram  type memory left */
   ._user_heap_stack :
   {

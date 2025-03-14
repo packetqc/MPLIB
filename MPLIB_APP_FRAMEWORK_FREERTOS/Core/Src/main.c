@@ -685,11 +685,15 @@ resetTouch();
   */
 PUTCHAR_PROTOTYPE
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART1 and Loop until the end of transmission */
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+//	__disable_irq();
 
-  return ch;
+	/* Place your implementation of fputc here */
+	/* e.g. write a character to the USART1 and Loop until the end of transmission */
+	HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+
+//	__enable_irq();
+
+	return ch;
 }
 
 void resetTouch(void)
@@ -732,9 +736,19 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
+//  __disable_irq();
+	  BSP_LED_Off(LED4);
+	  BSP_LED_Off(LED3);
+	  BSP_LED_Off(LED2);
+	  BSP_LED_Off(LED1);
+
   while (1)
   {
+	  BSP_LED_Toggle(LED4);
+	  BSP_LED_Toggle(LED3);
+	  BSP_LED_Toggle(LED2);
+	  BSP_LED_Toggle(LED1);
+	  HAL_Delay(200);
   }
   /* USER CODE END Error_Handler_Debug */
 }
