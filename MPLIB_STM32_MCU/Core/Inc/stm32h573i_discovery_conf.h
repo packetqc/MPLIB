@@ -48,7 +48,7 @@ extern "C" {
 /* #define STM32H573I_DK_REVA */
 
 /* COM define */
-#define USE_BSP_COM_FEATURE               0U
+#define USE_BSP_COM_FEATURE               1U
 #define USE_COM_LOG                       0U
 
 /* I2C BUS timing define */

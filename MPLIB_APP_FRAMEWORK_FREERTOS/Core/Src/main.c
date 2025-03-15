@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+//#include "stm32h5xx_hal_sd.h"
 
 /* USER CODE END Includes */
 
@@ -50,6 +51,12 @@ DMA_HandleTypeDef handle_GPDMA2_Channel6;
 
 I2C_HandleTypeDef hi2c4;
 
+RNG_HandleTypeDef hrng;
+
+CRYP_HandleTypeDef hcryp;
+
+SD_HandleTypeDef hsd1;
+
 UART_HandleTypeDef huart1;
 
 SRAM_HandleTypeDef hsram1;
@@ -68,6 +75,9 @@ static void MX_ICACHE_Init(void);
 static void MX_I2C4_Init(void);
 static void MX_FMC_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_RNG_Init(void);
+static void MX_SAES_AES_Init(void);
+static void MX_SDMMC1_SD_Init(void);
 /* USER CODE BEGIN PFP */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 void resetTouch(void);
@@ -117,6 +127,9 @@ int main(void)
   MX_I2C4_Init();
   MX_FMC_Init();
   MX_USART1_UART_Init();
+  MX_RNG_Init();
+  MX_SAES_AES_Init();
+  MX_SDMMC1_SD_Init();
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
@@ -130,6 +143,8 @@ int main(void)
   BSP_LED_On(LED3);
 //  HAL_Delay(500);
   BSP_LED_On(LED4);
+
+//  HAL_SD_ConfigSpeedBusOperation(&hsd1,SDMMC_SPEED_MODE_HIGH);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -172,8 +187,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLL1_SOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 5;
@@ -356,6 +372,99 @@ static void MX_ICACHE_Init(void)
   /* USER CODE BEGIN ICACHE_Init 2 */
 
   /* USER CODE END ICACHE_Init 2 */
+
+}
+
+/**
+  * @brief RNG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_RNG_Init(void)
+{
+
+  /* USER CODE BEGIN RNG_Init 0 */
+
+  /* USER CODE END RNG_Init 0 */
+
+  /* USER CODE BEGIN RNG_Init 1 */
+
+  /* USER CODE END RNG_Init 1 */
+  hrng.Instance = RNG;
+  hrng.Init.ClockErrorDetection = RNG_CED_ENABLE;
+  if (HAL_RNG_Init(&hrng) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN RNG_Init 2 */
+
+  /* USER CODE END RNG_Init 2 */
+
+}
+
+/**
+  * @brief SAES Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SAES_AES_Init(void)
+{
+
+  /* USER CODE BEGIN SAES_Init 0 */
+
+  /* USER CODE END SAES_Init 0 */
+
+  /* USER CODE BEGIN SAES_Init 1 */
+
+  /* USER CODE END SAES_Init 1 */
+  hcryp.Instance = SAES;
+  hcryp.Init.DataType = CRYP_NO_SWAP;
+  hcryp.Init.KeySize = CRYP_KEYSIZE_256B;
+  hcryp.Init.Algorithm = CRYP_AES_ECB;
+  hcryp.Init.DataWidthUnit = CRYP_DATAWIDTHUNIT_WORD;
+  hcryp.Init.HeaderWidthUnit = CRYP_HEADERWIDTHUNIT_WORD;
+  hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+  hcryp.Init.KeyMode = CRYP_KEYMODE_WRAPPED;
+  hcryp.Init.KeySelect = CRYP_KEYSEL_HW;
+  hcryp.Init.KeyProtection = CRYP_KEYPROT_DISABLE;
+  if (HAL_CRYP_Init(&hcryp) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SAES_Init 2 */
+
+  /* USER CODE END SAES_Init 2 */
+
+}
+
+/**
+  * @brief SDMMC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SDMMC1_SD_Init(void)
+{
+
+  /* USER CODE BEGIN SDMMC1_Init 0 */
+
+  /* USER CODE END SDMMC1_Init 0 */
+
+  /* USER CODE BEGIN SDMMC1_Init 1 */
+
+  /* USER CODE END SDMMC1_Init 1 */
+  hsd1.Instance = SDMMC1;
+  hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_FALLING;
+  hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
+  hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
+  hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
+  hsd1.Init.ClockDiv = 1;
+  if (HAL_SD_Init(&hsd1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SDMMC1_Init 2 */
+
+  /* USER CODE END SDMMC1_Init 2 */
 
 }
 
@@ -576,11 +685,15 @@ resetTouch();
   */
 PUTCHAR_PROTOTYPE
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART1 and Loop until the end of transmission */
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+//	__disable_irq();
 
-  return ch;
+	/* Place your implementation of fputc here */
+	/* e.g. write a character to the USART1 and Loop until the end of transmission */
+	HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+
+//	__enable_irq();
+
+	return ch;
 }
 
 void resetTouch(void)
@@ -623,9 +736,19 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
+//  __disable_irq();
+	  BSP_LED_Off(LED4);
+	  BSP_LED_Off(LED3);
+	  BSP_LED_Off(LED2);
+	  BSP_LED_Off(LED1);
+
   while (1)
   {
+	  BSP_LED_Toggle(LED4);
+	  BSP_LED_Toggle(LED3);
+	  BSP_LED_Toggle(LED2);
+	  BSP_LED_Toggle(LED1);
+	  HAL_Delay(10000);
   }
   /* USER CODE END Error_Handler_Debug */
 }

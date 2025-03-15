@@ -166,6 +166,9 @@ SECTIONS
     . = ALIGN(8);
   } >RAM_D1
 
+
+
+
   /* Remove information from the standard libraries */
   /DISCARD/ :
   {

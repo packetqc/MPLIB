@@ -27,12 +27,17 @@ public:
 
     virtual ~ScreenLogsPresenter() {}
 
+    void SetDisplayColor();
+    void setColor();
+
 	void UpdateStatusNavigationBar();
 	void UpdateLogs(uint8_t index);
 	void getMemHeap();
 	void getNumberItemsList();
 	void getNumberOfLogListDrawables();
 	void getNumberLogsDataServices();
+	uint32_t getColorMode();
+	void setButtonMode();
 
 private:
     ScreenLogsPresenter();

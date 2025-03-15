@@ -31,7 +31,7 @@
 #define LOG_LENGTH			150U
 #define CAT_LENGTH 			15U
 #define THREAD_HEARTBEAT	1000
-#define TEXTLOGS_SIZE 		20
+#define TEXTLOGS_SIZE 		30
 #define TEXTBUFF_SIZE 		150
 
 //=======================================================================================
@@ -54,7 +54,11 @@ enum {
 	SYSTEM_NOTOK,
 	SYSTEM_OK,
 	DISPLAY_NOTOK,
-	DISPLAY_OK
+	DISPLAY_OK,
+	SECURE_NOTOK,
+	SECURE_OK,
+	SD_NOTOK,
+	SD_OK
 };
 
 //=======================================================================================
@@ -69,6 +73,19 @@ enum {
 	LOG_DEBUG
 };
 
+//=======================================================================================
+//
+//=======================================================================================
+enum {
+	SD_NOOP,
+	SD_ERASE,
+	SD_SAVE,
+	SD_LOAD,
+	SD_SAVE_ENCRYPTION,
+	SD_LOAD_ENCRYPTION,
+	SD_SAVE_BACKGROUND,
+	SD_lOAD_BACKGROUND
+};
 
 //=======================================================================================
 //

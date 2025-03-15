@@ -8,6 +8,7 @@
 #include <MPDataServices.h>
 #include <MPSystem.h>
 #include <MPDisplayServices.h>
+#include <MPSDCard.h>
 
 
 ScreenLogsView::ScreenLogsView()
@@ -18,7 +19,12 @@ ScreenLogsView::ScreenLogsView()
 void ScreenLogsView::setupScreen()
 {
     ScreenLogsViewBase::setupScreen();
-    SetDisplayColor();
+
+//    if(SD->isStarted())
+//    	getDisplayColor();
+
+//	UpdateBackground();
+    UpdateTitle();
 }
 
 void ScreenLogsView::tearDownScreen()
@@ -40,23 +46,96 @@ void ScreenLogsView::LED_Toggle()
 	BSP_LED_Off(LED1);
 }
 
+void ScreenLogsView::UpdateBackground()
+{
+//    Background.setColor();
+//    Background.invalidate();
+//    invalidate();
+
+    modeLight = SD->getSDConfigScreenLite();
+//    DISPLAY->setLightConfig(modeLight);
+//    setColorMode();
+//
+//    SD->setSDConfigScreenLite();
+}
+
 void ScreenLogsView::UpdateTitle()
 {
-//	Unicode::UnicodeChar buffer[15];
-//
-//	PagesMenu.
-//	Unicode::strncpy(buffer, SYS->getSystemDescription(), 15);
-//	touchgfx::Unicode::snprintf(systemDescriptionTextAreaBuffer, 15, "%s", buffer );
-//	systemDescriptionTextArea.resizeToCurrentText();
-//	systemDescriptionTextArea.invalidate();
-//	systemDescriptionTextArea.centerX();
+	touchgfx::Unicode::UnicodeChar buffer[15];
+
+	uint8_t pageNum = PagesMenu.getSelectedPage();
+
+	switch(pageNum)
+	{
+	case 0:
+		Unicode::strncpy(buffer, "WELCOME", 15);
+		break;
+	case 1:
+		Unicode::strncpy(buffer, "MEMORY", 15);
+		break;
+	case 2:
+		Unicode::strncpy(buffer, "SECURE", 15);
+		break;
+	case 3:
+		Unicode::strncpy(buffer, "LOGS", 15);
+		break;
+	case 4:
+		Unicode::strncpy(buffer, "NETWORK", 15);
+		break;
+	default:
+		Unicode::strncpy(buffer, "UNKNOWN", 15);
+		break;
+	}
+
+	screenTitle.setTitle(buffer);
+}
+
+void ScreenLogsView::setButtonMode() {
+	if(DISPLAY->getColorMode() == MODE_LITE) {
+		screenLight.forceState(true);
+	}
+	else {
+		screenLight.forceState(false);
+	}
+}
+
+uint32_t ScreenLogsView::getColorMode() {
+	return modeLight;
+}
+
+void ScreenLogsView::setColorMode(uint32_t mode) {
+	modeLight = mode;
+}
+
+void ScreenLogsView::setColor() {
+    Background.setColor(DISPLAY->getColor());
+    Background.invalidate();
+    invalidate();
+
+    modeLight = DISPLAY->getColorMode();
+}
+
+void ScreenLogsView::getDisplayColor()
+{
+	modeLight = SD->getSDConfigScreenLite();
+
+	Background.setColor(modeLight);
+    Background.invalidate();
+    invalidate();
 }
 
 void ScreenLogsView::SetDisplayColor()
 {
-    Background.setColor(DISPLAY->getColorMode(screenLight.getState()));
+	uint32_t tmodeLight = DISPLAY->getModeFromButton(screenLight.getPressed());
+	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getPressed());
+
+
+    Background.setColor(tcolor);
     Background.invalidate();
     invalidate();
+
+    DISPLAY->setColorMode(tmodeLight);
+    SD->setSDConfigScreenLite();
 }
 
 void ScreenLogsView::updateSystemDescription()
@@ -85,6 +164,8 @@ void ScreenLogsView::UpdateUI() {
 
 //	scrollListEndpointsConfigured.invalidate();
 //	netStatsARPTable1.UpdateUI();
+
+//	getMemHeap();
 }
 
 void ScreenLogsView::UpdateStatusNavigationBar()
@@ -107,7 +188,6 @@ void ScreenLogsView::ClearLogs() {
 void ScreenLogsView::UpdateLogs(uint8_t index) {
 	LogsListe.Update(index);
 
-//	qtyLogs++;
 	getNumberItemsList();
 	getNumberOfLogListDrawables();
 	getNumberLogsDataServices();
@@ -131,35 +211,37 @@ void ScreenLogsView::getNumberLogsDataServices() {
 	numberLogsDataServices.invalidate();
 }
 
-
 void ScreenLogsView::getMemHeap() {
-//	vPortGetHeapStats( &heapit );
 
-	touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
-	memHeapFreeSize.resizeToCurrentText();
-	memHeapFreeSize.invalidate();
+//	SYS->SYS_ReadMemory();
 
-	touchgfx::Unicode::snprintf(memHeapLargestBuffer, 10, "%d", SYS->getSizeOfLargestFreeBlockInBytes() );
-	memHeapLargest.resizeToCurrentText();
-	memHeapLargest.invalidate();
+	if( SYS->isStarted() ) {
+		touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
+		memHeapFreeSize.resizeToCurrentText();
+		memHeapFreeSize.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapSmalestBuffer, 10, "%d", SYS->getSizeOfSmallestFreeBlockInBytes() );
-	memHeapSmalest.resizeToCurrentText();
-	memHeapSmalest.invalidate();
+		touchgfx::Unicode::snprintf(memHeapLargestBuffer, 10, "%d", SYS->getSizeOfLargestFreeBlockInBytes() );
+		memHeapLargest.resizeToCurrentText();
+		memHeapLargest.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapFreeBlocksBuffer, 10, "%d", SYS->getNumberOfFreeBlocks() );
-	memHeapFreeBlocks.resizeToCurrentText();
-	memHeapFreeBlocks.invalidate();
+		touchgfx::Unicode::snprintf(memHeapSmalestBuffer, 10, "%d", SYS->getSizeOfSmallestFreeBlockInBytes() );
+		memHeapSmalest.resizeToCurrentText();
+		memHeapSmalest.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapEverFreeBuffer, 10, "%d", SYS->getMinimumEverFreeBytesRemaining() );
-	memHeapEverFree.resizeToCurrentText();
-	memHeapEverFree.invalidate();
+		touchgfx::Unicode::snprintf(memHeapFreeBlocksBuffer, 10, "%d", SYS->getNumberOfFreeBlocks() );
+		memHeapFreeBlocks.resizeToCurrentText();
+		memHeapFreeBlocks.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapAllocSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulAllocations() );
-	memHeapAllocSuccess.resizeToCurrentText();
-	memHeapAllocSuccess.invalidate();
+		touchgfx::Unicode::snprintf(memHeapEverFreeBuffer, 10, "%d", SYS->getMinimumEverFreeBytesRemaining() );
+		memHeapEverFree.resizeToCurrentText();
+		memHeapEverFree.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapFreeSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulFrees() );
-	memHeapFreeSuccess.resizeToCurrentText();
-	memHeapFreeSuccess.invalidate();
+		touchgfx::Unicode::snprintf(memHeapAllocSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulAllocations() );
+		memHeapAllocSuccess.resizeToCurrentText();
+		memHeapAllocSuccess.invalidate();
+
+		touchgfx::Unicode::snprintf(memHeapFreeSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulFrees() );
+		memHeapFreeSuccess.resizeToCurrentText();
+		memHeapFreeSuccess.invalidate();
+	}
 }

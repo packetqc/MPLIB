@@ -4,6 +4,7 @@
 #include <images/BitmapDatabase.hpp>
 
 #include <MPDataServices.h>
+#include "MPLibs.h"
 
 StatusNavigationBar::StatusNavigationBar()
 {

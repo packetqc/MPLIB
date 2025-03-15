@@ -14,9 +14,10 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/LogPanel.hpp>
 #include <gui/containers/StatusNavigationBar.hpp>
-#include <touchgfx/widgets/ToggleButton.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
 
 class ScreenLogsViewBase : public touchgfx::View<ScreenLogsPresenter>
 {
@@ -83,11 +84,12 @@ protected:
     touchgfx::TextAreaWithOneWildcard memHeapEverFree;
     touchgfx::TextAreaWithOneWildcard memHeapAllocSuccess;
     touchgfx::TextAreaWithOneWildcard memHeapFreeSuccess;
+    touchgfx::ScrollableContainer Secure;
     touchgfx::Container Logs;
     LogPanel LogsListe;
     touchgfx::Container Network;
     StatusNavigationBar StatusNavigationBar1;
-    touchgfx::ToggleButton screenLight;
+    touchgfx::IconButtonStyle< touchgfx::ToggleButtonTrigger >  screenLight;
 
     /*
      * Wildcard Buffers
@@ -132,12 +134,12 @@ private:
     /*
      * Callback Declarations
      */
-    touchgfx::Callback<ScreenLogsViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<ScreenLogsViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 
