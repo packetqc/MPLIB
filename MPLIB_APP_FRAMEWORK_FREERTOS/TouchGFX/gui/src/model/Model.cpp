@@ -9,6 +9,8 @@
 #include "cmsis_os2.h"
 
 #include <MPLibs.h>
+#include <MPDisplayServices.h>
+
 
 extern osMessageQueueId_t gui_msgHandle;
 extern osMessageQueueId_t gui_logs_msgHandle;
@@ -32,18 +34,20 @@ void Model::tick()
 		case CLEAR_LOGS:
 			modelListener->ClearLogs();
 			break;
+		case SD_lOAD_BACKGROUND:
+			modelListener->setColor();
+			modelListener->setButtonMode();
+			break;
 		default:
 			modelListener->UpdateStatusNavigationBar();
 			break;
 		}
-
-		return;
 	}
 
 	if(osMessageQueueGet(gui_logs_msgHandle, &(aguilog), NULL, 0) == osOK)
 	{
 		modelListener->UpdateLogs(aguilog);
-		return;
+//		return;
 	}
 
 	if(HAL_GetTick() - tickstart > 1000 ) {
@@ -52,6 +56,6 @@ void Model::tick()
 		modelListener->getNumberLogsDataServices();
 		modelListener->getMemHeap();
 		tickstart = HAL_GetTick();
-		return;
+//		return;
 	}
 }

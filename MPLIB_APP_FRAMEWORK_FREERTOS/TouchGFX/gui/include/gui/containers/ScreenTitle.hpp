@@ -10,6 +10,7 @@ public:
     virtual ~ScreenTitle() {}
 
     virtual void initialize();
+    void setTitle(touchgfx::Unicode::UnicodeChar* buffer);
 protected:
 };
 

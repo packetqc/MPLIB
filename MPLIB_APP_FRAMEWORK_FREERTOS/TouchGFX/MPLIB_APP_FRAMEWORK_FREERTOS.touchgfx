@@ -36,7 +36,7 @@
             "Height": 200,
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
-            "PageIndicatorX": 80,
+            "PageIndicatorX": 70,
             "PageIndicatorY": 171,
             "CenteredX": true,
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
@@ -325,6 +325,19 @@
                 ]
               },
               {
+                "Type": "ScrollableContainer",
+                "Name": "Secure",
+                "X": 1,
+                "Width": 239,
+                "Height": 160,
+                "HorizontalScrollEnabled": true,
+                "VerticalScrollEnabled": true,
+                "ScrollbarsVisible": true,
+                "ScrollbarsVisibleOnPressed": true,
+                "ScrollbarsAlpha": 255,
+                "Components": []
+              },
+              {
                 "Type": "Container",
                 "Name": "Logs",
                 "Width": 240,
@@ -344,6 +357,7 @@
                 "Name": "Network",
                 "Width": 240,
                 "Height": 200,
+                "Visible": false,
                 "Components": []
               }
             ]
@@ -352,20 +366,27 @@
             "Type": "CustomContainerInstance",
             "Name": "StatusNavigationBar1",
             "Y": 200,
-            "Width": 71,
-            "Height": 40,
+            "Width": 240,
+            "Height": 42,
             "CustomContainerDefinitionName": "StatusNavigationBar"
           },
           {
-            "Type": "ToggleButton",
+            "Type": "FlexButton",
             "Name": "screenLight",
-            "X": 208,
-            "Y": 209,
-            "Width": 24,
-            "Height": 24,
-            "InitialStatePressed": true,
-            "Pressed": "__generated\\alternate_theme_images_widgets_radiobutton_radio_small_round_off_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_radiobutton_radio_small_round_off.png"
+            "X": 200,
+            "Y": 5,
+            "Width": 38,
+            "Height": 33,
+            "ButtonTrigger": {
+              "Type": "ToggleButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "IconReleased": "__generated\\icon_theme_images_image_wb_sunny_35_35_38668C.svg.png",
+                "IconPressed": "__generated\\icon_theme_images_image_wb_sunny_35_35_FFA600.svg.png"
+              }
+            ]
           }
         ],
         "Interactions": [
@@ -629,15 +650,14 @@
       },
       {
         "Name": "StatusNavigationBar",
-        "Y": 200,
-        "Width": 71,
-        "Height": 40,
+        "Y": 198,
+        "Width": 240,
+        "Height": 42,
         "Components": [
           {
             "Type": "Container",
             "Name": "LayoutControls",
-            "Y": 2,
-            "Width": 71,
+            "Width": 240,
             "Height": 40,
             "Components": [
               {
@@ -667,10 +687,10 @@
               {
                 "Type": "FlexButton",
                 "Name": "Control_Play",
-                "X": 32,
-                "Y": 7,
-                "Width": 24,
-                "Height": 24,
+                "X": 205,
+                "Y": 8,
+                "Width": 26,
+                "Height": 26,
                 "ButtonTrigger": {
                   "Type": "TouchButtonTrigger"
                 },

@@ -3,7 +3,6 @@
 	<name>MPLIB_APP_FRAMEWORK_FREERTOS</name>
 	<comment></comment>
 	<projects>
-		<project>MPLIB_STM32_MCU</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
