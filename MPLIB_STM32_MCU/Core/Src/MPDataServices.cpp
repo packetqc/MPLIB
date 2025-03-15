@@ -133,11 +133,8 @@ void StartDataServices(void *argument) {
 			DS->blinkLED(2);
 			tickstart = HAL_GetTick();
 
-			DS->heartBeat();
+//			DS->heartBeat();
 		}
-
-		HAL_Delay(100);
-//		osDelay(100);
 	}
 #endif
 
@@ -294,11 +291,10 @@ void MPDataServices::pushToLogsMon(const char* category, uint8_t severity, char*
 #if defined(FREERTOS)
 	uint32_t tickstart = HAL_GetTick();
 	while( osMutexAcquire(canLogHandle,0) != osOK ) {
-		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT/8) {
-			  BSP_LED_Toggle(LED_GREEN);
-			  tickstart = HAL_GetTick();
+		  if((HAL_GetTick()-tickstart) > (THREAD_HEARTBEAT*3)) {
+				return;
 		  }
-		  osDelay(100);
+//	  HAL_Delay(100);
 	}
 #endif
 
@@ -368,19 +364,23 @@ void MPDataServices::pushToLogsMon(const char* category, uint8_t severity, char*
 	}
 
 #if defined(FREERTOS)
-	if(osMutexRelease( canLogHandle ) != osOK ) {
-		BSP_LED_Off(LED_GREEN);
-		BSP_LED_Off(LED_ORANGE);
-		BSP_LED_Off(LED_BLUE);
-		BSP_LED_Off(LED_RED);
-
-		while(1) {
-			BSP_LED_Toggle(LED_GREEN);
-			BSP_LED_Toggle(LED_ORANGE);
-			BSP_LED_Toggle(LED_RED);
-			BSP_LED_Toggle(LED_BLUE);
-			HAL_Delay(400);
+	while(osMutexRelease( canLogHandle ) != osOK ) {
+		if((HAL_GetTick()-tickstart) > (THREAD_HEARTBEAT*3)) {
+			break;
+//		BSP_LED_Off(LED_GREEN);
+//		BSP_LED_Off(LED_ORANGE);
+//		BSP_LED_Off(LED_BLUE);
+//		BSP_LED_Off(LED_RED);
+//
+//		while(1) {
+//			BSP_LED_Toggle(LED_GREEN);
+//			BSP_LED_Toggle(LED_ORANGE);
+//			BSP_LED_Toggle(LED_RED);
+//			BSP_LED_Toggle(LED_BLUE);
+//			HAL_Delay(1500);
+//		}
 		}
+//		HAL_Delay(100);
 	}
 #endif
 
@@ -418,8 +418,6 @@ void MPDataServices::createLog(uint16_t index, const char* category, uint8_t sev
 
 	printf("%d\t%d\t%s\t%s\n\n", index, severity, category, alog);
 
-//	HAL_NVIC_DisableIRQ(SDMMC1_IRQn);
-//	HAL_NVIC_EnableIRQ(SDMMC1_IRQn);
 }
 
 //=======================================================================================
@@ -428,18 +426,19 @@ void MPDataServices::createLog(uint16_t index, const char* category, uint8_t sev
 void MPDataServices::sendLog(uint16_t index) {
 #if defined(FREERTOS)
 	if( osMessageQueuePut(gui_logs_msgHandle, &index,0,0) != osOK ) {
-		BSP_LED_Off(LED_GREEN);
-		BSP_LED_Off(LED_ORANGE);
-		BSP_LED_Off(LED_BLUE);
-		BSP_LED_Off(LED_RED);
-
-		while(1) {
-			BSP_LED_Toggle(LED_GREEN);
-			BSP_LED_Toggle(LED_ORANGE);
-			BSP_LED_Toggle(LED_RED);
-			BSP_LED_Toggle(LED_BLUE);
-			HAL_Delay(400);
-		}
+//		BSP_LED_Off(LED_GREEN);
+//		BSP_LED_Off(LED_ORANGE);
+//		BSP_LED_Off(LED_BLUE);
+//		BSP_LED_Off(LED_RED);
+//
+//		while(1) {
+//			BSP_LED_Toggle(LED_GREEN);
+//			BSP_LED_Toggle(LED_ORANGE);
+//			BSP_LED_Toggle(LED_RED);
+//			BSP_LED_Toggle(LED_BLUE);
+//			HAL_Delay(400);
+//		}
+		;
 	}
 #elif defined(AZRTOS)
 	;

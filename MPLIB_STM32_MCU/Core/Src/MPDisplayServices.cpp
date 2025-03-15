@@ -44,7 +44,7 @@ void StartDisplayServices(void *argument) {
 		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			  DISPLAY->blinkLED(2);
 			  tickstart = HAL_GetTick();
-			  DISPLAY->heartBeat();
+//			  DISPLAY->heartBeat();
 		  }
 	}
 }
@@ -109,24 +109,24 @@ void MPDisplayServices::heartBeat() {
 //=======================================================================================
 //
 //=======================================================================================
-uint32_t MPDisplayServices::getLightConfig() {
-	return modeLight; //(modeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
-}
-
-//=======================================================================================
-//
-//=======================================================================================
-uint32_t MPDisplayServices::getLightColor() {
+uint32_t MPDisplayServices::getColor() {
 	return (modeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
 }
 
 //=======================================================================================
 //
 //=======================================================================================
-void MPDisplayServices::setLightConfig(uint32_t mode) {
+uint32_t MPDisplayServices::getColorMode() {
+	return modeLight; //(modeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPDisplayServices::setColorMode(uint32_t mode) {
 	modeLight = mode;
 
-	sprintf(log, "light config set to: %u", modeLight);
+	sprintf(log, "light color mode set to: %u", modeLight);
 	DS->pushToLogsMon(name, LOG_INFO, log);
 }
 
@@ -163,16 +163,18 @@ uint32_t MPDisplayServices::getColorLog(uint8_t code) {
 //=======================================================================================
 //
 //=======================================================================================
-uint32_t MPDisplayServices::getColorMode(bool pressed) {
+uint32_t MPDisplayServices::getColorFromMode(bool pressed) {
+	uint32_t tmodeLight;
+
 	if(pressed)
 	{
-		modeLight = MODE_LITE;
+		tmodeLight = MODE_LITE;
 	}
 	else {
-		modeLight = MODE_DARK;
+		tmodeLight = MODE_DARK;
 	}
 
-	uint32_t color = (modeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
+	uint32_t color = (tmodeLight == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
 
 
 	return color;
@@ -226,14 +228,14 @@ bool MPDisplayServices::init() {
 	linked = true;
 	started = true;
 
-	snprintf(log, LOG_LENGTH, "initialization...");
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	snprintf(log, LOG_LENGTH, "initialization...");
+//	DS->pushToLogsMon(name, LOG_OK, log);
 	retour = true;
 
 	DISPLAY_Initialize();
 
-	snprintf(log, LOG_LENGTH, "initialization completed");
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	snprintf(log, LOG_LENGTH, "initialization completed");
+//	DS->pushToLogsMon(name, LOG_OK, log);
 
 	return retour;
 }

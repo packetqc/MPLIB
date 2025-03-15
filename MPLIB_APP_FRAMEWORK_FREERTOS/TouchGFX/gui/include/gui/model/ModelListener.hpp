@@ -34,7 +34,11 @@ public:
     virtual void getMemHeap() {}
 
     virtual void setColorMode() {}
+    virtual void setColor() {}
     virtual uint32_t getColorMode() {return 0;}
+    virtual uint32_t getColor() {return 0;}
+    virtual void setColorMode(uint32_t mode) {};
+    void setButtonMode(uint32_t mode) {};
 
 protected:
     Model* model;

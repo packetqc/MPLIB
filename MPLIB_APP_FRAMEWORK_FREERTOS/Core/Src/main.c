@@ -748,7 +748,7 @@ void Error_Handler(void)
 	  BSP_LED_Toggle(LED3);
 	  BSP_LED_Toggle(LED2);
 	  BSP_LED_Toggle(LED1);
-	  HAL_Delay(200);
+	  HAL_Delay(10000);
   }
   /* USER CODE END Error_Handler_Debug */
 }

@@ -94,7 +94,7 @@ void StartSecureServices(void *argument) {
 
 		  if((ticknew) > THREAD_HEARTBEAT) {
 			  SEC->blinkLED(2);
-			  SEC->heartBeat();
+//			  SEC->heartBeat();
 		  }
 
 		  if((ticknew) > THREAD_HEARTBEAT) {
@@ -283,14 +283,14 @@ bool MPSecure::init() {
 //	linked = true;
 	started = true;
 
-	snprintf(log, LOG_LENGTH, "Secure services initialization...");
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	snprintf(log, LOG_LENGTH, "Secure services initialization...");
+//	DS->pushToLogsMon(name, LOG_OK, log);
 	retour = true;
 
 	SEC_Initialize();
 
-	snprintf(log, LOG_LENGTH, "Secure services initialization completed");
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	snprintf(log, LOG_LENGTH, "Secure services initialization completed");
+//	DS->pushToLogsMon(name, LOG_OK, log);
 
 	return retour;
 }

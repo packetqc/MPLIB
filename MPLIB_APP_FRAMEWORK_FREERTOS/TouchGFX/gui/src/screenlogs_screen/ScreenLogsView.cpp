@@ -21,7 +21,7 @@ void ScreenLogsView::setupScreen()
     ScreenLogsViewBase::setupScreen();
 
 //    if(SD->isStarted())
-//    	SetDisplayColor();
+//    	getDisplayColor();
 
 //	UpdateBackground();
     UpdateTitle();
@@ -90,23 +90,47 @@ void ScreenLogsView::UpdateTitle()
 	screenTitle.setTitle(buffer);
 }
 
+void ScreenLogsView::setButtonMode(uint32_t mode) {
+	if(mode == MODE_LITE) {
+		screenLight.forceState(true);
+	}
+	else {
+		screenLight.forceState(false);
+	}
+}
+
 uint32_t ScreenLogsView::getColorMode() {
 	return modeLight;
 }
 
-void ScreenLogsView::setColorMode() {
-    Background.setColor(DISPLAY->getLightColor());
+void ScreenLogsView::setColorMode(uint32_t mode) {
+	modeLight = mode;
+}
+
+void ScreenLogsView::setColor() {
+    Background.setColor(DISPLAY->getColor());
+    Background.invalidate();
+    invalidate();
+
+    modeLight = DISPLAY->getColorMode();
+}
+
+void ScreenLogsView::getDisplayColor()
+{
+	modeLight = SD->getSDConfigScreenLite();
+
+	Background.setColor(modeLight);
     Background.invalidate();
     invalidate();
 }
 
 void ScreenLogsView::SetDisplayColor()
 {
-    Background.setColor(DISPLAY->getColorMode(screenLight.getState()));
+    Background.setColor(DISPLAY->getColorFromMode(screenLight.getState()));
     Background.invalidate();
     invalidate();
 
-    modeLight = DISPLAY->getLightConfig();
+    modeLight = DISPLAY->getColorMode();
     SD->setSDConfigScreenLite();
 }
 
@@ -183,36 +207,37 @@ void ScreenLogsView::getNumberLogsDataServices() {
 	numberLogsDataServices.invalidate();
 }
 
-
 void ScreenLogsView::getMemHeap() {
 
 //	SYS->SYS_ReadMemory();
 
-	touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
-	memHeapFreeSize.resizeToCurrentText();
-	memHeapFreeSize.invalidate();
+	if( SYS->isStarted() ) {
+		touchgfx::Unicode::snprintf(memHeapFreeSizeBuffer, 10, "%d", SYS->getAvailableHeapSpaceInBytes() );
+		memHeapFreeSize.resizeToCurrentText();
+		memHeapFreeSize.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapLargestBuffer, 10, "%d", SYS->getSizeOfLargestFreeBlockInBytes() );
-	memHeapLargest.resizeToCurrentText();
-	memHeapLargest.invalidate();
+		touchgfx::Unicode::snprintf(memHeapLargestBuffer, 10, "%d", SYS->getSizeOfLargestFreeBlockInBytes() );
+		memHeapLargest.resizeToCurrentText();
+		memHeapLargest.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapSmalestBuffer, 10, "%d", SYS->getSizeOfSmallestFreeBlockInBytes() );
-	memHeapSmalest.resizeToCurrentText();
-	memHeapSmalest.invalidate();
+		touchgfx::Unicode::snprintf(memHeapSmalestBuffer, 10, "%d", SYS->getSizeOfSmallestFreeBlockInBytes() );
+		memHeapSmalest.resizeToCurrentText();
+		memHeapSmalest.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapFreeBlocksBuffer, 10, "%d", SYS->getNumberOfFreeBlocks() );
-	memHeapFreeBlocks.resizeToCurrentText();
-	memHeapFreeBlocks.invalidate();
+		touchgfx::Unicode::snprintf(memHeapFreeBlocksBuffer, 10, "%d", SYS->getNumberOfFreeBlocks() );
+		memHeapFreeBlocks.resizeToCurrentText();
+		memHeapFreeBlocks.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapEverFreeBuffer, 10, "%d", SYS->getMinimumEverFreeBytesRemaining() );
-	memHeapEverFree.resizeToCurrentText();
-	memHeapEverFree.invalidate();
+		touchgfx::Unicode::snprintf(memHeapEverFreeBuffer, 10, "%d", SYS->getMinimumEverFreeBytesRemaining() );
+		memHeapEverFree.resizeToCurrentText();
+		memHeapEverFree.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapAllocSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulAllocations() );
-	memHeapAllocSuccess.resizeToCurrentText();
-	memHeapAllocSuccess.invalidate();
+		touchgfx::Unicode::snprintf(memHeapAllocSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulAllocations() );
+		memHeapAllocSuccess.resizeToCurrentText();
+		memHeapAllocSuccess.invalidate();
 
-	touchgfx::Unicode::snprintf(memHeapFreeSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulFrees() );
-	memHeapFreeSuccess.resizeToCurrentText();
-	memHeapFreeSuccess.invalidate();
+		touchgfx::Unicode::snprintf(memHeapFreeSuccessBuffer, 10, "%d", SYS->getNumberOfSuccessfulFrees() );
+		memHeapFreeSuccess.resizeToCurrentText();
+		memHeapFreeSuccess.invalidate();
+	}
 }

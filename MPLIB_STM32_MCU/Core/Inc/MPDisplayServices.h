@@ -84,11 +84,11 @@ public:
     	char* 		getName();
     	bool  		getStatus();
 
-    	uint32_t 	getLightConfig();
-    	uint32_t 	getLightColor();
-    	void 		setLightConfig(uint32_t mode);
+    	uint32_t 	getColorMode();
+    	uint32_t 	getColor();
+    	void 		setColorMode(uint32_t mode);
 
-    	uint32_t 	getColorMode(bool pressed);
+    	uint32_t 	getColorFromMode(bool pressed);
     	uint32_t 	getColorLog(uint8_t code);
     	void 		blinkLED(uint8_t times);
     	void		heartBeat();

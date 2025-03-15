@@ -28,9 +28,18 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
-	if(modelListener->getColorMode() != DISPLAY->getLightConfig()) {
-		modelListener->setColorMode();
-	}
+//	if( DISPLAY != NULL ) {
+//		uint32_t viewColor = modelListener->getColorMode();
+//		uint32_t displayColor = DISPLAY->getColorMode();
+//
+//		if(displayColor <2) {
+//			if( viewColor != displayColor ) {
+//				modelListener->setColorMode(displayColor);
+//				modelListener->setColor();
+//				modelListener->setButtonMode(displayColor);
+//			}
+//		}
+//	}
 
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
 	{
@@ -43,13 +52,13 @@ void Model::tick()
 			break;
 		}
 
-		return;
+//		return;
 	}
 
 	if(osMessageQueueGet(gui_logs_msgHandle, &(aguilog), NULL, 0) == osOK)
 	{
 		modelListener->UpdateLogs(aguilog);
-		return;
+//		return;
 	}
 
 	if(HAL_GetTick() - tickstart > 1000 ) {
@@ -58,6 +67,6 @@ void Model::tick()
 		modelListener->getNumberLogsDataServices();
 		modelListener->getMemHeap();
 		tickstart = HAL_GetTick();
-		return;
+//		return;
 	}
 }

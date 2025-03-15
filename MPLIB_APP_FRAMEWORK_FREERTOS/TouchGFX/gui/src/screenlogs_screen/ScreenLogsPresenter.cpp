@@ -18,8 +18,12 @@ void ScreenLogsPresenter::deactivate()
 
 }
 
-void ScreenLogsPresenter::setColorMode() {
-	view.setColorMode();
+void ScreenLogsPresenter::setButtonMode(uint32_t mode) {
+	view.setButtonMode(mode);
+}
+
+void ScreenLogsPresenter::setColor() {
+	view.setColor();
 }
 
 void ScreenLogsPresenter::SetDisplayColor()

@@ -35,10 +35,13 @@ public:
 	void getMemHeap();
 
 	void SetDisplayColor();
+	void getDisplayColor();
 	void UpdateBackground();
 	void UpdateTitle();
-	void setColorMode();
+	void setColor();
 	uint32_t getColorMode();
+	void setColorMode(uint32_t mode);
+	void setButtonMode(uint32_t mode);
 
 protected:
 	uint32_t		modeLight = MODE_LITE;

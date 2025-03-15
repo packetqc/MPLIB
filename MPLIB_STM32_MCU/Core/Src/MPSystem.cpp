@@ -78,7 +78,7 @@ void StartSystemServices(void *argument) {
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			SYS->blinkLED(2);
-			SYS->heartBeat();
+//			SYS->heartBeat();
 		}
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
@@ -124,16 +124,16 @@ bool MPSystem::init() {
 	linked = true;
 	started = true;
 
-	snprintf(log, LOG_LENGTH, "System services initialization...");
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	snprintf(log, LOG_LENGTH, "System services initialization...");
+//	DS->pushToLogsMon(name, LOG_OK, log);
 
 	SYS_Initialize();
 //	SYS_InitializeSD();
 
 //	getSDConfig();
 
-	snprintf(log, LOG_LENGTH, "System services initialization completed");
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	snprintf(log, LOG_LENGTH, "System services initialization completed");
+//	DS->pushToLogsMon(name, LOG_OK, log);
 
 	retour = true;
 

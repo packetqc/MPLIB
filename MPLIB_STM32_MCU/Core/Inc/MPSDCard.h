@@ -50,6 +50,9 @@ enum {
 
 #define DATA_SIZE              		((uint32_t)0x01800000U) /* Data Size 24MB */
 
+#define BUFFERSIZE                 (COUNTOF(Buffer0) - 1)
+#define COUNTOF(__BUFFER__)        (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
+
 #define BUFFER_SIZE            		((uint32_t)0x00000400U) /* 1KB */
 #define BUFFER_WORD_SIZE       		(BUFFER_SIZE>>2)        /* Buffer size in Word */
 #define NB_BLOCK_BUFFER        		BUFFER_SIZE / BLOCKSIZE /* Number of Block (512B) by Buffer */
@@ -123,6 +126,9 @@ public:
 	void 	setSDConfigScreenLite();
 
 	uint32_t 	getSDConfigScreenLite();
+
+	void	waitState(void);
+	void	waitDoState(void);
 
 protected:
 	Led_TypeDef LED 		= LED_BLUE;

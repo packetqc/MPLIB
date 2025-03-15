@@ -288,11 +288,11 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
   /* creation of gui_msg */
-  gui_msgHandle = osMessageQueueNew (15, sizeof(uint8_t), &gui_msg_attributes);
+  gui_msgHandle = osMessageQueueNew (50, sizeof(uint8_t), &gui_msg_attributes);
   /* creation of logs_msg */
-  logs_msgHandle = osMessageQueueNew (15, sizeof(uint32_t), &logs_msg_attributes);
+  logs_msgHandle = osMessageQueueNew (50, sizeof(uint32_t), &logs_msg_attributes);
   /* creation of gui_logs_msg */
-  gui_logs_msgHandle = osMessageQueueNew (15, sizeof(uint8_t), &gui_logs_msg_attributes);
+  gui_logs_msgHandle = osMessageQueueNew (50, sizeof(uint8_t), &gui_logs_msg_attributes);
   /* creation of logsmon_msg */
   logsmon_msgHandle = osMessageQueueNew (50, sizeof(uint32_t), &logsmon_msg_attributes);
   /* creation of ConnectionEvent */
@@ -341,6 +341,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
 
+  osThreadSuspend(GUI_TaskHandle);
   osThreadSuspend(DataServicesHandle);
   osThreadSuspend(SystemServiceTaHandle);
   osThreadSuspend(DisplayServiceHandle);
@@ -397,8 +398,7 @@ void StartDefaultTask(void *argument)
 	osThreadResume(SecureServiceHandle);
 	osThreadResume(SystemServiceTaHandle);
 
-
-
+	osThreadResume(GUI_TaskHandle);
 
 	while(1) {
 		HAL_Delay(300);
