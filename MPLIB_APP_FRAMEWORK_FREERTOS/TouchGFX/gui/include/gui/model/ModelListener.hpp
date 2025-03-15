@@ -38,7 +38,7 @@ public:
     virtual uint32_t getColorMode() {return 0;}
     virtual uint32_t getColor() {return 0;}
     virtual void setColorMode(uint32_t mode) {};
-    void setButtonMode(uint32_t mode) {};
+    virtual void setButtonMode() {};
 
 protected:
     Model* model;

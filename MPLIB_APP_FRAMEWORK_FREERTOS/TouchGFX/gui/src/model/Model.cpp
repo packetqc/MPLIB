@@ -28,31 +28,20 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
-//	if( DISPLAY != NULL ) {
-		uint32_t viewColor = modelListener->getColorMode();
-		uint32_t displayColor = DISPLAY->getColorMode();
-
-//		if(displayColor <2) {
-			if( viewColor != displayColor ) {
-//				modelListener->setColorMode(displayColor);
-				modelListener->setColor();
-				modelListener->setButtonMode(displayColor);
-			}
-//		}
-//	}
-
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
 	{
 		switch(statusDeviceConnected) {
 		case CLEAR_LOGS:
 			modelListener->ClearLogs();
 			break;
+		case SD_lOAD_BACKGROUND:
+			modelListener->setColor();
+			modelListener->setButtonMode();
+			break;
 		default:
 			modelListener->UpdateStatusNavigationBar();
 			break;
 		}
-
-//		return;
 	}
 
 	if(osMessageQueueGet(gui_logs_msgHandle, &(aguilog), NULL, 0) == osOK)

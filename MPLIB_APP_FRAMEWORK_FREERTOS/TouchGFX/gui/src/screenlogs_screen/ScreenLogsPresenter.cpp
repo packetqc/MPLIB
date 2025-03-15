@@ -18,8 +18,8 @@ void ScreenLogsPresenter::deactivate()
 
 }
 
-void ScreenLogsPresenter::setButtonMode(uint32_t mode) {
-	view.setButtonMode(mode);
+void ScreenLogsPresenter::setButtonMode() {
+	view.setButtonMode();
 }
 
 void ScreenLogsPresenter::setColor() {

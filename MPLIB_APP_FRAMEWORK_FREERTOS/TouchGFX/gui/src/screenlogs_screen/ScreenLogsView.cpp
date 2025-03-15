@@ -90,8 +90,8 @@ void ScreenLogsView::UpdateTitle()
 	screenTitle.setTitle(buffer);
 }
 
-void ScreenLogsView::setButtonMode(uint32_t mode) {
-	if(mode == MODE_LITE) {
+void ScreenLogsView::setButtonMode() {
+	if(DISPLAY->getColorMode() == MODE_LITE) {
 		screenLight.forceState(true);
 	}
 	else {
@@ -126,13 +126,14 @@ void ScreenLogsView::getDisplayColor()
 
 void ScreenLogsView::SetDisplayColor()
 {
-    Background.setColor(DISPLAY->getColorFromMode(screenLight.getState()));
+	uint32_t tmodeLight = DISPLAY->getModeFromButton(screenLight.getState());
+	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getState());
+
+    Background.setColor(tcolor);
     Background.invalidate();
     invalidate();
 
-//    modeLight = DISPLAY->getColorMode();
-//    modeLight = DISPLAY->getModeFromButton(screenLight.getState());
-    DISPLAY->setColorMode(modeLight);
+    DISPLAY->setColorMode(tmodeLight);
     SD->setSDConfigScreenLite();
 }
 

@@ -37,7 +37,7 @@ public:
 	void getNumberOfLogListDrawables();
 	void getNumberLogsDataServices();
 	uint32_t getColorMode();
-	void setButtonMode(uint32_t mode);
+	void setButtonMode();
 
 private:
     ScreenLogsPresenter();

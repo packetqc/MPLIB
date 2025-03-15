@@ -41,7 +41,7 @@ public:
 	void setColor();
 	uint32_t getColorMode();
 	void setColorMode(uint32_t mode);
-	void setButtonMode(uint32_t mode);
+	void setButtonMode();
 
 protected:
 	uint32_t		modeLight = MODE_LITE;

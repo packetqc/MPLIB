@@ -10271,3 +10271,33 @@ java.lang.Exception: Unable to read memory.
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 12:44:22.641
 !MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.392
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 128 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.392
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.394
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 128 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.395
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.397
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 128 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.397
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.398
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 128 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.398
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.401
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 128 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-03-15 13:10:49.401
+!MESSAGE Existing sessions are:

@@ -86,6 +86,7 @@ MPSDCard *SD = MPSDCard::CreateInstance();
 //
 //=======================================================================================
 extern osMessageQueueId_t sd_msgHandle;
+extern osMessageQueueId_t gui_msgHandle;
 
 void StartSDServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
@@ -765,6 +766,7 @@ error:
 //=======================================================================================
 uint32_t MPSDCard::getSDConfigScreenLite() {
 	uint32_t retour = 0;
+	uint8_t opcode = SD_lOAD_BACKGROUND;
 
 	initializeSDRead();
 
@@ -786,6 +788,7 @@ uint32_t MPSDCard::getSDConfigScreenLite() {
 		DS->pushToLogsMon(name, LOG_OK, log);
 
 		DISPLAY->setColorMode(retour);
+		osMessageQueuePut(gui_msgHandle, &opcode,0,0);
 	}
 
 
