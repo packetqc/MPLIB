@@ -133,7 +133,7 @@ void StartDataServices(void *argument) {
 			DS->blinkLED(2);
 			tickstart = HAL_GetTick();
 
-//			DS->heartBeat();
+			DS->heartBeat();
 		}
 	}
 #endif
@@ -292,7 +292,8 @@ void MPDataServices::pushToLogsMon(const char* category, uint8_t severity, char*
 	uint32_t tickstart = HAL_GetTick();
 	while( osMutexAcquire(canLogHandle,0) != osOK ) {
 		  if((HAL_GetTick()-tickstart) > (THREAD_HEARTBEAT*3)) {
-				return;
+			  printf("\n\n%d\t%d\t%s\tLOST-DATA: cannot acquire mutex to log> %s ==============\n\n", qtyLogs++, severity, category, alog);
+			  return;
 		  }
 //	  HAL_Delay(100);
 	}
@@ -366,6 +367,7 @@ void MPDataServices::pushToLogsMon(const char* category, uint8_t severity, char*
 #if defined(FREERTOS)
 	while(osMutexRelease( canLogHandle ) != osOK ) {
 		if((HAL_GetTick()-tickstart) > (THREAD_HEARTBEAT*3)) {
+			printf("\n\n%d\t%d\t%s\tLOST-DATA: cannot release mutex of logs> %s ==============\n\n", qtyLogs, severity, category, alog);
 			break;
 //		BSP_LED_Off(LED_GREEN);
 //		BSP_LED_Off(LED_ORANGE);

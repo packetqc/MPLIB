@@ -44,7 +44,7 @@ void StartDisplayServices(void *argument) {
 		  if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			  DISPLAY->blinkLED(2);
 			  tickstart = HAL_GetTick();
-//			  DISPLAY->heartBeat();
+			  DISPLAY->heartBeat();
 		  }
 	}
 }

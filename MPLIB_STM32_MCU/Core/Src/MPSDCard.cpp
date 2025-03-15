@@ -85,8 +85,11 @@ MPSDCard *SD = MPSDCard::CreateInstance();
 //=======================================================================================
 //
 //=======================================================================================
+extern osMessageQueueId_t sd_msgHandle;
+
 void StartSDServices(void *argument) {
 	uint32_t tickstart = HAL_GetTick();
+	uint8_t sd_opcode = SD_NOOP;
 
 	if(!SD->isStarted())
 	{
@@ -100,14 +103,38 @@ void StartSDServices(void *argument) {
 	{
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			SD->blinkLED(2);
-//			SD->heartBeat();
+			SD->heartBeat();
 		}
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			tickstart = HAL_GetTick();
 		}
 
-		HAL_Delay(100);
+		if(osMessageQueueGet(sd_msgHandle, &sd_opcode, NULL, 0) == osOK)
+		{
+			switch(sd_opcode) {
+			case SD_SAVE:
+				SD->saveConfig();
+				break;
+			case SD_LOAD:
+				SD->loadConfig();
+				break;
+			case SD_SAVE_ENCRYPTION:
+//				SD->saveConfigEncryption();
+				break;
+			case SD_LOAD_ENCRYPTION:
+//				SD->loadConfigEncryption();
+				break;
+			case SD_SAVE_BACKGROUND:
+				SD->saveConfigBackground();
+				break;
+			case SD_lOAD_BACKGROUND:
+//				SD->loadConfigBackground();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 }
 
@@ -137,6 +164,173 @@ void StartSystemServices(ULONG thread_input) {
 }
 #endif
 
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::eraseConfig() {
+	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON, MPBUFFER) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SD_Erase failed");
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_SD_Erase succeed");
+		DS->pushToLogsMon(name, LOG_OK, log);
+	}
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::saveConfig() {
+	snprintf(log, LOG_LENGTH, "building default config on sd card...");
+	DS->pushToLogsMon(name, LOG_WARNING, log);
+
+	waitState();
+
+	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+	CONFIG[LIGHT] = DISPLAY->getColorMode();
+
+	initializeSDWrite();
+
+	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+//	else {
+//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
+//		DS->pushToLogsMon(name, LOG_OK, log);
+//	}
+
+	//DMA WRITE HERE
+//	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+//	CONFIG[LIGHT] = DISPLAY->getColorMode();
+
+	snprintf(log, LOG_LENGTH, "configuration succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+//	sprintf(log, "MP_SD_CONFIG_CONFIG_MAGIC = %u", MP_SD_CONFIG_CONFIG_MAGIC);
+//	DS->pushToLogsMon(name, LOG_OK, log);
+//
+//	sprintf(log, "DISPLAY->getColorMode() = %lu", DISPLAY->getColorMode());
+//	DS->pushToLogsMon(name, LOG_OK, log);
+//
+//	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
+//	DS->pushToLogsMon(name, LOG_OK, log);
+//
+//	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
+//	DS->pushToLogsMon(name, LOG_OK, log);
+
+	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+//	else {
+//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
+//		DS->pushToLogsMon(name, LOG_OK, log);
+//	}
+
+	deInitializeSDWrite();
+
+	snprintf(log, LOG_LENGTH, "default config built on sd card");
+	DS->pushToLogsMon(name, LOG_WARNING, log);
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::loadConfig() {
+	bool retour = getSDConfigInitialized();
+
+	if( retour ) {
+		snprintf(log, LOG_LENGTH, "configuration found on sd card");
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "no configuration found on sd card !!!");
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+	}
+
+//	return retour;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::saveConfigEncryption() {
+
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::loadConfigEncryption() {
+
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::saveConfigBackground() {
+
+	//DMA WRITE HERE
+	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+	CONFIG[LIGHT] = DISPLAY->getColorMode();
+
+
+	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	snprintf(log, LOG_LENGTH, "configuration succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+
+	initializeSDWrite();
+
+	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+//	else {
+//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
+//		DS->pushToLogsMon(name, LOG_OK, log);
+//	}
+
+
+	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+	CONFIG[LIGHT] = DISPLAY->getColorMode();
+
+	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
+		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
+		DS->pushToLogsMon(name, LOG_ERROR, log);
+	}
+//	else {
+//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
+//		DS->pushToLogsMon(name, LOG_OK, log);
+//	}
+
+	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	snprintf(log, LOG_LENGTH, "configuration succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+
+	deInitializeSDWrite();
+}
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSDCard::loadConfigBackground() {
+
+}
 
 //=======================================================================================
 //
@@ -555,56 +749,15 @@ void MPSDCard::initializeSD(void)
 //
 //=======================================================================================
 void MPSDCard::setSDConfigScreenLite() {
-	//DMA WRITE HERE
-	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
-	CONFIG[LIGHT] = DISPLAY->getColorMode();
+	uint8_t opcode = SD_NOOP;
 
-
-	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	snprintf(log, LOG_LENGTH, "configuration succeed");
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-
-	initializeSDWrite();
-
-	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
+	opcode = SD_SAVE_BACKGROUND;
+	if( osMessageQueuePut(sd_msgHandle, &opcode,0,0) != osOK ) {
+		goto error;
 	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
-//		DS->pushToLogsMon(name, LOG_OK, log);
-//	}
 
-
-	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
-	CONFIG[LIGHT] = DISPLAY->getColorMode();
-
-	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
-//		DS->pushToLogsMon(name, LOG_OK, log);
-//	}
-
-	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	snprintf(log, LOG_LENGTH, "configuration succeed");
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-
-	deInitializeSDWrite();
+error:
+	return;
 }
 
 //=======================================================================================
@@ -655,85 +808,25 @@ uint32_t MPSDCard::getSDConfigScreenLite() {
 //
 //=======================================================================================
 bool MPSDCard::setSDConfig() {
-	bool retour = false;
+	bool retour = true;
+	uint8_t opcode = SD_NOOP;
 
-	snprintf(log, LOG_LENGTH, "building default config on sd card...");
-	DS->pushToLogsMon(name, LOG_WARNING, log);
-
-	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON, MPBUFFER) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SD_Erase failed");
-		DS->pushToLogsMon(name, LOG_WARNING, log);
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SD_Erase succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
+	opcode = SD_ERASE;
+	if( osMessageQueuePut(sd_msgHandle, &opcode,0,0) != osOK ) {
+		retour = false;
+		goto error;
 	}
 
-	waitState();
-//	snprintf(log, LOG_LENGTH, "SD waiting...");
-//	DS->pushToLogsMon(name, LOG_INFO, log);
-//	while(HAL_SD_GetCardState(&hsd1) != HAL_SD_CARD_TRANSFER)
-//	  {
-//	  }
-//	snprintf(log, LOG_LENGTH, "SD ready");
-//	DS->pushToLogsMon(name, LOG_INFO, log);
-
-
-	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
-	CONFIG[LIGHT] = DISPLAY->getColorMode();
-
-	initializeSDWrite();
-
-	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
+	opcode = SD_SAVE;
+	if( osMessageQueuePut(sd_msgHandle, &opcode,0,0) != osOK ) {
+		retour = false;
+		goto error;
 	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
-//		DS->pushToLogsMon(name, LOG_OK, log);
-//	}
-
-
-
-	//DMA WRITE HERE
-//	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
-//	CONFIG[LIGHT] = DISPLAY->getColorMode();
-
-	snprintf(log, LOG_LENGTH, "configuration succeed");
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-//	sprintf(log, "MP_SD_CONFIG_CONFIG_MAGIC = %u", MP_SD_CONFIG_CONFIG_MAGIC);
-//	DS->pushToLogsMon(name, LOG_OK, log);
-//
-//	sprintf(log, "DISPLAY->getColorMode() = %lu", DISPLAY->getColorMode());
-//	DS->pushToLogsMon(name, LOG_OK, log);
-//
-//	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
-//	DS->pushToLogsMon(name, LOG_OK, log);
-//
-//	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
-//	DS->pushToLogsMon(name, LOG_OK, log);
-
-
-
-	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
-//		DS->pushToLogsMon(name, LOG_OK, log);
-//	}
-
-	deInitializeSDWrite();
 
 	//READ AND CONFIRM WRITE OK BY COMPARE
-	retour = getSDConfig();
+//	retour = getSDConfig();
 
-	//ALL DONE
-	snprintf(log, LOG_LENGTH, "default config built on sd card");
-	DS->pushToLogsMon(name, LOG_WARNING, log);
-
+error:
 	return retour;
 }
 
@@ -741,17 +834,16 @@ bool MPSDCard::setSDConfig() {
 //
 //=======================================================================================
 bool MPSDCard::getSDConfig() {
-	bool retour = getSDConfigInitialized();
+	bool retour = true;
+	uint8_t opcode = SD_NOOP;
 
-	if( retour ) {
-		snprintf(log, LOG_LENGTH, "configuration found on sd card");
-		DS->pushToLogsMon(name, LOG_INFO, log);
-	}
-	else {
-		snprintf(log, LOG_LENGTH, "no configuration found on sd card !!!");
-		DS->pushToLogsMon(name, LOG_WARNING, log);
+	opcode = SD_LOAD;
+	if( osMessageQueuePut(sd_msgHandle, &opcode,0,0) != osOK ) {
+		retour = false;
+		goto error;
 	}
 
+error:
 	return retour;
 }
 
@@ -917,9 +1009,7 @@ void HAL_SDEx_DMALinkedList_ReadCpltCallback(SD_HandleTypeDef *hsd)
 {
 	RxLnkLstBufCplt = 1;
 
-	char log[LOG_LENGTH];
-	snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_ReadCpltCallback");
-	DS->pushToLogsMon("SDCARD-C", LOG_INFO, log);
+//	printf("\nHAL_SDEx_DMALinkedList_ReadCpltCallback\n\n");
 }
 
 //=======================================================================================
@@ -928,10 +1018,7 @@ void HAL_SDEx_DMALinkedList_ReadCpltCallback(SD_HandleTypeDef *hsd)
 void HAL_SDEx_DMALinkedList_WriteCpltCallback(SD_HandleTypeDef *hsd)
 {
 	TxLnkLstBufCplt = 1;
-
-	char log[LOG_LENGTH];
-	snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_WriteCpltCallback");
-	DS->pushToLogsMon("SDCARD-C", LOG_INFO, log);
+//	printf("\nHAL_SDEx_DMALinkedList_WriteCpltCallback\n\n");
 }
 
 //=======================================================================================
@@ -940,10 +1027,7 @@ void HAL_SDEx_DMALinkedList_WriteCpltCallback(SD_HandleTypeDef *hsd)
 void HAL_SDEx_Read_DMALnkLstBufCpltCallback(SD_HandleTypeDef *hsd)
 {
 	RxNodeBufCplt = 1;
-
-	char log[LOG_LENGTH];
-	snprintf(log, LOG_LENGTH, "HAL_SDEx_Read_DMALnkLstBufCpltCallback");
-	DS->pushToLogsMon("SDCARD-C", LOG_INFO, log);
+//	printf("\nHAL_SDEx_Read_DMALnkLstBufCpltCallback\n\n");
 }
 
 //=======================================================================================
@@ -952,10 +1036,7 @@ void HAL_SDEx_Read_DMALnkLstBufCpltCallback(SD_HandleTypeDef *hsd)
 void HAL_SDEx_Write_DMALnkLstBufCpltCallback(SD_HandleTypeDef *hsd)
 {
 	TxNodeBufCplt = 1;
-
-	char log[LOG_LENGTH];
-	snprintf(log, LOG_LENGTH, "HAL_SDEx_Write_DMALnkLstBufCpltCallback");
-	DS->pushToLogsMon("SDCARD-C", LOG_INFO, log);
+//	printf("\nHAL_SDEx_Write_DMALnkLstBufCpltCallback\n\n");
 }
 
 //=======================================================================================

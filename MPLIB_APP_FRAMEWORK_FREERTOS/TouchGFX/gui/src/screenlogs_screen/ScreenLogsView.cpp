@@ -131,7 +131,7 @@ void ScreenLogsView::SetDisplayColor()
     invalidate();
 
 //    modeLight = DISPLAY->getColorMode();
-    modeLight = DISPLAY->getModeFromButton(screenLight.getState());
+//    modeLight = DISPLAY->getModeFromButton(screenLight.getState());
     DISPLAY->setColorMode(modeLight);
     SD->setSDConfigScreenLite();
 }

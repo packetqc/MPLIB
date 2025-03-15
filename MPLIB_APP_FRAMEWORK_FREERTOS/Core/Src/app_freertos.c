@@ -62,7 +62,9 @@ extern void StartSDServices(void *argument);
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 /* USER CODE BEGIN Variables */
+
 //extern osMutexId_t canLogHandle;
 //extern osMessageQueueId_t ConnectionEventHandle;
 //extern osMessageQueueId_t logsmon_msgHandle;
@@ -212,6 +214,11 @@ osMessageQueueId_t ConnectionEventHandle;
 const osMessageQueueAttr_t ConnectionEvent_attributes = {
   .name = "ConnectionEvent"
 };
+/* Definitions for sd_msg */
+osMessageQueueId_t sd_msgHandle;
+const osMessageQueueAttr_t sd_msg_attributes = {
+  .name = "sd_msg"
+};
 /* Definitions for ACTIVITY_INTERFACE */
 osEventFlagsId_t ACTIVITY_INTERFACEHandle;
 const osEventFlagsAttr_t ACTIVITY_INTERFACE_attributes = {
@@ -297,6 +304,8 @@ void MX_FREERTOS_Init(void) {
   logsmon_msgHandle = osMessageQueueNew (50, sizeof(uint32_t), &logsmon_msg_attributes);
   /* creation of ConnectionEvent */
   ConnectionEventHandle = osMessageQueueNew (15, sizeof(uint8_t), &ConnectionEvent_attributes);
+  /* creation of sd_msg */
+  sd_msgHandle = osMessageQueueNew (16, sizeof(uint8_t), &sd_msg_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
 

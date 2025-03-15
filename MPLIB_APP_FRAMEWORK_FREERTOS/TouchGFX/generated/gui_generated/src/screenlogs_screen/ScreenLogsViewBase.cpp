@@ -170,7 +170,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     Network.setVisible(false);
     PagesMenu.add(Network);
 
-    PagesMenu.setSelectedPage(3);
+    PagesMenu.setSelectedPage(1);
     add(PagesMenu);
 
     StatusNavigationBar1.setXY(0, 200);

@@ -78,7 +78,7 @@ void StartSystemServices(void *argument) {
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {
 			SYS->blinkLED(2);
-//			SYS->heartBeat();
+			SYS->heartBeat();
 		}
 
 		if((HAL_GetTick()-tickstart) > THREAD_HEARTBEAT) {

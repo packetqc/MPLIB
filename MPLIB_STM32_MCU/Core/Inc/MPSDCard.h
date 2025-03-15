@@ -130,6 +130,14 @@ public:
 	void	waitState(void);
 	void	waitDoState(void);
 
+	void	eraseConfig();
+	void	saveConfig();
+	void	loadConfig();
+	void	saveConfigEncryption();
+	void	loadConfigEncryption();
+	void	saveConfigBackground();
+	void	loadConfigBackground();
+
 protected:
 	Led_TypeDef LED 		= LED_BLUE;
     uint8_t 	status_SD 	= SD_NOTOK;
@@ -140,6 +148,7 @@ protected:
 	bool 		started 	= false;
 
 	uint8_t		isSDInitialized = 0;
+
 private:
 	char 		log[LOG_LENGTH];
 //	uint32_t	CONFIG[BUFFER_WORD_SIZE];

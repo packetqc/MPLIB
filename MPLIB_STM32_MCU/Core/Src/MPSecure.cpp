@@ -94,7 +94,7 @@ void StartSecureServices(void *argument) {
 
 		  if((ticknew) > THREAD_HEARTBEAT) {
 			  SEC->blinkLED(2);
-//			  SEC->heartBeat();
+			  SEC->heartBeat();
 		  }
 
 		  if((ticknew) > THREAD_HEARTBEAT) {

@@ -28,18 +28,18 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
-	if( DISPLAY != NULL ) {
+//	if( DISPLAY != NULL ) {
 		uint32_t viewColor = modelListener->getColorMode();
 		uint32_t displayColor = DISPLAY->getColorMode();
 
-		if(displayColor <2) {
+//		if(displayColor <2) {
 			if( viewColor != displayColor ) {
-				modelListener->setColorMode(displayColor);
+//				modelListener->setColorMode(displayColor);
 				modelListener->setColor();
 				modelListener->setButtonMode(displayColor);
 			}
-		}
-	}
+//		}
+//	}
 
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
 	{
