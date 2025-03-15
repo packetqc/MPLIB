@@ -18,9 +18,11 @@ extern SD_HandleTypeDef hsd1;
 //
 //=======================================================================================
 static 	__IO uint8_t statusChanged = 0;
+//BUFFER_WORD_SIZE
 
-uint32_t CONFIG[BUFFER_WORD_SIZE] ; //__attribute__((section(".config")));
-uint32_t CONFIG_1[BUFFER_WORD_SIZE] ; // __attribute__((section(".compare")));
+#define MPBUFFER 512
+uint32_t CONFIG[MPBUFFER] ; //__attribute__((section(".config")));
+uint32_t CONFIG_1[MPBUFFER] ; // __attribute__((section(".compare")));
 
 //uint32_t COMPARE[BUFFER_WORD_SIZE]; // __attribute__((section(".compare")));
 //uint32_t COMPARE_1[BUFFER_WORD_SIZE]; // __attribute__((section(".compare")));
@@ -317,7 +319,7 @@ void MPSDCard::deInitializeSDRead(void)
 //=======================================================================================
 void MPSDCard::initializeSDRead(void) {
 	LinkNodeConf.BufferAddress = (uint32_t) CONFIG;
-	LinkNodeConf.BufferSize = BUFFER_SIZE;
+	LinkNodeConf.BufferSize = MPBUFFER; //BUFFER_SIZE;
 
 	//READ CONFIG
 	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[0], &LinkNodeConf ) != HAL_OK ) {
@@ -341,7 +343,7 @@ void MPSDCard::initializeSDRead(void) {
 
 
 	LinkNodeConf.BufferAddress = (uint32_t) CONFIG_1;
-	LinkNodeConf.BufferSize = BUFFER_SIZE;
+	LinkNodeConf.BufferSize = MPBUFFER; //BUFFER_SIZE;
 
 	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[1], &LinkNodeConf ) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
@@ -374,7 +376,7 @@ void MPSDCard::initializeSDRead(void) {
 
 
 //	if(HAL_SDEx_DMALinkedList_ReadBlocks(&hsd1,&Buffer_LinkedList,MP_SD_CONFIG_CONFIG_ON,BUFFER_WORD_SIZE) != HAL_OK) {
-	if(HAL_SDEx_DMALinkedList_ReadBlocks(&hsd1,&Buffer_LinkedList,MP_SD_CONFIG_CONFIG_ON,1) != HAL_OK) {
+	if(HAL_SDEx_DMALinkedList_ReadBlocks(&hsd1,&Buffer_LinkedList,MP_SD_CONFIG_CONFIG_ON,MPBUFFER) != HAL_OK) {
 //	if(HAL_SDEx_DMALinkedList_ReadBlocks(&hsd1,&Buffer_LinkedList,cardInfo.RelCardAdd,1) != HAL_OK) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_ReadBlocks failed !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
@@ -392,7 +394,7 @@ void MPSDCard::initializeSDRead(void) {
 //=======================================================================================
 void MPSDCard::initializeSDWrite(void) {
 	LinkNodeConf.BufferAddress = (uint32_t) CONFIG;
-	LinkNodeConf.BufferSize = BUFFER_SIZE;
+	LinkNodeConf.BufferSize = MPBUFFER; //BUFFER_SIZE;
 
 	//WRITE CONFIG
 
@@ -417,7 +419,7 @@ void MPSDCard::initializeSDWrite(void) {
 
 
 	LinkNodeConf.BufferAddress = (uint32_t) CONFIG_1;
-	LinkNodeConf.BufferSize = BUFFER_SIZE;
+	LinkNodeConf.BufferSize = MPBUFFER; //BUFFER_SIZE;
 
 	if(HAL_SDEx_DMALinkedList_BuildNode(&pLinkNode[1], &LinkNodeConf ) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_BuildNode failed !!!");
@@ -451,7 +453,7 @@ void MPSDCard::initializeSDWrite(void) {
 
 
 //	if(HAL_SDEx_DMALinkedList_WriteBlocks(&hsd1,&Buffer_LinkedList, MP_SD_CONFIG_CONFIG_ON, BUFFER_WORD_SIZE) != HAL_OK) {
-	if(HAL_SDEx_DMALinkedList_WriteBlocks(&hsd1,&Buffer_LinkedList, MP_SD_CONFIG_CONFIG_ON, 2) != HAL_OK) {
+	if(HAL_SDEx_DMALinkedList_WriteBlocks(&hsd1,&Buffer_LinkedList, MP_SD_CONFIG_CONFIG_ON, MPBUFFER) != HAL_OK) {
 //	if(HAL_SDEx_DMALinkedList_WriteBlocks(&hsd1,&Buffer_LinkedList, cardInfo.RelCardAdd, 1) != HAL_OK) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_WriteBlocks failed");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
@@ -554,14 +556,19 @@ void MPSDCard::initializeSD(void)
 //=======================================================================================
 void MPSDCard::setSDConfigScreenLite() {
 	//DMA WRITE HERE
-//	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
-//	CONFIG[LIGHT] = DISPLAY->getColorMode();
+	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+	CONFIG[LIGHT] = DISPLAY->getColorMode();
 
-//	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
-//	DS->pushToLogsMon(name, LOG_OK, log);
-//
-//	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
-//	DS->pushToLogsMon(name, LOG_OK, log);
+
+	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	snprintf(log, LOG_LENGTH, "configuration succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
 
 	initializeSDWrite();
 
@@ -578,10 +585,6 @@ void MPSDCard::setSDConfigScreenLite() {
 	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
 	CONFIG[LIGHT] = DISPLAY->getColorMode();
 
-	snprintf(log, LOG_LENGTH, "configuration succeed");
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-
 	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
@@ -590,6 +593,16 @@ void MPSDCard::setSDConfigScreenLite() {
 //		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
 //		DS->pushToLogsMon(name, LOG_OK, log);
 //	}
+
+	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	snprintf(log, LOG_LENGTH, "configuration succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
 
 	deInitializeSDWrite();
 }
@@ -647,7 +660,7 @@ bool MPSDCard::setSDConfig() {
 	snprintf(log, LOG_LENGTH, "building default config on sd card...");
 	DS->pushToLogsMon(name, LOG_WARNING, log);
 
-	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON, 1) != HAL_OK ) {
+	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON, MPBUFFER) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SD_Erase failed");
 		DS->pushToLogsMon(name, LOG_WARNING, log);
 	}

@@ -89,6 +89,7 @@ public:
     	void 		setColorMode(uint32_t mode);
 
     	uint32_t 	getColorFromMode(bool pressed);
+    	uint32_t 	getModeFromButton(bool pressed);
     	uint32_t 	getColorLog(uint8_t code);
     	void 		blinkLED(uint8_t times);
     	void		heartBeat();

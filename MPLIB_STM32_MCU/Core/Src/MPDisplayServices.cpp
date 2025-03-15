@@ -163,6 +163,23 @@ uint32_t MPDisplayServices::getColorLog(uint8_t code) {
 //=======================================================================================
 //
 //=======================================================================================
+uint32_t MPDisplayServices::getModeFromButton(bool pressed) {
+	uint32_t tmodeLight;
+
+	if(pressed)
+	{
+		tmodeLight = MODE_LITE;
+	}
+	else {
+		tmodeLight = MODE_DARK;
+	}
+
+	return tmodeLight;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
 uint32_t MPDisplayServices::getColorFromMode(bool pressed) {
 	uint32_t tmodeLight;
 
