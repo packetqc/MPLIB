@@ -11,7 +11,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     frameCountInteraction2Interval(0),
     frameCountLED_ToggleInterval(0),
     frameCountUpdateUIInterval(0),
-    buttonCallback(this, &ScreenLogsViewBase::buttonCallbackHandler)
+    flexButtonCallback(this, &ScreenLogsViewBase::flexButtonCallbackHandler)
 {
     __background.setPosition(0, 0, 240, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -170,16 +170,16 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     Network.setVisible(false);
     PagesMenu.add(Network);
 
-    PagesMenu.setSelectedPage(1);
+    PagesMenu.setSelectedPage(0);
     add(PagesMenu);
 
     StatusNavigationBar1.setXY(0, 200);
     add(StatusNavigationBar1);
 
-    screenLight.setXY(208, 209);
-    screenLight.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_RADIOBUTTON_RADIO_SMALL_ROUND_OFF_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_RADIOBUTTON_RADIO_SMALL_ROUND_OFF_PRESSED_ID));
-    screenLight.forceState(true);
-    screenLight.setAction(buttonCallback);
+    screenLight.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_IMAGE_WB_SUNNY_35_35_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_IMAGE_WB_SUNNY_35_35_FFA600_SVG_ID));
+    screenLight.setIconXY(0, 0);
+    screenLight.setAction(flexButtonCallback);
+    screenLight.setPosition(200, 5, 38, 33);
     add(screenLight);
 }
 
@@ -196,7 +196,7 @@ void ScreenLogsViewBase::setupScreen()
     transitionBegins();
 }
 
-void ScreenLogsViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+void ScreenLogsViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
 {
     if (&src == &screenLight)
     {

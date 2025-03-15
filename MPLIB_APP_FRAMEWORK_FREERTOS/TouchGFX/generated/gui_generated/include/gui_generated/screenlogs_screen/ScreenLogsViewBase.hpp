@@ -17,7 +17,7 @@
 #include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/LogPanel.hpp>
 #include <gui/containers/StatusNavigationBar.hpp>
-#include <touchgfx/widgets/ToggleButton.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
 
 class ScreenLogsViewBase : public touchgfx::View<ScreenLogsPresenter>
 {
@@ -89,7 +89,7 @@ protected:
     LogPanel LogsListe;
     touchgfx::Container Network;
     StatusNavigationBar StatusNavigationBar1;
-    touchgfx::ToggleButton screenLight;
+    touchgfx::IconButtonStyle< touchgfx::ToggleButtonTrigger >  screenLight;
 
     /*
      * Wildcard Buffers
@@ -134,12 +134,12 @@ private:
     /*
      * Callback Declarations
      */
-    touchgfx::Callback<ScreenLogsViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<ScreenLogsViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

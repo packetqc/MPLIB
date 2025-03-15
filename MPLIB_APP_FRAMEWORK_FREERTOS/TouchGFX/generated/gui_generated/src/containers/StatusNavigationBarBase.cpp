@@ -7,9 +7,9 @@
 StatusNavigationBarBase::StatusNavigationBarBase() :
     flexButtonCallback(this, &StatusNavigationBarBase::flexButtonCallbackHandler)
 {
-    setWidth(71);
-    setHeight(40);
-    LayoutControls.setPosition(0, 2, 71, 40);
+    setWidth(240);
+    setHeight(42);
+    LayoutControls.setPosition(0, 0, 240, 40);
     Status_APP.setBitmaps(Bitmap(BITMAP_GLASS_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_ACTIVE_ID), Bitmap(BITMAP_GLASS_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_TINY_FILL_PRESSED_ID));
     Status_APP.setBitmapXY(0, 0);
     Status_APP.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_ACTION_CHECK_CIRCLE_OUTLINE_50_50_3D3D3D_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_ACTION_CHECK_CIRCLE_OUTLINE_50_50_009C00_SVG_ID));
@@ -21,7 +21,7 @@ StatusNavigationBarBase::StatusNavigationBarBase() :
     Control_Play.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PLAY_ARROW_24_24_3D3D3D_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PLAY_ARROW_24_24_4D99EB_SVG_ID));
     Control_Play.setIconXY(0, 0);
     Control_Play.setAction(flexButtonCallback);
-    Control_Play.setPosition(32, 7, 24, 24);
+    Control_Play.setPosition(205, 8, 26, 26);
     LayoutControls.add(Control_Play);
 
     Control_Pause.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PAUSE_24_24_3D3D3D_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PAUSE_24_24_4D99EB_SVG_ID));

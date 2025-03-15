@@ -126,8 +126,9 @@ void ScreenLogsView::getDisplayColor()
 
 void ScreenLogsView::SetDisplayColor()
 {
-	uint32_t tmodeLight = DISPLAY->getModeFromButton(screenLight.getState());
-	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getState());
+	uint32_t tmodeLight = DISPLAY->getModeFromButton(screenLight.getPressed());
+	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getPressed());
+
 
     Background.setColor(tcolor);
     Background.invalidate();
