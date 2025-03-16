@@ -31,16 +31,31 @@ void Model::tick()
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
 	{
 		switch(statusDeviceConnected) {
-		case CLEAR_LOGS:
-			modelListener->ClearLogs();
-			break;
-		case SD_lOAD_BACKGROUND:
-			modelListener->setColor();
-			modelListener->setButtonMode();
-			break;
-		default:
-			modelListener->UpdateStatusNavigationBar();
-			break;
+			case CLEAR_LOGS:
+				modelListener->ClearLogs();
+				break;
+			case SD_lOAD_BACKGROUND:
+				modelListener->setColor();
+				modelListener->setButtonMode();
+				break;
+			default:
+				modelListener->UpdateStatusNavigationBar();
+				break;
+		}
+
+		switch(statusDeviceConnected) {
+			case STORAGE_ACTIVITY:
+				modelListener->updateStatus_STORAGE(statusDeviceConnected);
+				break;
+			case STORAGE_IDLE:
+				modelListener->updateStatus_STORAGE(statusDeviceConnected);
+				break;
+			case STORAGE_NOTOK:
+				modelListener->updateStatus_STORAGE(statusDeviceConnected);
+				break;
+			case STORAGE_OK:
+				modelListener->updateStatus_STORAGE(statusDeviceConnected);
+				break;
 		}
 	}
 

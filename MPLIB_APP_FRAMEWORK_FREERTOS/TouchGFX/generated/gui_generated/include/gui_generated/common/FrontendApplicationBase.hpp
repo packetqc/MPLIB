@@ -23,6 +23,11 @@ public:
     // ScreenLogs
     void gotoScreenLogsScreenNoTransition();
 
+    void gotoScreenLogsScreenSlideTransitionEast();
+
+    // ScreenConfig
+    void gotoScreenConfigScreenSlideTransitionNorth();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -30,6 +35,11 @@ protected:
 
     // ScreenLogs
     void gotoScreenLogsScreenNoTransitionImpl();
+
+    void gotoScreenLogsScreenSlideTransitionEastImpl();
+
+    // ScreenConfig
+    void gotoScreenConfigScreenSlideTransitionNorthImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

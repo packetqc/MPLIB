@@ -92,6 +92,7 @@ void StartSystemServices(ULONG thread_input);
 ;
 #endif
 
+
 class MPSystem {
 	static int iSYS;
 	static MPSystem *instance;
@@ -127,6 +128,11 @@ public:
     	size_t	getNumberOfSuccessfulAllocations();
     	size_t	getNumberOfSuccessfulFrees();
 
+    	char* 	 getConfigName(uint8_t index);
+    	size_t	 getConfigCount();
+    	uint32_t getConfig(uint8_t index);
+    	void	 setConfig(uint8_t index, uint32_t value);
+
 //    	bool getSDConfigInitialized();
 //    	bool setSDConfig();
 //    	bool getSDConfig();
@@ -144,7 +150,11 @@ protected:
 
     	uint8_t		isSDInitialized = 0;
 private:
-	char 				log[LOG_LENGTH];
+	char 		configNames[3][25] = {"MAGIC", "LIGHT", "ENCRYPTED"};
+    uint32_t 	config[3] = {0};
+
+	char 		log[LOG_LENGTH];
+
 //	BSP_SD_CardInfo*  	cardInfo;
 //	HAL_SD_CardInfoTypeDef cardInfo;
 

@@ -39,6 +39,8 @@ public:
 	uint32_t getColorMode();
 	void setButtonMode();
 
+	void updateStatus_STORAGE(uint8_t value);
+
 private:
     ScreenLogsPresenter();
 

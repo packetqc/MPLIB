@@ -31,6 +31,10 @@ void ScreenLogsPresenter::SetDisplayColor()
 	view.SetDisplayColor();
 }
 
+void ScreenLogsPresenter::updateStatus_STORAGE(uint8_t value) {
+	view.updateStatus_STORAGE(value);
+}
+
 void ScreenLogsPresenter::UpdateStatusNavigationBar() {
 	view.UpdateStatusNavigationBar();
 }

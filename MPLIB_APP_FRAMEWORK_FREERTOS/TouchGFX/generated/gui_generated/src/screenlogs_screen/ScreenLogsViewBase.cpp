@@ -28,7 +28,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.setXY(0, 40);
     PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_ON_ACTIVE_ID));
-    PagesMenu.setPageIndicatorXY(70, 171);
+    PagesMenu.setPageIndicatorXY(90, 171);
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
 
@@ -152,23 +152,12 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.add(Memory);
 
-    Secure.setPosition(1, 0, 239, 160);
-    Secure.setScrollbarsColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    Secure.setScrollbarsAlpha(255);
-    Secure.setScrollbarsPermanentlyVisible();
-    PagesMenu.add(Secure);
-
     Logs.setWidth(240);
     Logs.setHeight(200);
     LogsListe.setXY(0, 0);
     Logs.add(LogsListe);
 
     PagesMenu.add(Logs);
-
-    Network.setWidth(240);
-    Network.setHeight(200);
-    Network.setVisible(false);
-    PagesMenu.add(Network);
 
     PagesMenu.setSelectedPage(0);
     add(PagesMenu);
@@ -181,6 +170,12 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     screenLight.setAction(flexButtonCallback);
     screenLight.setPosition(200, 5, 38, 33);
     add(screenLight);
+
+    Status_STORAGE.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_75FA8E_SVG_ID));
+    Status_STORAGE.setIconXY(6, 4);
+    Status_STORAGE.setAction(flexButtonCallback);
+    Status_STORAGE.setPosition(0, 0, 46, 40);
+    add(Status_STORAGE);
 }
 
 ScreenLogsViewBase::~ScreenLogsViewBase()
@@ -204,6 +199,13 @@ void ScreenLogsViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButto
         //When screenLight clicked call virtual function
         //Call SetDisplayColor
         SetDisplayColor();
+    }
+    if (&src == &Status_STORAGE)
+    {
+        //GoToConfigScreen
+        //When Status_STORAGE clicked change screen to ScreenConfig
+        //Go to ScreenConfig with screen transition towards North
+        application().gotoScreenConfigScreenSlideTransitionNorth();
     }
 }
 

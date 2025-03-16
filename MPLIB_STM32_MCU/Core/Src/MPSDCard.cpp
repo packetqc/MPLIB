@@ -185,7 +185,7 @@ void MPSDCard::eraseConfig() {
 //=======================================================================================
 void MPSDCard::saveConfig() {
 	snprintf(log, LOG_LENGTH, "building default config on sd card...");
-	DS->pushToLogsMon(name, LOG_WARNING, log);
+	DS->pushToLogsMon(name, LOG_INFO, log);
 
 	waitState();
 
@@ -234,7 +234,7 @@ void MPSDCard::saveConfig() {
 	deInitializeSDWrite();
 
 	snprintf(log, LOG_LENGTH, "default config built on sd card");
-	DS->pushToLogsMon(name, LOG_WARNING, log);
+	DS->pushToLogsMon(name, LOG_INFO, log);
 }
 
 //=======================================================================================
@@ -272,8 +272,8 @@ void MPSDCard::loadConfigEncryption() {
 //=======================================================================================
 //
 //=======================================================================================
-void MPSDCard::saveConfigBackground() {
-
+void MPSDCard::saveConfigBackground()
+{
 	//DMA WRITE HERE
 	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
 	CONFIG[LIGHT] = DISPLAY->getColorMode();
@@ -430,6 +430,9 @@ void MPSDCard::waitDoState(void) {
 //=======================================================================================
 void MPSDCard::deInitializeSDWrite(void)
 {
+	uint8_t opcode = STORAGE_ACTIVITY;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
+
 	if(HAL_SDEx_DMALinkedList_DisableCircularMode(&Buffer_LinkedList ) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_DisableCircularMode failed !!!");
 		DS->pushToLogsMon(name, LOG_ERROR, log);
@@ -458,6 +461,9 @@ void MPSDCard::deInitializeSDWrite(void)
 //	}
 
 	waitState();
+
+	opcode = STORAGE_IDLE;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
 }
 
 //=======================================================================================
@@ -465,6 +471,9 @@ void MPSDCard::deInitializeSDWrite(void)
 //=======================================================================================
 void MPSDCard::deInitializeSDRead(void)
 {
+	uint8_t opcode = STORAGE_ACTIVITY;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
+
 	HAL_SD_CardStateTypeDef codesd;
 	HAL_StatusTypeDef code;
 
@@ -506,6 +515,9 @@ void MPSDCard::deInitializeSDRead(void)
 //	}
 
 	waitDoState();
+
+	opcode = STORAGE_IDLE;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
 }
 
 
@@ -513,6 +525,9 @@ void MPSDCard::deInitializeSDRead(void)
 //
 //=======================================================================================
 void MPSDCard::initializeSDRead(void) {
+	uint8_t opcode = STORAGE_ACTIVITY;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
+
 	LinkNodeConf.BufferAddress = (uint32_t) CONFIG;
 	LinkNodeConf.BufferSize = MPBUFFER; //BUFFER_SIZE;
 
@@ -582,12 +597,18 @@ void MPSDCard::initializeSDRead(void) {
 //	}
 
 	waitDoState();
+
+	opcode = STORAGE_IDLE;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
 }
 
 //=======================================================================================
 //
 //=======================================================================================
 void MPSDCard::initializeSDWrite(void) {
+	uint8_t opcode = STORAGE_ACTIVITY;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
+
 	LinkNodeConf.BufferAddress = (uint32_t) CONFIG;
 	LinkNodeConf.BufferSize = MPBUFFER; //BUFFER_SIZE;
 
@@ -659,6 +680,9 @@ void MPSDCard::initializeSDWrite(void) {
 //	}
 
 	waitDoState();
+
+	opcode = STORAGE_IDLE;
+	osMessageQueuePut(gui_msgHandle, &opcode,0,0);
 }
 
 //=======================================================================================

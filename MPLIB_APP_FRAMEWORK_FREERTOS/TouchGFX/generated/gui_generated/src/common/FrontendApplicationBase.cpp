@@ -11,6 +11,8 @@
 #include <platform/driver/lcd/LCD16bpp.hpp>
 #include <gui/screenlogs_screen/ScreenLogsView.hpp>
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
+#include <gui/screenconfig_screen/ScreenConfigView.hpp>
+#include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -42,4 +44,28 @@ void FrontendApplicationBase::gotoScreenLogsScreenNoTransition()
 void FrontendApplicationBase::gotoScreenLogsScreenNoTransitionImpl()
 {
     touchgfx::makeTransition<ScreenLogsView, ScreenLogsPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+void FrontendApplicationBase::gotoScreenLogsScreenSlideTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenLogsScreenSlideTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenLogsScreenSlideTransitionEastImpl()
+{
+    touchgfx::makeTransition<ScreenLogsView, ScreenLogsPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// ScreenConfig
+
+void FrontendApplicationBase::gotoScreenConfigScreenSlideTransitionNorth()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenConfigScreenSlideTransitionNorthImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenConfigScreenSlideTransitionNorthImpl()
+{
+    touchgfx::makeTransition<ScreenConfigView, ScreenConfigPresenter, touchgfx::SlideTransition<NORTH>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

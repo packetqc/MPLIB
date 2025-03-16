@@ -33,14 +33,6 @@
 
 #include "MPLibs.h"
 
-//=======================================================================================
-//
-//=======================================================================================
-enum {
-	MAGIC = 0,
-	LIGHT = 1
-};
-
 #define MP_SD_CONFIG_CONFIG_MAGIC 	13131U
 #define MP_SD_CONFIG_CONFIG_ON		0
 #define MP_SD_CONFIG_SCREENLITE 	1

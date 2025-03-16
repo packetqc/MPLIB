@@ -10,6 +10,8 @@
 #include <MPDisplayServices.h>
 #include <MPSDCard.h>
 
+#include <touchgfx/Color.hpp>
+#include <images/BitmapDatabase.hpp>
 
 ScreenLogsView::ScreenLogsView()
 {
@@ -44,6 +46,19 @@ void ScreenLogsView::LED_Toggle()
 		#endif
 	}
 	BSP_LED_Off(LED1);
+}
+
+void ScreenLogsView::updateStatus_STORAGE(uint8_t value) {
+	if( value == STORAGE_IDLE)
+	{
+		Status_STORAGE.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_75FA8E_SVG_ID));
+	}
+	else if( value == STORAGE_ACTIVITY)
+	{
+		Status_STORAGE.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_75FA8E_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_38668C_SVG_ID));
+	}
+
+	Status_STORAGE.invalidate();
 }
 
 void ScreenLogsView::UpdateBackground()
