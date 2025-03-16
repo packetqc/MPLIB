@@ -6,7 +6,7 @@
         "Components": [
           {
             "Type": "BoxWithBorder",
-            "Name": "Background",
+            "Name": "BackgroundScreenLogs",
             "Width": 240,
             "Height": 240,
             "Color": {
@@ -400,7 +400,7 @@
                 "Green": 250,
                 "Blue": 142
               },
-              "ActionComponent": "Background"
+              "ActionComponent": "BackgroundScreenLogs"
             }
           },
           {
@@ -416,7 +416,7 @@
                 "Green": 147,
                 "Blue": 250
               },
-              "ActionComponent": "Background"
+              "ActionComponent": "BackgroundScreenLogs"
             }
           },
           {
@@ -500,6 +500,23 @@
       {
         "Name": "ScreenConfig",
         "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "BackgroundScreenConfig",
+            "Width": 240,
+            "Height": 240,
+            "Color": {
+              "Red": 230,
+              "Green": 234,
+              "Blue": 250
+            },
+            "BorderColor": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "BorderSize": 3
+          },
           {
             "Type": "CustomContainerInstance",
             "Name": "screenTitle",
@@ -862,6 +879,19 @@
         "Width": 240,
         "Height": 36,
         "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "X": 120,
+            "Width": 120,
+            "Height": 36,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 197
+          },
           {
             "Type": "TextArea",
             "Name": "itemName",

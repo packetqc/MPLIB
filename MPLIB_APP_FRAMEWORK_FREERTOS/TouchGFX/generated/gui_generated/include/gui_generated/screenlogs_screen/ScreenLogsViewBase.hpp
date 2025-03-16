@@ -65,7 +65,7 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::BoxWithBorder Background;
+    touchgfx::BoxWithBorder BackgroundScreenLogs;
     ScreenTitle screenTitle;
     touchgfx::SwipeContainer PagesMenu;
     touchgfx::Container Welcome;

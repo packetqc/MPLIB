@@ -6,6 +6,7 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class ConfigItemBase : public touchgfx::Container
@@ -23,6 +24,7 @@ protected:
     /*
      * Member Declarations
      */
+    touchgfx::Box box1;
     touchgfx::TextAreaWithOneWildcard itemName;
     touchgfx::TextAreaWithOneWildcard itemValue;
 

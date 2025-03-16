@@ -123,8 +123,8 @@ void ScreenLogsView::setColorMode(uint32_t mode) {
 }
 
 void ScreenLogsView::setColor() {
-    Background.setColor(DISPLAY->getColor());
-    Background.invalidate();
+	BackgroundScreenLogs.setColor(DISPLAY->getColor());
+	BackgroundScreenLogs.invalidate();
     invalidate();
 
     modeLight = DISPLAY->getColorMode();
@@ -134,8 +134,8 @@ void ScreenLogsView::getDisplayColor()
 {
 	modeLight = SD->getSDConfigScreenLite();
 
-	Background.setColor(modeLight);
-    Background.invalidate();
+	BackgroundScreenLogs.setColor(modeLight);
+	BackgroundScreenLogs.invalidate();
     invalidate();
 }
 
@@ -145,8 +145,8 @@ void ScreenLogsView::SetDisplayColor()
 	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getPressed());
 
 
-    Background.setColor(tcolor);
-    Background.invalidate();
+    BackgroundScreenLogs.setColor(tcolor);
+    BackgroundScreenLogs.invalidate();
     invalidate();
 
     DISPLAY->setColorMode(tmodeLight);

@@ -17,11 +17,11 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    Background.setPosition(0, 0, 240, 240);
-    Background.setColor(touchgfx::Color::getColorFromRGB(230, 234, 250));
-    Background.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    Background.setBorderSize(3);
-    add(Background);
+    BackgroundScreenLogs.setPosition(0, 0, 240, 240);
+    BackgroundScreenLogs.setColor(touchgfx::Color::getColorFromRGB(230, 234, 250));
+    BackgroundScreenLogs.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    BackgroundScreenLogs.setBorderSize(3);
+    add(BackgroundScreenLogs);
 
     screenTitle.setXY(0, 0);
     add(screenTitle);
@@ -215,10 +215,10 @@ void ScreenLogsViewBase::handleTickEvent()
     if(frameCountInteraction1Interval == TICK_INTERACTION1_INTERVAL)
     {
         //Interaction1
-        //When every N tick change border color of Background
-        //Set RGB border color R:117, G:250, B:142 on Background
-        Background.setBorderColor(touchgfx::Color::getColorFromRGB(117, 250, 142));
-        Background.invalidate();
+        //When every N tick change border color of BackgroundScreenLogs
+        //Set RGB border color R:117, G:250, B:142 on BackgroundScreenLogs
+        BackgroundScreenLogs.setBorderColor(touchgfx::Color::getColorFromRGB(117, 250, 142));
+        BackgroundScreenLogs.invalidate();
         frameCountInteraction1Interval = 0;
     }
 
@@ -226,10 +226,10 @@ void ScreenLogsViewBase::handleTickEvent()
     if(frameCountInteraction2Interval == TICK_INTERACTION2_INTERVAL)
     {
         //Interaction2
-        //When every N tick change border color of Background
-        //Set RGB border color R:57, G:147, B:250 on Background
-        Background.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-        Background.invalidate();
+        //When every N tick change border color of BackgroundScreenLogs
+        //Set RGB border color R:57, G:147, B:250 on BackgroundScreenLogs
+        BackgroundScreenLogs.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+        BackgroundScreenLogs.invalidate();
         frameCountInteraction2Interval = 0;
     }
 

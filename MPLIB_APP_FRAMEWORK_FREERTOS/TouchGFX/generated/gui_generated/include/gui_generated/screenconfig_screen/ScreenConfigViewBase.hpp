@@ -8,6 +8,7 @@
 #include <mvp/View.hpp>
 #include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <gui/containers/ScreenTitle.hpp>
 #include <touchgfx/containers/scrollers/ScrollList.hpp>
 #include <gui/containers/ConfigItem.hpp>
@@ -34,6 +35,7 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::BoxWithBorder BackgroundScreenConfig;
     ScreenTitle screenTitle;
     touchgfx::ScrollList configList;
     touchgfx::DrawableListItems<ConfigItem, 7> configListListItems;

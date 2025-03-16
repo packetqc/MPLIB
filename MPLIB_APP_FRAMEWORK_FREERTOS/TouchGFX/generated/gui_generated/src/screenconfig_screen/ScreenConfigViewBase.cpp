@@ -13,6 +13,12 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
+    BackgroundScreenConfig.setPosition(0, 0, 240, 240);
+    BackgroundScreenConfig.setColor(touchgfx::Color::getColorFromRGB(230, 234, 250));
+    BackgroundScreenConfig.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    BackgroundScreenConfig.setBorderSize(3);
+    add(BackgroundScreenConfig);
+
     screenTitle.setXY(0, 0);
     add(screenTitle);
 
