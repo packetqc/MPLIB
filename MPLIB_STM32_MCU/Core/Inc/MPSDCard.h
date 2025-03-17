@@ -112,7 +112,7 @@ public:
 	void	deInitializeSDWrite(void);
 	void	deInitializeSDRead(void);
 
-	bool 	getSDConfigInitialized();
+	bool 	loadConfig();
 	bool 	setSDConfig();
 	bool 	getSDConfig();
 	void 	setSDConfigScreenLite();
@@ -122,9 +122,10 @@ public:
 	void	waitState(void);
 	void	waitDoState(void);
 
+	void 	updateConfig();
 	void	eraseConfig();
 	void	saveConfig();
-	void	loadConfig();
+	void	loadConfigAtStartup();
 	void	saveConfigEncryption();
 	void	loadConfigEncryption();
 	void	saveConfigBackground();

@@ -12,6 +12,13 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     void configListUpdateItem(ConfigItem& item, int16_t itemIndex);
+
+    void updateConfig();
+    void updateBackground();
+
+    uint32_t 		getColorMode();
+	void 			setColorMode(uint32_t mode);
+
 protected:
     void updateScreen();
 };

@@ -200,6 +200,15 @@ uint32_t MPDisplayServices::getColorFromMode(bool pressed) {
 //=======================================================================================
 //
 //=======================================================================================
+uint32_t MPDisplayServices::getColorFromMode(uint32_t mode) {
+	uint32_t color = (mode == MODE_LITE) ? COLOR_MODE_LITE : COLOR_MODE_DARK;
+
+	return color;
+}
+
+//=======================================================================================
+//
+//=======================================================================================
 bool MPDisplayServices::isStarted() {
 	return started;
 }

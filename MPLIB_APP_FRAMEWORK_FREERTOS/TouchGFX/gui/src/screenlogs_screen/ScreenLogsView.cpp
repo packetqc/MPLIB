@@ -22,11 +22,14 @@ void ScreenLogsView::setupScreen()
 {
     ScreenLogsViewBase::setupScreen();
 
-//    if(SD->isStarted())
-//    	getDisplayColor();
-
-//	UpdateBackground();
     UpdateTitle();
+    updateBackground();
+}
+
+void ScreenLogsView::updateBackground()
+{
+	setButtonMode();
+    this->BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
 }
 
 void ScreenLogsView::tearDownScreen()
@@ -63,15 +66,8 @@ void ScreenLogsView::updateStatus_STORAGE(uint8_t value) {
 
 void ScreenLogsView::UpdateBackground()
 {
-//    Background.setColor();
-//    Background.invalidate();
-//    invalidate();
-
-    modeLight = SD->getSDConfigScreenLite();
-//    DISPLAY->setLightConfig(modeLight);
-//    setColorMode();
-//
-//    SD->setSDConfigScreenLite();
+//    modeLight = SD->getSDConfigScreenLite();
+	presenter->setColorMode(SD->getSDConfigScreenLite());
 }
 
 void ScreenLogsView::UpdateTitle()
@@ -115,43 +111,39 @@ void ScreenLogsView::setButtonMode() {
 }
 
 uint32_t ScreenLogsView::getColorMode() {
-	return modeLight;
+//	return modeLight;
+	return presenter->getColorMode();
 }
 
 void ScreenLogsView::setColorMode(uint32_t mode) {
-	modeLight = mode;
+//	modeLight = mode;
+	presenter->setColorMode(mode);
 }
 
 void ScreenLogsView::setColor() {
-	BackgroundScreenLogs.setColor(DISPLAY->getColor());
+	BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
 	BackgroundScreenLogs.invalidate();
     invalidate();
-
-    modeLight = DISPLAY->getColorMode();
 }
 
 void ScreenLogsView::getDisplayColor()
 {
-	modeLight = SD->getSDConfigScreenLite();
-
-	BackgroundScreenLogs.setColor(modeLight);
-	BackgroundScreenLogs.invalidate();
-    invalidate();
+	presenter->setColorMode(SD->getSDConfigScreenLite());
 }
 
 void ScreenLogsView::SetDisplayColor()
 {
 	uint32_t tmodeLight = DISPLAY->getModeFromButton(screenLight.getPressed());
-	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getPressed());
 
-
-    BackgroundScreenLogs.setColor(tcolor);
-    BackgroundScreenLogs.invalidate();
-    invalidate();
+	presenter->setColorMode(tmodeLight);
 
     DISPLAY->setColorMode(tmodeLight);
     SD->setSDConfigScreenLite();
+
+    updateBackground();
+
 }
+
 
 void ScreenLogsView::updateSystemDescription()
 {

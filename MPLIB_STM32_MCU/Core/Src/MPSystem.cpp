@@ -137,6 +137,9 @@ char* MPSystem::getConfigName(uint8_t index)
 void MPSystem::setConfig(uint8_t index, uint32_t value)
 {
 	config[index] = value;
+
+	sprintf(log, "config index[%d] set to value: %lu", index, value);
+	DS->pushToLogsMon(name, LOG_OK, log);
 }
 
 //=======================================================================================

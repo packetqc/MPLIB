@@ -44,9 +44,10 @@ public:
 	void setButtonMode();
 
 	void updateStatus_STORAGE(uint8_t value);
+	void updateBackground();
 
 protected:
-	uint32_t		modeLight = MODE_LITE;
+//	uint32_t		modeLight = MODE_LITE;
 
 //private:
 //	HeapStats_t heapit;

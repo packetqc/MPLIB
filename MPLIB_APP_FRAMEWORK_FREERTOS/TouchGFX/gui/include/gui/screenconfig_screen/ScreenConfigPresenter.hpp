@@ -27,6 +27,12 @@ public:
 
     virtual ~ScreenConfigPresenter() {}
 
+    void updateConfig();
+    void updateBackground();
+
+    uint32_t 		getColorMode();
+	void 			setColorMode(uint32_t mode);
+
 private:
     ScreenConfigPresenter();
 

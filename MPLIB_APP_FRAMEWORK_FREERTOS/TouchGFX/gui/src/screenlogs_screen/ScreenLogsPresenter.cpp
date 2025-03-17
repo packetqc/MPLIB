@@ -60,5 +60,16 @@ void ScreenLogsPresenter::getNumberLogsDataServices() {
 }
 
 uint32_t ScreenLogsPresenter::getColorMode() {
-	return view.getColorMode();
+	return model->getColorMode();
 }
+
+void ScreenLogsPresenter::setColorMode(uint32_t mode)
+{
+	model->setColorMode(mode);
+}
+
+void ScreenLogsPresenter::updateBackground()
+{
+	view.updateBackground();
+}
+

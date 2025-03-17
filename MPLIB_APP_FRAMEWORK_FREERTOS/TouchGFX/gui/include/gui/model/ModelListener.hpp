@@ -41,6 +41,9 @@ public:
     virtual void setButtonMode() {};
     virtual void updateStatus_STORAGE(uint8_t value) {};
 
+    virtual void updateConfig() {};
+    virtual void updateBackground() {};
+
 protected:
     Model* model;
 };

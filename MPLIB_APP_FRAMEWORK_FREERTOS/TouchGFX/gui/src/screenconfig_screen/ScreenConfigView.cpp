@@ -2,9 +2,12 @@
 
 #include <MPLibs.h>
 #include <MPSystem.h>
+#include <MPDataServices.h>
+#include <MPDisplayServices.h>
 
 #include <gui/containers/ConfigItem.hpp>
 
+char sclog[TEXTBUFF_SIZE];
 
 ScreenConfigView::ScreenConfigView()
 {
@@ -15,6 +18,7 @@ void ScreenConfigView::setupScreen()
 {
     ScreenConfigViewBase::setupScreen();
     updateScreen();
+    updateBackground();
 }
 
 void ScreenConfigView::tearDownScreen()
@@ -22,13 +26,45 @@ void ScreenConfigView::tearDownScreen()
     ScreenConfigViewBase::tearDownScreen();
 }
 
+void ScreenConfigView::updateBackground()
+{
+    this->BackgroundScreenConfig.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
+}
+
 void ScreenConfigView::updateScreen()
 {
-
+//	configList.invalidate();
+	configList.initialize();
+	for (int i = 0; i < SYS->getConfigCount(); i++)
+	{
+//		configList[i].initialize();
+	}
 }
 
 void ScreenConfigView::configListUpdateItem(ConfigItem& item, int16_t itemIndex)
 {
 	item.setName(SYS->getConfigName(itemIndex));
 	item.setValue(SYS->getConfig(itemIndex));
+}
+
+void ScreenConfigView::updateConfig()
+{
+	// not implemented
+	configList.initialize();
+	for (int i = 0; i < SYS->getConfigCount(); i++)
+	{
+//		configList[i].initialize();
+	}
+
+	snprintf(sclog, TEXTBUFF_SIZE, "received command to update config screen");
+	DS->pushToLogsMon("CONFIG", LOG_INFO, sclog);
+
+}
+
+uint32_t ScreenConfigView::getColorMode() {
+	return presenter->getColorMode();
+}
+
+void ScreenConfigView::setColorMode(uint32_t mode) {
+	presenter->setColorMode(mode);
 }

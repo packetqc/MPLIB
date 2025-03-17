@@ -69,6 +69,14 @@ void ScreenConfigViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBut
     }
 }
 
+void ScreenConfigViewBase::afterTransition()
+{
+    //Interaction2
+    //When screen transition ends call virtual function
+    //Call function1
+    function1();
+}
+
 void ScreenConfigViewBase::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
 {
     if (items == &configListListItems)

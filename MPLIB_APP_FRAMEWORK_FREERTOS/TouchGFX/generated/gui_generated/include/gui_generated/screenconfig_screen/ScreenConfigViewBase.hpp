@@ -25,6 +25,15 @@ public:
     {
         // Override and implement this function in ScreenConfig
     }
+    virtual void afterTransition();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void function1()
+    {
+        // Override and implement this function in ScreenConfig
+    }
 
 protected:
     FrontendApplication& application() {

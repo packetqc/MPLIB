@@ -10,6 +10,7 @@
 
 #include <MPLibs.h>
 #include <MPDisplayServices.h>
+#include <MPSystem.h>
 
 
 extern osMessageQueueId_t gui_msgHandle;
@@ -21,7 +22,7 @@ uint8_t statusDeviceConnected = 2;
 uint32_t tickstart;
 
 
-Model::Model() : modelListener(0)
+Model::Model() : modelListener(0), modeLight(MODE_LITE)
 {
 	tickstart = HAL_GetTick();
 }
@@ -35,11 +36,19 @@ void Model::tick()
 				modelListener->ClearLogs();
 				break;
 			case SD_lOAD_BACKGROUND:
-				modelListener->setColor();
-				modelListener->setButtonMode();
+//				modelListener->setColor();
+//				modelListener->setButtonMode();
 				break;
 			default:
 				modelListener->UpdateStatusNavigationBar();
+				break;
+		}
+
+		switch(statusDeviceConnected) {
+			case CONFIG_UPDATE:
+				updateConfig();
+				break;
+			default:
 				break;
 		}
 
@@ -73,4 +82,25 @@ void Model::tick()
 		tickstart = HAL_GetTick();
 //		return;
 	}
+}
+
+void Model::updateConfig() {
+//	uint32_t tmodeLight = modeLight;
+
+//	modeLight = ->getColorMode();
+	modeLight = SYS->getConfig(LIGHT);
+	DISPLAY->setColorMode(modeLight);
+
+//	if( tmodeLight != modeLight ) {
+		modelListener->updateBackground();
+//	}
+	modelListener->updateConfig();
+}
+
+uint32_t Model::getColorMode() {
+	return modeLight;
+}
+
+void Model::setColorMode(uint32_t mode) {
+	modeLight = mode;
 }

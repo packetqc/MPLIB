@@ -570,6 +570,16 @@
               "ScreenTransitionDirection": "East",
               "ActionComponent": "ScreenLogs"
             }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerScreenEntered"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "function1"
+            }
           }
         ]
       }
@@ -944,7 +954,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "ScreenLogs",
+    "StartupScreenName": "ScreenConfig",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",
