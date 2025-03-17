@@ -13,6 +13,9 @@
 #include <touchgfx/containers/scrollers/ScrollList.hpp>
 #include <gui/containers/ConfigItem.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/canvas/Line.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 
 class ScreenConfigViewBase : public touchgfx::View<ScreenConfigPresenter>
 {
@@ -34,6 +37,14 @@ public:
     {
         // Override and implement this function in ScreenConfig
     }
+    virtual void encryptOnSD()
+    {
+        // Override and implement this function in ScreenConfig
+    }
+    virtual void encryptOnScreen()
+    {
+        // Override and implement this function in ScreenConfig
+    }
 
 protected:
     FrontendApplication& application() {
@@ -47,10 +58,23 @@ protected:
     touchgfx::BoxWithBorder BackgroundScreenConfig;
     ScreenTitle screenTitle;
     touchgfx::ScrollList configList;
-    touchgfx::DrawableListItems<ConfigItem, 7> configListListItems;
+    touchgfx::DrawableListItems<ConfigItem, 4> configListListItems;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  GoBack;
+    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ToggleButtonTrigger >  >  modeCryptSD;
+    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ToggleButtonTrigger >  >  modeCryptScreen;
+    touchgfx::TextArea labelCryptSD;
+    touchgfx::TextArea labelCryptScreen;
+    touchgfx::Line line1;
+    touchgfx::PainterRGB565 line1Painter;
+    touchgfx::TextArea textArea1;
 
 private:
+
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint32_t CANVAS_BUFFER_SIZE = 3600;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
     /*
      * Callback Declarations

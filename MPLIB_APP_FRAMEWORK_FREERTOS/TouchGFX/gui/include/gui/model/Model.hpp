@@ -26,6 +26,7 @@ protected:
     ModelListener* 	modelListener;
 
     uint32_t		modeLight;
+    uint32_t		modeCrypt;
 };
 
 #endif // MODEL_HPP

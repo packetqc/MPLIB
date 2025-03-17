@@ -6,6 +6,15 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_I5LZ" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">CONFIGURATION</Translation>
+      </Text>
+      <Text Id="__SingleUse_TOXT" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Encrypt on screen</Translation>
+      </Text>
+      <Text Id="__SingleUse_S8LO" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Encrypt on sdcard</Translation>
+      </Text>
       <Text Id="__SingleUse_7A60" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">Item value</Translation>
       </Text>
@@ -19,7 +28,7 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_YZI5" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Screen Title</Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="__SingleUse_1UXT" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;</Translation>

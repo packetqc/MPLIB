@@ -80,6 +80,9 @@ public:
     	void 	SEC_Initialize();
     	bool	test();
 
+    	uint32_t encrypt();
+    	bool	 decrypt(uint32_t source, uint32_t *destination);
+
 protected:
 	Led_TypeDef LED 		= LED_RED;
 	uint8_t 	status_SYS; // 	= SECURE_NOTOK;

@@ -112,12 +112,11 @@ public:
     	char* 	getName();
     	bool  	getStatus();
     	char*	getSystemDescription();
-//    	uint8_t getStatusStorage();
+    	uint8_t getStatusStorage();
     	void 	blinkLED(uint8_t times);
     	void	heartBeat();
 
     	void 	SYS_Initialize(void);
-//    	void	SYS_InitializeSD(void);
     	void	SYS_ReadMemory(void);
 
     	size_t	getAvailableHeapSpaceInBytes();
@@ -132,12 +131,6 @@ public:
     	int8_t	 getConfigCount();
     	uint32_t getConfig(uint8_t index);
     	void	 setConfig(uint8_t index, uint32_t value);
-
-//    	bool getSDConfigInitialized();
-//    	bool setSDConfig();
-//    	bool getSDConfig();
-//    	bool setSDConfigScreenLite(uint32_t value);
-//    	bool getSDConfigScreenLite(uint32_t value);
 
 protected:
     	Led_TypeDef LED 		= LED_RED;
@@ -154,9 +147,6 @@ private:
     uint32_t 	config[3] = {0};
 
 	char 		log[LOG_LENGTH];
-
-//	BSP_SD_CardInfo*  	cardInfo;
-//	HAL_SD_CardInfoTypeDef cardInfo;
 
 #if defined(FREERTOS)
 	char		systemDescr[25] = "Free RTOS";

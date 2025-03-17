@@ -11,7 +11,8 @@ ConfigItemBase::ConfigItemBase()
     setHeight(36);
     box1.setPosition(120, 0, 120, 36);
     box1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    box1.setAlpha(197);
+    box1.setAlpha(93);
+    box1.setVisible(false);
     add(box1);
 
     itemName.setXY(9, 9);

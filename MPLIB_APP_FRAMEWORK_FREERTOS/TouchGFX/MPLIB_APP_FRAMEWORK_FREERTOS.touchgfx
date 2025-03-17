@@ -499,6 +499,7 @@
       },
       {
         "Name": "ScreenConfig",
+        "CanvasBufferSize": 3600,
         "Components": [
           {
             "Type": "BoxWithBorder",
@@ -527,9 +528,9 @@
           {
             "Type": "ScrollList",
             "Name": "configList",
-            "Y": 40,
+            "Y": 131,
             "Width": 240,
-            "Height": 200,
+            "Height": 107,
             "Snapping": true,
             "ItemTemplateName": "ConfigItem",
             "NumberofItems": 3,
@@ -555,6 +556,160 @@
                 "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_E8F6FB.svg.png"
               }
             ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "modeCryptSD",
+            "X": 32,
+            "Y": 50,
+            "Width": 25,
+            "Height": 25,
+            "ButtonTrigger": {
+              "Type": "ToggleButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_25_25_E8F6FB.svg.png",
+                "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_25_25_E8F6FB.svg.png"
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 25,
+                "Height": 25,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 1,
+                "ColorReleased": {
+                  "Red": 177,
+                  "Green": 209,
+                  "Blue": 224
+                },
+                "ColorPressed": {
+                  "Red": 117,
+                  "Green": 250,
+                  "Blue": 142
+                },
+                "ColorBorderReleased": {
+                  "Red": 177,
+                  "Green": 209,
+                  "Blue": 224
+                },
+                "ColorBorderPressed": {
+                  "Red": 117,
+                  "Green": 250,
+                  "Blue": 142
+                }
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "modeCryptScreen",
+            "X": 32,
+            "Y": 90,
+            "Width": 25,
+            "Height": 25,
+            "ButtonTrigger": {
+              "Type": "ToggleButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_25_25_E8F6FB.svg.png",
+                "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_25_25_E8F6FB.svg.png"
+              },
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "Width": 25,
+                "Height": 25,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 1,
+                "ColorReleased": {
+                  "Red": 177,
+                  "Green": 209,
+                  "Blue": 224
+                },
+                "ColorPressed": {
+                  "Red": 117,
+                  "Green": 250,
+                  "Blue": 142
+                },
+                "ColorBorderReleased": {
+                  "Red": 177,
+                  "Green": 209,
+                  "Blue": 224
+                },
+                "ColorBorderPressed": {
+                  "Red": 117,
+                  "Green": 250,
+                  "Blue": 142
+                }
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "labelCryptSD",
+            "X": 74,
+            "Y": 53,
+            "Width": 135,
+            "Height": 18,
+            "TextId": "__SingleUse_S8LO",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 56,
+              "Green": 102,
+              "Blue": 140
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "labelCryptScreen",
+            "X": 74,
+            "Y": 93,
+            "Width": 136,
+            "Height": 18,
+            "TextId": "__SingleUse_TOXT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 56,
+              "Green": 102,
+              "Blue": 140
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "Line",
+            "Name": "line1",
+            "Y": 124,
+            "Width": 240,
+            "Height": 15,
+            "Color": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "Alpha": 75,
+            "EndX": 240.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 56,
+            "Y": 11,
+            "Width": 128,
+            "Height": 18,
+            "TextId": "__SingleUse_I5LZ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "AutoSize": true
           }
         ],
         "Interactions": [
@@ -579,6 +734,28 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "function1"
+            }
+          },
+          {
+            "InteractionName": "EncryptOnSD",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "modeCryptSD"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "encryptOnSD"
+            }
+          },
+          {
+            "InteractionName": "EncryptOnScreen",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "modeCryptScreen"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "encryptOnScreen"
             }
           }
         ]
@@ -895,12 +1072,13 @@
             "X": 120,
             "Width": 120,
             "Height": 36,
+            "Visible": false,
             "Color": {
               "Red": 255,
               "Green": 255,
               "Blue": 255
             },
-            "Alpha": 197
+            "Alpha": 93
           },
           {
             "Type": "TextArea",

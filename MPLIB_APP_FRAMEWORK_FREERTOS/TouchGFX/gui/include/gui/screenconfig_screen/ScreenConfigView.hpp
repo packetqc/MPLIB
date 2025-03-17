@@ -4,6 +4,7 @@
 #include <gui_generated/screenconfig_screen/ScreenConfigViewBase.hpp>
 #include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
 
+
 class ScreenConfigView : public ScreenConfigViewBase
 {
 public:
@@ -15,12 +16,21 @@ public:
 
     void updateConfig();
     void updateBackground();
+    void updateTitle();
+    void encryptOnSD();
 
     uint32_t 		getColorMode();
 	void 			setColorMode(uint32_t mode);
 
+
 protected:
     void updateScreen();
+
+	char title[20] = "CONFIGURATION";
+
+private:
+
+
 };
 
 #endif // SCREENCONFIGVIEW_HPP

@@ -122,7 +122,7 @@ void StartSDServices(void *argument) {
 				SD->loadConfig();
 				break;
 			case SD_SAVE_ENCRYPTION:
-//				SD->saveConfigEncryption();
+				SD->saveConfigEncryption();
 				break;
 			case SD_LOAD_ENCRYPTION:
 //				SD->loadConfigEncryption();
@@ -260,7 +260,10 @@ void MPSDCard::loadConfigAtStartup() {
 //
 //=======================================================================================
 void MPSDCard::saveConfigEncryption() {
-
+//	uint8_t opcode = SD_SAVE_ENCRYPTION;
+//
+//	if( osMessageQueuePut(sd_msgHandle, &opcode,0,0) != osOK ) {
+//	}
 }
 
 //=======================================================================================

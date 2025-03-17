@@ -17,6 +17,7 @@ ScreenConfigView::ScreenConfigView()
 void ScreenConfigView::setupScreen()
 {
     ScreenConfigViewBase::setupScreen();
+    updateTitle();
     updateScreen();
     updateBackground();
 }
@@ -24,6 +25,21 @@ void ScreenConfigView::setupScreen()
 void ScreenConfigView::tearDownScreen()
 {
     ScreenConfigViewBase::tearDownScreen();
+}
+
+void ScreenConfigView::encryptOnSD()
+{
+
+}
+
+void ScreenConfigView::updateTitle()
+{
+//	Unicode::UnicodeChar buffer[20];
+//	Unicode::strncpy(buffer, title, 20);
+//	touchgfx::Unicode::snprintf(this->screenTitle.titleBuffer, 20, "%s", buffer );
+//	this->screenTitle.title.resizeToCurrentText();
+//	this->screenTitle.title.invalidate();
+//	this->screenTitle.title.centerX();
 }
 
 void ScreenConfigView::updateBackground()
