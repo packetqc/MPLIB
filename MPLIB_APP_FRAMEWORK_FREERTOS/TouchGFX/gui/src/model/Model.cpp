@@ -35,10 +35,10 @@ void Model::tick()
 			case CLEAR_LOGS:
 				modelListener->ClearLogs();
 				break;
-			case SD_lOAD_BACKGROUND:
+//			case SD_lOAD_BACKGROUND:
 //				modelListener->setColor();
 //				modelListener->setButtonMode();
-				break;
+//				break;
 			default:
 				modelListener->UpdateStatusNavigationBar();
 				break;

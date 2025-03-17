@@ -30,7 +30,15 @@ void ScreenLogsView::updateBackground()
 {
 	setButtonMode();
     this->BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
+	BackgroundScreenLogs.invalidate();
+    invalidate();
 }
+
+//void ScreenLogsView::UpdateBackground()
+//{
+////    modeLight = SD->getSDConfigScreenLite();
+//	presenter->setColorMode(SD->getSDConfigScreenLite());
+//}
 
 void ScreenLogsView::tearDownScreen()
 {
@@ -64,11 +72,6 @@ void ScreenLogsView::updateStatus_STORAGE(uint8_t value) {
 	Status_STORAGE.invalidate();
 }
 
-void ScreenLogsView::UpdateBackground()
-{
-//    modeLight = SD->getSDConfigScreenLite();
-	presenter->setColorMode(SD->getSDConfigScreenLite());
-}
 
 void ScreenLogsView::UpdateTitle()
 {
@@ -101,6 +104,7 @@ void ScreenLogsView::UpdateTitle()
 	screenTitle.setTitle(buffer);
 }
 
+
 void ScreenLogsView::setButtonMode() {
 	if(DISPLAY->getColorMode() == MODE_LITE) {
 		screenLight.forceState(true);
@@ -109,6 +113,7 @@ void ScreenLogsView::setButtonMode() {
 		screenLight.forceState(false);
 	}
 }
+
 
 uint32_t ScreenLogsView::getColorMode() {
 //	return modeLight;
@@ -120,11 +125,11 @@ void ScreenLogsView::setColorMode(uint32_t mode) {
 	presenter->setColorMode(mode);
 }
 
-void ScreenLogsView::setColor() {
-	BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
-	BackgroundScreenLogs.invalidate();
-    invalidate();
-}
+//void ScreenLogsView::setColor() {
+//	BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
+//	BackgroundScreenLogs.invalidate();
+//    invalidate();
+//}
 
 void ScreenLogsView::getDisplayColor()
 {

@@ -937,11 +937,11 @@ bool MPSDCard::loadConfig()
 //		DS->pushToLogsMon(name, LOG_OK, log);
 	}
 
-	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
-	DS->pushToLogsMon(name, LOG_OK, log);
-
-	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
+//	DS->pushToLogsMon(name, LOG_OK, log);
+//
+//	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[LIGHT]);
+//	DS->pushToLogsMon(name, LOG_OK, log);
 
 	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
 		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");

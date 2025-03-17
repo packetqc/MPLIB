@@ -118,7 +118,7 @@ void StartSystemServices(ULONG thread_input) {
 //=======================================================================================
 //
 //=======================================================================================
-size_t	 MPSystem::getConfigCount()
+int8_t	 MPSystem::getConfigCount()
 {
 	return sizeof(config) / sizeof(*config);
 }
@@ -138,8 +138,8 @@ void MPSystem::setConfig(uint8_t index, uint32_t value)
 {
 	config[index] = value;
 
-	sprintf(log, "config index[%d] set to value: %lu", index, value);
-	DS->pushToLogsMon(name, LOG_OK, log);
+//	sprintf(log, "config index[%d] set to value: %lu", index, value);
+//	DS->pushToLogsMon(name, LOG_OK, log);
 }
 
 //=======================================================================================

@@ -22,9 +22,9 @@ void ScreenLogsPresenter::setButtonMode() {
 	view.setButtonMode();
 }
 
-void ScreenLogsPresenter::setColor() {
-	view.setColor();
-}
+//void ScreenLogsPresenter::setColor() {
+//	view.setColor();
+//}
 
 void ScreenLogsPresenter::SetDisplayColor()
 {

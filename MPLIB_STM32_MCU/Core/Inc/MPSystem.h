@@ -129,7 +129,7 @@ public:
     	size_t	getNumberOfSuccessfulFrees();
 
     	char* 	 getConfigName(uint8_t index);
-    	size_t	 getConfigCount();
+    	int8_t	 getConfigCount();
     	uint32_t getConfig(uint8_t index);
     	void	 setConfig(uint8_t index, uint32_t value);
 

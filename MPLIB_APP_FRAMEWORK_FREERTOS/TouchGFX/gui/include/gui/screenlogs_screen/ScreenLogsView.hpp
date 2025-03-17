@@ -36,9 +36,10 @@ public:
 
 	void SetDisplayColor();
 	void getDisplayColor();
-	void UpdateBackground();
+//	void UpdateBackground();
 	void UpdateTitle();
-	void setColor();
+//	void setColor();
+
 	uint32_t getColorMode();
 	void setColorMode(uint32_t mode);
 	void setButtonMode();

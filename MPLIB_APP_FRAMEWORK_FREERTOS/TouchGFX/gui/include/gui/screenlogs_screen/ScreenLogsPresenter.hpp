@@ -28,7 +28,7 @@ public:
     virtual ~ScreenLogsPresenter() {}
 
     void SetDisplayColor();
-    void setColor();
+//    void setColor();
 
 	void UpdateStatusNavigationBar();
 	void UpdateLogs(uint8_t index);
