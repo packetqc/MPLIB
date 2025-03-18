@@ -37,7 +37,7 @@ extern CRYP_HandleTypeDef hcryp;
 //
 //=======================================================================================
 /* The size of the plaintext is in words */
-#define PLAINTEXT_SIZE    16
+
 uint32_t AESKey256[8] = {0x603DEB10 ,0x15CA71BE ,0x2B73AEF0 ,0x857D7781 ,
                          0x1F352C07 ,0x3B6108D7 ,0x2D9810A3 ,0x0914DFF4};
 
@@ -266,10 +266,31 @@ bool MPSecure::init() {
 
 	SEC_Initialize();
 
+//	uint32_t encryptBufferSrc[PLAINTEXT_SIZE];
+//	uint32_t encryptBufferDst[PLAINTEXT_SIZE];
+//
+//	uint32_t decryptBuffer[PLAINTEXT_SIZE];
+////	uint32_t decryptBuffer[PLAINTEXT_SIZE];
+//
+//	encrypt(encryptBufferSrc, decryptBuffer);
+//	decrypt(decryptBuffer, encryptBufferDst);
+
 //	snprintf(log, LOG_LENGTH, "Secure services initialization completed");
 //	DS->pushToLogsMon(name, LOG_OK, log);
 
 	return retour;
+}
+
+
+//=======================================================================================
+//
+//=======================================================================================
+void MPSecure::postEncrypt()
+{
+	//WHEN TO DECRYPT MULTIPLE TIMES/VALUES ...
+	MODIFY_REG(hcryp.Instance->CR, AES_CR_KMOD, CRYP_KEYMODE_NORMAL);
+	hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ONCE;
+	//WHEN TO DECRYPT MULTIPLE TIMES/VALUES ... END
 }
 
 //=======================================================================================
@@ -282,34 +303,6 @@ bool MPSecure::test()
 	snprintf(log, LOG_LENGTH, "Secure test a plaintext");
 	DS->pushToLogsMon(name, LOG_INFO, log);
 
-//	/* User key AESKey256 encryption*/
-//	if (HAL_CRYPEx_WrapKey(&hcryp, AESKey256,  Encryptedkey, TIMEOUT_VALUE) != HAL_OK)
-//	{
-//		retour = false;
-//		snprintf(log, LOG_LENGTH, "HAL_CRYPEx_WrapKey failed"); //: %s", Plaintext);
-//		DS->pushToLogsMon(name, LOG_ERROR, log);
-//	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_CRYPEx_WrapKey ok"); //: %s", Plaintext);
-//		DS->pushToLogsMon(name, LOG_ERROR, log);
-//	}
-//
-//	/* User key AESKey256 decryption*/
-//	if (HAL_CRYPEx_UnwrapKey(&hcryp, Encryptedkey, TIMEOUT_VALUE) != HAL_OK)
-//	{
-//		retour = false;
-//		snprintf(log, LOG_LENGTH, "HAL_CRYPEx_UnwrapKey failed"); //: %s", Plaintext);
-//		DS->pushToLogsMon(name, LOG_ERROR, log);
-//	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_CRYPEx_UnwrapKey ok"); //: %s", Plaintext);
-//		DS->pushToLogsMon(name, LOG_ERROR, log);
-//	}
-
-	/* Now key AESKey256 is loaded in SAES_KEYRx registers, immediately usable by
-	application for any SAES operation */
-
-	/* Secure AES ECB Encryption */
 	if (HAL_CRYP_Encrypt(&hcryp, Plaintext, 16, EncryptedText, TIMEOUT_VALUE) != HAL_OK)
 	{
 		/* Processing Error */
@@ -336,10 +329,7 @@ bool MPSecure::test()
 	}
 
 
-	//MP TMP WHEN TO DECRYPT MULTIPLE TIMES/VALUES ...
-	MODIFY_REG(hcryp.Instance->CR, AES_CR_KMOD, CRYP_KEYMODE_NORMAL);
-	hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ONCE;
-	//MP TMP
+	postEncrypt();
 
 	for(int i=0; i<2; i++) {
 		bool dretour = true;
@@ -347,7 +337,6 @@ bool MPSecure::test()
 		sprintf(log, "Decrypt test #%d...", i+1); //: %s", Plaintext);
 		DS->pushToLogsMon(name, LOG_INFO, log);
 
-		/*Secure AES ECB Decryption */
 		if (HAL_CRYP_Decrypt(&hcryp, EncryptedText, 16, DecryptedText, TIMEOUT_VALUE) != HAL_OK)
 		{
 			/* Processing Error */
@@ -401,10 +390,36 @@ bool MPSecure::test()
 //=======================================================================================
 //
 //=======================================================================================
-uint32_t MPSecure::encrypt()
+bool MPSecure::encrypt(uint32_t *source, uint32_t *destination)
 {
-	uint32_t retour;
+	bool retour = true;
 
+	snprintf(log, LOG_LENGTH, "encrypt data...");
+	DS->pushToLogsMon(name, LOG_INFO, log);
+
+	if (HAL_CRYP_Encrypt(&hcryp, source, 16, destination, TIMEOUT_VALUE) != HAL_OK)
+	{
+		/* Processing Error */
+		retour = false;
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt failed !!!"); //: %s", Plaintext);
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt ok"); //: %s", Plaintext);
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+
+
+	if(retour) {
+		snprintf(log, LOG_LENGTH, "encrypt data completed ok");
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "encrypt data failed !!!");
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+	}
+
+	postEncrypt();
 
 	return retour;
 }
@@ -412,7 +427,34 @@ uint32_t MPSecure::encrypt()
 //=======================================================================================
 //
 //=======================================================================================
-bool MPSecure::decrypt(uint32_t source, uint32_t *destination)
+bool MPSecure::decrypt(uint32_t *source, uint32_t *destination)
 {
+	bool retour = true;
 
+	snprintf(log, LOG_LENGTH, "decrypt data..."); //: %s", Plaintext);
+	DS->pushToLogsMon(name, LOG_INFO, log);
+
+	if (HAL_CRYP_Decrypt(&hcryp, source, 16, destination, TIMEOUT_VALUE) != HAL_OK)
+	{
+		/* Processing Error */
+		retour = false;
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt failed !!!"); //: %s", Plaintext);
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt ok"); //: %s", Plaintext);
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+
+
+	if(retour) {
+		snprintf(log, LOG_LENGTH, "decrypt completed ok"); //: %s", Plaintext);
+		DS->pushToLogsMon(name, LOG_INFO, log);
+	}
+	else {
+		snprintf(log, LOG_LENGTH, "decrypt data failed !!!"); //: %s", Plaintext);
+		DS->pushToLogsMon(name, LOG_WARNING, log);
+	}
+
+	return retour;
 }

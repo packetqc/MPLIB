@@ -17,15 +17,15 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoScreenConfigScreenNoTransition();
+        gotoScreenLogsScreenNoTransition();
     }
 
     // ScreenLogs
+    void gotoScreenLogsScreenNoTransition();
+
     void gotoScreenLogsScreenSlideTransitionEast();
 
     // ScreenConfig
-    void gotoScreenConfigScreenNoTransition();
-
     void gotoScreenConfigScreenSlideTransitionNorth();
 
 protected:
@@ -34,11 +34,11 @@ protected:
     Model& model;
 
     // ScreenLogs
+    void gotoScreenLogsScreenNoTransitionImpl();
+
     void gotoScreenLogsScreenSlideTransitionEastImpl();
 
     // ScreenConfig
-    void gotoScreenConfigScreenNoTransitionImpl();
-
     void gotoScreenConfigScreenSlideTransitionNorthImpl();
 };
 

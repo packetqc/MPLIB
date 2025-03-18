@@ -17,7 +17,11 @@ public:
     void updateConfig();
     void updateBackground();
     void updateTitle();
+
+    void setButtonMode();
+
     void encryptOnSD();
+    void encryptOnScreen();
 
     uint32_t 		getColorMode();
 	void 			setColorMode(uint32_t mode);

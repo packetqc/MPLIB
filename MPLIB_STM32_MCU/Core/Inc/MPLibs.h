@@ -41,7 +41,9 @@
 __attribute__((unused)) enum {
 	MAGIC = 0,
 	LIGHT = 1,
-	ENCRYPTED = 2,
+	ENCRYPTSD = 2,
+	ENCRYPTSCREEN = 3,
+	PASSWORD = 4
 } configs;
 
 
@@ -95,10 +97,12 @@ enum {
 	SD_SAVE 		= 202,
 	SD_LOAD 		= 203,
 
-	SD_SAVE_ENCRYPTION = 204,
-	SD_LOAD_ENCRYPTION = 205,
+	SD_SAVE_ENCRYPTSCREEN = 204,
+	SD_SAVE_ENCRYPTSD = 205,
 	SD_SAVE_BACKGROUND = 206,
-	SD_lOAD_BACKGROUND = 207
+	SD_SAVE_PASSWORD = 207,
+
+	SD_lOAD_BACKGROUND = 208
 };
 
 //=======================================================================================

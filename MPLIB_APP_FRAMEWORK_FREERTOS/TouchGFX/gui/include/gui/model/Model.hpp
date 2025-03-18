@@ -15,18 +15,25 @@ public:
         modelListener = listener;
     }
 
-    void 			tick();
+    void 		tick();
 
-    uint32_t 		getColorMode();
-	void 			setColorMode(uint32_t mode);
+    uint32_t 	getColorMode();
+	void 		setColorMode(uint32_t mode);
 
-	void			updateConfig();
+	uint32_t	getCryptModeSD();
+	void 		setCryptModeSD(bool mode);
+
+	uint32_t 	getCryptModeScreen();
+	void 		setCryptModeScreen(bool mode);
+
+	void		updateConfig();
 
 protected:
     ModelListener* 	modelListener;
 
     uint32_t		modeLight;
-    uint32_t		modeCrypt;
+    uint32_t		modeCryptSD;
+    uint32_t		modeCryptScreen;
 };
 
 #endif // MODEL_HPP

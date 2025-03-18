@@ -11,7 +11,8 @@
 //=======================================================================================
 //
 //=======================================================================================
-#define TIMEOUT_VALUE 0xFFF
+#define TIMEOUT_VALUE 	0xFFF
+#define PLAINTEXT_SIZE  16
 
 //=======================================================================================
 //
@@ -80,8 +81,10 @@ public:
     	void 	SEC_Initialize();
     	bool	test();
 
-    	uint32_t encrypt();
-    	bool	 decrypt(uint32_t source, uint32_t *destination);
+    	bool	encrypt(uint32_t *source, uint32_t *destination);
+    	void 	postEncrypt();
+
+    	bool	decrypt(uint32_t *source, uint32_t *destination);
 
 protected:
 	Led_TypeDef LED 		= LED_RED;

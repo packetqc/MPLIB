@@ -85,15 +85,12 @@ void Model::tick()
 }
 
 void Model::updateConfig() {
-//	uint32_t tmodeLight = modeLight;
-
-//	modeLight = ->getColorMode();
+	modeCryptSD = SYS->getConfig(ENCRYPTSD);
+	modeCryptScreen = SYS->getConfig(ENCRYPTSCREEN);
 	modeLight = SYS->getConfig(LIGHT);
 	DISPLAY->setColorMode(modeLight);
 
-//	if( tmodeLight != modeLight ) {
-		modelListener->updateBackground();
-//	}
+	modelListener->updateBackground();
 	modelListener->updateConfig();
 }
 
@@ -103,4 +100,24 @@ uint32_t Model::getColorMode() {
 
 void Model::setColorMode(uint32_t mode) {
 	modeLight = mode;
+}
+
+uint32_t Model::getCryptModeSD()
+{
+	return modeCryptSD;
+}
+
+void Model::setCryptModeSD(bool mode)
+{
+	modeCryptSD = (mode == true) ? 1 : 0;
+}
+
+uint32_t Model::getCryptModeScreen()
+{
+	return modeCryptScreen;
+}
+
+void Model::setCryptModeScreen(bool mode)
+{
+	modeCryptScreen = (mode == true) ? 1 : 0;
 }

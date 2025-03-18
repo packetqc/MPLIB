@@ -32,7 +32,7 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     configList.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
     configList.setSwipeAcceleration(10);
     configList.setDragAcceleration(10);
-    configList.setNumberOfItems(3);
+    configList.setNumberOfItems(5);
     configList.setPadding(0, 0);
     configList.setSnapping(true);
     configList.setOvershootPercentage(75);

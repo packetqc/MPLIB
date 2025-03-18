@@ -533,7 +533,7 @@
             "Height": 107,
             "Snapping": true,
             "ItemTemplateName": "ConfigItem",
-            "NumberofItems": 3,
+            "NumberofItems": 5,
             "Easing": "Back",
             "EasingOption": "Out",
             "SwipeAcceleration": 1.0,
@@ -1132,7 +1132,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "ScreenConfig",
+    "StartupScreenName": "ScreenLogs",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

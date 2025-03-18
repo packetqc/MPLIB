@@ -143,8 +143,8 @@ protected:
 
     	uint8_t		isSDInitialized = 0;
 private:
-	char 		configNames[3][25] = {"MAGIC", "LIGHT", "ENCRYPTED"};
-    uint32_t 	config[3] = {0};
+	char 		configNames[5][25] = {"MAGIC", "LIGHT", "ENCRYPTSD","ENCRYPTSCREEN", "PASSWORD"};
+    uint32_t 	config[5] = {0};
 
 	char 		log[LOG_LENGTH];
 

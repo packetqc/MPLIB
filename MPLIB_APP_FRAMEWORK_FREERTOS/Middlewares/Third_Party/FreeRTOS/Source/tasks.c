@@ -2853,6 +2853,7 @@ BaseType_t xTaskIncrementTick( void )
                 if( listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ pxCurrentTCB->uxPriority ] ) ) > ( UBaseType_t ) 1 )
                 {
                     xSwitchRequired = pdTRUE;
+
                 }
                 else
                 {

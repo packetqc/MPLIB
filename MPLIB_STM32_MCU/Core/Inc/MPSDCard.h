@@ -116,6 +116,9 @@ public:
 	bool 	setSDConfig();
 	bool 	getSDConfig();
 	void 	setSDConfigScreenLite();
+	void	setSDConfigEncyrptScreen();
+	void	setSDConfigEncyrptSD();
+	void	setSDConfigPassord();
 
 	uint32_t 	getSDConfigScreenLite();
 
@@ -130,6 +133,10 @@ public:
 	void	loadConfigEncryption();
 	void	saveConfigBackground();
 	void	loadConfigBackground();
+
+	void 	saveConfigEncryptScreen();
+	void	saveConfigEncryptSD();
+	void	saveConfigPassword();
 
 protected:
 	Led_TypeDef LED 		= LED_BLUE;

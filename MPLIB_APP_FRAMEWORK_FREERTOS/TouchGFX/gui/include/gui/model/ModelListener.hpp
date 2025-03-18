@@ -42,6 +42,12 @@ public:
     virtual void updateConfig() {};
     virtual void updateBackground() {};
 
+    virtual uint32_t getCryptModeSD() {return 0;};
+    virtual void setCryptModeSD(bool mode) {};
+
+    virtual uint32_t getCryptModeScreen() {return 0;};
+    virtual void setCryptModeScreen(bool mode) {};
+
 protected:
     Model* model;
 };
