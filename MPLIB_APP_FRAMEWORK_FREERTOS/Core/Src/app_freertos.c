@@ -62,7 +62,6 @@ extern void StartSDServices(void *argument);
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE BEGIN Variables */
 
 //extern osMutexId_t canLogHandle;
