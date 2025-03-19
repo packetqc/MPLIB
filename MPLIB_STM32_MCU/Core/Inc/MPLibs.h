@@ -102,7 +102,8 @@ enum {
 	SD_SAVE_BACKGROUND = 206,
 	SD_SAVE_PASSWORD = 207,
 
-	SD_lOAD_BACKGROUND = 208
+	SD_lOAD_BACKGROUND = 208,
+	SD_RESET_FACTORY = 209
 };
 
 //=======================================================================================

@@ -9,7 +9,8 @@
 
 ScreenConfigViewBase::ScreenConfigViewBase() :
     updateItemCallback(this, &ScreenConfigViewBase::updateItemCallbackHandler),
-    flexButtonCallback(this, &ScreenConfigViewBase::flexButtonCallbackHandler)
+    flexButtonCallback(this, &ScreenConfigViewBase::flexButtonCallbackHandler),
+    buttonCallback(this, &ScreenConfigViewBase::buttonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
@@ -17,16 +18,19 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
+    layoutConfig.setPosition(0, 0, 240, 240);
     BackgroundScreenConfig.setPosition(0, 0, 240, 240);
     BackgroundScreenConfig.setColor(touchgfx::Color::getColorFromRGB(230, 234, 250));
     BackgroundScreenConfig.setBorderColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     BackgroundScreenConfig.setBorderSize(3);
-    add(BackgroundScreenConfig);
+    layoutConfig.add(BackgroundScreenConfig);
 
-    screenTitle.setXY(0, 0);
-    add(screenTitle);
+    backgroundTitle.setPosition(1, 0, 240, 65);
+    backgroundTitle.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
+    backgroundTitle.setAlpha(75);
+    layoutConfig.add(backgroundTitle);
 
-    configList.setPosition(0, 131, 240, 107);
+    configList.setPosition(0, 65, 240, 173);
     configList.setHorizontal(false);
     configList.setCircular(false);
     configList.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
@@ -38,45 +42,15 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     configList.setOvershootPercentage(75);
     configList.setDrawableSize(36, 0);
     configList.setDrawables(configListListItems, updateItemCallback);
-    add(configList);
+    layoutConfig.add(configList);
 
     GoBack.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_33_33_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_33_33_E8F6FB_SVG_ID));
     GoBack.setIconXY(0, 0);
     GoBack.setAction(flexButtonCallback);
-    GoBack.setPosition(0, 5, 32, 33);
-    add(GoBack);
+    GoBack.setPosition(1, 19, 32, 33);
+    layoutConfig.add(GoBack);
 
-    modeCryptSD.setBoxWithBorderPosition(0, 0, 25, 25);
-    modeCryptSD.setBorderSize(1);
-    modeCryptSD.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(177, 209, 224), touchgfx::Color::getColorFromRGB(117, 250, 142), touchgfx::Color::getColorFromRGB(177, 209, 224), touchgfx::Color::getColorFromRGB(117, 250, 142));
-    modeCryptSD.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_NOTIFICATION_NO_ENCRYPTION_GMAILERRORRED_25_25_E8F6FB_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_NOTIFICATION_ENHANCED_ENCRYPTION_25_25_E8F6FB_SVG_ID));
-    modeCryptSD.setIconXY(0, 0);
-    modeCryptSD.setAction(flexButtonCallback);
-    modeCryptSD.setPosition(32, 50, 25, 25);
-    add(modeCryptSD);
-
-    modeCryptScreen.setBoxWithBorderPosition(0, 0, 25, 25);
-    modeCryptScreen.setBorderSize(1);
-    modeCryptScreen.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(177, 209, 224), touchgfx::Color::getColorFromRGB(117, 250, 142), touchgfx::Color::getColorFromRGB(177, 209, 224), touchgfx::Color::getColorFromRGB(117, 250, 142));
-    modeCryptScreen.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_NOTIFICATION_NO_ENCRYPTION_GMAILERRORRED_25_25_E8F6FB_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_NOTIFICATION_ENHANCED_ENCRYPTION_25_25_E8F6FB_SVG_ID));
-    modeCryptScreen.setIconXY(0, 0);
-    modeCryptScreen.setAction(flexButtonCallback);
-    modeCryptScreen.setPosition(32, 90, 25, 25);
-    add(modeCryptScreen);
-
-    labelCryptSD.setXY(74, 53);
-    labelCryptSD.setColor(touchgfx::Color::getColorFromRGB(56, 102, 140));
-    labelCryptSD.setLinespacing(0);
-    labelCryptSD.setTypedText(touchgfx::TypedText(T___SINGLEUSE_S8LO));
-    add(labelCryptSD);
-
-    labelCryptScreen.setXY(74, 93);
-    labelCryptScreen.setColor(touchgfx::Color::getColorFromRGB(56, 102, 140));
-    labelCryptScreen.setLinespacing(0);
-    labelCryptScreen.setTypedText(touchgfx::TypedText(T___SINGLEUSE_TOXT));
-    add(labelCryptScreen);
-
-    line1.setPosition(0, 124, 240, 15);
+    line1.setPosition(0, 97, 240, 15);
     line1Painter.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
     line1.setPainter(line1Painter);
     line1.setStart(0, 0);
@@ -84,13 +58,18 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     line1.setLineWidth(10);
     line1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
     line1.setAlpha(75);
-    add(line1);
+    line1.setVisible(false);
+    layoutConfig.add(line1);
 
-    textArea1.setXY(56, 11);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    textArea1.setLinespacing(0);
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_I5LZ));
-    add(textArea1);
+    buttonChangeConfig.setXY(33, 9);
+    buttonChangeConfig.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_SMALL_ROUNDED_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_SMALL_ROUNDED_PRESSED_ID));
+    buttonChangeConfig.setLabelText(touchgfx::TypedText(T___SINGLEUSE_85AV));
+    buttonChangeConfig.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonChangeConfig.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 255, 81));
+    buttonChangeConfig.setAction(buttonCallback);
+    layoutConfig.add(buttonChangeConfig);
+
+    add(layoutConfig);
 }
 
 ScreenConfigViewBase::~ScreenConfigViewBase()
@@ -100,7 +79,6 @@ ScreenConfigViewBase::~ScreenConfigViewBase()
 
 void ScreenConfigViewBase::setupScreen()
 {
-    screenTitle.initialize();
     configList.initialize();
     for (int i = 0; i < configListListItems.getNumberOfDrawables(); i++)
     {
@@ -117,19 +95,16 @@ void ScreenConfigViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBut
         //Go to ScreenLogs with screen transition towards East
         application().gotoScreenLogsScreenSlideTransitionEast();
     }
-    if (&src == &modeCryptSD)
+}
+
+void ScreenConfigViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+{
+    if (&src == &buttonChangeConfig)
     {
-        //EncryptOnSD
-        //When modeCryptSD clicked call virtual function
-        //Call encryptOnSD
-        encryptOnSD();
-    }
-    if (&src == &modeCryptScreen)
-    {
-        //EncryptOnScreen
-        //When modeCryptScreen clicked call virtual function
-        //Call encryptOnScreen
-        encryptOnScreen();
+        //ChangeConfig
+        //When buttonChangeConfig clicked change screen to ScreenChangeConfig
+        //Go to ScreenChangeConfig with screen transition towards North
+        application().gotoScreenChangeConfigScreenSlideTransitionNorth();
     }
 }
 

@@ -55,6 +55,8 @@
 #define DATA_PATTERN0          		((uint32_t)0x01000000U) /* Data pattern for buffer0*/
 #define DATA_PATTERN1          		((uint32_t)0x02000000U) /* Data pattern for buffer1 */
 
+
+#define ENCRYPTAT					4
 //=======================================================================================
 //
 //=======================================================================================
@@ -115,6 +117,7 @@ public:
 	bool 	loadConfig();
 	bool 	setSDConfig();
 	bool 	getSDConfig();
+	void 	setSDConfigSave();
 	void 	setSDConfigScreenLite();
 	void	setSDConfigEncyrptScreen();
 	void	setSDConfigEncyrptSD();
@@ -125,6 +128,7 @@ public:
 	void	waitState(void);
 	void	waitDoState(void);
 
+	void	resetFactory();
 	void 	updateConfig();
 	void	eraseConfig();
 	void	saveConfig();
@@ -134,9 +138,12 @@ public:
 	void	saveConfigBackground();
 	void	loadConfigBackground();
 
+	bool	isItEncrypted();
+	void 	processConfig(uint8_t index);
 	void 	saveConfigEncryptScreen();
 	void	saveConfigEncryptSD();
 	void	saveConfigPassword();
+
 
 protected:
 	Led_TypeDef LED 		= LED_BLUE;
@@ -148,6 +155,7 @@ protected:
 	bool 		started 	= false;
 
 	uint8_t		isSDInitialized = 0;
+	bool		isEncrypted = false;
 
 private:
 	char 		log[LOG_LENGTH];

@@ -8,14 +8,14 @@
 #include <mvp/View.hpp>
 #include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
-#include <gui/containers/ScreenTitle.hpp>
 #include <touchgfx/containers/scrollers/ScrollList.hpp>
 #include <gui/containers/ConfigItem.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/canvas/Line.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class ScreenConfigViewBase : public touchgfx::View<ScreenConfigPresenter>
 {
@@ -37,14 +37,6 @@ public:
     {
         // Override and implement this function in ScreenConfig
     }
-    virtual void encryptOnSD()
-    {
-        // Override and implement this function in ScreenConfig
-    }
-    virtual void encryptOnScreen()
-    {
-        // Override and implement this function in ScreenConfig
-    }
 
 protected:
     FrontendApplication& application() {
@@ -55,18 +47,15 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Container layoutConfig;
     touchgfx::BoxWithBorder BackgroundScreenConfig;
-    ScreenTitle screenTitle;
+    touchgfx::Box backgroundTitle;
     touchgfx::ScrollList configList;
-    touchgfx::DrawableListItems<ConfigItem, 4> configListListItems;
+    touchgfx::DrawableListItems<ConfigItem, 6> configListListItems;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  GoBack;
-    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ToggleButtonTrigger >  >  modeCryptSD;
-    touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ToggleButtonTrigger >  >  modeCryptScreen;
-    touchgfx::TextArea labelCryptSD;
-    touchgfx::TextArea labelCryptScreen;
     touchgfx::Line line1;
     touchgfx::PainterRGB565 line1Painter;
-    touchgfx::TextArea textArea1;
+    touchgfx::ButtonWithLabel buttonChangeConfig;
 
 private:
 
@@ -81,12 +70,14 @@ private:
      */
     touchgfx::Callback<ScreenConfigViewBase, touchgfx::DrawableListItemsInterface*, int16_t, int16_t> updateItemCallback;
     touchgfx::Callback<ScreenConfigViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
+    touchgfx::Callback<ScreenConfigViewBase, const touchgfx::AbstractButton&> buttonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex);
     void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

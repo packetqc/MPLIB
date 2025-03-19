@@ -37,6 +37,9 @@
     <ClCompile Include="..\..\generated\gui_generated\src\screenconfig_screen\ScreenConfigViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\ConfigItem.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ConfigItemBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenchangeconfig_screen\ScreenChangeConfigPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenchangeconfig_screen\ScreenChangeConfigView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenchangeconfig_screen\ScreenChangeConfigViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -203,6 +206,9 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenconfig_screen\ScreenConfigViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\ConfigItem.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ConfigItemBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenchangeconfig_screen\ScreenChangeConfigPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenchangeconfig_screen\ScreenChangeConfigView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenchangeconfig_screen\ScreenChangeConfigViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

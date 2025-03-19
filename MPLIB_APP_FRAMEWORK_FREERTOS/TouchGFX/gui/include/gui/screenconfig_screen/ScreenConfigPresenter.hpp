@@ -33,11 +33,7 @@ public:
     uint32_t 	getColorMode();
 	void 		setColorMode(uint32_t mode);
 
-	uint32_t 	getCryptModeSD();
-	void 		setCryptModeSD(bool mode);
 
-	uint32_t 	getCryptModeScreen();
-	void 		setCryptModeScreen(bool mode);
 
 private:
     ScreenConfigPresenter();

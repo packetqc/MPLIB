@@ -12,16 +12,13 @@ public:
     virtual ~ScreenConfigView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+
     void configListUpdateItem(ConfigItem& item, int16_t itemIndex);
+//    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
     void updateConfig();
     void updateBackground();
     void updateTitle();
-
-    void setButtonMode();
-
-    void encryptOnSD();
-    void encryptOnScreen();
 
     uint32_t 		getColorMode();
 	void 			setColorMode(uint32_t mode);
@@ -34,6 +31,9 @@ protected:
 
 private:
 
+//	touchgfx::Callback<ScreenConfigView, const touchgfx::AbstractButton&> buttonCallback2;
+//
+//	void buttonCallback2Handler(const touchgfx::AbstractButton& src);
 
 };
 

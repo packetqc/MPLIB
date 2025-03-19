@@ -28,6 +28,13 @@ public:
     // ScreenConfig
     void gotoScreenConfigScreenSlideTransitionNorth();
 
+    void gotoScreenConfigScreenBlockTransition();
+
+    void gotoScreenConfigScreenWipeTransitionEast();
+
+    // ScreenChangeConfig
+    void gotoScreenChangeConfigScreenSlideTransitionNorth();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -40,6 +47,13 @@ protected:
 
     // ScreenConfig
     void gotoScreenConfigScreenSlideTransitionNorthImpl();
+
+    void gotoScreenConfigScreenBlockTransitionImpl();
+
+    void gotoScreenConfigScreenWipeTransitionEastImpl();
+
+    // ScreenChangeConfig
+    void gotoScreenChangeConfigScreenSlideTransitionNorthImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

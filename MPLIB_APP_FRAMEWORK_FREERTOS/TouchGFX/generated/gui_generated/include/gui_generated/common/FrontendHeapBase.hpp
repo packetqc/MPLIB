@@ -10,6 +10,8 @@
 
 #include <touchgfx/transitions/NoTransition.hpp>
 #include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/BlockTransition.hpp>
+#include <touchgfx/transitions/WipeTransition.hpp>
 
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
@@ -18,6 +20,8 @@
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
 #include <gui/screenconfig_screen/ScreenConfigView.hpp>
 #include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
+#include <gui/screenchangeconfig_screen/ScreenChangeConfigView.hpp>
+#include <gui/screenchangeconfig_screen/ScreenChangeConfigPresenter.hpp>
 
 
 /**
@@ -42,7 +46,8 @@ public:
      */
     typedef touchgfx::meta::TypeList< ScreenLogsView,
             touchgfx::meta::TypeList< ScreenConfigView,
-            touchgfx::meta::Nil >
+            touchgfx::meta::TypeList< ScreenChangeConfigView,
+            touchgfx::meta::Nil > >
             > GeneratedViewTypes;
 
     /**
@@ -56,7 +61,8 @@ public:
      */
     typedef touchgfx::meta::TypeList< ScreenLogsPresenter,
             touchgfx::meta::TypeList< ScreenConfigPresenter,
-            touchgfx::meta::Nil >
+            touchgfx::meta::TypeList< ScreenChangeConfigPresenter,
+            touchgfx::meta::Nil > >
             > GeneratedPresenterTypes;
 
     /**
@@ -71,7 +77,9 @@ public:
     typedef touchgfx::meta::TypeList< touchgfx::NoTransition,
             touchgfx::meta::TypeList< SlideTransition<NORTH>,
             touchgfx::meta::TypeList< SlideTransition<EAST>,
-            touchgfx::meta::Nil > >
+            touchgfx::meta::TypeList< BlockTransition,
+            touchgfx::meta::TypeList< WipeTransition<EAST>,
+            touchgfx::meta::Nil > > > >
             > GeneratedTransitionTypes;
 
     /**

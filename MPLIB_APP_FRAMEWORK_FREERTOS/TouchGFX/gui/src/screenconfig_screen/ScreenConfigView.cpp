@@ -13,7 +13,6 @@ char sclog[TEXTBUFF_SIZE];
 
 ScreenConfigView::ScreenConfigView()
 {
-
 }
 
 void ScreenConfigView::setupScreen()
@@ -22,7 +21,6 @@ void ScreenConfigView::setupScreen()
     updateTitle();
     updateScreen();
     updateBackground();
-    setButtonMode();
 }
 
 void ScreenConfigView::tearDownScreen()
@@ -30,35 +28,6 @@ void ScreenConfigView::tearDownScreen()
     ScreenConfigViewBase::tearDownScreen();
 }
 
-void ScreenConfigView::setButtonMode() {
-	if(SYS->getConfig(ENCRYPTSCREEN) == 1) {
-		modeCryptScreen.forceState(true);
-	}
-	else {
-		modeCryptScreen.forceState(false);
-	}
-
-	if(SYS->getConfig(ENCRYPTSD) == 1) {
-		modeCryptSD.forceState(true);
-	}
-	else {
-		modeCryptSD.forceState(false);
-	}
-}
-
-void ScreenConfigView::encryptOnSD()
-{
-	uint32_t mode = (modeCryptSD.getPressed() == true) ? 1 : 0;
-	SYS->setConfig(ENCRYPTSD, mode);
-	SD->setSDConfigEncyrptSD();
-}
-
-void ScreenConfigView::encryptOnScreen()
-{
-	uint32_t mode = (modeCryptScreen.getPressed() == true) ? 1 : 0;
-	SYS->setConfig(ENCRYPTSCREEN, mode);
-	SD->setSDConfigEncyrptScreen();
-}
 
 void ScreenConfigView::updateTitle()
 {
@@ -96,31 +65,42 @@ void ScreenConfigView::configListUpdateItem(ConfigItem& item, int16_t itemIndex)
 
 	item.setName(SYS->getConfigName(itemIndex));
 
+	if(itemIndex == MAGIC) {
+		item.setValue(SYS->getConfig(itemIndex));
+		goto retour;
+	}
+
 	if(encryptScreen and !encryptSD) {
 		payload[0] = SYS->getConfig(itemIndex);
 		SEC->encrypt(payload, encryptedText);
 		item.setValue(encryptedText[0]);
+		goto retour;
 	}
-	else {
-		if(!encryptScreen and encryptSD) {
-			payload[0] = SYS->getConfig(itemIndex);
-			SEC->decrypt(payload, decryptedText);
-			item.setValue(decryptedText[0]);
-		}
-		else { //!encryptScreen and !encryptSD -> plain native mode
-			item.setValue(SYS->getConfig(itemIndex));
-		}
+
+	if(!encryptScreen and encryptSD) {
+		payload[0] = SYS->getConfig(itemIndex);
+		SEC->decrypt(payload, decryptedText);
+		item.setValue(decryptedText[0]);
+		goto retour;
 	}
+
+	if(encryptScreen and encryptSD) { //
+		item.setValue(SYS->getConfig(itemIndex));
+		goto retour;
+	}
+
+	if(!encryptScreen and !encryptSD) { //
+		item.setValue(SYS->getConfig(itemIndex));
+		goto retour;
+	}
+
+retour:
+	return;
 }
 
 void ScreenConfigView::updateConfig()
 {
-//	for (int i = 0; i < SYS->getConfigCount(); i++) {
-//		configListListItems[i].initialize();
-//	}
-
-	configList.invalidate();
-	setButtonMode();
+	layoutConfig.invalidate();
 
 	snprintf(sclog, TEXTBUFF_SIZE, "received command to update config screen");
 	DS->pushToLogsMon("CONFIG", LOG_INFO, sclog);

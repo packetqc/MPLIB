@@ -502,214 +502,113 @@
         "CanvasBufferSize": 3600,
         "Components": [
           {
-            "Type": "BoxWithBorder",
-            "Name": "BackgroundScreenConfig",
+            "Type": "Container",
+            "Name": "layoutConfig",
             "Width": 240,
             "Height": 240,
-            "Color": {
-              "Red": 230,
-              "Green": 234,
-              "Blue": 250
-            },
-            "BorderColor": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "BorderSize": 3
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "screenTitle",
-            "Width": 240,
-            "Height": 40,
-            "CustomContainerDefinitionName": "ScreenTitle"
-          },
-          {
-            "Type": "ScrollList",
-            "Name": "configList",
-            "Y": 131,
-            "Width": 240,
-            "Height": 107,
-            "Snapping": true,
-            "ItemTemplateName": "ConfigItem",
-            "NumberofItems": 5,
-            "Easing": "Back",
-            "EasingOption": "Out",
-            "SwipeAcceleration": 1.0,
-            "DragAcceleration": 1.0,
-            "OverShootPercentage": 75
-          },
-          {
-            "Type": "FlexButton",
-            "Name": "GoBack",
-            "Y": 5,
-            "Width": 32,
-            "Height": 33,
-            "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
-            },
-            "ButtonStyles": [
+            "Components": [
               {
-                "Type": "IconButtonStyle",
-                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_38668C.svg.png",
-                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_E8F6FB.svg.png"
-              }
-            ]
-          },
-          {
-            "Type": "FlexButton",
-            "Name": "modeCryptSD",
-            "X": 32,
-            "Y": 50,
-            "Width": 25,
-            "Height": 25,
-            "ButtonTrigger": {
-              "Type": "ToggleButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "IconButtonStyle",
-                "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_25_25_E8F6FB.svg.png",
-                "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_25_25_E8F6FB.svg.png"
+                "Type": "BoxWithBorder",
+                "Name": "BackgroundScreenConfig",
+                "Width": 240,
+                "Height": 240,
+                "Color": {
+                  "Red": 230,
+                  "Green": 234,
+                  "Blue": 250
+                },
+                "BorderColor": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "BorderSize": 3
               },
               {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 25,
-                "Height": 25,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 1,
-                "ColorReleased": {
-                  "Red": 177,
-                  "Green": 209,
-                  "Blue": 224
+                "Type": "Box",
+                "Name": "backgroundTitle",
+                "X": 1,
+                "Width": 240,
+                "Height": 65,
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
                 },
-                "ColorPressed": {
-                  "Red": 117,
-                  "Green": 250,
-                  "Blue": 142
-                },
-                "ColorBorderReleased": {
-                  "Red": 177,
-                  "Green": 209,
-                  "Blue": 224
-                },
-                "ColorBorderPressed": {
-                  "Red": 117,
-                  "Green": 250,
-                  "Blue": 142
-                }
-              }
-            ]
-          },
-          {
-            "Type": "FlexButton",
-            "Name": "modeCryptScreen",
-            "X": 32,
-            "Y": 90,
-            "Width": 25,
-            "Height": 25,
-            "ButtonTrigger": {
-              "Type": "ToggleButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "IconButtonStyle",
-                "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_25_25_E8F6FB.svg.png",
-                "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_25_25_E8F6FB.svg.png"
+                "Alpha": 75
               },
               {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 25,
-                "Height": 25,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 1,
-                "ColorReleased": {
-                  "Red": 177,
-                  "Green": 209,
-                  "Blue": 224
+                "Type": "ScrollList",
+                "Name": "configList",
+                "Y": 65,
+                "Width": 240,
+                "Height": 173,
+                "Snapping": true,
+                "ItemTemplateName": "ConfigItem",
+                "NumberofItems": 5,
+                "Easing": "Back",
+                "EasingOption": "Out",
+                "SwipeAcceleration": 1.0,
+                "DragAcceleration": 1.0,
+                "OverShootPercentage": 75
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "GoBack",
+                "X": 1,
+                "Y": 19,
+                "Width": 32,
+                "Height": 33,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
                 },
-                "ColorPressed": {
-                  "Red": 117,
-                  "Green": 250,
-                  "Blue": 142
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_38668C.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_E8F6FB.svg.png"
+                  }
+                ]
+              },
+              {
+                "Type": "Line",
+                "Name": "line1",
+                "Y": 97,
+                "Width": 240,
+                "Height": 15,
+                "Visible": false,
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
                 },
-                "ColorBorderReleased": {
-                  "Red": 177,
-                  "Green": 209,
-                  "Blue": 224
+                "Alpha": 75,
+                "EndX": 240.0,
+                "LineWidth": 10.0,
+                "LineEndingStyle": "Round"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonChangeConfig",
+                "X": 33,
+                "Y": 9,
+                "Width": 175,
+                "Height": 50,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_normal.png",
+                "TextId": "__SingleUse_85AV",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
                 },
-                "ColorBorderPressed": {
-                  "Red": 117,
-                  "Green": 250,
-                  "Blue": 142
-                }
+                "PressedColor": {
+                  "Green": 255,
+                  "Blue": 81
+                },
+                "TextRotation": "0"
               }
             ]
-          },
-          {
-            "Type": "TextArea",
-            "Name": "labelCryptSD",
-            "X": 74,
-            "Y": 53,
-            "Width": 135,
-            "Height": 18,
-            "TextId": "__SingleUse_S8LO",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 56,
-              "Green": 102,
-              "Blue": 140
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "TextArea",
-            "Name": "labelCryptScreen",
-            "X": 74,
-            "Y": 93,
-            "Width": 136,
-            "Height": 18,
-            "TextId": "__SingleUse_TOXT",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 56,
-              "Green": 102,
-              "Blue": 140
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "Line",
-            "Name": "line1",
-            "Y": 124,
-            "Width": 240,
-            "Height": 15,
-            "Color": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "Alpha": 75,
-            "EndX": 240.0,
-            "LineWidth": 10.0,
-            "LineEndingStyle": "Round"
-          },
-          {
-            "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 56,
-            "Y": 11,
-            "Width": 128,
-            "Height": 18,
-            "TextId": "__SingleUse_I5LZ",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 57,
-              "Green": 147,
-              "Blue": 250
-            },
-            "AutoSize": true
           }
         ],
         "Interactions": [
@@ -734,6 +633,321 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "function1"
+            }
+          },
+          {
+            "InteractionName": "ChangeConfig",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonChangeConfig"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "ScreenChangeConfig"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "ScreenChangeConfig",
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "Background",
+            "Width": 240,
+            "Height": 240,
+            "Color": {
+              "Red": 230,
+              "Green": 234,
+              "Blue": 250
+            },
+            "BorderColor": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "BorderSize": 3
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "screenTitle1",
+            "Width": 240,
+            "Height": 40,
+            "CustomContainerDefinitionName": "ScreenTitle"
+          },
+          {
+            "Type": "ScrollableContainer",
+            "Name": "layoutChangeConfig",
+            "Y": 40,
+            "Width": 240,
+            "Height": 200,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisible": true,
+            "ScrollbarsVisibleOnPressed": true,
+            "ScrollbarsColor": {
+              "Red": 8,
+              "Green": 55,
+              "Blue": 102
+            },
+            "ScrollbarsAlpha": 179,
+            "Components": [
+              {
+                "Type": "FlexButton",
+                "Name": "modeCryptSD",
+                "X": 33,
+                "Y": 11,
+                "Width": 30,
+                "Height": 30,
+                "ButtonTrigger": {
+                  "Type": "ToggleButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_30_30_E8F6FB.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_30_30_E8F6FB.svg.png"
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 30,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "BorderSize": 1,
+                    "ColorReleased": {
+                      "Red": 177,
+                      "Green": 209,
+                      "Blue": 224
+                    },
+                    "ColorPressed": {
+                      "Red": 39,
+                      "Green": 194,
+                      "Blue": 67
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 177,
+                      "Green": 209,
+                      "Blue": 224
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 39,
+                      "Green": 194,
+                      "Blue": 67
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "modeCryptScreen",
+                "X": 33,
+                "Y": 55,
+                "Width": 30,
+                "Height": 30,
+                "ButtonTrigger": {
+                  "Type": "ToggleButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_30_30_E8F6FB.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_30_30_E8F6FB.svg.png"
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 30,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "BorderSize": 1,
+                    "ColorReleased": {
+                      "Red": 177,
+                      "Green": 209,
+                      "Blue": 224
+                    },
+                    "ColorPressed": {
+                      "Red": 39,
+                      "Green": 194,
+                      "Blue": 67
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 177,
+                      "Green": 209,
+                      "Blue": 224
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 39,
+                      "Green": 194,
+                      "Blue": 67
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "TextArea",
+                "Name": "labelCryptSD",
+                "X": 68,
+                "Y": 17,
+                "Width": 135,
+                "Height": 18,
+                "TextId": "__SingleUse_45YD",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 56,
+                  "Green": 102,
+                  "Blue": 140
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "labelCryptScreen",
+                "X": 68,
+                "Y": 61,
+                "Width": 136,
+                "Height": 18,
+                "TextId": "__SingleUse_59HH",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 56,
+                  "Green": 102,
+                  "Blue": 140
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonChangePassword",
+                "X": 33,
+                "Y": 210,
+                "Width": 175,
+                "Height": 50,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_normal.png",
+                "TextId": "__SingleUse_ECBN",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonSaveConfig",
+                "X": 33,
+                "Y": 150,
+                "Width": 175,
+                "Height": 50,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_normal.png",
+                "TextId": "__SingleUse_KJ7H",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "buttonResetFactory",
+                "X": 33,
+                "Y": 94,
+                "Width": 175,
+                "Height": 50,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_normal.png",
+                "TextId": "__SingleUse_X5QG",
+                "ReleasedColor": {
+                  "Red": 250,
+                  "Green": 5,
+                  "Blue": 5
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0"
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "titleChangeConfig",
+            "X": 44,
+            "Y": 11,
+            "Width": 163,
+            "Height": 18,
+            "TextId": "__SingleUse_G9FW",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 56,
+              "Green": 102,
+              "Blue": 140
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "ResetFactoryCall",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonResetFactory"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "resetFactory"
+            }
+          },
+          {
+            "InteractionName": "ResetFactory",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "ResetFactoryCall"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionBlock",
+              "ActionComponent": "ScreenConfig"
+            }
+          },
+          {
+            "InteractionName": "SaveConfigCall",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonSaveConfig"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "saveConfig"
+            }
+          },
+          {
+            "InteractionName": "SaveConfig",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "SaveConfigCall"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionWipe",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "ScreenConfig"
             }
           },
           {
