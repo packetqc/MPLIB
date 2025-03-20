@@ -41,6 +41,14 @@ public:
     {
         // Override and implement this function in ScreenChangeConfig
     }
+    virtual void SetDisplayColor()
+    {
+        // Override and implement this function in ScreenChangeConfig
+    }
+    virtual void RotateScreen()
+    {
+        // Override and implement this function in ScreenChangeConfig
+    }
 
 protected:
     FrontendApplication& application() {
@@ -54,10 +62,15 @@ protected:
     touchgfx::BoxWithBorder Background;
     ScreenTitle screenTitle1;
     touchgfx::ScrollableContainer layoutChangeConfig;
+    touchgfx::IconButtonStyle< touchgfx::ToggleButtonTrigger >  screenRotate;
+    touchgfx::IconButtonStyle< touchgfx::ToggleButtonTrigger >  screenLight;
     touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ToggleButtonTrigger >  >  modeCryptSD;
     touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ToggleButtonTrigger >  >  modeCryptScreen;
     touchgfx::TextArea labelCryptSD;
     touchgfx::TextArea labelCryptScreen;
+    touchgfx::TextArea labelCryptScreenDecrypt;
+    touchgfx::TextArea labelLightScreen;
+    touchgfx::TextArea labelRotateScreen;
     touchgfx::ButtonWithLabel buttonChangePassword;
     touchgfx::ButtonWithLabel buttonSaveConfig;
     touchgfx::ButtonWithLabel buttonResetFactory;

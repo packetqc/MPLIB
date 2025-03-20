@@ -42,7 +42,7 @@
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
             "IndicatorImageHighlight": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_on_active.png",
             "EndSwipeElasticWidth": 50,
-            "SelectedPage": "Welcome",
+            "SelectedPage": "Logs",
             "Components": [
               {
                 "Type": "Container",
@@ -352,16 +352,18 @@
           {
             "Type": "FlexButton",
             "Name": "screenLight",
-            "X": 200,
-            "Y": 5,
-            "Width": 38,
-            "Height": 33,
+            "X": 2,
+            "Y": 198,
+            "Width": 46,
+            "Height": 40,
             "ButtonTrigger": {
               "Type": "ToggleButtonTrigger"
             },
             "ButtonStyles": [
               {
                 "Type": "IconButtonStyle",
+                "X": 6,
+                "Y": 3,
                 "IconReleased": "__generated\\icon_theme_images_image_wb_sunny_35_35_38668C.svg.png",
                 "IconPressed": "__generated\\icon_theme_images_image_wb_sunny_35_35_FFA600.svg.png"
               }
@@ -370,6 +372,8 @@
           {
             "Type": "FlexButton",
             "Name": "Status_STORAGE",
+            "X": 192,
+            "Y": 198,
             "Width": 46,
             "Height": 40,
             "ButtonTrigger": {
@@ -555,18 +559,18 @@
               {
                 "Type": "FlexButton",
                 "Name": "GoBack",
-                "X": 1,
-                "Y": 19,
-                "Width": 32,
-                "Height": 33,
+                "X": 7,
+                "Y": 13,
+                "Width": 44,
+                "Height": 44,
                 "ButtonTrigger": {
                   "Type": "ClickButtonTrigger"
                 },
                 "ButtonStyles": [
                   {
                     "Type": "IconButtonStyle",
-                    "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_38668C.svg.png",
-                    "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_33_33_E8F6FB.svg.png"
+                    "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_44_44_38668C.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_44_44_E8F6FB.svg.png"
                   }
                 ]
               },
@@ -590,8 +594,8 @@
               {
                 "Type": "ButtonWithLabel",
                 "Name": "buttonChangeConfig",
-                "X": 33,
-                "Y": 9,
+                "X": 55,
+                "Y": 10,
                 "Width": 175,
                 "Height": 50,
                 "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
@@ -695,24 +699,64 @@
             "Components": [
               {
                 "Type": "FlexButton",
-                "Name": "modeCryptSD",
-                "X": 33,
-                "Y": 11,
-                "Width": 30,
-                "Height": 30,
+                "Name": "screenRotate",
+                "X": 17,
+                "Y": -101,
+                "Width": 44,
+                "Height": 44,
+                "Visible": false,
+                "ButtonTrigger": {
+                  "Type": "ToggleButtonTrigger",
+                  "InitalStatePressed": true
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "X": 1,
+                    "Y": 1,
+                    "IconReleased": "__generated\\icon_theme_images_image_rotate_right_44_44_38668C.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_image_rotate_left_44_44_38668C.svg.png"
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "screenLight",
+                "X": 17,
+                "Y": 125,
+                "Width": 44,
+                "Height": 44,
                 "ButtonTrigger": {
                   "Type": "ToggleButtonTrigger"
                 },
                 "ButtonStyles": [
                   {
                     "Type": "IconButtonStyle",
-                    "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_30_30_E8F6FB.svg.png",
-                    "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_30_30_E8F6FB.svg.png"
+                    "IconReleased": "__generated\\icon_theme_images_image_wb_sunny_44_44_38668C.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_image_wb_sunny_44_44_FFA600.svg.png"
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "modeCryptSD",
+                "X": 17,
+                "Y": 11,
+                "Width": 44,
+                "Height": 44,
+                "ButtonTrigger": {
+                  "Type": "ToggleButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_44_44_E8F6FB.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_44_44_E8F6FB.svg.png"
                   },
                   {
                     "Type": "BoxWithBorderButtonStyle",
-                    "Width": 30,
-                    "Height": 30,
+                    "Width": 44,
+                    "Height": 44,
                     "LockToFlexButtonSize": true,
                     "BorderSize": 1,
                     "ColorReleased": {
@@ -741,23 +785,23 @@
               {
                 "Type": "FlexButton",
                 "Name": "modeCryptScreen",
-                "X": 33,
-                "Y": 55,
-                "Width": 30,
-                "Height": 30,
+                "X": 17,
+                "Y": 69,
+                "Width": 44,
+                "Height": 44,
                 "ButtonTrigger": {
                   "Type": "ToggleButtonTrigger"
                 },
                 "ButtonStyles": [
                   {
                     "Type": "IconButtonStyle",
-                    "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_30_30_E8F6FB.svg.png",
-                    "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_30_30_E8F6FB.svg.png"
+                    "IconReleased": "__generated\\icon_theme_images_notification_no_encryption_gmailerrorred_44_44_E8F6FB.svg.png",
+                    "IconPressed": "__generated\\icon_theme_images_notification_enhanced_encryption_44_44_E8F6FB.svg.png"
                   },
                   {
                     "Type": "BoxWithBorderButtonStyle",
-                    "Width": 30,
-                    "Height": 30,
+                    "Width": 44,
+                    "Height": 44,
                     "LockToFlexButtonSize": true,
                     "BorderSize": 1,
                     "ColorReleased": {
@@ -786,8 +830,8 @@
               {
                 "Type": "TextArea",
                 "Name": "labelCryptSD",
-                "X": 68,
-                "Y": 17,
+                "X": 71,
+                "Y": 24,
                 "Width": 135,
                 "Height": 18,
                 "TextId": "__SingleUse_45YD",
@@ -802,8 +846,8 @@
               {
                 "Type": "TextArea",
                 "Name": "labelCryptScreen",
-                "X": 68,
-                "Y": 61,
+                "X": 71,
+                "Y": 82,
                 "Width": 136,
                 "Height": 18,
                 "TextId": "__SingleUse_59HH",
@@ -816,10 +860,60 @@
                 "AutoSize": true
               },
               {
+                "Type": "TextArea",
+                "Name": "labelCryptScreenDecrypt",
+                "X": 71,
+                "Y": 82,
+                "Width": 138,
+                "Height": 18,
+                "Visible": false,
+                "TextId": "__SingleUse_TD8D",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 56,
+                  "Green": 102,
+                  "Blue": 140
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "labelLightScreen",
+                "X": 71,
+                "Y": 138,
+                "Width": 139,
+                "Height": 18,
+                "TextId": "__SingleUse_GJZU",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 56,
+                  "Green": 102,
+                  "Blue": 140
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "labelRotateScreen",
+                "X": 71,
+                "Y": -88,
+                "Width": 129,
+                "Height": 18,
+                "Visible": false,
+                "TextId": "__SingleUse_KOO7",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 56,
+                  "Green": 102,
+                  "Blue": 140
+                },
+                "AutoSize": true
+              },
+              {
                 "Type": "ButtonWithLabel",
                 "Name": "buttonChangePassword",
                 "X": 33,
-                "Y": 210,
+                "Y": 308,
                 "Width": 175,
                 "Height": 50,
                 "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
@@ -841,7 +935,7 @@
                 "Type": "ButtonWithLabel",
                 "Name": "buttonSaveConfig",
                 "X": 33,
-                "Y": 150,
+                "Y": 185,
                 "Width": 175,
                 "Height": 50,
                 "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
@@ -863,7 +957,7 @@
                 "Type": "ButtonWithLabel",
                 "Name": "buttonResetFactory",
                 "X": 33,
-                "Y": 94,
+                "Y": 246,
                 "Width": 175,
                 "Height": 50,
                 "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
@@ -886,10 +980,10 @@
           {
             "Type": "TextArea",
             "Name": "titleChangeConfig",
-            "X": 44,
-            "Y": 11,
-            "Width": 163,
-            "Height": 18,
+            "X": 11,
+            "Y": 8,
+            "Width": 218,
+            "Height": 24,
             "TextId": "__SingleUse_G9FW",
             "TextRotation": "0",
             "Color": {
@@ -952,6 +1046,7 @@
           },
           {
             "InteractionName": "EncryptOnSD",
+            "HasCompletedTrigger": true,
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "modeCryptSD"
@@ -963,6 +1058,7 @@
           },
           {
             "InteractionName": "EncryptOnScreen",
+            "HasCompletedTrigger": true,
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "modeCryptScreen"
@@ -970,6 +1066,65 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "encryptOnScreen"
+            }
+          },
+          {
+            "InteractionName": "SetDisplayColor",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "screenLight"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "SetDisplayColor"
+            }
+          },
+          {
+            "InteractionName": "RotateScreen",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "screenRotate"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "RotateScreen"
+            }
+          },
+          {
+            "InteractionName": "EncryptOnSDsetupScreen",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "EncryptOnSD"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "ScreenChangeConfig"
+            }
+          },
+          {
+            "InteractionName": "EncryptOnScreenSetupScreen",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "EncryptOnScreen"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "ScreenChangeConfig"
+            }
+          },
+          {
+            "InteractionName": "screenLightSetupScreen",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "SetDisplayColor"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "ScreenChangeConfig"
             }
           }
         ]
@@ -1125,7 +1280,7 @@
             "Snapping": true,
             "ItemTemplateName": "LogItem",
             "ItemMargin": 3,
-            "Easing": "Linear",
+            "Easing": "Cubic",
             "EasingOption": "Out",
             "SwipeAcceleration": 1.0,
             "DragAcceleration": 1.0,
@@ -1178,6 +1333,7 @@
                 "Y": 8,
                 "Width": 26,
                 "Height": 26,
+                "Visible": false,
                 "ButtonTrigger": {
                   "Type": "TouchButtonTrigger"
                 },
@@ -1196,6 +1352,7 @@
                 "Y": 7,
                 "Width": 24,
                 "Height": 24,
+                "Visible": false,
                 "ButtonTrigger": {
                   "Type": "TouchButtonTrigger"
                 },
@@ -1346,7 +1503,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "ScreenLogs",
+    "StartupScreenName": "ScreenChangeConfig",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

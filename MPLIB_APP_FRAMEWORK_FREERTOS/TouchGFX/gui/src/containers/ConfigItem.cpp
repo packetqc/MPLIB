@@ -63,12 +63,10 @@ touchgfx::Unicode::UnicodeChar* ConfigItem::getValue()
 
 void ConfigItem::setValue(uint32_t value)
 {
-	char valueBuffer[25];
-	itoa(value, valueBuffer, 25);
+	touchgfx::Unicode::UnicodeChar valueBuffer[25];
+	touchgfx::Unicode::itoa(value, valueBuffer, 25, 16);
 
 	touchgfx::Unicode::snprintf(itemValueBuffer, 25, valueBuffer);
 	itemValue.resizeToCurrentText();
-//	itemValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UMFH));
-//	itemValue.setColor(color);
 	itemValue.invalidate();
 }

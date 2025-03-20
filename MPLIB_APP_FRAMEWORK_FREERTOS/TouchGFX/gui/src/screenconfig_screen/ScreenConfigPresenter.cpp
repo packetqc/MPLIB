@@ -36,3 +36,22 @@ void ScreenConfigPresenter::setColorMode(uint32_t mode)
 	model->setColorMode(mode);
 }
 
+uint32_t ScreenConfigPresenter::getCryptModeSD()
+{
+	return model->getCryptModeSD();
+}
+
+void ScreenConfigPresenter::setCryptModeSD(bool mode)
+{
+	model->setCryptModeSD(mode);
+}
+
+uint32_t ScreenConfigPresenter::getCryptModeScreen()
+{
+	return model->getCryptModeScreen();
+}
+
+void ScreenConfigPresenter::setCryptModeScreen(bool mode)
+{
+	model->setCryptModeScreen(mode);
+}

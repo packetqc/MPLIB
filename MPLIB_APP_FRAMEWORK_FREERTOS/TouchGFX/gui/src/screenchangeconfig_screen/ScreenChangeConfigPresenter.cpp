@@ -40,3 +40,17 @@ void ScreenChangeConfigPresenter::saveConfig()
 	view.saveConfig();
 }
 
+void ScreenChangeConfigPresenter::SetDisplayColor()
+{
+	model->SetDisplayColor();
+}
+
+uint32_t ScreenChangeConfigPresenter::getColorMode()
+{
+	return model->getColorMode();
+}
+
+bool ScreenChangeConfigPresenter::isScreenLightPressed() {
+	return view.isScreenLightPressed();
+}
+

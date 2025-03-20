@@ -11,7 +11,7 @@ LogPanelBase::LogPanelBase() :
     LogListDONOTUSE.setPosition(0, 0, 240, 160);
     LogListDONOTUSE.setHorizontal(false);
     LogListDONOTUSE.setCircular(false);
-    LogListDONOTUSE.setEasingEquation(touchgfx::EasingEquations::linearEaseOut);
+    LogListDONOTUSE.setEasingEquation(touchgfx::EasingEquations::cubicEaseOut);
     LogListDONOTUSE.setSwipeAcceleration(10);
     LogListDONOTUSE.setDragAcceleration(10);
     LogListDONOTUSE.setNumberOfItems(0);

@@ -48,6 +48,11 @@ public:
     virtual uint32_t getCryptModeScreen() {return 0;};
     virtual void setCryptModeScreen(bool mode) {};
 
+    virtual void SetDisplayColor() {};
+    virtual void getDisplayColor() {};
+
+    virtual bool isScreenLightPressed() {return false;};
+
 protected:
     Model* model;
 };

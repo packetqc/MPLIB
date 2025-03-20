@@ -28,6 +28,11 @@ public:
 
 	void		updateConfig();
 
+	void 		SetDisplayColor();
+	void 		getDisplayColor();
+
+	bool 		isScreenLightPressed();
+
 protected:
     ModelListener* 	modelListener;
 

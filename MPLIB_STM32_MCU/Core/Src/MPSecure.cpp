@@ -32,6 +32,7 @@
 //=======================================================================================
 extern RNG_HandleTypeDef hrng;
 extern CRYP_HandleTypeDef hcryp;
+extern uint32_t pInitVectSAES[4];
 
 //=======================================================================================
 //
@@ -46,15 +47,20 @@ uint32_t AESKey256[8] = {0x603DEB10 ,0x15CA71BE ,0x2B73AEF0 ,0x857D7781 ,
 //                           0x30C81C46 ,0xA35CE411 ,0xE5FBC119 ,0x1A0A52EF ,
 //                           0xF69F2445 ,0xDF4F9B17 ,0xAD2B417B ,0xE66C3710};
 
-uint32_t Plaintext[16] = { 0x6BC1BEE2 ,0x2E409F96 ,0xE93D7E11 ,0x7393172A ,
-                           0xAE2D8A57 ,0x1E03AC9C ,0x9EB76FAC ,0x45AF8E51 ,
-                           0x30C81C46 ,0xA35CE411 ,0xE5FBC119 ,0x1A0A52EF ,
-                           0xF69F2445 ,0xDF4F9B17 ,0xAD2B417B ,0xE66C3710};
+uint32_t Plaintext[16] = { 	0x0 ,0x0 ,0x0 ,0x0 ,
+							0x0 ,0x0 ,0x0 ,0x0 ,
+							0x0 ,0x0 ,0x0 ,0x0 ,
+							0x0 ,0x0 ,0x0 ,0x0 		};
 
-uint32_t CiphertextAESECB256[16] = {0xF3EED1BD ,0xB5D2A03C ,0x064B5A7E ,0x3DB181F8 ,
-                                    0x591CCB10 ,0xD410ED26 ,0xDC5BA74A ,0x31362870 ,
-                                    0xB6ED21B9 ,0x9CA6F4F9 ,0xF153E7B1 ,0xBEAFED1D ,
-                                    0x23304B7A ,0x39F9F3FF ,0x067D8D8F ,0x9E24ECC7};
+//uint32_t CiphertextAESECB256[16] = {0xE568F681 ,0xB5D2A03C ,0x064B5A7E ,0x3DB181F8 ,
+//                                    0x591CCB10 ,0xD410ED26 ,0xDC5BA74A ,0x31362870 ,
+//                                    0xB6ED21B9 ,0x9CA6F4F9 ,0xF153E7B1 ,0xBEAFED1D ,
+//                                    0x23304B7A ,0x39F9F3FF ,0x067D8D8F ,0x9E24ECC7};
+
+uint32_t Ciphertext[16] = {0xE568F681,0x0 ,0x0 ,0x0 ,
+									0x0 ,0x0 ,0x0 ,0x0 ,
+									0x0 ,0x0 ,0x0 ,0x0 ,
+									0x0 ,0x0 ,0x0 ,0x0 		};
 
 
 
@@ -178,7 +184,7 @@ void MPSecure::heartBeat() {
 //=======================================================================================
 void MPSecure::SEC_Initialize()
 {
-	isInitialized = 1;
+	isInitialized = 0;
 	status_SYS 	= SECURE_NOTOK;
 
 	/* User key AESKey256 encryption*/
@@ -207,7 +213,6 @@ void MPSecure::SEC_Initialize()
 
 
 	if( test() ) {
-
 		isInitialized = 1;
 		status_SYS 	= SECURE_OK;
 	}
@@ -215,6 +220,7 @@ void MPSecure::SEC_Initialize()
 		isInitialized = 0;
 	}
 
+	postEncrypt();
 
 	if (isInitialized == 1)
 	{
@@ -257,26 +263,18 @@ bool MPSecure::getStatus() {
 bool MPSecure::init() {
 	bool retour = false;
 
-//	linked = true;
-	started = true;
-
-//	snprintf(log, LOG_LENGTH, "Secure services initialization...");
-//	DS->pushToLogsMon(name, LOG_OK, log);
-	retour = true;
+	snprintf(log, LOG_LENGTH, "Secure services initialization...");
+	DS->pushToLogsMon(name, LOG_OK, log);
 
 	SEC_Initialize();
 
-//	uint32_t encryptBufferSrc[PLAINTEXT_SIZE];
-//	uint32_t encryptBufferDst[PLAINTEXT_SIZE];
-//
-//	uint32_t decryptBuffer[PLAINTEXT_SIZE];
-////	uint32_t decryptBuffer[PLAINTEXT_SIZE];
-//
-//	encrypt(encryptBufferSrc, decryptBuffer);
-//	decrypt(decryptBuffer, encryptBufferDst);
+	retour = (isInitialized) ? true : false;
 
-//	snprintf(log, LOG_LENGTH, "Secure services initialization completed");
-//	DS->pushToLogsMon(name, LOG_OK, log);
+	snprintf(log, LOG_LENGTH, "Secure services initialization completed");
+	DS->pushToLogsMon(name, LOG_OK, log);
+
+	started = true;
+//	linked = true;
 
 	return retour;
 }
@@ -307,24 +305,28 @@ bool MPSecure::test()
 	{
 		/* Processing Error */
 		retour = false;
-		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt failed !!!"); //: %s", Plaintext);
+//		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt failed !!!");
+		sprintf(log, "HAL_CRYP_Encrypt failed: %8X !!!", EncryptedText[0]);
 		DS->pushToLogsMon(name, LOG_WARNING, log);
 	}
 	else {
-		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt ok"); //: %s", Plaintext);
+//		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt ok");
+		sprintf(log, "HAL_CRYP_Encrypt ok: %8X", EncryptedText[0]);
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
 
+
 	/*Compare with expected result, because we know the original encrypted key*/
-	if(memcmp(EncryptedText, CiphertextAESECB256, 64) != 0)
+//	if(memcmp(EncryptedText, Ciphertext, 16) != 0)
+	if(memcmp(EncryptedText, Ciphertext, 1) != 0)
 	{
 		/* Processing Error */
 		retour = false;
-		snprintf(log, LOG_LENGTH, "encrypt memcmp failed !!!"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "encrypt memcmp failed !!!");
 		DS->pushToLogsMon(name, LOG_WARNING, log);
 	}
 	else {
-		snprintf(log, LOG_LENGTH, "encrypt memcmp ok"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "encrypt memcmp ok");
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
 
@@ -334,49 +336,52 @@ bool MPSecure::test()
 	for(int i=0; i<2; i++) {
 		bool dretour = true;
 
-		sprintf(log, "Decrypt test #%d...", i+1); //: %s", Plaintext);
+		sprintf(log, "Decrypt test #%d...", i+1);
 		DS->pushToLogsMon(name, LOG_INFO, log);
 
 		if (HAL_CRYP_Decrypt(&hcryp, EncryptedText, 16, DecryptedText, TIMEOUT_VALUE) != HAL_OK)
 		{
 			/* Processing Error */
 			dretour = false;
-			snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt failed !!!"); //: %s", Plaintext);
+//			snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt failed !!!");
+			sprintf(log, "HAL_CRYP_Decrypt failed: %8X !!!", DecryptedText[0]);
 			DS->pushToLogsMon(name, LOG_WARNING, log);
 		}
 		else {
-			snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt ok"); //: %s", Plaintext);
+//			snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt ok");
+			sprintf(log, "HAL_CRYP_Decrypt ok: %8X", DecryptedText[0]);
 			DS->pushToLogsMon(name, LOG_INFO, log);
 		}
 
 
 		/*Compare decryption result with Plaintext*/
-		if(memcmp(DecryptedText, Plaintext, 64) != 0)
+//		if(memcmp(DecryptedText, Plaintext, 16) != 0)
+		if(memcmp(DecryptedText, Plaintext, 1) != 0)
 		{
 			/* Processing Error */
 			dretour = false;
-			snprintf(log, LOG_LENGTH, "decrypt memcmp failed !!!"); //: %s", Plaintext);
+			snprintf(log, LOG_LENGTH, "decrypt memcmp failed !!!");
 			DS->pushToLogsMon(name, LOG_WARNING, log);
 		}
 		else {
-			snprintf(log, LOG_LENGTH, "decrypt memcmp ok"); //: %s", Plaintext);
+			snprintf(log, LOG_LENGTH, "decrypt memcmp ok");
 			DS->pushToLogsMon(name, LOG_INFO, log);
 		}
 
 		if(dretour) {
-			sprintf(log, "Decrypt test #%d completed ok", i+1); //: %s", Plaintext);
+			sprintf(log, "Decrypt test #%d completed ok", i+1);
 			DS->pushToLogsMon(name, LOG_INFO, log);
 		}
 		else {
 			retour = false;
-			sprintf(log, "Decrypt test #%d completed failed !!!", i+1); //: %s", Plaintext);
+			sprintf(log, "Decrypt test #%d completed failed !!!", i+1);
 			DS->pushToLogsMon(name, LOG_WARNING, log);
 		}
 
 	}
 
 	if(retour) {
-		snprintf(log, LOG_LENGTH, "Secure test completed with success"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "Secure test completed with success");
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
 	else {
@@ -397,15 +402,15 @@ bool MPSecure::encrypt(uint32_t *source, uint32_t *destination)
 	snprintf(log, LOG_LENGTH, "encrypt data...");
 	DS->pushToLogsMon(name, LOG_INFO, log);
 
-	if (HAL_CRYP_Encrypt(&hcryp, source, 16, destination, TIMEOUT_VALUE) != HAL_OK)
+
+	if (HAL_CRYP_Encrypt(&hcryp, source, 1, destination, TIMEOUT_VALUE) != HAL_OK)
 	{
-		/* Processing Error */
 		retour = false;
-		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt failed !!!"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt failed !!!");
 		DS->pushToLogsMon(name, LOG_WARNING, log);
 	}
 	else {
-		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt ok"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Encrypt ok");
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
 
@@ -421,6 +426,7 @@ bool MPSecure::encrypt(uint32_t *source, uint32_t *destination)
 
 	postEncrypt();
 
+retour:
 	return retour;
 }
 
@@ -431,20 +437,23 @@ bool MPSecure::decrypt(uint32_t *source, uint32_t *destination)
 {
 	bool retour = true;
 
-	snprintf(log, LOG_LENGTH, "decrypt data..."); //: %s", Plaintext);
+	snprintf(log, LOG_LENGTH, "decrypt data...");
+
 	DS->pushToLogsMon(name, LOG_INFO, log);
 
-	if (HAL_CRYP_Decrypt(&hcryp, source, 16, destination, TIMEOUT_VALUE) != HAL_OK)
+
+
+	if (HAL_CRYP_Decrypt(&hcryp, source, 1, destination, TIMEOUT_VALUE) != HAL_OK)
 	{
-		/* Processing Error */
 		retour = false;
-		snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt failed !!!"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt failed !!!");
 		DS->pushToLogsMon(name, LOG_WARNING, log);
 	}
 	else {
-		snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt ok"); //: %s", Plaintext);
+		snprintf(log, LOG_LENGTH, "HAL_CRYP_Decrypt ok");
 		DS->pushToLogsMon(name, LOG_INFO, log);
 	}
+
 
 
 	if(retour) {

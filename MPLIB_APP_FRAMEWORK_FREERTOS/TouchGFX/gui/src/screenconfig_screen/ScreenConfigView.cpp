@@ -65,7 +65,8 @@ void ScreenConfigView::configListUpdateItem(ConfigItem& item, int16_t itemIndex)
 
 	item.setName(SYS->getConfigName(itemIndex));
 
-	if(itemIndex == MAGIC) {
+//	if(itemIndex == MAGIC) {
+	if(itemIndex  < ENCRYPTAT) {
 		item.setValue(SYS->getConfig(itemIndex));
 		goto retour;
 	}
@@ -112,4 +113,24 @@ uint32_t ScreenConfigView::getColorMode() {
 
 void ScreenConfigView::setColorMode(uint32_t mode) {
 	presenter->setColorMode(mode);
+}
+
+uint32_t ScreenConfigView::getCryptModeSD()
+{
+	return presenter->getCryptModeSD();
+}
+
+void ScreenConfigView::setCryptModeSD(bool mode)
+{
+	presenter->setCryptModeSD(mode);
+}
+
+uint32_t ScreenConfigView::getCryptModeScreen()
+{
+	return presenter->getCryptModeScreen();
+}
+
+void ScreenConfigView::setCryptModeScreen(bool mode)
+{
+	presenter->setCryptModeScreen(mode);
 }

@@ -35,6 +35,11 @@ public:
 
 	void		saveConfig();
 
+	void 		SetDisplayColor();
+
+	bool 		isScreenLightPressed();
+	uint32_t 	getColorMode();
+
 private:
     ScreenChangeConfigPresenter();
 

@@ -17,12 +17,10 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoScreenLogsScreenNoTransition();
+        gotoScreenChangeConfigScreenNoTransition();
     }
 
     // ScreenLogs
-    void gotoScreenLogsScreenNoTransition();
-
     void gotoScreenLogsScreenSlideTransitionEast();
 
     // ScreenConfig
@@ -33,6 +31,8 @@ public:
     void gotoScreenConfigScreenWipeTransitionEast();
 
     // ScreenChangeConfig
+    void gotoScreenChangeConfigScreenNoTransition();
+
     void gotoScreenChangeConfigScreenSlideTransitionNorth();
 
 protected:
@@ -41,8 +41,6 @@ protected:
     Model& model;
 
     // ScreenLogs
-    void gotoScreenLogsScreenNoTransitionImpl();
-
     void gotoScreenLogsScreenSlideTransitionEastImpl();
 
     // ScreenConfig
@@ -53,6 +51,8 @@ protected:
     void gotoScreenConfigScreenWipeTransitionEastImpl();
 
     // ScreenChangeConfig
+    void gotoScreenChangeConfigScreenNoTransitionImpl();
+
     void gotoScreenChangeConfigScreenSlideTransitionNorthImpl();
 };
 

@@ -44,10 +44,10 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     configList.setDrawables(configListListItems, updateItemCallback);
     layoutConfig.add(configList);
 
-    GoBack.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_33_33_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_33_33_E8F6FB_SVG_ID));
+    GoBack.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_44_44_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_44_44_E8F6FB_SVG_ID));
     GoBack.setIconXY(0, 0);
     GoBack.setAction(flexButtonCallback);
-    GoBack.setPosition(1, 19, 32, 33);
+    GoBack.setPosition(7, 13, 44, 44);
     layoutConfig.add(GoBack);
 
     line1.setPosition(0, 97, 240, 15);
@@ -61,7 +61,7 @@ ScreenConfigViewBase::ScreenConfigViewBase() :
     line1.setVisible(false);
     layoutConfig.add(line1);
 
-    buttonChangeConfig.setXY(33, 9);
+    buttonChangeConfig.setXY(55, 10);
     buttonChangeConfig.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_SMALL_ROUNDED_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_SMALL_ROUNDED_PRESSED_ID));
     buttonChangeConfig.setLabelText(touchgfx::TypedText(T___SINGLEUSE_85AV));
     buttonChangeConfig.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));

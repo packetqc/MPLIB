@@ -19,7 +19,8 @@ LogPanel::LogPanel():
     LogList.setPosition(0, 0, 628, 160);
 	LogList.setHorizontal(false);
 	LogList.setCircular(false);
-	LogList.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
+//	LogList.setEasingEquation(touchgfx::EasingEquations::linearEaseIn);
+	LogList.setEasingEquation(touchgfx::EasingEquations::cubicEaseOut);
 	LogList.setSwipeAcceleration(10);
 	LogList.setDragAcceleration(10);
 	LogList.setNumberOfItems(0);

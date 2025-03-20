@@ -21,6 +21,12 @@ public:
 
     void resetFactory();
 
+    bool isScreenLightPressed();
+
+    void updateBackground();
+
+    void SetDisplayColor();
+
 protected:
 };
 

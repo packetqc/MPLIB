@@ -135,8 +135,7 @@ void StartSDServices(void *argument) {
 				SD->saveConfigPassword();
 				break;
 			case SD_RESET_FACTORY:
-//				SD->eraseConfig();
-				SD->setSDConfig();
+				SD->eraseConfig();
 				HAL_NVIC_SystemReset();
 			default:
 				break;
@@ -176,14 +175,18 @@ void StartSystemServices(ULONG thread_input) {
 //
 //=======================================================================================
 void MPSDCard::eraseConfig() {
-	if( HAL_SD_Erase(&hsd1,MP_SD_CONFIG_CONFIG_ON, MPBUFFER) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SD_Erase failed");
-		DS->pushToLogsMon(name, LOG_WARNING, log);
+	for(uint32_t i = MP_SD_CONFIG_CONFIG_ON; i < BUFFER_SIZE; i++ ) {
+		CONFIG[i] = 0;
 	}
-	else {
-		snprintf(log, LOG_LENGTH, "HAL_SD_Erase succeed");
-		DS->pushToLogsMon(name, LOG_OK, log);
-	}
+
+	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+
+	initializeSDWrite();
+
+	deInitializeSDWrite();
+
+	snprintf(log, LOG_LENGTH, "sdcard erase succeed");
+	DS->pushToLogsMon(name, LOG_OK, log);
 }
 
 //=======================================================================================
@@ -216,17 +219,23 @@ void MPSDCard::processConfig(uint8_t index)
 			payload[i] = SYS->getConfig(i);
 		}
 
-		for(uint8_t i=ENCRYPTAT; i<SYS->getConfigCount(); i++) {
-			if(index == MAGIC or index == i) {
-				SEC->encrypt(payload, encryptedText);
-				CONFIG[i] = encryptedText[i];
-			}
-			else {
-				CONFIG[i] = payload[i];
+		if(!isToEncryptSD) {
+			for(uint8_t i=ENCRYPTAT; i<SYS->getConfigCount(); i++) {
+				SEC->decrypt(payload, decryptedText);
+				CONFIG[i] = decryptedText[i];
 			}
 		}
-
-		isEncrypted = true;
+		else {
+			for(uint8_t i=ENCRYPTAT; i<SYS->getConfigCount(); i++) {
+				if( index == i) {
+					SEC->encrypt(payload, encryptedText);
+					CONFIG[i] = encryptedText[i];
+				}
+				else {
+					CONFIG[i] = payload[i];
+				}
+			}
+		}
 	}
 	else { //SDCARD NOT ENCRYPTED
 		if(isToEncryptSD) { //isToEncryptSD == true
@@ -239,6 +248,8 @@ void MPSDCard::processConfig(uint8_t index)
 			for(uint8_t i=ENCRYPTAT; i<SYS->getConfigCount(); i++) {
 				CONFIG[i] = encryptedText[i];
 			}
+
+			isEncrypted = true;
 		}
 		else {
 			for(uint8_t i=ENCRYPTAT; i<SYS->getConfigCount(); i++) {
@@ -374,7 +385,7 @@ void MPSDCard::saveConfigEncryptScreen() {
 	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
 	DS->pushToLogsMon(name, LOG_OK, log);
 
-	sprintf(log, "CONFIG[LIGHT] = %lu", CONFIG[ENCRYPTSCREEN]);
+	sprintf(log, "CONFIG[ENCRYPTSCREEN] = %lu", CONFIG[ENCRYPTSCREEN]);
 	DS->pushToLogsMon(name, LOG_OK, log);
 
 	snprintf(log, LOG_LENGTH, "encrypt on screen configuration succeed");
@@ -421,46 +432,46 @@ void MPSDCard::saveConfigEncryptSD() {
 
 	initializeSDWrite();
 
-	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-	}
-////	else {
-////		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
-////		DS->pushToLogsMon(name, LOG_OK, log);
-////	}
-//
+//	if(HAL_SDEx_DMALinkedList_LockNode(&pLinkNode[0]) != HAL_OK) {
+//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode failed !!!");
+//		DS->pushToLogsMon(name, LOG_WARNING, log);
+//	}
+//////	else {
+//////		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_LockNode succeed");
+//////		DS->pushToLogsMon(name, LOG_OK, log);
+//////	}
+////
+//////
+//////	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
+//////	CONFIG[ENCRYPTSD] = SYS->getConfig(ENCRYPTSD);
 ////
 ////	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
 ////	CONFIG[ENCRYPTSD] = SYS->getConfig(ENCRYPTSD);
+////
+////	uint32_t encryptedText[PLAINTEXT_SIZE] = {0x0};
+////	uint32_t decryptedText[PLAINTEXT_SIZE] = {0x0};
+////	uint32_t payload[PLAINTEXT_SIZE] = {0x0};
+////
+////	for(int i=0; i<SYS->getConfigCount(); i++) {
+////		payload[i] = SYS->getConfig(i);
+////	}
+////
+////	SEC->encrypt(payload, encryptedText);
+////
+////	for(int i=1; i<SYS->getConfigCount(); i++) {
+////		CONFIG[i] = encryptedText[i];
+////	}
 //
-//	CONFIG[MAGIC] = MP_SD_CONFIG_CONFIG_MAGIC;
-//	CONFIG[ENCRYPTSD] = SYS->getConfig(ENCRYPTSD);
 //
-//	uint32_t encryptedText[PLAINTEXT_SIZE] = {0x0};
-//	uint32_t decryptedText[PLAINTEXT_SIZE] = {0x0};
-//	uint32_t payload[PLAINTEXT_SIZE] = {0x0};
 //
-//	for(int i=0; i<SYS->getConfigCount(); i++) {
-//		payload[i] = SYS->getConfig(i);
+//	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
+//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
+//		DS->pushToLogsMon(name, LOG_WARNING, log);
 //	}
-//
-//	SEC->encrypt(payload, encryptedText);
-//
-//	for(int i=1; i<SYS->getConfigCount(); i++) {
-//		CONFIG[i] = encryptedText[i];
-//	}
-
-
-
-	if(HAL_SDEx_DMALinkedList_UnlockNode(&pLinkNode[0]) != HAL_OK ) {
-		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode failed !!!");
-		DS->pushToLogsMon(name, LOG_ERROR, log);
-	}
-//	else {
-//		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
-//		DS->pushToLogsMon(name, LOG_OK, log);
-//	}
+////	else {
+////		snprintf(log, LOG_LENGTH, "HAL_SDEx_DMALinkedList_UnlockNode succeed");
+////		DS->pushToLogsMon(name, LOG_OK, log);
+////	}
 
 	sprintf(log, "CONFIG[MAGIC] = %lu", CONFIG[MAGIC]);
 	DS->pushToLogsMon(name, LOG_OK, log);
@@ -648,9 +659,10 @@ bool MPSDCard::init() {
 	return retour;
 }
 
-////=======================================================================================
-////
-////=======================================================================================
+//=======================================================================================
+//
+//=======================================================================================
+
 //void MPSDCard::SD_Initialize(void)
 //{
 //	if (isInitialized == 0)
@@ -665,8 +677,6 @@ bool MPSDCard::init() {
 //    	DS->pushToLogsMon(name, LOG_WARNING, log);
 //    }
 //}
-
-
 
 //=======================================================================================
 //
@@ -1259,7 +1269,7 @@ bool MPSDCard::loadConfig()
 //		DS->pushToLogsMon(name, LOG_ERROR, log);
 		retour = false;
 		SYS->setConfig(MAGIC, MP_SD_CONFIG_CONFIG_MAGIC);
-		SYS->setConfig(LIGHT, 1);
+		SYS->setConfig(LIGHT, 0);
 		SYS->setConfig(ENCRYPTSD, 0);
 		SYS->setConfig(ENCRYPTSCREEN, 0);
 		SYS->setConfig(PASSWORD, 0);

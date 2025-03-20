@@ -159,22 +159,22 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.add(Logs);
 
-    PagesMenu.setSelectedPage(0);
+    PagesMenu.setSelectedPage(2);
     add(PagesMenu);
 
     StatusNavigationBar1.setXY(0, 200);
     add(StatusNavigationBar1);
 
     screenLight.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_IMAGE_WB_SUNNY_35_35_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_IMAGE_WB_SUNNY_35_35_FFA600_SVG_ID));
-    screenLight.setIconXY(0, 0);
+    screenLight.setIconXY(6, 3);
     screenLight.setAction(flexButtonCallback);
-    screenLight.setPosition(200, 5, 38, 33);
+    screenLight.setPosition(2, 198, 46, 40);
     add(screenLight);
 
     Status_STORAGE.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_75FA8E_SVG_ID));
     Status_STORAGE.setIconXY(6, 4);
     Status_STORAGE.setAction(flexButtonCallback);
-    Status_STORAGE.setPosition(0, 0, 46, 40);
+    Status_STORAGE.setPosition(192, 198, 46, 40);
     add(Status_STORAGE);
 }
 

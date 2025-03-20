@@ -20,12 +20,14 @@ StatusNavigationBarBase::StatusNavigationBarBase() :
 
     Control_Play.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PLAY_ARROW_24_24_3D3D3D_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PLAY_ARROW_24_24_4D99EB_SVG_ID));
     Control_Play.setIconXY(0, 0);
+    Control_Play.setVisible(false);
     Control_Play.setAction(flexButtonCallback);
     Control_Play.setPosition(205, 8, 26, 26);
     LayoutControls.add(Control_Play);
 
     Control_Pause.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PAUSE_24_24_3D3D3D_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_AV_PAUSE_24_24_4D99EB_SVG_ID));
     Control_Pause.setIconXY(0, 0);
+    Control_Pause.setVisible(false);
     Control_Pause.setAction(flexButtonCallback);
     Control_Pause.setPosition(10, 7, 24, 24);
     LayoutControls.add(Control_Pause);

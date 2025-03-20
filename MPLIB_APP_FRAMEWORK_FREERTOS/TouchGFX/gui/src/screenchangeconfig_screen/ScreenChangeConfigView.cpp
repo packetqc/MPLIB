@@ -16,7 +16,18 @@ void ScreenChangeConfigView::setupScreen()
 {
     ScreenChangeConfigViewBase::setupScreen();
 
-    setButtonMode();
+//    setButtonMode();
+    updateBackground();
+    if(modeCryptSD.getPressed()) {
+    	labelCryptScreen.setVisible(false);
+    	labelCryptScreenDecrypt.setVisible(true);
+    }
+    else {
+    	labelCryptScreen.setVisible(true);
+    	labelCryptScreenDecrypt.setVisible(false);
+    }
+    labelCryptScreen.invalidate();
+    labelCryptScreenDecrypt.invalidate();
 }
 
 void ScreenChangeConfigView::tearDownScreen()
@@ -24,10 +35,17 @@ void ScreenChangeConfigView::tearDownScreen()
     ScreenChangeConfigViewBase::tearDownScreen();
 }
 
+void ScreenChangeConfigView::updateBackground()
+{
+	setButtonMode();
+	Background.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
+	Background.invalidate();
+    invalidate();
+}
 
 void ScreenChangeConfigView::saveConfig()
 {
-	SD->setSDConfigSave();
+//	SD->setSDConfigSave();
 }
 
 void ScreenChangeConfigView::resetFactory()
@@ -63,4 +81,21 @@ void ScreenChangeConfigView::setButtonMode() {
 	else {
 		modeCryptSD.forceState(false);
 	}
+
+	if( presenter->getColorMode() == MODE_LITE) {
+		screenLight.forceState(true);
+	}
+	else {
+		screenLight.forceState(false);
+	}
+}
+
+bool ScreenChangeConfigView::isScreenLightPressed() {
+	return screenLight.getPressed();
+}
+
+void ScreenChangeConfigView::SetDisplayColor()
+{
+	presenter->SetDisplayColor();
+	invalidate();
 }
