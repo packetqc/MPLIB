@@ -33,14 +33,6 @@
 
 #include "MPLibs.h"
 
-//=======================================================================================
-//
-//=======================================================================================
-enum {
-	MAGIC = 0,
-	LIGHT = 1
-};
-
 #define MP_SD_CONFIG_CONFIG_MAGIC 	13131U
 #define MP_SD_CONFIG_CONFIG_ON		0
 #define MP_SD_CONFIG_SCREENLITE 	1
@@ -63,6 +55,8 @@ enum {
 #define DATA_PATTERN0          		((uint32_t)0x01000000U) /* Data pattern for buffer0*/
 #define DATA_PATTERN1          		((uint32_t)0x02000000U) /* Data pattern for buffer1 */
 
+
+//#define ENCRYPTAT					4
 //=======================================================================================
 //
 //=======================================================================================
@@ -120,23 +114,36 @@ public:
 	void	deInitializeSDWrite(void);
 	void	deInitializeSDRead(void);
 
-	bool 	getSDConfigInitialized();
+	bool 	loadConfig();
 	bool 	setSDConfig();
 	bool 	getSDConfig();
+	void 	setSDConfigSave();
 	void 	setSDConfigScreenLite();
+	void	setSDConfigEncyrptScreen();
+	void	setSDConfigEncyrptSD();
+	void	setSDConfigPassord();
 
 	uint32_t 	getSDConfigScreenLite();
 
 	void	waitState(void);
 	void	waitDoState(void);
 
+	void	resetFactory();
+	void 	updateConfig();
 	void	eraseConfig();
 	void	saveConfig();
-	void	loadConfig();
+	void	loadConfigAtStartup();
 	void	saveConfigEncryption();
 	void	loadConfigEncryption();
 	void	saveConfigBackground();
 	void	loadConfigBackground();
+
+	bool	isItEncrypted();
+	void 	processConfig(uint8_t index);
+	void 	saveConfigEncryptScreen();
+	void	saveConfigEncryptSD();
+	void	saveConfigPassword();
+
 
 protected:
 	Led_TypeDef LED 		= LED_BLUE;
@@ -148,6 +155,7 @@ protected:
 	bool 		started 	= false;
 
 	uint8_t		isSDInitialized = 0;
+	bool		isEncrypted = false;
 
 private:
 	char 		log[LOG_LENGTH];

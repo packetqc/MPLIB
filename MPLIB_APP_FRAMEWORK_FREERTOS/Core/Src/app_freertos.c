@@ -62,7 +62,6 @@ extern void StartSDServices(void *argument);
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE BEGIN Variables */
 
 //extern osMutexId_t canLogHandle;
@@ -401,10 +400,16 @@ void StartDefaultTask(void *argument)
 //	osThreadJoin(DisplayServiceHandle);
 
 	osThreadResume(DataServicesHandle);
-	osThreadResume(DisplayServiceHandle);
-	HAL_Delay(300);
-	osThreadResume(SDServiceHandle);
 	osThreadResume(SecureServiceHandle);
+
+	HAL_Delay(300);
+
+	osThreadResume(DisplayServiceHandle);
+
+	HAL_Delay(300);
+
+	osThreadResume(SDServiceHandle);
+
 	osThreadResume(SystemServiceTaHandle);
 
 	osThreadResume(GUI_TaskHandle);

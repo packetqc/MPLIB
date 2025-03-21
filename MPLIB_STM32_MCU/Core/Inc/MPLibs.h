@@ -34,6 +34,19 @@
 #define TEXTLOGS_SIZE 		30
 #define TEXTBUFF_SIZE 		150
 
+#define ENCRYPTAT					4
+//=======================================================================================
+// CONFIGURATION ITEMS / OPTIONS
+//=======================================================================================
+__attribute__((unused)) enum {
+	MAGIC = 0,
+	LIGHT = 1,
+	ENCRYPTSD = 2,
+	ENCRYPTSCREEN = 3,
+	PASSWORD = 4
+} configs;
+
+
 //=======================================================================================
 //
 //=======================================================================================
@@ -46,6 +59,8 @@ enum {
 	IP_NOTOK,
 	IP_OK,
 	STORAGE_NOTOK,
+	STORAGE_IDLE,
+	STORAGE_ACTIVITY,
 	STORAGE_OK,
 	CLOUD_NOTOK,
 	CLOUD_OK,
@@ -65,26 +80,37 @@ enum {
 //
 //=======================================================================================
 enum {
-	LOG_OK,
-	LOG_INFO,
-	LOG_WARNING,
-	LOG_ERROR,
-	LOG_CRITICAL,
-	LOG_DEBUG
+	LOG_OK 			= 100,
+	LOG_INFO 		= 101,
+	LOG_WARNING 	= 102,
+	LOG_ERROR 		= 103,
+	LOG_CRITICAL 	= 104,
+	LOG_DEBUG 		= 105
 };
 
 //=======================================================================================
 //
 //=======================================================================================
 enum {
-	SD_NOOP,
-	SD_ERASE,
-	SD_SAVE,
-	SD_LOAD,
-	SD_SAVE_ENCRYPTION,
-	SD_LOAD_ENCRYPTION,
-	SD_SAVE_BACKGROUND,
-	SD_lOAD_BACKGROUND
+	SD_NOOP 		= 200,
+	SD_ERASE 		= 201,
+	SD_SAVE 		= 202,
+	SD_LOAD 		= 203,
+
+	SD_SAVE_ENCRYPTSCREEN = 204,
+	SD_SAVE_ENCRYPTSD = 205,
+	SD_SAVE_BACKGROUND = 206,
+	SD_SAVE_PASSWORD = 207,
+
+	SD_lOAD_BACKGROUND = 208,
+	SD_RESET_FACTORY = 209
+};
+
+//=======================================================================================
+//
+//=======================================================================================
+enum {
+	CONFIG_UPDATE 	= 250
 };
 
 //=======================================================================================

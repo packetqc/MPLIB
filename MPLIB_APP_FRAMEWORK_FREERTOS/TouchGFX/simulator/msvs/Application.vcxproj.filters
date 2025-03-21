@@ -196,6 +196,30 @@
     <Filter Include="Header Files\generated\gui_generated\containers">
       <UniqueIdentifier>B56828E1-CBEA-D463-57F2-3CD40A3A95FA</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\screenconfig_screen">
+      <UniqueIdentifier>D340E47C-1541-D14A-0A96-4927D574DDB8</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screenconfig_screen">
+      <UniqueIdentifier>67103BFF-B9A7-E74D-C7EF-6129391548C7</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screenconfig_screen">
+      <UniqueIdentifier>55766D8A-DF21-ED73-8A55-88F74F4B5275</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screenconfig_screen">
+      <UniqueIdentifier>29DCA74D-AA5A-8CAD-1D63-FFD6C9802383</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screenchangeconfig_screen">
+      <UniqueIdentifier>3150A7C5-8F39-B022-997D-2D65EDBA40AD</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screenchangeconfig_screen">
+      <UniqueIdentifier>1EB198CC-50D0-3B09-0274-3639AF00E7F4</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screenchangeconfig_screen">
+      <UniqueIdentifier>FE4802D7-B6C6-D29A-2109-CBDCD9366281</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screenchangeconfig_screen">
+      <UniqueIdentifier>FA472D61-30E9-8C3B-52E1-3CAAC1240230</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -260,6 +284,30 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ScreenTitleBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenconfig_screen\ScreenConfigPresenter.cpp">
+      <Filter>Source Files\gui\screenconfig_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenconfig_screen\ScreenConfigView.cpp">
+      <Filter>Source Files\gui\screenconfig_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenconfig_screen\ScreenConfigViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screenconfig_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\ConfigItem.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\ConfigItemBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenchangeconfig_screen\ScreenChangeConfigPresenter.cpp">
+      <Filter>Source Files\gui\screenchangeconfig_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenchangeconfig_screen\ScreenChangeConfigView.cpp">
+      <Filter>Source Files\gui\screenchangeconfig_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenchangeconfig_screen\ScreenChangeConfigViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screenchangeconfig_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -735,6 +783,30 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ScreenTitleBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenconfig_screen\ScreenConfigPresenter.hpp">
+      <Filter>Header Files\gui\screenconfig_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenconfig_screen\ScreenConfigView.hpp">
+      <Filter>Header Files\gui\screenconfig_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenconfig_screen\ScreenConfigViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screenconfig_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\ConfigItem.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ConfigItemBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenchangeconfig_screen\ScreenChangeConfigPresenter.hpp">
+      <Filter>Header Files\gui\screenchangeconfig_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenchangeconfig_screen\ScreenChangeConfigView.hpp">
+      <Filter>Header Files\gui\screenchangeconfig_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenchangeconfig_screen\ScreenChangeConfigViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screenchangeconfig_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

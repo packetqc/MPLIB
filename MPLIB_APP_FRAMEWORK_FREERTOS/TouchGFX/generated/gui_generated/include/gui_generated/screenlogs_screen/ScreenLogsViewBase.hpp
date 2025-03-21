@@ -14,7 +14,6 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/LogPanel.hpp>
 #include <gui/containers/StatusNavigationBar.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
@@ -66,7 +65,7 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::BoxWithBorder Background;
+    touchgfx::BoxWithBorder BackgroundScreenLogs;
     ScreenTitle screenTitle;
     touchgfx::SwipeContainer PagesMenu;
     touchgfx::Container Welcome;
@@ -84,12 +83,11 @@ protected:
     touchgfx::TextAreaWithOneWildcard memHeapEverFree;
     touchgfx::TextAreaWithOneWildcard memHeapAllocSuccess;
     touchgfx::TextAreaWithOneWildcard memHeapFreeSuccess;
-    touchgfx::ScrollableContainer Secure;
     touchgfx::Container Logs;
     LogPanel LogsListe;
-    touchgfx::Container Network;
     StatusNavigationBar StatusNavigationBar1;
     touchgfx::IconButtonStyle< touchgfx::ToggleButtonTrigger >  screenLight;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  Status_STORAGE;
 
     /*
      * Wildcard Buffers

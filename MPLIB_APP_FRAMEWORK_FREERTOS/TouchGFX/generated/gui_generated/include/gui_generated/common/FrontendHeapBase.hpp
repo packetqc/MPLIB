@@ -9,11 +9,19 @@
 #include <mvp/MVPHeap.hpp>
 
 #include <touchgfx/transitions/NoTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/BlockTransition.hpp>
+#include <touchgfx/transitions/WipeTransition.hpp>
+
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
 #include <gui/screenlogs_screen/ScreenLogsView.hpp>
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
+#include <gui/screenconfig_screen/ScreenConfigView.hpp>
+#include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
+#include <gui/screenchangeconfig_screen/ScreenChangeConfigView.hpp>
+#include <gui/screenchangeconfig_screen/ScreenChangeConfigPresenter.hpp>
 
 
 /**
@@ -37,7 +45,9 @@ public:
      * @note All view types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< ScreenLogsView,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< ScreenConfigView,
+            touchgfx::meta::TypeList< ScreenChangeConfigView,
+            touchgfx::meta::Nil > >
             > GeneratedViewTypes;
 
     /**
@@ -50,7 +60,9 @@ public:
      * @note All presenter types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< ScreenLogsPresenter,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< ScreenConfigPresenter,
+            touchgfx::meta::TypeList< ScreenChangeConfigPresenter,
+            touchgfx::meta::Nil > >
             > GeneratedPresenterTypes;
 
     /**
@@ -63,7 +75,11 @@ public:
      * @note All transition types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< touchgfx::NoTransition,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< SlideTransition<NORTH>,
+            touchgfx::meta::TypeList< SlideTransition<EAST>,
+            touchgfx::meta::TypeList< BlockTransition,
+            touchgfx::meta::TypeList< WipeTransition<EAST>,
+            touchgfx::meta::Nil > > > >
             > GeneratedTransitionTypes;
 
     /**
@@ -73,7 +89,7 @@ public:
 
     virtual void gotoStartScreen(FrontendApplication& app)
     {
-        app.gotoScreenLogsScreenNoTransition();
+        app.gotoScreenChangeConfigScreenNoTransition();
     }
 protected:
     FrontendHeapBase(touchgfx::AbstractPartition& presenters, touchgfx::AbstractPartition& views, touchgfx::AbstractPartition& transitions, FrontendApplication& app)

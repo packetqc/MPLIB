@@ -21,24 +21,37 @@ public:
     virtual void updateStatus_DATA(uint8_t value) {}
     virtual void updateStatus_IOT(uint8_t value) {}
 
-//    virtual void pushToLogs(char* alog) {}
-
     virtual void UpdateStatusNavigationBar() {}
     virtual void UpdateLogs(uint8_t index) {}
     virtual void ClearLogs() {}
-//    virtual void UpdateLogs() {}
 
     virtual void getNumberItemsList() {}
     virtual void getNumberOfLogListDrawables() {}
     virtual void getNumberLogsDataServices() {}
     virtual void getMemHeap() {}
 
-    virtual void setColorMode() {}
-    virtual void setColor() {}
-    virtual uint32_t getColorMode() {return 0;}
     virtual uint32_t getColor() {return 0;}
+
+    virtual uint32_t getColorMode() {return 0;}
+    virtual void setColorMode() {}
     virtual void setColorMode(uint32_t mode) {};
+
     virtual void setButtonMode() {};
+
+    virtual void updateStatus_STORAGE(uint8_t value) {};
+    virtual void updateConfig() {};
+    virtual void updateBackground() {};
+
+    virtual uint32_t getCryptModeSD() {return 0;};
+    virtual void setCryptModeSD(bool mode) {};
+
+    virtual uint32_t getCryptModeScreen() {return 0;};
+    virtual void setCryptModeScreen(bool mode) {};
+
+    virtual void SetDisplayColor() {};
+    virtual void getDisplayColor() {};
+
+    virtual bool isScreenLightPressed() {return false;};
 
 protected:
     Model* model;

@@ -1,6 +1,8 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
+#include <stdint.h>
+
 class ModelListener;
 
 class Model
@@ -13,9 +15,30 @@ public:
         modelListener = listener;
     }
 
-    void tick();
+    void 		tick();
+
+    uint32_t 	getColorMode();
+	void 		setColorMode(uint32_t mode);
+
+	uint32_t	getCryptModeSD();
+	void 		setCryptModeSD(bool mode);
+
+	uint32_t 	getCryptModeScreen();
+	void 		setCryptModeScreen(bool mode);
+
+	void		updateConfig();
+
+	void 		SetDisplayColor();
+	void 		getDisplayColor();
+
+	bool 		isScreenLightPressed();
+
 protected:
-    ModelListener* modelListener;
+    ModelListener* 	modelListener;
+
+    uint32_t		modeLight;
+    uint32_t		modeCryptSD;
+    uint32_t		modeCryptScreen;
 };
 
 #endif // MODEL_HPP

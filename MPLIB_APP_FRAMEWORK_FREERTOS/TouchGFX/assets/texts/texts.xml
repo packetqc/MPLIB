@@ -6,8 +6,50 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_TD8D" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Decrypt on screen</Translation>
+      </Text>
+      <Text Id="__SingleUse_KOO7" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Rotate screen 90</Translation>
+      </Text>
+      <Text Id="__SingleUse_GJZU" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Light/Night screen</Translation>
+      </Text>
+      <Text Id="__SingleUse_59HH" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Encrypt on screen</Translation>
+      </Text>
+      <Text Id="__SingleUse_45YD" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Encrypt on sdcard</Translation>
+      </Text>
+      <Text Id="__SingleUse_G9FW" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Configuration Change</Translation>
+      </Text>
+      <Text Id="__SingleUse_X5QG" Alignment="Center" TypographyId="Stats">
+        <Translation Language="GB">! Factory Reset !</Translation>
+      </Text>
+      <Text Id="__SingleUse_KJ7H" Alignment="Center" TypographyId="Stats">
+        <Translation Language="GB">Exit configuration</Translation>
+      </Text>
+      <Text Id="__SingleUse_ECBN" Alignment="Center" TypographyId="Stats">
+        <Translation Language="GB">Change Password</Translation>
+      </Text>
+      <Text Id="__SingleUse_85AV" Alignment="Center" TypographyId="Stats">
+        <Translation Language="GB">Change configuration</Translation>
+      </Text>
+      <Text Id="__SingleUse_7A60" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Item value</Translation>
+      </Text>
+      <Text Id="__SingleUse_PXNL" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">Item name</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZNYF" Alignment="Right" TypographyId="Stats">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_NKPQ" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_YZI5" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Screen Title</Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="__SingleUse_1UXT" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;value&gt;</Translation>

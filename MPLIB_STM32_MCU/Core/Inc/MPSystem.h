@@ -92,6 +92,7 @@ void StartSystemServices(ULONG thread_input);
 ;
 #endif
 
+
 class MPSystem {
 	static int iSYS;
 	static MPSystem *instance;
@@ -111,12 +112,11 @@ public:
     	char* 	getName();
     	bool  	getStatus();
     	char*	getSystemDescription();
-//    	uint8_t getStatusStorage();
+    	uint8_t getStatusStorage();
     	void 	blinkLED(uint8_t times);
     	void	heartBeat();
 
     	void 	SYS_Initialize(void);
-//    	void	SYS_InitializeSD(void);
     	void	SYS_ReadMemory(void);
 
     	size_t	getAvailableHeapSpaceInBytes();
@@ -127,11 +127,10 @@ public:
     	size_t	getNumberOfSuccessfulAllocations();
     	size_t	getNumberOfSuccessfulFrees();
 
-//    	bool getSDConfigInitialized();
-//    	bool setSDConfig();
-//    	bool getSDConfig();
-//    	bool setSDConfigScreenLite(uint32_t value);
-//    	bool getSDConfigScreenLite(uint32_t value);
+    	char* 	 getConfigName(uint8_t index);
+    	int8_t	 getConfigCount();
+    	uint32_t getConfig(uint8_t index);
+    	void	 setConfig(uint8_t index, uint32_t value);
 
 protected:
     	Led_TypeDef LED 		= LED_RED;
@@ -144,9 +143,10 @@ protected:
 
     	uint8_t		isSDInitialized = 0;
 private:
-	char 				log[LOG_LENGTH];
-//	BSP_SD_CardInfo*  	cardInfo;
-//	HAL_SD_CardInfoTypeDef cardInfo;
+	char 		configNames[5][25] = {"MAGIC", "LIGHT", "ENCRYPTSD","ENCRYPTSCREEN", "PASSWORD"};
+    uint32_t 	config[5] = {0};
+
+	char 		log[LOG_LENGTH];
 
 #if defined(FREERTOS)
 	char		systemDescr[25] = "Free RTOS";

@@ -10,6 +10,8 @@
 #include <MPDisplayServices.h>
 #include <MPSDCard.h>
 
+#include <touchgfx/Color.hpp>
+#include <images/BitmapDatabase.hpp>
 
 ScreenLogsView::ScreenLogsView()
 {
@@ -20,12 +22,23 @@ void ScreenLogsView::setupScreen()
 {
     ScreenLogsViewBase::setupScreen();
 
-//    if(SD->isStarted())
-//    	getDisplayColor();
-
-//	UpdateBackground();
     UpdateTitle();
+    updateBackground();
 }
+
+void ScreenLogsView::updateBackground()
+{
+	setButtonMode();
+    this->BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
+	BackgroundScreenLogs.invalidate();
+    invalidate();
+}
+
+//void ScreenLogsView::UpdateBackground()
+//{
+////    modeLight = SD->getSDConfigScreenLite();
+//	presenter->setColorMode(SD->getSDConfigScreenLite());
+//}
 
 void ScreenLogsView::tearDownScreen()
 {
@@ -46,18 +59,19 @@ void ScreenLogsView::LED_Toggle()
 	BSP_LED_Off(LED1);
 }
 
-void ScreenLogsView::UpdateBackground()
-{
-//    Background.setColor();
-//    Background.invalidate();
-//    invalidate();
+void ScreenLogsView::updateStatus_STORAGE(uint8_t value) {
+	if( value == STORAGE_IDLE)
+	{
+		Status_STORAGE.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_38668C_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_75FA8E_SVG_ID));
+	}
+	else if( value == STORAGE_ACTIVITY)
+	{
+		Status_STORAGE.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_75FA8E_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_SIM_CARD_35_35_38668C_SVG_ID));
+	}
 
-    modeLight = SD->getSDConfigScreenLite();
-//    DISPLAY->setLightConfig(modeLight);
-//    setColorMode();
-//
-//    SD->setSDConfigScreenLite();
+	Status_STORAGE.invalidate();
 }
+
 
 void ScreenLogsView::UpdateTitle()
 {
@@ -90,6 +104,7 @@ void ScreenLogsView::UpdateTitle()
 	screenTitle.setTitle(buffer);
 }
 
+
 void ScreenLogsView::setButtonMode() {
 	if(DISPLAY->getColorMode() == MODE_LITE) {
 		screenLight.forceState(true);
@@ -99,44 +114,41 @@ void ScreenLogsView::setButtonMode() {
 	}
 }
 
+
 uint32_t ScreenLogsView::getColorMode() {
-	return modeLight;
+//	return modeLight;
+	return presenter->getColorMode();
 }
 
 void ScreenLogsView::setColorMode(uint32_t mode) {
-	modeLight = mode;
+//	modeLight = mode;
+	presenter->setColorMode(mode);
 }
 
-void ScreenLogsView::setColor() {
-    Background.setColor(DISPLAY->getColor());
-    Background.invalidate();
-    invalidate();
-
-    modeLight = DISPLAY->getColorMode();
-}
+//void ScreenLogsView::setColor() {
+//	BackgroundScreenLogs.setColor(DISPLAY->getColorFromMode(presenter->getColorMode()));
+//	BackgroundScreenLogs.invalidate();
+//    invalidate();
+//}
 
 void ScreenLogsView::getDisplayColor()
 {
-	modeLight = SD->getSDConfigScreenLite();
-
-	Background.setColor(modeLight);
-    Background.invalidate();
-    invalidate();
+	presenter->setColorMode(SD->getSDConfigScreenLite());
 }
 
 void ScreenLogsView::SetDisplayColor()
 {
 	uint32_t tmodeLight = DISPLAY->getModeFromButton(screenLight.getPressed());
-	uint32_t tcolor = DISPLAY->getColorFromMode(screenLight.getPressed());
 
-
-    Background.setColor(tcolor);
-    Background.invalidate();
-    invalidate();
+	presenter->setColorMode(tmodeLight);
 
     DISPLAY->setColorMode(tmodeLight);
     SD->setSDConfigScreenLite();
+
+    updateBackground();
+
 }
+
 
 void ScreenLogsView::updateSystemDescription()
 {

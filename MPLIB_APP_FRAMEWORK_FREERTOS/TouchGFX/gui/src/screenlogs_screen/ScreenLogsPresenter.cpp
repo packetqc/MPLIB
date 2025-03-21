@@ -22,13 +22,17 @@ void ScreenLogsPresenter::setButtonMode() {
 	view.setButtonMode();
 }
 
-void ScreenLogsPresenter::setColor() {
-	view.setColor();
-}
+//void ScreenLogsPresenter::setColor() {
+//	view.setColor();
+//}
 
 void ScreenLogsPresenter::SetDisplayColor()
 {
 	view.SetDisplayColor();
+}
+
+void ScreenLogsPresenter::updateStatus_STORAGE(uint8_t value) {
+	view.updateStatus_STORAGE(value);
 }
 
 void ScreenLogsPresenter::UpdateStatusNavigationBar() {
@@ -56,5 +60,16 @@ void ScreenLogsPresenter::getNumberLogsDataServices() {
 }
 
 uint32_t ScreenLogsPresenter::getColorMode() {
-	return view.getColorMode();
+	return model->getColorMode();
 }
+
+void ScreenLogsPresenter::setColorMode(uint32_t mode)
+{
+	model->setColorMode(mode);
+}
+
+void ScreenLogsPresenter::updateBackground()
+{
+	view.updateBackground();
+}
+

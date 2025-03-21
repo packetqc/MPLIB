@@ -11,6 +11,10 @@
 #include <platform/driver/lcd/LCD16bpp.hpp>
 #include <gui/screenlogs_screen/ScreenLogsView.hpp>
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
+#include <gui/screenconfig_screen/ScreenConfigView.hpp>
+#include <gui/screenconfig_screen/ScreenConfigPresenter.hpp>
+#include <gui/screenchangeconfig_screen/ScreenChangeConfigView.hpp>
+#include <gui/screenchangeconfig_screen/ScreenChangeConfigPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -33,13 +37,72 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
 
 // ScreenLogs
 
-void FrontendApplicationBase::gotoScreenLogsScreenNoTransition()
+void FrontendApplicationBase::gotoScreenLogsScreenSlideTransitionEast()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenLogsScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenLogsScreenSlideTransitionEastImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoScreenLogsScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoScreenLogsScreenSlideTransitionEastImpl()
 {
-    touchgfx::makeTransition<ScreenLogsView, ScreenLogsPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<ScreenLogsView, ScreenLogsPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// ScreenConfig
+
+void FrontendApplicationBase::gotoScreenConfigScreenSlideTransitionNorth()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenConfigScreenSlideTransitionNorthImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenConfigScreenSlideTransitionNorthImpl()
+{
+    touchgfx::makeTransition<ScreenConfigView, ScreenConfigPresenter, touchgfx::SlideTransition<NORTH>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+void FrontendApplicationBase::gotoScreenConfigScreenBlockTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenConfigScreenBlockTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenConfigScreenBlockTransitionImpl()
+{
+    touchgfx::makeTransition<ScreenConfigView, ScreenConfigPresenter, touchgfx::BlockTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+void FrontendApplicationBase::gotoScreenConfigScreenWipeTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenConfigScreenWipeTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenConfigScreenWipeTransitionEastImpl()
+{
+    touchgfx::makeTransition<ScreenConfigView, ScreenConfigPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// ScreenChangeConfig
+
+void FrontendApplicationBase::gotoScreenChangeConfigScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenChangeConfigScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenChangeConfigScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<ScreenChangeConfigView, ScreenChangeConfigPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+void FrontendApplicationBase::gotoScreenChangeConfigScreenSlideTransitionNorth()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenChangeConfigScreenSlideTransitionNorthImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenChangeConfigScreenSlideTransitionNorthImpl()
+{
+    touchgfx::makeTransition<ScreenChangeConfigView, ScreenChangeConfigPresenter, touchgfx::SlideTransition<NORTH>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

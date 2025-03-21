@@ -36,15 +36,19 @@ public:
 
 	void SetDisplayColor();
 	void getDisplayColor();
-	void UpdateBackground();
+//	void UpdateBackground();
 	void UpdateTitle();
-	void setColor();
+//	void setColor();
+
 	uint32_t getColorMode();
 	void setColorMode(uint32_t mode);
 	void setButtonMode();
 
+	void updateStatus_STORAGE(uint8_t value);
+	void updateBackground();
+
 protected:
-	uint32_t		modeLight = MODE_LITE;
+//	uint32_t		modeLight = MODE_LITE;
 
 //private:
 //	HeapStats_t heapit;
