@@ -12,7 +12,6 @@
 #include <gui/containers/ScreenTitle.hpp>
 #include <touchgfx/containers/SwipeContainer.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <gui/containers/LogPanel.hpp>
 #include <gui/containers/StatusNavigationBar.hpp>
@@ -68,10 +67,6 @@ protected:
     touchgfx::BoxWithBorder BackgroundScreenLogs;
     ScreenTitle screenTitle;
     touchgfx::SwipeContainer PagesMenu;
-    touchgfx::Container Welcome;
-    touchgfx::TextArea textArea1;
-    touchgfx::TextArea textArea2;
-    touchgfx::TextAreaWithOneWildcard systemDescriptionTextArea;
     touchgfx::Container Memory;
     touchgfx::TextAreaWithOneWildcard numberOfLogListDrawables;
     touchgfx::TextAreaWithOneWildcard numberOfLogListItems;
@@ -92,8 +87,6 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t SYSTEMDESCRIPTIONTEXTAREA_SIZE = 25;
-    touchgfx::Unicode::UnicodeChar systemDescriptionTextAreaBuffer[SYSTEMDESCRIPTIONTEXTAREA_SIZE];
     static const uint16_t NUMBEROFLOGLISTDRAWABLES_SIZE = 10;
     touchgfx::Unicode::UnicodeChar numberOfLogListDrawablesBuffer[NUMBEROFLOGLISTDRAWABLES_SIZE];
     static const uint16_t NUMBEROFLOGLISTITEMS_SIZE = 10;

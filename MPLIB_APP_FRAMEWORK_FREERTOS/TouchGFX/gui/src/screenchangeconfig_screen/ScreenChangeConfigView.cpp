@@ -53,6 +53,11 @@ void ScreenChangeConfigView::resetFactory()
 	SD->resetFactory();
 }
 
+void ScreenChangeConfigView::changePassword()
+{
+	presenter->changePassword();
+}
+
 void ScreenChangeConfigView::encryptOnSD()
 {
 	uint32_t mode = (modeCryptSD.getPressed() == true) ? 1 : 0;

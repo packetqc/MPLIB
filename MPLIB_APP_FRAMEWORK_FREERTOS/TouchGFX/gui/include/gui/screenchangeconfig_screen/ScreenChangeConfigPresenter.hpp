@@ -40,6 +40,8 @@ public:
 	bool 		isScreenLightPressed();
 	uint32_t 	getColorMode();
 
+	void 		changePassword();
+
 private:
     ScreenChangeConfigPresenter();
 

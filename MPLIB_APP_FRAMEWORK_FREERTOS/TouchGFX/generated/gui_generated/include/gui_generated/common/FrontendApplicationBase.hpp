@@ -17,8 +17,14 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoScreenChangeConfigScreenNoTransition();
+        gotoScreenLoginInviteScreenNoTransition();
     }
+
+    // ScreenWelcome
+    void gotoScreenWelcomeScreenNoTransition();
+
+    // ScreenLoginInvite
+    void gotoScreenLoginInviteScreenNoTransition();
 
     // ScreenLogs
     void gotoScreenLogsScreenSlideTransitionEast();
@@ -31,14 +37,20 @@ public:
     void gotoScreenConfigScreenWipeTransitionEast();
 
     // ScreenChangeConfig
-    void gotoScreenChangeConfigScreenNoTransition();
-
     void gotoScreenChangeConfigScreenSlideTransitionNorth();
+
+    void gotoScreenChangeConfigScreenNoTransition();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
     Model& model;
+
+    // ScreenWelcome
+    void gotoScreenWelcomeScreenNoTransitionImpl();
+
+    // ScreenLoginInvite
+    void gotoScreenLoginInviteScreenNoTransitionImpl();
 
     // ScreenLogs
     void gotoScreenLogsScreenSlideTransitionEastImpl();
@@ -51,9 +63,9 @@ protected:
     void gotoScreenConfigScreenWipeTransitionEastImpl();
 
     // ScreenChangeConfig
-    void gotoScreenChangeConfigScreenNoTransitionImpl();
-
     void gotoScreenChangeConfigScreenSlideTransitionNorthImpl();
+
+    void gotoScreenChangeConfigScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

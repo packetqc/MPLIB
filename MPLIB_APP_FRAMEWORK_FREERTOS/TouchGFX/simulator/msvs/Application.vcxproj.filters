@@ -220,6 +220,30 @@
     <Filter Include="Source Files\generated\gui_generated\screenchangeconfig_screen">
       <UniqueIdentifier>FA472D61-30E9-8C3B-52E1-3CAAC1240230</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gui\screenwelcome_screen">
+      <UniqueIdentifier>7A930261-56D9-DF3E-F866-21C185CD046B</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screenwelcome_screen">
+      <UniqueIdentifier>AE9DE065-1B0B-0E50-0A3D-6818F2B58061</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screenwelcome_screen">
+      <UniqueIdentifier>77CE6265-6362-E7BC-950B-D966EF71BA07</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screenwelcome_screen">
+      <UniqueIdentifier>2F941352-0CA1-B5DF-146B-50BF45CD9A72</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screenlogininvite_screen">
+      <UniqueIdentifier>AD8DAB2D-491A-A03E-76FC-FDDCD99FA3D5</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screenlogininvite_screen">
+      <UniqueIdentifier>604BE3AA-84BD-40A0-5021-471A4D34FAF9</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screenlogininvite_screen">
+      <UniqueIdentifier>347CB444-9A07-6302-B447-2586AF153EB1</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screenlogininvite_screen">
+      <UniqueIdentifier>4B902467-FF72-9A6F-939E-DE2381B60021</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -308,6 +332,24 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\screenchangeconfig_screen\ScreenChangeConfigViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screenchangeconfig_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomePresenter.cpp">
+      <Filter>Source Files\gui\screenwelcome_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomeView.cpp">
+      <Filter>Source Files\gui\screenwelcome_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenwelcome_screen\ScreenWelcomeViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screenwelcome_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenlogininvite_screen\ScreenLoginInvitePresenter.cpp">
+      <Filter>Source Files\gui\screenlogininvite_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screenlogininvite_screen\ScreenLoginInviteView.cpp">
+      <Filter>Source Files\gui\screenlogininvite_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenlogininvite_screen\ScreenLoginInviteViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screenlogininvite_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -807,6 +849,24 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenchangeconfig_screen\ScreenChangeConfigViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screenchangeconfig_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenwelcome_screen\ScreenWelcomePresenter.hpp">
+      <Filter>Header Files\gui\screenwelcome_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenwelcome_screen\ScreenWelcomeView.hpp">
+      <Filter>Header Files\gui\screenwelcome_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenwelcome_screen\ScreenWelcomeViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screenwelcome_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenlogininvite_screen\ScreenLoginInvitePresenter.hpp">
+      <Filter>Header Files\gui\screenlogininvite_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screenlogininvite_screen\ScreenLoginInviteView.hpp">
+      <Filter>Header Files\gui\screenlogininvite_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenlogininvite_screen\ScreenLoginInviteViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screenlogininvite_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
  */
 
 #include <MPSystem.h>
+#include <MPSecure.h>
 #include <MPDataServices.h>
 
 #include "string.h"
@@ -147,7 +148,17 @@ void MPSystem::setConfig(uint8_t index, uint32_t value)
 //=======================================================================================
 uint32_t MPSystem::getConfig(uint8_t index)
 {
-	return( config[index] );
+
+	if(config[ENCRYPTSD] == 1) {
+		uint32_t data[1];
+		data[0] = config[index];
+		uint32_t decrypted[1];
+		SEC->decrypt(data, decrypted);
+		return( decrypted[0] );
+	}
+	else {
+		return( config[index] );
+	}
 }
 
 //=======================================================================================

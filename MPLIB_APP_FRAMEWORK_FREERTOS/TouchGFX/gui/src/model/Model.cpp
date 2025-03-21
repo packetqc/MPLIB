@@ -8,11 +8,11 @@
 
 #include "cmsis_os2.h"
 
-#include <MPLibs.h>
 #include <MPDisplayServices.h>
 #include <MPSystem.h>
 #include <MPSDCard.h>
 
+#include "string.h"
 
 extern osMessageQueueId_t gui_msgHandle;
 extern osMessageQueueId_t gui_logs_msgHandle;
@@ -23,13 +23,18 @@ uint8_t statusDeviceConnected = 2;
 uint32_t tickstart;
 
 
-Model::Model() : modelListener(0), modeLight(MODE_LITE)
+Model::Model() :
+		modelListener(0), modeLight(MODE_LITE), modeCryptSD(0),
+		modeCryptScreen(0), loggedIn(false), loginIn(false)
 {
 	tickstart = HAL_GetTick();
+
+	resetPasswordArray(typedPassword);
 }
 
 void Model::tick()
 {
+//	modelListe
 	if(osMessageQueueGet(gui_msgHandle, &statusDeviceConnected, NULL, 0) == osOK)
 	{
 		switch(statusDeviceConnected) {
@@ -83,6 +88,40 @@ void Model::tick()
 		tickstart = HAL_GetTick();
 //		return;
 	}
+}
+
+bool Model::isLoggedIn() {
+	return loggedIn;
+}
+
+void Model::resetPasswordArray(uint32_t* array)
+{
+	for(uint8_t i = 0; i<PASSLENGTH; i++) {
+		array[i] = 9;
+	}
+	indexPassword = 0;
+}
+
+void Model::passwordTyped(uint8_t typed)
+{
+	typedPassword[indexPassword] = typed;
+    indexPassword++;
+}
+
+bool Model::loginValid()
+{
+	uint32_t toCompare[PASSLENGTH];
+
+	resetPasswordArray(toCompare);
+
+	toCompare[0] = SYS->getConfig(PASSWORD);
+
+	return memcmp(typedPassword,toCompare,1) == 0;
+}
+
+void Model::changePassword()
+{
+
 }
 
 void Model::updateConfig() {

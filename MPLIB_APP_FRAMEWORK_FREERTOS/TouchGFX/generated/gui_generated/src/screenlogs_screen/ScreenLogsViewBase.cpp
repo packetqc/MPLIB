@@ -28,34 +28,9 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.setXY(0, 40);
     PagesMenu.setPageIndicatorBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_OFF_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_SWIPECONTAINER_MEDIUM_ON_ACTIVE_ID));
-    PagesMenu.setPageIndicatorXY(90, 171);
+    PagesMenu.setPageIndicatorXY(100, 171);
     PagesMenu.setSwipeCutoff(50);
     PagesMenu.setEndSwipeElasticWidth(50);
-
-    Welcome.setWidth(240);
-    Welcome.setHeight(200);
-    textArea1.setXY(46, 22);
-    textArea1.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    textArea1.setLinespacing(0);
-    textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_85SS));
-    Welcome.add(textArea1);
-
-    textArea2.setXY(97, 87);
-    textArea2.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    textArea2.setLinespacing(0);
-    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HACC));
-    Welcome.add(textArea2);
-
-    systemDescriptionTextArea.setXY(56, 132);
-    systemDescriptionTextArea.setColor(touchgfx::Color::getColorFromRGB(57, 147, 250));
-    systemDescriptionTextArea.setLinespacing(0);
-    Unicode::snprintf(systemDescriptionTextAreaBuffer, SYSTEMDESCRIPTIONTEXTAREA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_LCDJ).getText());
-    systemDescriptionTextArea.setWildcard(systemDescriptionTextAreaBuffer);
-    systemDescriptionTextArea.resizeToCurrentText();
-    systemDescriptionTextArea.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HD5T));
-    Welcome.add(systemDescriptionTextArea);
-
-    PagesMenu.add(Welcome);
 
     Memory.setWidth(240);
     Memory.setHeight(200);
@@ -159,7 +134,7 @@ ScreenLogsViewBase::ScreenLogsViewBase() :
 
     PagesMenu.add(Logs);
 
-    PagesMenu.setSelectedPage(2);
+    PagesMenu.setSelectedPage(1);
     add(PagesMenu);
 
     StatusNavigationBar1.setXY(0, 200);
