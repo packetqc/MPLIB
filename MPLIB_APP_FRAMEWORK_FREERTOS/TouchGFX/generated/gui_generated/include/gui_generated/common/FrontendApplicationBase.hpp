@@ -17,7 +17,7 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoScreenLoginInviteScreenNoTransition();
+        gotoScreenWelcomeScreenNoTransition();
     }
 
     // ScreenWelcome

@@ -34813,3 +34813,4 @@ java.lang.NullPointerException: Cannot invoke "javax.swing.JTextField.getText()"
 2025-03-21 08:55:44,438 [INFO] ThirdParty:978 - Integrity check success = true
 2025-03-21 08:55:44,439 [INFO] IntegrityCheckThread:100 - exiting critical section [integrity check]
 2025-03-21 08:55:44,439 [INFO] IntegrityCheckThread:103 - End integrity checks thread
+2025-03-21 16:14:39,155 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
