@@ -40,6 +40,12 @@
     <ClCompile Include="..\..\gui\src\screenchangeconfig_screen\ScreenChangeConfigPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\screenchangeconfig_screen\ScreenChangeConfigView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\screenchangeconfig_screen\ScreenChangeConfigViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomePresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenwelcome_screen\ScreenWelcomeView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenwelcome_screen\ScreenWelcomeViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenlogininvite_screen\ScreenLoginInvitePresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screenlogininvite_screen\ScreenLoginInviteView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screenlogininvite_screen\ScreenLoginInviteViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -209,6 +215,12 @@
     <ClInclude Include="..\..\gui\include\gui\screenchangeconfig_screen\ScreenChangeConfigPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\screenchangeconfig_screen\ScreenChangeConfigView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenchangeconfig_screen\ScreenChangeConfigViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenwelcome_screen\ScreenWelcomePresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenwelcome_screen\ScreenWelcomeView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenwelcome_screen\ScreenWelcomeViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenlogininvite_screen\ScreenLoginInvitePresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screenlogininvite_screen\ScreenLoginInviteView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screenlogininvite_screen\ScreenLoginInviteViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

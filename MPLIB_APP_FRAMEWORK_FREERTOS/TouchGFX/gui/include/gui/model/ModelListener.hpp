@@ -53,6 +53,18 @@ public:
 
     virtual bool isScreenLightPressed() {return false;};
 
+	virtual void welcome() {};
+	virtual void login() {};
+	virtual void logout() {};
+
+	virtual bool isLoggedIn() {return false;};
+
+	virtual void resetPasswordArray(uint32_t* array) {};
+	virtual void passwordTyped(uint8_t typed) {};
+	virtual bool loginValid() {return false;};
+
+	virtual void changePassword() {};
+
 protected:
     Model* model;
 };

@@ -16,6 +16,10 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
+#include <gui/screenwelcome_screen/ScreenWelcomeView.hpp>
+#include <gui/screenwelcome_screen/ScreenWelcomePresenter.hpp>
+#include <gui/screenlogininvite_screen/ScreenLoginInviteView.hpp>
+#include <gui/screenlogininvite_screen/ScreenLoginInvitePresenter.hpp>
 #include <gui/screenlogs_screen/ScreenLogsView.hpp>
 #include <gui/screenlogs_screen/ScreenLogsPresenter.hpp>
 #include <gui/screenconfig_screen/ScreenConfigView.hpp>
@@ -44,10 +48,12 @@ public:
      * A list of all view types. Must end with meta::Nil.
      * @note All view types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< ScreenLogsView,
+    typedef touchgfx::meta::TypeList< ScreenWelcomeView,
+            touchgfx::meta::TypeList< ScreenLoginInviteView,
+            touchgfx::meta::TypeList< ScreenLogsView,
             touchgfx::meta::TypeList< ScreenConfigView,
             touchgfx::meta::TypeList< ScreenChangeConfigView,
-            touchgfx::meta::Nil > >
+            touchgfx::meta::Nil > > > >
             > GeneratedViewTypes;
 
     /**
@@ -59,10 +65,12 @@ public:
      * A list of all presenter types. Must end with meta::Nil.
      * @note All presenter types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< ScreenLogsPresenter,
+    typedef touchgfx::meta::TypeList< ScreenWelcomePresenter,
+            touchgfx::meta::TypeList< ScreenLoginInvitePresenter,
+            touchgfx::meta::TypeList< ScreenLogsPresenter,
             touchgfx::meta::TypeList< ScreenConfigPresenter,
             touchgfx::meta::TypeList< ScreenChangeConfigPresenter,
-            touchgfx::meta::Nil > >
+            touchgfx::meta::Nil > > > >
             > GeneratedPresenterTypes;
 
     /**
@@ -89,7 +97,7 @@ public:
 
     virtual void gotoStartScreen(FrontendApplication& app)
     {
-        app.gotoScreenChangeConfigScreenNoTransition();
+        app.gotoScreenWelcomeScreenNoTransition();
     }
 protected:
     FrontendHeapBase(touchgfx::AbstractPartition& presenters, touchgfx::AbstractPartition& views, touchgfx::AbstractPartition& transitions, FrontendApplication& app)

@@ -150,17 +150,6 @@ void ScreenLogsView::SetDisplayColor()
 }
 
 
-void ScreenLogsView::updateSystemDescription()
-{
-	Unicode::UnicodeChar buffer[25];
-	Unicode::strncpy(buffer, SYS->getSystemDescription(), 25);
-	touchgfx::Unicode::snprintf(systemDescriptionTextAreaBuffer, 25, "%s", buffer );
-	systemDescriptionTextArea.resizeToCurrentText();
-	systemDescriptionTextArea.invalidate();
-	systemDescriptionTextArea.centerX();
-
-//	printf("Operating system description: %s\n", SYS->getSystemDescription());
-}
 
 void ScreenLogsView::UpdateUI() {
 //	netStatsETHHandlerItem1.UpdateUI();

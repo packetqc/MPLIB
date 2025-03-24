@@ -17,6 +17,11 @@ void ScreenChangeConfigPresenter::deactivate()
 
 }
 
+void ScreenChangeConfigPresenter::changePassword()
+{
+	model->changePassword();
+}
+
 void ScreenChangeConfigPresenter::setCryptModeScreen(bool mode)
 {
 	model->setCryptModeScreen(mode);

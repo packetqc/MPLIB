@@ -34,7 +34,8 @@
 #define TEXTLOGS_SIZE 		30
 #define TEXTBUFF_SIZE 		150
 
-#define ENCRYPTAT					4
+#define ENCRYPTAT			4
+#define PASSLENGTH 			16
 //=======================================================================================
 // CONFIGURATION ITEMS / OPTIONS
 //=======================================================================================

@@ -7,6 +7,9 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <mvp/View.hpp>
 #include <gui/screenchangeconfig_screen/ScreenChangeConfigPresenter.hpp>
+#include <gui/screenlogininvite_screen/ScreenLoginInviteView.hpp>
+
+
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <gui/containers/ScreenTitle.hpp>
@@ -46,6 +49,10 @@ public:
         // Override and implement this function in ScreenChangeConfig
     }
     virtual void RotateScreen()
+    {
+        // Override and implement this function in ScreenChangeConfig
+    }
+    virtual void changePassword()
     {
         // Override and implement this function in ScreenChangeConfig
     }

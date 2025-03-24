@@ -97,6 +97,7 @@ ScreenChangeConfigViewBase::ScreenChangeConfigViewBase() :
     buttonChangePassword.setLabelText(touchgfx::TypedText(T___SINGLEUSE_ECBN));
     buttonChangePassword.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     buttonChangePassword.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    buttonChangePassword.setAction(buttonCallback);
     layoutChangeConfig.add(buttonChangePassword);
 
     buttonSaveConfig.setXY(33, 185);
@@ -159,6 +160,13 @@ void ScreenChangeConfigViewBase::buttonCallbackHandler(const touchgfx::AbstractB
         //When SaveConfigCall completed change screen to ScreenConfig
         //Go to ScreenConfig with screen transition towards East
         application().gotoScreenConfigScreenWipeTransitionEast();
+    }
+    if (&src == &buttonChangePassword)
+    {
+        //ChangePassword
+        //When buttonChangePassword clicked call virtual function
+        //Call changePassword
+        changePassword();
     }
 }
 

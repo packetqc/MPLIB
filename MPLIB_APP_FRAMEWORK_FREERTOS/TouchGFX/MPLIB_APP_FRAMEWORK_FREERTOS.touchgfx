@@ -2,6 +2,392 @@
   "Application": {
     "Screens": [
       {
+        "Name": "ScreenWelcome",
+        "Components": [
+          {
+            "Type": "Container",
+            "Name": "layoutWelcome",
+            "Width": 240,
+            "Height": 240,
+            "Components": [
+              {
+                "Type": "BoxWithBorder",
+                "Name": "Background",
+                "Width": 240,
+                "Height": 240,
+                "Color": {
+                  "Red": 230,
+                  "Green": 234,
+                  "Blue": 250
+                },
+                "BorderColor": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "BorderSize": 3
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea1",
+                "X": 46,
+                "Y": 59,
+                "Width": 148,
+                "Height": 48,
+                "TextId": "__SingleUse_14OK",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "textArea2",
+                "X": 97,
+                "Y": 124,
+                "Width": 47,
+                "Height": 24,
+                "TextId": "__SingleUse_IKPF",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "systemDescriptionTextArea",
+                "X": 56,
+                "Y": 166,
+                "Width": 128,
+                "Height": 12,
+                "TextId": "__SingleUse_01R9",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 57,
+                  "Green": 147,
+                  "Blue": 250
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_98BS",
+                  "UseBuffer": true,
+                  "BufferSize": 25
+                }
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "UpdateSystemDescription",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateSystemDescription"
+            }
+          },
+          {
+            "InteractionName": "ButtonHWChangeScreenLogin",
+            "Trigger": {
+              "Type": "TriggerPhysicalButtonClicked",
+              "ButtonKey": 1
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "ScreenLoginInvite"
+            }
+          },
+          {
+            "InteractionName": "ButtonHWChangeScreenWelcome",
+            "Trigger": {
+              "Type": "TriggerPhysicalButtonClicked",
+              "ButtonKey": 2
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "ScreenWelcome"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "ScreenLoginInvite",
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "Background",
+            "Width": 240,
+            "Height": 240,
+            "Color": {
+              "Red": 230,
+              "Green": 234,
+              "Blue": 250
+            },
+            "BorderColor": {
+              "Red": 57,
+              "Green": 147,
+              "Blue": 250
+            },
+            "BorderSize": 3
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button1",
+            "X": 91,
+            "Y": 5,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_NOC3",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button2",
+            "X": 161,
+            "Y": 5,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_RFH6",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button4",
+            "X": 91,
+            "Y": 67,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_50LI",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button5",
+            "X": 161,
+            "Y": 67,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_OV8V",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button3",
+            "X": 19,
+            "Y": 67,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_331X",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button6",
+            "X": 19,
+            "Y": 129,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_83IM",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button7",
+            "X": 91,
+            "Y": 129,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_UN7D",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button0",
+            "X": 19,
+            "Y": 5,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_DYLL",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "button8",
+            "X": 161,
+            "Y": 129,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_outline_disabled.png",
+            "TextId": "__SingleUse_6QUC",
+            "ReleasedColor": {
+              "Green": 112,
+              "Blue": 250
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_outline_disabled.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "buttonLogin",
+            "X": 52,
+            "Y": 196,
+            "Width": 138,
+            "Height": 36,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_small_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_small_rounded_normal.png",
+            "TextId": "__SingleUse_K7TG",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\small_rounded_normal.json"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Login",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonLogin"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "login"
+            }
+          },
+          {
+            "InteractionName": "PressButton0",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "button0"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "pressButton0"
+            }
+          }
+        ]
+      },
+      {
         "Name": "ScreenLogs",
         "Components": [
           {
@@ -36,7 +422,7 @@
             "Height": 200,
             "SwipeCutoff": 50,
             "ShowPageIndicator": true,
-            "PageIndicatorX": 90,
+            "PageIndicatorX": 100,
             "PageIndicatorY": 171,
             "CenteredX": true,
             "IndicatorImageNormal": "__generated\\alternate_theme_images_widgets_swipecontainer_medium_off_normal.png",
@@ -44,67 +430,6 @@
             "EndSwipeElasticWidth": 50,
             "SelectedPage": "Logs",
             "Components": [
-              {
-                "Type": "Container",
-                "Name": "Welcome",
-                "Width": 240,
-                "Height": 200,
-                "Components": [
-                  {
-                    "Type": "TextArea",
-                    "Name": "textArea1",
-                    "X": 46,
-                    "Y": 22,
-                    "Width": 148,
-                    "Height": 48,
-                    "TextId": "__SingleUse_85SS",
-                    "TextRotation": "0",
-                    "Color": {
-                      "Red": 57,
-                      "Green": 147,
-                      "Blue": 250
-                    },
-                    "AutoSize": true
-                  },
-                  {
-                    "Type": "TextArea",
-                    "Name": "textArea2",
-                    "X": 97,
-                    "Y": 87,
-                    "Width": 47,
-                    "Height": 24,
-                    "TextId": "__SingleUse_HACC",
-                    "TextRotation": "0",
-                    "Color": {
-                      "Red": 57,
-                      "Green": 147,
-                      "Blue": 250
-                    },
-                    "AutoSize": true
-                  },
-                  {
-                    "Type": "TextArea",
-                    "Name": "systemDescriptionTextArea",
-                    "X": 56,
-                    "Y": 132,
-                    "Width": 128,
-                    "Height": 12,
-                    "TextId": "__SingleUse_HD5T",
-                    "TextRotation": "0",
-                    "Color": {
-                      "Red": 57,
-                      "Green": 147,
-                      "Blue": 250
-                    },
-                    "AutoSize": true,
-                    "Wildcard1": {
-                      "TextId": "__SingleUse_LCDJ",
-                      "UseBuffer": true,
-                      "BufferSize": 25
-                    }
-                  }
-                ]
-              },
               {
                 "Type": "Container",
                 "Name": "Memory",
@@ -656,6 +981,7 @@
       },
       {
         "Name": "ScreenChangeConfig",
+        "Includes": "#include <gui/screenlogininvite_screen/ScreenLoginInviteView.hpp>\r\n\r\n",
         "Components": [
           {
             "Type": "BoxWithBorder",
@@ -1126,6 +1452,17 @@
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "ScreenChangeConfig"
             }
+          },
+          {
+            "InteractionName": "ChangePassword",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonChangePassword"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "changePassword"
+            }
           }
         ]
       }
@@ -1503,7 +1840,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "ScreenChangeConfig",
+    "StartupScreenName": "ScreenWelcome",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

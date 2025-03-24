@@ -27,6 +27,8 @@ public:
 
     void SetDisplayColor();
 
+    void changePassword();
+
 protected:
 };
 

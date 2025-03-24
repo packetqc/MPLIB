@@ -22,7 +22,6 @@ public:
     virtual void tearDownScreen();
 
     void LED_Toggle();
-    void updateSystemDescription();
 	void UpdateStatusNavigationBar();
 	void UpdateLogs(uint8_t index);
 	void ClearLogs();

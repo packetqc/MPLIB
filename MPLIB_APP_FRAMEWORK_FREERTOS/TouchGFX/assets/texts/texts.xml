@@ -6,6 +6,48 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_NOC3" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">1</Translation>
+      </Text>
+      <Text Id="__SingleUse_RFH6" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">2</Translation>
+      </Text>
+      <Text Id="__SingleUse_50LI" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">4</Translation>
+      </Text>
+      <Text Id="__SingleUse_OV8V" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">5</Translation>
+      </Text>
+      <Text Id="__SingleUse_331X" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">3</Translation>
+      </Text>
+      <Text Id="__SingleUse_83IM" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">6</Translation>
+      </Text>
+      <Text Id="__SingleUse_UN7D" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">7</Translation>
+      </Text>
+      <Text Id="__SingleUse_6QUC" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">8</Translation>
+      </Text>
+      <Text Id="__SingleUse_DYLL" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_98BS" Alignment="Left" TypographyId="Stats">
+        <Translation Language="GB">no system description</Translation>
+      </Text>
+      <Text Id="__SingleUse_01R9" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">( &lt;value&gt; )</Translation>
+      </Text>
+      <Text Id="__SingleUse_IKPF" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">LIBS</Translation>
+      </Text>
+      <Text Id="__SingleUse_14OK" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">PaCKeT</Translation>
+      </Text>
+      <Text Id="__SingleUse_K7TG" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">Login</Translation>
+      </Text>
       <Text Id="__SingleUse_TD8D" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">Decrypt on screen</Translation>
       </Text>
@@ -131,18 +173,6 @@
       </Text>
       <Text Id="__SingleUse_BYSC" Alignment="Left" TypographyId="Stats">
         <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_LCDJ" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">no system description</Translation>
-      </Text>
-      <Text Id="__SingleUse_HD5T" Alignment="Center" TypographyId="Small">
-        <Translation Language="GB">( &lt;var&gt; )</Translation>
-      </Text>
-      <Text Id="__SingleUse_HACC" Alignment="Center" TypographyId="Default">
-        <Translation Language="GB">LIBS</Translation>
-      </Text>
-      <Text Id="__SingleUse_85SS" Alignment="Center" TypographyId="Large">
-        <Translation Language="GB">PaCKeT</Translation>
       </Text>
     </TextGroup>
   </Texts>
