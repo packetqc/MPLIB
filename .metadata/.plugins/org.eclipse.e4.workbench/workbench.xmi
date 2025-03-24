@@ -402,92 +402,9 @@
       <tags>View</tags>
       <tags>categoryTag:Help</tags>
     </sharedElements>
-    <sharedElements xsi:type="advanced:Area" xmi:id="_KsRmWAXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.editorss" selectedElement="_f-4twAaIEfCv1_9ctCglIQ">
-      <children xsi:type="basic:PartSashContainer" xmi:id="_f-4twAaIEfCv1_9ctCglIQ" selectedElement="_f-5U0AaIEfCv1_9ctCglIQ" horizontal="true">
-        <children xsi:type="basic:PartStack" xmi:id="_KsRmaAXHEfCwHI9pHOAZxA" elementId="PartStack@648a20eb" containerData="5000" selectedElement="_e7YiAAaLEfCv1_9ctCglIQ">
-          <tags>EditorStack</tags>
-          <children xsi:type="basic:Part" xmi:id="_-zcIQAZVEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenLoginInviteView.hpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenLoginInviteView.hpp&quot; partName=&quot;ScreenLoginInviteView.hpp&quot; title=&quot;ScreenLoginInviteView.hpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenlogininvite_screen/ScreenLoginInviteView.hpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenlogininvite_screen/ScreenLoginInviteView.hpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;566&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_NUu8kAZYEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenLoginInviteView.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenLoginInviteView.cpp&quot; partName=&quot;ScreenLoginInviteView.cpp&quot; title=&quot;ScreenLoginInviteView.cpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenlogininvite_screen/ScreenLoginInviteView.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenlogininvite_screen/ScreenLoginInviteView.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;21&quot; selectionOffset=&quot;174&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_v0f5YAZ5EfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenLoginInvitePresenter.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenLoginInvitePresenter.cpp&quot; partName=&quot;ScreenLoginInvitePresenter.cpp&quot; title=&quot;ScreenLoginInvitePresenter.cpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenlogininvite_screen/ScreenLoginInvitePresenter.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenlogininvite_screen/ScreenLoginInvitePresenter.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;360&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_Fs7hEAaBEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenLoginInvitePresenter.hpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenLoginInvitePresenter.hpp&quot; partName=&quot;ScreenLoginInvitePresenter.hpp&quot; title=&quot;ScreenLoginInvitePresenter.hpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenlogininvite_screen/ScreenLoginInvitePresenter.hpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenlogininvite_screen/ScreenLoginInvitePresenter.hpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;951&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_e7YiAAaLEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenChangeConfigView.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenChangeConfigView.cpp&quot; partName=&quot;ScreenChangeConfigView.cpp&quot; title=&quot;ScreenChangeConfigView.cpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenchangeconfig_screen/ScreenChangeConfigView.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenchangeconfig_screen/ScreenChangeConfigView.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2040&quot; selectionTopPixel=&quot;507&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_51UY4AaLEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenChangeConfigView.hpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenChangeConfigView.hpp&quot; partName=&quot;ScreenChangeConfigView.hpp&quot; title=&quot;ScreenChangeConfigView.hpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenchangeconfig_screen/ScreenChangeConfigView.hpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenchangeconfig_screen/ScreenChangeConfigView.hpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;22&quot; selectionOffset=&quot;697&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_etkTAAaMEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenChangeConfigPresenter.hpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenChangeConfigPresenter.hpp&quot; partName=&quot;ScreenChangeConfigPresenter.hpp&quot; title=&quot;ScreenChangeConfigPresenter.hpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenchangeconfig_screen/ScreenChangeConfigPresenter.hpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/screenchangeconfig_screen/ScreenChangeConfigPresenter.hpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1118&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_hwobYAaMEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScreenChangeConfigPresenter.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ScreenChangeConfigPresenter.cpp&quot; partName=&quot;ScreenChangeConfigPresenter.cpp&quot; title=&quot;ScreenChangeConfigPresenter.cpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenchangeconfig_screen/ScreenChangeConfigPresenter.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/screenchangeconfig_screen/ScreenChangeConfigPresenter.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;449&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-        </children>
-        <children xsi:type="basic:PartStack" xmi:id="_f-5U0AaIEfCv1_9ctCglIQ" elementId="PartStack@3965ebe2" containerData="5000" selectedElement="_cBW5gAaOEfCv1_9ctCglIQ">
-          <tags>EditorStack</tags>
-          <children xsi:type="basic:Part" xmi:id="_KsRmXwXHEfCwHI9pHOAZxA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Model.hpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;Model.hpp&quot; partName=&quot;Model.hpp&quot; title=&quot;Model.hpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/model/Model.hpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/model/Model.hpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;972&quot; selectionTopPixel=&quot;113&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_pshQsAaIEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Model.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;Model.cpp&quot; partName=&quot;Model.cpp&quot; title=&quot;Model.cpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/model/Model.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/src/model/Model.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2453&quot; selectionTopPixel=&quot;429&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_Jq4DsAaJEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ModelListener.hpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;ModelListener.hpp&quot; partName=&quot;ModelListener.hpp&quot; title=&quot;ModelListener.hpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/model/ModelListener.hpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/TouchGFX/gui/include/gui/model/ModelListener.hpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;21&quot; selectionOffset=&quot;1748&quot; selectionTopPixel=&quot;161&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_LCg6IAaLEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="MPSystem.cpp" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;MPSystem.cpp&quot; partName=&quot;MPSystem.cpp&quot; title=&quot;MPSystem.cpp&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/MPLIB_STM32_MCU/Core/Src/MPSystem.cpp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/MPLIB_STM32_MCU/Core/Src/MPSystem.cpp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;6301&quot; selectionTopPixel=&quot;1534&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-          <children xsi:type="basic:Part" xmi:id="_cBW5gAaOEfCv1_9ctCglIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="stm32h5xx_hal.c" iconURI="platform:/plugin/org.eclipse.cdt.ui/icons/obj16/c_file_obj.gif" closeable="true">
-            <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.cdt.ui.editor.CEditor&quot; name=&quot;stm32h5xx_hal.c&quot; partName=&quot;stm32h5xx_hal.c&quot; title=&quot;stm32h5xx_hal.c&quot; tooltip=&quot;MPLIB_APP_FRAMEWORK_FREERTOS/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal.c&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MPLIB_APP_FRAMEWORK_FREERTOS/Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal.c&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;13124&quot; selectionTopPixel=&quot;4498&quot;/>&#xD;&#xA;&lt;/editor>"/>
-            <tags>Editor</tags>
-            <tags>removeOnHide</tags>
-            <tags>org.eclipse.cdt.ui.editor.CEditor</tags>
-          </children>
-        </children>
+    <sharedElements xsi:type="advanced:Area" xmi:id="_KsRmWAXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.editorss">
+      <children xsi:type="basic:PartStack" xmi:id="_f-5U0AaIEfCv1_9ctCglIQ" elementId="PartStack@3965ebe2">
+        <tags>EditorStack</tags>
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_KsSMSAXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.png" tooltip="" closeable="true">
@@ -519,7 +436,7 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_KsSMnQXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.ProblemsView"/>
       <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.ui.ide"/>
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot;>&#xD;&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;90&quot; org.eclipse.ui.ide.pathField=&quot;120&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;300&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xD;&#xA;&lt;/view>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot;>&#xD;&#xA;&lt;expanded>&#xD;&#xA;&lt;category IMemento.internal.id=&quot;Warnings (1 item)&quot;/>&#xD;&#xA;&lt;/expanded>&#xD;&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;90&quot; org.eclipse.ui.ide.pathField=&quot;120&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;300&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xD;&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <menus xmi:id="_KsSMngXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.views.ProblemView">
@@ -823,7 +740,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KsSzgAXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Ughd8AaREfCSr5bPOCXKxg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_KsVQRAXHEfCwHI9pHOAZxA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_iUYyFwjkEfCw18sw_tTMnA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_KsVQRAXHEfCwHI9pHOAZxA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KsSzkAXHEfCwHI9pHOAZxA" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -831,8 +748,8 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KsSzkgXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Ugj6MAaREfCSr5bPOCXKxg" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_KsVQMgXHEfCwHI9pHOAZxA"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_UglIUAaREfCSr5bPOCXKxg" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_KsVQ1gXHEfCwHI9pHOAZxA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_iUYyHgjkEfCw18sw_tTMnA" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_KsVQMgXHEfCwHI9pHOAZxA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_iUYyHwjkEfCw18sw_tTMnA" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_KsVQ1gXHEfCwHI9pHOAZxA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KsSzmgXHEfCwHI9pHOAZxA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -856,7 +773,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KsSz5AXHEfCwHI9pHOAZxA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Ugm9gAaREfCSr5bPOCXKxg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_KsVP6AXHEfCwHI9pHOAZxA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_iUijEwjkEfCw18sw_tTMnA" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_KsVP6AXHEfCwHI9pHOAZxA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_KsSz8gXHEfCwHI9pHOAZxA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
