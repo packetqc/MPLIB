@@ -102,12 +102,12 @@ sequenceDiagram
 SDServices ->> SDCard: read
 SDServices ->> SystemServices: set config
 SDServices ->> Model: gui msg queue (update config)
-Model ->> SystemServices: set config
 Model ->> SystemServices: get config
 Model ->> Presenter: get
 Presenter ->> Model: set
 Presenter ->> Model: call functions
 Model ->> Presenter: call functions
+Model ->> SystemServices: set config
 View ->> Presenter: call functions
 Presenter ->> View: call functions
 Screen TouchGFX ->> View: interactions
