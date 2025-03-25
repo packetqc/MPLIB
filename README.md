@@ -40,25 +40,34 @@ branch H7
 commit id: "Init H7"
 checkout H5
 commit id: "Init H5"
+branch FREERTOS
+branch AZRTOS
+commit id: "Init AZURE RTOS"
+checkout FREERTOS
+commit id: "Init FREERTOS"
 ```
 
 ## RTOS EQUIVALENCE
 
 
-| Asset                | Code | FreeRTOS             | AZRTOS (eclipse) |
-| ---------------------- | ------ | ---------------------- | ------------------ |
-| Thread config        |      | osThreadAttr_t       |                  |
-| Thread               |      | osThreadId_t         |                  |
-| Queue                |      | osMessageQueueId_t   |                  |
-| Mutex                |      | osMutexId_t          |                  |
-| Event / Flags config |      | osMessageQueueAttr_t |                  |
-| Event / Flags        |      | osEventFlagsId_t     |                  |
+| Asset                | Code | FreeRTOS             | AZRTOS (eclipse)    |
+| -------------------- | ---- | -------------------- | ------------------- |
+| Thread config        |      | osThreadAttr_t       |                     |
+| Thread               |      | osThreadId_t         |                     |
+| Queue                |      | osMessageQueueId_t   |                     |
+| Mutex                |      | osMutexId_t          |                     |
+| Event / Flags config |      | osMessageQueueAttr_t |                     |
+| Event / Flags        |      | osEventFlagsId_t     |                     |
+| Heap stats           |      | vPortGetHeapStats    |                     |
+| Memory allocation    |      |                      | tx_byte_allocate    |
+| Memory free          |      | vPortFree            | tx_byte_release     |
+| Memory pool          |      |                      | tx_byte_pool_create |
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
 
 
 | Threads         | Visual heartbeat    | Description |
-| ----------------- | --------------------- | ------------- |
+| --------------- | ------------------- | ----------- |
 | defaultTask     | Green led           |             |
 | GUI_Task        | Green screen border |             |
 | DataServices    | Orange led          |             |
@@ -73,7 +82,7 @@ commit id: "Init H5"
 
 
 | Queues / Mutexes | col2 | col3 |
-| ------------------ | ------ | ------ |
+| ---------------- | ---- | ---- |
 | canLog           |      |      |
 | gui_msg          |      |      |
 | logs_msg         |      |      |
@@ -155,17 +164,29 @@ View ->> Screen TouchGFX: set & invalidate
 
 ### SYMBOLS
 
-- FREERTOS
-- AZRTOS
 - TOUCHGFX
 - STM32H573xx
 - STM32H743xx
 - USE_HAL_DRIVER
 
+#### FREERTOS
+- FREERTOS
+
+#### AZURE RTOS
+
+- AZRTOS
+- TX_INCLUDE_USER_DEFINE_FILE
+- TX_SINGLE_MODE_NON_SECURE
+
 ### CONFIG FILES
 
+#### FREERTOS
+
 FreeRTOSConfig.h
-MPScrollList.cpp/hpp (in Core/Src and Inc temp..)
+
+#### AZURE RTOS
+
+...
 
 #### H5
 
@@ -179,7 +200,10 @@ stm32h7xx_hal_conf.h
 
 ### Includes in code
 
+#### HW defined
+
 #if defined(STM32H743xx)
+
 #include "cmsis_os.h"
 #include "stm32h743i_eval.h"
 //#include "stm32h743i_eval_io.h"
@@ -188,23 +212,35 @@ stm32h7xx_hal_conf.h
 #include "stm32h7xx_hal.h"
 #include "stm32h743i_eval_sdram.h"
 #include "stm32h743i_eval_qspi.h"
+
 #elif defined(STM32H573xx)
+
 #include "stm32h5xx_hal.h"
 #include "stm32h573i_discovery.h"
 #include "stm32h5xx_hal_rng.h"
 #include "stm32h5xx_hal_cryp.h"
+
+#endif
+
+#### RTOS defined
+
+#if defined(FREERTOS)
+
+#elif defined(AZRTOS)
+
+#include <malloc.h>
+#include "tx_api.h"
+
 #endif
 
 ### INCLUDES
 
+(workspace_path)/MPLIB_STM32_MCU/Core/Inc
 Core/Inc
 TouchGFX/App
 TouchGFX/target/generated
 TouchGFX/target
 Drivers/CMSIS/Include
-Middlewares/Third_Party/FreeRTOS/Source/include
-Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-Middlewares/Third_Party/CMSIS/RTOS2/Include
 Middlewares/ST/touchgfx/framework/include
 TouchGFX/generated/fonts/include
 TouchGFX/generated/gui_generated/include
@@ -219,8 +255,18 @@ Drivers/STM32H5xx_HAL_Driver/Inc
 Drivers/STM32H5xx_HAL_Driver/Inc/Legacy
 Drivers/BSP/STM32H573I-DK
 Drivers/CMSIS/Device/ST/STM32H5xx/Include
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/  non_secure/
-Middlewares/ST/threadx/ports/cortex_m33/gnu/inc
+
+##### AZURE RTOS (Eclipse THREADX)
+
+Middlewares/ST/threadx/ports/cortex_m33/gnu/inc  
+Middlewares/ST/threadx/common/inc
+
+##### FREERTOS
+
+Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/  
+Middlewares/Third_Party/FreeRTOS/Source/include
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+Middlewares/Third_Party/CMSIS/RTOS2/Include
 
 #### H7
 
