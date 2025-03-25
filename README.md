@@ -100,11 +100,11 @@ sequenceDiagram
 SDCard ->> SDServices: read
 SDServices ->> SDCard: write
 SDServices ->> SystemServices: setConfig
-SystemServices ->> SDServices: getConfig
+SDServices ->> SystemServices: getConfig
 SDServices ->> SecureServices: encrypt
-SecureServices ->> SDServices: decrypt
+SDServices ->> SecureServices: decrypt
 Model ->> SystemServices: setConfig
-SystemServices ->> Model: getConfig
+Model ->> SystemServices: getConfig
 Model ->> Presenter: get
 Presenter ->> Model: set
 View ->> Presenter: call fn
@@ -112,8 +112,8 @@ Presenter ->> View: call fn
 Screen TouchGFX ->> View: interactions
 View ->> Presenter: event / interactions
 View ->> SecureServices: encrypt
-SecureServices ->> View: decrypt
-Screen TouchGFX ->> View: get
+View ->> SecureServices: decrypt
+View ->> Screen TouchGFX: get
 View ->> Screen TouchGFX: set & invalidate
 ```
 
