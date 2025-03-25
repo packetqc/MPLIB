@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+  <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+    <language id="org.eclipse.cdt.core.assembly" name="s,S">
+      <includepath workspace_path="true">/MPLIB_STM32_MCU</includepath>
+      <includepath>TouchGFX/App</includepath>
+      <includepath>TouchGFX/target/generated</includepath>
+      <includepath>TouchGFX/target</includepath>
+      <includepath>Drivers/STM32H5xx_HAL_Driver/Inc</includepath>
+      <includepath>Drivers/STM32H5xx_HAL_Driver/Inc/Legacy</includepath>
+      <includepath>Drivers/CMSIS/Device/ST/STM32H5xx/Include</includepath>
+      <includepath>Drivers/CMSIS/Include</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/include/</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/</includepath>
+      <includepath>Middlewares/Third_Party/CMSIS/RTOS2/Include/</includepath>
+      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
+      <includepath>Middlewares/ST/touchgfx/framework/include</includepath>
+      <includepath>TouchGFX/generated/fonts/include</includepath>
+      <includepath>TouchGFX/generated/gui_generated/include</includepath>
+      <includepath>TouchGFX/generated/images/include</includepath>
+      <includepath>TouchGFX/generated/texts/include</includepath>
+      <includepath>TouchGFX/generated/videos/include</includepath>
+      <includepath>TouchGFX/gui/include</includepath>
+      <includepath>Core/Inc</includepath>
+    </language>
+    <language id="org.eclipse.cdt.core.gcc" name="C Source File">
+      <includepath>Core/Inc</includepath>
+      <includepath>D:\MPLIB\MPLIB_STM32_MCU\Core\Inc</includepath>
+      <includepath>TouchGFX/App</includepath>
+      <includepath>TouchGFX/target/generated</includepath>
+      <includepath>TouchGFX/target</includepath>
+      <includepath>Drivers/STM32H5xx_HAL_Driver/Inc</includepath>
+      <includepath>Drivers/STM32H5xx_HAL_Driver/Inc/Legacy</includepath>
+      <includepath>Drivers/CMSIS/Device/ST/STM32H5xx/Include</includepath>
+      <includepath>Drivers/CMSIS/Include</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/include/</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/</includepath>
+      <includepath>Middlewares/Third_Party/CMSIS/RTOS2/Include/</includepath>
+      <includepath>Middlewares/ST/touchgfx/framework/include</includepath>
+      <includepath>TouchGFX/generated/fonts/include</includepath>
+      <includepath>TouchGFX/generated/gui_generated/include</includepath>
+      <includepath>TouchGFX/generated/images/include</includepath>
+      <includepath>TouchGFX/generated/texts/include</includepath>
+      <includepath>TouchGFX/generated/videos/include</includepath>
+      <includepath>TouchGFX/gui/include</includepath>
+      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
+      <includepath workspace_path="true">/MPLIB_STM32_MCU/Core/Inc</includepath>
+    </language>
+    <language id="org.eclipse.cdt.core.g++" name="C++ Source File">
+      <includepath>Core/Inc</includepath>
+      <includepath>D:\MPLIB\MPLIB_STM32_MCU\Core\Inc</includepath>
+      <includepath>TouchGFX/App</includepath>
+      <includepath>TouchGFX/target/generated</includepath>
+      <includepath>TouchGFX/target</includepath>
+      <includepath>Drivers/STM32H5xx_HAL_Driver/Inc</includepath>
+      <includepath>Drivers/STM32H5xx_HAL_Driver/Inc/Legacy</includepath>
+      <includepath>Drivers/CMSIS/Device/ST/STM32H5xx/Include</includepath>
+      <includepath>Drivers/CMSIS/Include</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/include/</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/</includepath>
+      <includepath>Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/</includepath>
+      <includepath>Middlewares/Third_Party/CMSIS/RTOS2/Include/</includepath>
+      <includepath>Middlewares/ST/touchgfx/framework/include</includepath>
+      <includepath>TouchGFX/generated/fonts/include</includepath>
+      <includepath>TouchGFX/generated/gui_generated/include</includepath>
+      <includepath>TouchGFX/generated/images/include</includepath>
+      <includepath>TouchGFX/generated/texts/include</includepath>
+      <includepath>TouchGFX/generated/videos/include</includepath>
+      <includepath>TouchGFX/gui/include</includepath>
+      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
+      <includepath workspace_path="true">/MPLIB_STM32_MCU/Core/Inc</includepath>
+    </language>
+    <language name="Object File"/>
+  </section>
+  <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+    <language id="org.eclipse.cdt.core.assembly" name="s,S">
+      <macro>
+        <name>DEBUG</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>FREERTOS</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>TOUCHGFX</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>ERROR_HANDLER</name>
+        <value/>
+      </macro>
+    </language>
+    <language id="org.eclipse.cdt.core.gcc" name="C Source File">
+      <macro>
+        <name>DEBUG</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>USE_HAL_DRIVER</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>STM32H573xx</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>FREERTOS</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>TOUCHGFX</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>ERROR_HANDLER</name>
+        <value/>
+      </macro>
+    </language>
+    <language id="org.eclipse.cdt.core.g++" name="C++ Source File">
+      <macro>
+        <name>DEBUG</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>USE_HAL_DRIVER</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>STM32H573xx</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>FREERTOS</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>TOUCHGFX</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>ERROR_HANDLER</name>
+        <value/>
+      </macro>
+    </language>
+    <language name="Object File"/>
+  </section>
+</cdtprojectproperties>
