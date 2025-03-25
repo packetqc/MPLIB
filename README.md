@@ -114,7 +114,6 @@ View ->> Presenter: event / interactions
 View ->> SecureServices: encrypt
 View ->> SecureServices: decrypt
 View ->> Screen TouchGFX: get
-View ->> Screen TouchGFX: set & invalidate
 View ->> SystemServices: set config
 View ->> SDServices: set sd config
 View ->> SDServices: reset factory
@@ -126,6 +125,9 @@ SDServices ->> SecureServices: encrypt
 SDServices ->> SecureServices: decrypt
 SDServices ->> SDCard: write
 SDServices ->> Model: gui msg queue (update config)
+Model ->> Presenter: update config
+Presenter ->> View: update config
+View ->> Screen TouchGFX: set & invalidate
 ```
 
 ## APPLICATION FRAMEWORK
