@@ -34,13 +34,13 @@ flowchart LR
 title: MPLIB_STM32_MCU
 ---
 gitGraph
-commit id: "Init"
+commit id: "Init main"
 branch H5
 checkout H5
-commit id: "Init"
+commit id: "Init H5"
 branch H7
 checkout H7
-commit id: "Init"
+commit id: "Init H7"
 ```
 
 ## RTOS EQUIVALENCE
