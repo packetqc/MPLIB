@@ -36,10 +36,10 @@ title: MPLIB_STM32_MCU
 gitGraph
 commit id: "Init"
 branch H5
-checkout
+checkout H5
 commit id: "Init"
 branch H7
-checkout
+checkout H7
 commit id: "Init"
 ```
 
