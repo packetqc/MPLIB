@@ -101,8 +101,6 @@ C ->> Cplusplus: queues
 sequenceDiagram  
 SDServices ->> SDCard: read
 SDServices ->> SystemServices: set config
-SDServices ->> SecureServices: encrypt
-SDServices ->> SecureServices: decrypt
 SDServices ->> Model: gui msg queue (update config)
 Model ->> SystemServices: set config
 Model ->> SystemServices: get config
@@ -125,6 +123,8 @@ SDServices ->> SDServices: sd msg queue (encrypt screen)
 SDServices ->> SDServices: sd msg queue (encrypt sdcard)
 SDServices ->> SDServices: sd msg queue (reset factory)
 SDServices ->> SystemServices: get config
+SDServices ->> SecureServices: encrypt
+SDServices ->> SecureServices: decrypt
 SDServices ->> SDCard: write
 ```
 
