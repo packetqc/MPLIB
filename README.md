@@ -95,26 +95,37 @@ C ->> Cplusplus: queues
 
 ### Flow sequences
 
+#### Application state, interactions and persistence
+
 ```mermaid
 sequenceDiagram  
-SDCard ->> SDServices: read
-SDServices ->> SDCard: write
-SDServices ->> SystemServices: setConfig
-SDServices ->> SystemServices: getConfig
+SDServices ->> SDCard: read
+SDServices ->> SystemServices: set config
 SDServices ->> SecureServices: encrypt
 SDServices ->> SecureServices: decrypt
-Model ->> SystemServices: setConfig
-Model ->> SystemServices: getConfig
+SDServices ->> Model: gui msg queue (update config)
+Model ->> SystemServices: set config
+Model ->> SystemServices: get config
 Model ->> Presenter: get
 Presenter ->> Model: set
-View ->> Presenter: call fn
-Presenter ->> View: call fn
+Presenter ->> Model: call functions
+Model ->> Presenter: call functions
+View ->> Presenter: call functions
+Presenter ->> View: call functions
 Screen TouchGFX ->> View: interactions
 View ->> Presenter: event / interactions
 View ->> SecureServices: encrypt
 View ->> SecureServices: decrypt
 View ->> Screen TouchGFX: get
 View ->> Screen TouchGFX: set & invalidate
+View ->> SystemServices: set config
+View ->> SDServices: set sd config
+View ->> SDServices: reset factory
+SDServices ->> SDServices: sd msg queue (encrypt screen)
+SDServices ->> SDServices: sd msg queue (encrypt sdcard)
+SDServices ->> SDServices: sd msg queue (reset factory)
+SDServices ->> SystemServices: get config
+SDServices ->> SDCard: write
 ```
 
 ## APPLICATION FRAMEWORK
