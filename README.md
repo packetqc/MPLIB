@@ -36,7 +36,11 @@ title: MPLIB_STM32_MCU
 gitGraph
 commit id: "Init"
 branch H5
+checkout
+commit id: "Init"
 branch H7
+checkout
+commit id: "Init"
 ```
 
 ## RTOS EQUIVALENCE
