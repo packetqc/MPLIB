@@ -50,18 +50,30 @@ commit id: "Init FREERTOS"
 ## RTOS EQUIVALENCE
 
 
-| Asset                | Code | FreeRTOS             | AZRTOS (eclipse)    |
-| -------------------- | ---- | -------------------- | ------------------- |
-| Thread config        |      | osThreadAttr_t       |                     |
-| Thread               |      | osThreadId_t         |                     |
-| Queue                |      | osMessageQueueId_t   |                     |
-| Mutex                |      | osMutexId_t          |                     |
-| Event / Flags config |      | osMessageQueueAttr_t |                     |
-| Event / Flags        |      | osEventFlagsId_t     |                     |
-| Heap stats           |      | vPortGetHeapStats    |                     |
-| Memory allocation    |      |                      | tx_byte_allocate    |
-| Memory free          |      | vPortFree            | tx_byte_release     |
-| Memory pool          |      |                      | tx_byte_pool_create |
+| Asset                | Code | FreeRTOS             | AZRTOS (eclipse)      |
+| -------------------- | ---- | -------------------- | --------------------- |
+| Thread config        |      | osThreadAttr_t       |                       |
+| Thread               |      | osThreadId_t         | TX_THREAD             |
+| Queue                |      | osMessageQueueId_t   |                       |
+| Mutex                |      | osMutexId_t          |                       |
+| Event / Flags config |      | osMessageQueueAttr_t |                       |
+| Event / Flags        |      | osEventFlagsId_t     |                       |
+| Heap stats           |      | vPortGetHeapStats    |                       |
+| Memory allocation    |      |                      | tx_byte_allocate      |
+| Memory free          |      | vPortFree            | tx_byte_release       |
+| Memory pool          |      |                      | tx_byte_pool_create   |
+| Thread sleep         |      | osThreadSuspend      | tx_thread_suspend     |
+| Thread resume        |      | osThreadResume       | tx_thread_resume      |
+| Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
+|                      |      |                      |                       |
+
+### FROM EXTERNAL SITE
+
+https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
+
+![](image-3.png)
+
+![](image-4.png)
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
 
@@ -77,6 +89,7 @@ commit id: "Init FREERTOS"
 | SDService       | Blue led            |             |
 
 ## COMMUNICATIONS
+
 
 ### Assets
 
@@ -343,36 +356,119 @@ Middlewares/ST/threadx
 
 ### AZRTOS
 
+#### app_azure_rtos_config.h
+
+/* Exported constants --------------------------------------------------------*/
+/* Using static memory allocation via threadX Byte memory pools */
+
+#define USE_STATIC_ALLOCATION                    1
+
+#define TX_APP_MEM_POOL_SIZE                     1024*10
+
+#define TOUCHGFX_APP_MEM_POOL_SIZE               8192
+
+/* USER CODE BEGIN EC */
+
+#define TX_MEM_DEFAULT_THREAD	256
+#define TX_MEM_DATA_THREAD		1024
+#define TX_MEM_SYSTEM_THREAD	256
+#define TX_MEM_DISPLAY_THREAD	256
+#define TX_MEM_SECURE_THREAD	256
+#define TX_MEM_SDCARD_THREAD	512
+
+/* USER CODE END EC */
+
 #### app_threadx.c
 
 /* USER CODE BEGIN PV */
 
-TX_THREAD MPSystemThreadHandler;
+TX_THREAD defaultTaskHandle;
+TX_THREAD GUI_TaskHandle;
+TX_THREAD DataServicesHandle;
+TX_THREAD SystemServiceTaHandle;
+TX_THREAD DisplayServiceHandle;
+TX_THREAD SecureServiceHandle;
+TX_THREAD SDServiceHandle;
 
 /* USER CODE END PV */
 
+/* USER CODE BEGIN PFP */
+//extern void TouchGFX_Task(ULONG thread_input);
+extern void StartDataServices(ULONG thread_input);
+extern void StartSystemServices(ULONG thread_input);
+extern void StartDisplayServices(ULONG thread_input);
+extern void StartSecureServices(ULONG thread_input);
+extern void StartSDServices(ULONG thread_input);
+/* USER CODE END PFP */
+
 //App_ThreadX_Init
+
+/* USER CODE BEGIN App_ThreadX_MEM_POOL */
+TX_BYTE_POOL *byte_pool = (TX_BYTE_POOL*)memory_ptr;
+/* USER CODE END App_ThreadX_MEM_POOL */
 
 /* USER CODE BEGIN App_ThreadX_Init */
 
-/* Allocate the stack for MPSystem thread  */
+CHAR *pointer;
 
-if (tx_byte_allocate(byte_pool, (VOID**) &pointer,
-TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+if (tx_byte_allocate(byte_pool, (VOID**) &pointer, TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
 {
-return TX_POOL_ERROR;
+  return TX_POOL_ERROR;
 }
 
-/* Create MPSystem thread.  */
-
-if (tx_thread_create(&MPSystemThreadHandler, "MPSystem", StartSystemServices, 0, pointer,
+/* Create default start thread.  */
+if (tx_thread_create(&defaultTaskHandle, "Default start thread", StartDefaultTask, 0, pointer,
 TX_APP_STACK_SIZE, TX_MPLIB_THREAD_PRIO, TX_MPLIB_THREAD_PREEMPTION_THRESHOLD,
 TX_NO_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
 {
-return TX_THREAD_ERROR;
+  return TX_THREAD_ERROR;
 }
 
+/* Create all threads here */
+// ...
+
+//  tx_thread_suspend(GUI_TaskHandle);
+//  tx_thread_suspend(DataServicesHandle);
+//  tx_thread_suspend(SystemServiceTaHandle);
+//  tx_thread_suspend(DisplayServiceHandle);
+//  tx_thread_suspend(SecureServiceHandle);
+//  tx_thread_suspend(SDServiceHandle);
+
 /* USER CODE END App_ThreadX_Init */
+
+
+/* USER CODE BEGIN 1 */
+void StartDefaultTask(ULONG thread_input)
+{
+  /* USER CODE BEGIN tx_thread_entry */
+	tx_thread_resume(DataServicesHandle);
+
+	tx_thread_resume(SecureServiceHandle);
+
+	tx_thread_sleep(30);
+
+	tx_thread_resume(DisplayServiceHandle);
+
+	tx_thread_sleep(30);
+
+	tx_thread_resume(SDServiceHandle);
+
+	tx_thread_resume(SystemServiceTaHandle);
+
+	tx_thread_resume(GUI_TaskHandle);
+
+	while(1) {
+		tx_thread_sleep(30);
+
+//		printf("THREADX\n");
+//		tx_thread_sleep(100);
+//		BSP_LED_Off(LED1);
+//		tx_thread_sleep(100);
+//		BSP_LED_On(LED1);
+	}
+  /* USER CODE END tx_thread_entry */
+}
+/* USER CODE END 1 */
 
 ### FREERTOS
 
