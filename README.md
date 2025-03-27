@@ -28,7 +28,7 @@ MP Library stm32
 
 ## RESET CONFIG SAVE TO FACTORY
 
-<video autoplay loop muted controls src="MPLIB-demo-tgfx-1-1.mp4" title=""></video>
+<video autoplay loop muted controls src="/MPLIB-demo-tgfx-1-1.mp4" title=""></video>
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
 
