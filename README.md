@@ -1,10 +1,40 @@
 # MPLIB
 
-MP Library stm32 and arduino
+MP Library stm32
+
+![demo](mplibsreadyforcodemigration.gif)
 
 # STM32 LIB
 
-![demo](mplibsreadyforcodemigration.gif)
+<video autoplay loop muted controls src="MPLIB demo all devices - screen and camera-hr-1.mp4" title="Title"></video>
+
+# FEATURING
+
+## HARDWARE ENCRYPTION
+
+<video autoplay loop muted controls src="MPLIB SAES hw encryption demo-1.mp4" title="Title"></video>
+
+## LOGS
+
+<video autoplay loop muted controls src="MPLIB H7 preview-1.mp4" title="Title"></video>
+
+## LOGIN
+
+<video autoplay loop muted controls src="MPLIB demo login-1.mp4" title=""></video>
+
+## CONFIG SAVE ON SDCARD
+
+<video autoplay loop muted controls src="MPLIBs sdcard config persist-1.mp4" title=""></video>
+
+## RESET CONFIG SAVE TO FACTORY
+
+<video autoplay loop muted controls src="MPLIB demo tgfx-1.mp4" title="Title"></video>
+
+## SCREEN MODE DAYLIGHT OR NIGHT
+
+<video autoplay loop muted controls src="mplibs-freertos-screen-lite-1.mp4" title="Title"></video>
+
+# THE PROJECT
 
 ## MPLIB STRUCTURE AND WORKFLOW
 
@@ -95,7 +125,6 @@ SYSTEM_CLOCK      =   250000000
 SYSTICK_CYCLES    =   ((SYSTEM_CLOCK / 1000) -1)
 ```
 
-
 ### FROM EXTERNAL SITE
 
 https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
@@ -118,7 +147,6 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 | SDService       | Blue led            |             |
 
 ## COMMUNICATIONS
-
 
 ### Assets
 
@@ -212,6 +240,7 @@ View ->> Screen TouchGFX: set & invalidate
 - USE_HAL_DRIVER
 
 #### FREERTOS
+
 - FREERTOS
 
 #### AZURE RTOS
@@ -300,12 +329,12 @@ Drivers/CMSIS/Device/ST/STM32H5xx/Include
 
 ##### AZURE RTOS (Eclipse THREADX)
 
-Middlewares/ST/threadx/ports/cortex_m33/gnu/inc  
+Middlewares/ST/threadx/ports/cortex_m33/gnu/inc
 Middlewares/ST/threadx/common/inc
 
 ##### FREERTOS
 
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/  
+Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/
 Middlewares/Third_Party/FreeRTOS/Source/include
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
 Middlewares/Third_Party/CMSIS/RTOS2/Include
@@ -442,7 +471,7 @@ CHAR *pointer;
 
 if (tx_byte_allocate(byte_pool, (VOID**) &pointer, TX_APP_STACK_SIZE, TX_NO_WAIT) != TX_SUCCESS)
 {
-  return TX_POOL_ERROR;
+return TX_POOL_ERROR;
 }
 
 /* Create default start thread.  */
@@ -450,7 +479,7 @@ if (tx_thread_create(&defaultTaskHandle, "Default start thread", StartDefaultTas
 TX_APP_STACK_SIZE, TX_MPLIB_THREAD_PRIO, TX_MPLIB_THREAD_PREEMPTION_THRESHOLD,
 TX_NO_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
 {
-  return TX_THREAD_ERROR;
+return TX_THREAD_ERROR;
 }
 
 /* Create all threads here */
@@ -465,37 +494,35 @@ TX_NO_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
 
 /* USER CODE END App_ThreadX_Init */
 
-
 /* USER CODE BEGIN 1 */
 void StartDefaultTask(ULONG thread_input)
 {
-  /* USER CODE BEGIN tx_thread_entry */
-	tx_thread_resume(DataServicesHandle);
+/* USER CODE BEGIN tx_thread_entry */
+tx_thread_resume(DataServicesHandle);
 
-	tx_thread_resume(SecureServiceHandle);
+tx_thread_resume(SecureServiceHandle);
 
-	tx_thread_sleep(30);
+tx_thread_sleep(30);
 
-	tx_thread_resume(DisplayServiceHandle);
+tx_thread_resume(DisplayServiceHandle);
 
-	tx_thread_sleep(30);
+tx_thread_sleep(30);
 
-	tx_thread_resume(SDServiceHandle);
+tx_thread_resume(SDServiceHandle);
 
-	tx_thread_resume(SystemServiceTaHandle);
+tx_thread_resume(SystemServiceTaHandle);
 
-	tx_thread_resume(GUI_TaskHandle);
+tx_thread_resume(GUI_TaskHandle);
 
-	while(1) {
-		tx_thread_sleep(30);
-
+while(1) {
+tx_thread_sleep(30);
 //		printf("THREADX\n");
 //		tx_thread_sleep(100);
 //		BSP_LED_Off(LED1);
 //		tx_thread_sleep(100);
 //		BSP_LED_On(LED1);
-	}
-  /* USER CODE END tx_thread_entry */
+}
+/* USER CODE END tx_thread_entry */
 }
 /* USER CODE END 1 */
 
