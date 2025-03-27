@@ -125,30 +125,30 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 ## THREADS / SINGLETONS / BACKEND-SERVICES
 
 
-| Threads         | Visual heartbeat    | Description |
-| --------------- | ------------------- | ----------- |
-| defaultTask     | Green led           |             |
-| GUI_Task        | Green screen border |             |
-| DataServices    | Orange led          |             |
-| SystemServiceTa | Red led             |             |
-| DisplayService  | Blue led            |             |
-| SecureService   | Red led             |             |
-| SDService       | Blue led            |             |
+| Threads | Visual heartbeat    | Description |
+| ------- | ------------------- | ----------- |
+| default | Green led           |             |
+| GUI     | Green screen border |             |
+| Data    | Orange led          |             |
+| System  | Red led             |             |
+| Display | Blue led            |             |
+| Secure  | Red led             |             |
+| SDCard  | Blue led            |             |
 
 ## COMMUNICATIONS
 
 ### Assets
 
 
-| Queues / Mutexes | col2 | col3 |
-| ---------------- | ---- | ---- |
-| canLog           |      |      |
-| gui_msg          |      |      |
-| logs_msg         |      |      |
-| gui_logs_msg     |      |      |
-| logsmon_msg      |      |      |
-| ConnectionEvent  |      |      |
-| sd_msg           |      |      |
+| Assets          | Queues | Mutexes |
+| --------------- | ------ | ------- |
+| canLog          |        | x       |
+| gui_msg         | x      |         |
+| logs_msg        | x      |         |
+| gui_logs_msg    | x      |         |
+| logsmon_msg     | x      |         |
+| ConnectionEvent | x      |         |
+| sd_msg          | x      |         |
 
 ### Programming
 
