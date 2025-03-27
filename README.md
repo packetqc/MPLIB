@@ -6,33 +6,33 @@ MP Library stm32
 
 # STM32 LIB
 
-<video autoplay loop muted controls src="MPLIB demo all devices - screen and camera-hr-1.mp4" title="Title"></video>
+<video autoplay loop muted controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4" title=""></video>
 
 # FEATURING
 
 ## HARDWARE ENCRYPTION
 
-<video autoplay loop muted controls src="MPLIB SAES hw encryption demo-1.mp4" title="Title"></video>
+<video autoplay loop muted controls src="MPLIB-SAES-hw-encryption-demo-1-1.mp4" title=""></video>
 
 ## LOGS
 
-<video autoplay loop muted controls src="MPLIB H7 preview-1.mp4" title="Title"></video>
+<video autoplay loop muted controls src="MPLIB-H7-preview-1-1.mp4" title=""></video>
 
 ## LOGIN
 
-<video autoplay loop muted controls src="MPLIB demo login-1.mp4" title=""></video>
+<video autoplay loop muted controls src="MPLIB-demo-login-1-1.mp4" title=""></video>
 
 ## CONFIG SAVE ON SDCARD
 
-<video autoplay loop muted controls src="MPLIBs sdcard config persist-1.mp4" title=""></video>
+<video autoplay loop muted controls src="MPLIBs-sdcard-config-persist-1-1.mp4" title=""></video>
 
 ## RESET CONFIG SAVE TO FACTORY
 
-<video autoplay loop muted controls src="MPLIB demo tgfx-1.mp4" title="Title"></video>
+<video autoplay loop muted controls src="MPLIB-demo-tgfx-1-1.mp4" title=""></video>
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
 
-<video autoplay loop muted controls src="mplibs-freertos-screen-lite-1.mp4" title="Title"></video>
+<video autoplay loop muted controls src="mplibs-freertos-screen-lite-1.mp4" title=""></video>
 
 # THE PROJECT
 
@@ -82,37 +82,26 @@ commit id: "Init FREERTOS"
 
 | Asset                | Code | FreeRTOS             | AZRTOS (eclipse)      |
 | -------------------- | ---- | -------------------- | --------------------- |
-| Thread config        |      | osThreadAttr_t       |                       |
+| Thread config        |      | osThreadAttr_t       | NA                    |
 | Thread               |      | osThreadId_t         | TX_THREAD             |
-| Queue                |      | osMessageQueueId_t   |                       |
-| Mutex                |      | osMutexId_t          |                       |
-| Event / Flags config |      | osMessageQueueAttr_t |                       |
-| Event / Flags        |      | osEventFlagsId_t     |                       |
-| Heap stats           |      | vPortGetHeapStats    |                       |
-| Memory allocation    |      |                      | tx_byte_allocate      |
+| Queue                |      | osMessageQueueId_t   | TX_QUEUE              |
+| Mutex                |      | osMutexId_t          | TX_MUTEX              |
+| Event / Flags config |      | osMessageQueueAttr_t | (tbc)                 |
+| Event / Flags        |      | osEventFlagsId_t     | (tbc)                 |
+| Heap stats           |      | vPortGetHeapStats    | TX_BYTE_POOL          |
+| Memory allocation    |      | pvPortMalloc         | tx_byte_allocate      |
 | Memory free          |      | vPortFree            | tx_byte_release       |
-| Memory pool          |      |                      | tx_byte_pool_create   |
+| Memory pool          |      | NA                   | tx_byte_pool_create   |
 | Thread sleep         |      | osThreadSuspend      | tx_thread_suspend     |
 | Thread resume        |      | osThreadResume       | tx_thread_resume      |
 | Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
-|                      |      |                      |                       |
 
-note: timeout hardcoded in stm32h5xx_ll_sdmmc.h, had to #if defined freertos or azrtos timeouts ...
+note: timeout hardcoded in stm32h5xx_ll_sdmmc.h, ticks & sdcard issue in Threadx ...
 
 ```
-#if defined(FREERTOS)
-
 #define SDMMC_CMDTIMEOUT                   ((uint32_t)5000U)        /* Command send and response timeout     */
 #define SDMMC_MAXERASETIMEOUT              ((uint32_t)63000U)       /* Max erase Timeout 63 s                */
 #define SDMMC_STOPTRANSFERTIMEOUT          ((uint32_t)100000000U)   /* Timeout for STOP TRANSMISSION command */
-
-#elif defined(AZRTOS)
-
-#define SDMMC_CMDTIMEOUT                   ((uint32_t)500U)        /* Command send and response timeout     */
-#define SDMMC_MAXERASETIMEOUT              ((uint32_t)6300U)       /* Max erase Timeout 63 s                */
-#define SDMMC_STOPTRANSFERTIMEOUT          ((uint32_t)10000000U)   /* Timeout for STOP TRANSMISSION command */
-
-#endif
 ```
 
 also, changes in tx_initialize_low_level.S
