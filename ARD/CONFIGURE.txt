@@ -1,4 +1,0 @@
-COMPILATION FOR A DEVICE:
-
-- arduino_secret.h
-- devices.h: HAVE_DPS
