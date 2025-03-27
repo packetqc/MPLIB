@@ -67,6 +67,35 @@ commit id: "Init FREERTOS"
 | Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
 |                      |      |                      |                       |
 
+note: timeout hardcoded in stm32h5xx_ll_sdmmc.h, had to #if defined freertos or azrtos timeouts ...
+
+```
+#if defined(FREERTOS)
+
+#define SDMMC_CMDTIMEOUT                   ((uint32_t)5000U)        /* Command send and response timeout     */
+#define SDMMC_MAXERASETIMEOUT              ((uint32_t)63000U)       /* Max erase Timeout 63 s                */
+#define SDMMC_STOPTRANSFERTIMEOUT          ((uint32_t)100000000U)   /* Timeout for STOP TRANSMISSION command */
+
+#elif defined(AZRTOS)
+
+#define SDMMC_CMDTIMEOUT                   ((uint32_t)500U)        /* Command send and response timeout     */
+#define SDMMC_MAXERASETIMEOUT              ((uint32_t)6300U)       /* Max erase Timeout 63 s                */
+#define SDMMC_STOPTRANSFERTIMEOUT          ((uint32_t)10000000U)   /* Timeout for STOP TRANSMISSION command */
+
+#endif
+```
+
+also, changes in tx_initialize_low_level.S
+
+```
+/*SYSTEM_CLOCK      =   250000000*/
+/*SYSTICK_CYCLES    =   ((SYSTEM_CLOCK / 100) -1)*/
+
+SYSTEM_CLOCK      =   250000000
+SYSTICK_CYCLES    =   ((SYSTEM_CLOCK / 1000) -1)
+```
+
+
 ### FROM EXTERNAL SITE
 
 https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
