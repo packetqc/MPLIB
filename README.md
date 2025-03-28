@@ -2,6 +2,8 @@
 
 MP Library stm32
 
+<video src="https://github.com/packetqc/MPLIB/blob/8935080e3b4472becc504226ed4871a768bbaa2e/MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
+
 # STM32 LIB
 
 ![demo downloading...](<MPLIB demo all devices - screen and camera-hr-1.gif>)
@@ -10,16 +12,11 @@ MP Library stm32
 
 ## HARDWARE ENCRYPTION
 
-[![demo downloading...](http://i.ytimg.com/vi/eAffJ1v0iRQ/hqdefault.jpg)](https://www.youtube.com/watch?v=eAffJ1v0iRQ)
-
 ![demo downloading...](<MPLIB SAES hw encryption demo-3.gif>)
 
 ![demo downloading...](MPLIB-encrypt-on-screen-daylight-1.gif)
 
 ## LOGS
-
-
-https://github.com/user-attachments/assets/7e9097d4-78b5-49fe-b7ea-e9eb2f7c3090
 
 ![demo downloading...](<MPLIB H7 preview-1.gif>)
 
@@ -28,8 +25,6 @@ https://github.com/user-attachments/assets/7e9097d4-78b5-49fe-b7ea-e9eb2f7c3090
 ![demo downloading...](<MPLIB demo login-1.gif>)
 
 ## CONFIG SAVE ON SDCARD
-
-[![demo downloading...](https://img.youtube.com/vi/eAffJ1v0iRQ/hqdefault.jpg)](https://youtu.be/eAffJ1v0iRQ)
 
 ![demo downloading...](mplibs-config-sdcard.gif)
 
