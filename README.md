@@ -1,7 +1,9 @@
 # MPLIB
 
 MP Library stm32
-(the embedded mp4 demo video tag is not supported in github md file but could show in any preview tool supported, mp4 videos are available in rep listing)
+
+The embedded mp4 demo video tag is not supported in github md file but could show in any preview tool supported, mp4 videos are available in this github rep listing and ![youtube](https://youtube.com/@packet-yi9sq?feature=shared) portfolio.
+
 <video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
 # STM32 LIB
