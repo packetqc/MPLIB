@@ -11,29 +11,29 @@ MP Library stm32
 # FEATURING
 
 ## HARDWARE ENCRYPTION
-
+(animated gif demo is downloading...)
 ![demo downloading...](<MPLIB SAES hw encryption demo-3.gif>)
-
+(animated gif demo is downloading...)
 ![demo downloading...](MPLIB-encrypt-on-screen-daylight-1.gif)
 
 ## LOGS
-
+(animated gif demo is downloading...)
 ![demo downloading...](<MPLIB H7 preview-1.gif>)
 
 ## LOGIN
-
+(animated gif demo is downloading...)
 ![demo downloading...](<MPLIB demo login-1.gif>)
 
 ## CONFIG SAVE ON SDCARD
-
+(animated gif demo is downloading...)
 ![demo downloading...](mplibs-config-sdcard.gif)
 
 ## RESET CONFIG SAVE TO FACTORY
-
+(animated gif demo is downloading...)
 ![demo downloading...](<MPLIB demo tgfx-1.gif>)
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
-
+(animated gif demo is downloading...)
 ![demo downloading...](mplibs-freertos-screen-lite.gif)
 
 # THE PROJECT
