@@ -2,7 +2,7 @@
 
 MP Library stm32
 
-<video src="https://github.com/packetqc/MPLIB/blob/8935080e3b4472becc504226ed4871a768bbaa2e/MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
+<video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
 # STM32 LIB
 
