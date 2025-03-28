@@ -2,37 +2,39 @@
 
 MP Library stm32
 
-![demo](mplibsreadyforcodemigration.gif)
+![demo downloading...](mplibsreadyforcodemigration.gif)
 
 # STM32 LIB
 
-<video autoplay loop muted controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4" title=""></video>
+![demo downloading...](<MPLIB demo all devices - screen and camera-hr-1.gif>)
 
 # FEATURING
 
 ## HARDWARE ENCRYPTION
 
-<video autoplay loop muted controls src="MPLIB-SAES-hw-encryption-demo-1-1.mp4" title=""></video>
+![demo downloading...](<MPLIB SAES hw encryption demo-1.gif>)
+
+![demo downloading...](MPLIB-encrypt-on-screen-daylight-1.gif)
 
 ## LOGS
 
-<video autoplay loop muted controls src="MPLIB-H7-preview-1-1.mp4" title=""></video>
+![demo downloading...](<MPLIB H7 preview-1.gif>)
 
 ## LOGIN
 
-<video autoplay loop muted controls src="MPLIB-demo-login-1-1.mp4" title=""></video>
+![demo downloading...](<MPLIB demo login-1.gif>)
 
 ## CONFIG SAVE ON SDCARD
 
-<video autoplay loop muted controls src="MPLIBs-sdcard-config-persist-1-1.mp4" title=""></video>
+![demo downloading...](mplibs-config-sdcard.gif)
 
 ## RESET CONFIG SAVE TO FACTORY
 
-<video autoplay loop muted controls src="/MPLIB-demo-tgfx-1-1.mp4" title=""></video>
+![demo downloading...](<MPLIB demo tgfx-1.gif>)
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
 
-<video autoplay loop muted controls src="mplibs-freertos-screen-lite-1.mp4" title=""></video>
+![demo downloading...](mplibs-freertos-screen-lite.gif)
 
 # THE PROJECT
 
