@@ -18,6 +18,9 @@ MP Library stm32
 
 ## LOGS
 
+
+https://github.com/user-attachments/assets/7e9097d4-78b5-49fe-b7ea-e9eb2f7c3090
+
 ![demo downloading...](<MPLIB H7 preview-1.gif>)
 
 ## LOGIN
