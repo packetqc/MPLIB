@@ -10,6 +10,8 @@ MP Library stm32
 
 ## HARDWARE ENCRYPTION
 
+{% include youtube.html id="eAffJ1v0iRQ" %}
+
 [![demo downloading...](http://i.ytimg.com/vi/eAffJ1v0iRQ/hqdefault.jpg)](https://www.youtube.com/watch?v=eAffJ1v0iRQ)
 
 ![demo downloading...](<MPLIB SAES hw encryption demo-3.gif>)
