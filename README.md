@@ -29,7 +29,7 @@ https://github.com/user-attachments/assets/7e9097d4-78b5-49fe-b7ea-e9eb2f7c3090
 
 ## CONFIG SAVE ON SDCARD
 
-[![demo downloading...](https://img.youtube.com/vi/eAffJ1v0iRQ/maxresdefault.jpg)](https://youtu.be/eAffJ1v0iRQ)
+[![demo downloading...](https://img.youtube.com/vi/eAffJ1v0iRQ/hqdefault.jpg)](https://youtu.be/eAffJ1v0iRQ)
 
 ![demo downloading...](mplibs-config-sdcard.gif)
 
