@@ -5,7 +5,7 @@ MP Library stm32
 <video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
 # STM32 LIB
-
+(animated gif demo is downloading...)
 ![demo downloading...](<MPLIB demo all devices - screen and camera-hr-1.gif>)
 
 # FEATURING
