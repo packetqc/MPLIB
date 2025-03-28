@@ -4,6 +4,8 @@ MP Library stm32
 
 ![demo downloading...](mplibsreadyforcodemigration.gif)
 
+[![demo downloading...](MPLIB SAES hw encryption demo-3.jpg)](https://www.youtube.com/watch?v=HfkmtFFzCv0)
+
 # STM32 LIB
 
 ![demo downloading...](<MPLIB demo all devices - screen and camera-hr-1.gif>)
@@ -25,6 +27,8 @@ MP Library stm32
 ![demo downloading...](<MPLIB demo login-1.gif>)
 
 ## CONFIG SAVE ON SDCARD
+
+[![demo downloading...](MPLIBs sdcard config persist.JPG)](https://youtu.be/eAffJ1v0iRQ)
 
 ![demo downloading...](mplibs-config-sdcard.gif)
 
