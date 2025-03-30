@@ -264,6 +264,8 @@ stm32h7xx_hal_conf.h
 
 ### Includes in code
 
+#define TX_APP_THREAD_TIME_SLICE                1 //TX_NO_TIME_SLICE
+
 #### HW defined
 
 #if defined(STM32H743xx)
@@ -583,3 +585,14 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 ### MIDDLEWARES
 
 </details>
+
+<details>
+<summary>Click to view details</summary>
+
+# Programmatically clear serial uart terminal screen
+
+```
+printf( "\x1B[2J" );
+printf("%c[0;0H", 0x1b);
+```
+
