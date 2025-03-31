@@ -82,6 +82,7 @@ checkout FREERTOS
 commit id: "Init FREERTOS"
 checkout H5
 merge AZRTOS
+commit id: "Init ongoing dev"
 branch FREERTOS-MX-MERGING
 commit id: "Merging MX and BSP"
 ```
