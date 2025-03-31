@@ -1,11 +1,5 @@
 # MPLIB
 
-MP Library stm32
-
-The embedded mp4 demo video tag is not supported in github md file but could show in any preview tool supported, mp4 videos are available in this github rep listing and(https://youtube.com/@packet-yi9sq?feature=shared) portfolio.
-
-<video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
-
 (animated gif demo is downloading...)
 ![alt text](mplibsreadyforcodemigration-1.gif)
 
@@ -24,7 +18,11 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 - SCREEN MODE DAYLIGHT OR NIGHT
 
 <details>
-<summary>Click to view details</summary>
+<summary>Click to view video demos</summary>
+
+The embedded mp4 demo video tag is not supported in github md file but could show in any preview tool supported, mp4 videos are available in this github rep listing and(https://youtube.com/@packet-yi9sq?feature=shared) portfolio.
+
+<video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
 ## HARDWARE ENCRYPTION
 
