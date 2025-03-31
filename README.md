@@ -80,6 +80,10 @@ commit id: "Init AZURE RTOS"
 commit id: "MX and BSP ok"
 checkout FREERTOS
 commit id: "Init FREERTOS"
+checkout H5
+merge AZRTOS
+branch FREERTOS-MX-MERGING
+commit id: "Merging MX and BSP"
 ```
 
 ## RTOS EQUIVALENCE
