@@ -131,24 +131,6 @@ commit id: "Merging MX and BSP"
 | Thread resume        |      | osThreadResume       | tx_thread_resume      |
 | Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
 
-note: timeout hardcoded in stm32h5xx_ll_sdmmc.h, ticks & sdcard issue in Threadx ...
-
-```
-#define SDMMC_CMDTIMEOUT                   ((uint32_t)5000U)        /* Command send and response timeout     */
-#define SDMMC_MAXERASETIMEOUT              ((uint32_t)63000U)       /* Max erase Timeout 63 s                */
-#define SDMMC_STOPTRANSFERTIMEOUT          ((uint32_t)100000000U)   /* Timeout for STOP TRANSMISSION command */
-```
-
-also, changes in tx_initialize_low_level.S
-
-```
-/*SYSTEM_CLOCK      =   250000000*/
-/*SYSTICK_CYCLES    =   ((SYSTEM_CLOCK / 100) -1)*/
-
-SYSTEM_CLOCK      =   250000000
-SYSTICK_CYCLES    =   ((SYSTEM_CLOCK / 1000) -1)
-```
-
 ### FROM EXTERNAL SITE
 
 https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
@@ -246,15 +228,19 @@ View ->> Screen TouchGFX: set & invalidate
 <details>
 <summary>Click to view details</summary>
 
+### MX CODE GENERATION (THREADX COMPILATION)
+
+TBC. Notes and details on CubeMX configuration to support BSP modules. Ex: sdcard, activate, no code generation, no init and no visibility (see in advanced project code generation)
+
 ### MCU/MPU Settings
 
 #### H5
 
-![](image.png)
+![H5](image.png)
 
 #### H7
 
-![alt text](image-2.png)
+![H7](image-2.png)
 
 ### SYMBOLS
 
