@@ -77,6 +77,7 @@ commit id: "Init H5"
 branch FREERTOS
 branch AZRTOS
 commit id: "Init AZURE RTOS"
+commit id: "MX and BSP ok"
 checkout FREERTOS
 commit id: "Init FREERTOS"
 ```
