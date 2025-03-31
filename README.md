@@ -359,19 +359,19 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 
 #### MPLIB PROJECT
 
-(as workspace)/MPLIB_STM32_MCU/Core/Inc
+(as workspace)/MPLIB_STM32_MCU/Core/Inc  
 
 ### LIBS (in framework app only)
 
 #### FREERTOS
 
-/MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/
-:libMPLIB_STM32_MCU.a
+/MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/  
+:libMPLIB_STM32_MCU.a  
 
 #### AZURE RTOS
 
-/MPLIB_APP_FRAMEWORK_AZRTOS/Core/Lib/
-:libMPLIB_STM32_MCU.a
+/MPLIB_APP_FRAMEWORK_AZRTOS/Core/Lib/  
+:libMPLIB_STM32_MCU.a  
 
 ### INCLUDE
 
@@ -385,21 +385,21 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 
 #### H5
 
-Drivers/STM32H7xx_HAL_Drier
-Drivers/CMSIS/Deice/ST/STM32H7xx
+Drivers/STM32H7xx_HAL_Driver  
+Drivers/CMSIS/Device/ST/STM32H7xx  
 ...
-Drivers/BSP/Components/mx25lm51245g
+Drivers/BSP/Components/mx25lm51245g  
 
 #### H7
 
-Drivers/BSP/STM32H573I-DK
-Drivers/BSP/STM32H743I-EVAL/stm32h743i_eval_sd.c
-Drivers/STM32H5xx_HAL_Drier
-Drivers/CMSIS/Deice/ST/STM32H5xx
-Middlewares/ST/threadx/ports/cortex_m33
-Middlewares/ST/touchgfx/framework/source
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ
-Drivers/BSP/Components/mx25lm51245g
+Drivers/BSP/STM32H573I-DK  
+Drivers/BSP/STM32H743I-EVAL/stm32h743i_eval_sd.c  
+Drivers/STM32H5xx_HAL_Drier  
+Drivers/CMSIS/Device/ST/STM32H5xx  
+Middlewares/ST/threadx/ports/cortex_m33  
+Middlewares/ST/touchgfx/framework/source  
+Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ  
+Drivers/BSP/Components/mx25lm51245g  
 
 #### FREERTOS
 
