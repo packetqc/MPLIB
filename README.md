@@ -1,7 +1,9 @@
 # MPLIB
 
 (animated gif demo is downloading...)
-![demo downloading...](MPLIB demo all devices - screen and camera-hr-2x.gif)
+
+![demo downloading...]('MPLIB demo all devices - screen and camera-hr-2x.gif')
+
 
 # FEATURING
 
@@ -18,7 +20,7 @@
 ## STM32 LIB
 
 (animated gif demo is downloading...)
-![alt text](mplibsreadyforcodemigration-1.gif)
+![demo downloading...](mplibsreadyforcodemigration-1.gif)
 
 The embedded mp4 demo video tag is not supported in github md file but could show in any preview tool supported, mp4 videos are available in this github rep listing and(https://youtube.com/@packet-yi9sq?feature=shared) portfolio.
 
