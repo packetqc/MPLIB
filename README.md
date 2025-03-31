@@ -68,7 +68,7 @@ flowchart LR
 title: MPLIB_STM32_MCU
 ---
 gitGraph
-commit id: "Init main FreeRTOS only"
+commit id: "Init main FreeRTOS"
 branch H5
 branch H7
 commit id: "Init H7"
