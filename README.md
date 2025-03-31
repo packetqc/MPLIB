@@ -6,37 +6,59 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 
 <video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
+(animated gif demo is downloading...)
+![alt text](mplibsreadyforcodemigration-1.gif)
+
 # STM32 LIB
-(animated gif demo is downloading...)  
-![demo downloading...](<MPLIB demo all devices - screen and camera-hr-1.gif>)
+
+(animated gif demo is downloading...)
+![demo downloading...](MPLIB demo all devices - screen and camera-hr-2x.gif)
 
 # FEATURING
 
+- HARDWARE ENCRYPTION
+- LOGS
+- LOGIN
+- CONFIG SAVE ON SDCARD
+- RESET CONFIG SAVE TO FACTORY
+- SCREEN MODE DAYLIGHT OR NIGHT
+
+<details>
+<summary>Click to view details</summary>
+
 ## HARDWARE ENCRYPTION
-(animated gif demo is downloading...)  
-![demo downloading...](<MPLIB SAES hw encryption demo-3.gif>)  
-(animated gif demo is downloading...)  
+
+(animated gif demo is downloading...)
+![demo downloading...](MPLIB SAES hw encryption demo-3.gif)
+(animated gif demo is downloading...)
 ![demo downloading...](MPLIB-encrypt-on-screen-daylight-3.gif)
 
 ## LOGS
-(animated gif demo is downloading...)  
-![demo downloading...](<MPLIB H7 preview-1.gif>)
+
+(animated gif demo is downloading...)
+![demo downloading...](MPLIB H7 preview-1.gif)
 
 ## LOGIN
-(animated gif demo is downloading...)  
-![demo downloading...](<MPLIB demo login-1.gif>)
+
+(animated gif demo is downloading...)
+![demo downloading...](MPLIB demo login-1.gif)
 
 ## CONFIG SAVE ON SDCARD
-(animated gif demo is downloading...)  
+
+(animated gif demo is downloading...)
 ![demo downloading...](mplibs-config-sdcard.gif)
 
 ## RESET CONFIG SAVE TO FACTORY
-(animated gif demo is downloading...)  
-![demo downloading...](<MPLIB demo tgfx-1.gif>)
+
+(animated gif demo is downloading...)
+![demo downloading...](MPLIB demo tgfx-1.gif)
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
-(animated gif demo is downloading...)  
+
+(animated gif demo is downloading...)
 ![demo downloading...](mplibs-freertos-screen-lite.gif)
+
+</details>
 
 # THE PROJECT
 
@@ -94,7 +116,7 @@ commit id: "Merging MX and BSP"
 
 
 | Asset                | Code | FreeRTOS             | AZRTOS (eclipse)      |
-| -------------------- | ---- | -------------------- | --------------------- |
+| ---------------------- | ------ | ---------------------- | ----------------------- |
 | Thread config        |      | osThreadAttr_t       | NA                    |
 | Thread               |      | osThreadId_t         | TX_THREAD             |
 | Queue                |      | osMessageQueueId_t   | TX_QUEUE              |
@@ -139,7 +161,7 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 
 
 | Threads | Visual heartbeat    | Description |
-| ------- | ------------------- | ----------- |
+| --------- | --------------------- | ------------- |
 | default | Green led           |             |
 | GUI     | Green screen border |             |
 | Data    | Orange led          |             |
@@ -154,7 +176,7 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 
 
 | Assets          | Queues | Mutexes |
-| --------------- | ------ | ------- |
+| ----------------- | -------- | --------- |
 | canLog          |        | x       |
 | gui_msg         | x      |         |
 | logs_msg        | x      |         |
@@ -359,19 +381,19 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 
 #### MPLIB PROJECT
 
-(as workspace)/MPLIB_STM32_MCU/Core/Inc  
+(as workspace)/MPLIB_STM32_MCU/Core/Inc
 
 ### LIBS (in framework app only)
 
 #### FREERTOS
 
-/MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/  
-:libMPLIB_STM32_MCU.a  
+/MPLIB_APP_FRAMEWORK_FREERTOS/Core/Lib/
+:libMPLIB_STM32_MCU.a
 
 #### AZURE RTOS
 
-/MPLIB_APP_FRAMEWORK_AZRTOS/Core/Lib/  
-:libMPLIB_STM32_MCU.a  
+/MPLIB_APP_FRAMEWORK_AZRTOS/Core/Lib/
+:libMPLIB_STM32_MCU.a
 
 ### INCLUDE
 
@@ -385,21 +407,21 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 
 #### H5
 
-Drivers/STM32H7xx_HAL_Driver  
-Drivers/CMSIS/Device/ST/STM32H7xx  
+Drivers/STM32H7xx_HAL_Driver
+Drivers/CMSIS/Device/ST/STM32H7xx
 ...
-Drivers/BSP/Components/mx25lm51245g  
+Drivers/BSP/Components/mx25lm51245g
 
 #### H7
 
-Drivers/BSP/STM32H573I-DK  
-Drivers/BSP/STM32H743I-EVAL/stm32h743i_eval_sd.c  
-Drivers/STM32H5xx_HAL_Drier  
-Drivers/CMSIS/Device/ST/STM32H5xx  
-Middlewares/ST/threadx/ports/cortex_m33  
-Middlewares/ST/touchgfx/framework/source  
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ  
-Drivers/BSP/Components/mx25lm51245g  
+Drivers/BSP/STM32H573I-DK
+Drivers/BSP/STM32H743I-EVAL/stm32h743i_eval_sd.c
+Drivers/STM32H5xx_HAL_Drier
+Drivers/CMSIS/Device/ST/STM32H5xx
+Middlewares/ST/threadx/ports/cortex_m33
+Middlewares/ST/touchgfx/framework/source
+Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ
+Drivers/BSP/Components/mx25lm51245g
 
 #### FREERTOS
 
@@ -604,4 +626,3 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 printf( "\x1B[2J" );
 printf("%c[0;0H", 0x1b);
 ```
-
