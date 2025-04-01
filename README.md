@@ -110,6 +110,12 @@ commit id: "Init ongoing dev"
 checkout H5
 branch FREERTOS-MX-MERGING
 commit id: "Merging MX and BSP"
+checkout AZRTOS
+commit id: "Adapt from FreeRTOS MX merge"
+checkout H5
+merge AZRTOS
+checkout main
+merge H5
 ```
 
 ## RTOS EQUIVALENCE
