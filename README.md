@@ -22,24 +22,37 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 <video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
 (animated gif demo is downloading...)  
-![alt text](<MPLIB demo all devices - screen and camera-hr-2x-1.gif>)
+![demo downloading...](MPLIB-demo-all-devices-screen-and-camera-hr-2x-1-1.gif)  
 
 ## HARDWARE ENCRYPTION
 
+### SDCARD AND SCREEN ENCRYPTION
+
+
+| Released                                                        | Previous dev                                                   |
+| --------------------------------------------------------------- | -------------------------------------------------------------- |
+| (animated gif demo is downloading...)                           | (animated gif demo is downloading...)                          |
+| ![demo downloading...](MPLIB-SAES-hw-encryption-demo-3-1-1.gif) | ![demo downloading...](MPLIB-encrypt-on-screen-daylight-3.gif) |
+
+
+
+
 (animated gif demo is downloading...)
-![demo downloading...](MPLIB SAES hw encryption demo-3.gif)
-(animated gif demo is downloading...)
-![demo downloading...](MPLIB-encrypt-on-screen-daylight-3.gif)
+
+
+### DATA AT REST AND ON TRANSIT ENCRYPTION
+
+(dev in progress...)
 
 ## LOGS
 
-(animated gif demo is downloading...)
-![demo downloading...](MPLIB H7 preview-1.gif)
+(animated gif demo is downloading...)  
+![demo downloading...](MPLIB-H7-preview-1-1.gif)  
 
 ## LOGIN
 
-(animated gif demo is downloading...)
-![demo downloading...](MPLIB demo login-1.gif)
+(animated gif demo is downloading...)  
+![demo downloading...](MPLIB-demo-login-1-1.gif)  
 
 ## CONFIG SAVE ON SDCARD
 
@@ -48,13 +61,13 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 
 ## RESET CONFIG SAVE TO FACTORY
 
-(animated gif demo is downloading...)
-![demo downloading...](MPLIB demo tgfx-1.gif)
+(animated gif demo is downloading...)  
+![demo downloading...](MPLIB-demo-tgfx-1-1.gif)  
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
 
-(animated gif demo is downloading...)
-![demo downloading...](mplibs-freertos-screen-lite.gif)
+(animated gif demo is downloading...)  
+![demo downloading...](mplibs-freertos-screen-lite-2x-1.gif)  
 
 </details>
 
@@ -120,7 +133,7 @@ merge H5
 
 
 | Asset                | Code | FreeRTOS             | AZRTOS (eclipse)      |
-| ---------------------- | ------ | ---------------------- | ----------------------- |
+| -------------------- | ---- | -------------------- | --------------------- |
 | Thread config        |      | osThreadAttr_t       | NA                    |
 | Thread               |      | osThreadId_t         | TX_THREAD             |
 | Queue                |      | osMessageQueueId_t   | TX_QUEUE              |
@@ -147,7 +160,7 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 
 
 | Threads | Visual heartbeat    | Description |
-| --------- | --------------------- | ------------- |
+| ------- | ------------------- | ----------- |
 | default | Green led           |             |
 | GUI     | Green screen border |             |
 | Data    | Orange led          |             |
@@ -162,7 +175,7 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 
 
 | Assets          | Queues | Mutexes |
-| ----------------- | -------- | --------- |
+| --------------- | ------ | ------- |
 | canLog          |        | x       |
 | gui_msg         | x      |         |
 | logs_msg        | x      |         |
