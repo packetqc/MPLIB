@@ -125,7 +125,7 @@ commit id: "Network dev udp sender and receiver"
 checkout H5
 merge AZRTOS
 checkout AZRTOS
-commit id: "Network and Cryptography dev"
+commit id: "Cryptography dev"
 ```
 
 ## RTOS EQUIVALENCE
