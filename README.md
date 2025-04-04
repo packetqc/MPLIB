@@ -652,6 +652,10 @@ In reference of ST documentation RM0481.pdf,
 
 ![pka-block-diagram](image-9.png)  
 
+# CRYPTOGRAPHIC LIBRARY MIDDLEWARE
+
+![crypt-lib-middleware](https://github.com/user-attachments/assets/e2d9a592-cea2-4866-942e-20c801beac6b)
+
 </details>
 
 # TO READ UID MEMORY (MPU CONFIG example)
