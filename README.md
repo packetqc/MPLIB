@@ -120,6 +120,10 @@ checkout H5
 merge AZRTOS
 checkout main
 merge H5
+checkout H5
+merge AZRTOS
+checkout AZRTOS
+commit id: "Network and Cryptography dev"
 ```
 
 ## RTOS EQUIVALENCE
