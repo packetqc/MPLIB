@@ -124,6 +124,8 @@ checkout AZRTOS
 commit id: "Network dev udp sender and receiver"
 checkout H5
 merge AZRTOS
+checkout main
+merge H5
 checkout AZRTOS
 commit id: "Cryptography dev"
 ```
