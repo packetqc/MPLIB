@@ -28,17 +28,10 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 
 ### SDCARD AND SCREEN ENCRYPTION
 
-
 | Released                                                        | Previous dev                                                   |
 | --------------------------------------------------------------- | -------------------------------------------------------------- |
 | (animated gif demo is downloading...)                           | (animated gif demo is downloading...)                          |
 | ![demo downloading...](MPLIB-SAES-hw-encryption-demo-3-1-1.gif) | ![demo downloading...](MPLIB-encrypt-on-screen-daylight-3.gif) |
-
-
-
-
-(animated gif demo is downloading...)
-
 
 ### DATA AT REST AND ON TRANSIT ENCRYPTION
 
@@ -150,11 +143,16 @@ merge H5
 
 ### FROM EXTERNAL SITE
 
-https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
+<details>
+<summary>Click to view details</summary>  
+
+https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX  
 
 ![](image-3.png)
 
 ![](image-4.png)
+
+</details>
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
 
@@ -168,6 +166,7 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 | Display | Blue led            |             |
 | Secure  | Red led             |             |
 | SDCard  | Blue led            |             |
+| Network | Green led ||
 
 ## COMMUNICATIONS
 
@@ -275,6 +274,8 @@ TBC. Notes and details on CubeMX configuration to support BSP modules. Ex: sdcar
 - AZRTOS
 - TX_INCLUDE_USER_DEFINE_FILE
 - TX_SINGLE_MODE_NON_SECURE
+- NX_INCLUDE_USER_DEFINE_FILE
+- NX_SECURE_INCLUDE_USER_DEFINE_FILE
 
 ### CONFIG FILES
 
@@ -316,6 +317,7 @@ stm32h7xx_hal_conf.h
 #elif defined(STM32H573xx)
 
 #include "stm32h5xx_hal.h"
+#include "stm32h5xx_hal_eth.h"
 #include "stm32h573i_discovery.h"
 #include "stm32h5xx_hal_rng.h"
 #include "stm32h5xx_hal_cryp.h"
@@ -620,12 +622,48 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 
 </details>
 
+
+# Programmatically clear serial uart terminal screen
+
 <details>
 <summary>Click to view details</summary>
 
-# Programmatically clear serial uart terminal screen
 
 ```
 printf( "\x1B[2J" );
 printf("%c[0;0H", 0x1b);
 ```
+</details>
+
+# SECURITY ARCHITECTURE OF STM32H5
+
+In reference of ST documentation RM0481.pdf, 
+
+<details>  
+<summary>Click to view details</summary>  
+
+![h5sec-key-management-principle-arch](image-5.png)
+
+![aes-block-diagram](image-6.png)
+
+![saes-block-diagram](image-7.png)
+
+![hash-block-diagram](image-8.png)  
+
+![pka-block-diagram](image-9.png)  
+
+</details>
+
+# TO READ UID MEMORY (MPU CONFIG example)
+
+<details>  
+<summary>Click to view details</summary>  
+
+```
+  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+  MPU_InitStruct.BaseAddress = 0x08FFF800;
+  MPU_InitStruct.LimitAddress = 0x08FFFFFF;
+  MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
+```
+
+</details>

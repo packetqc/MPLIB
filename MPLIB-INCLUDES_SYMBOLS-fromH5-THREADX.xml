@@ -5,12 +5,15 @@
       <includepath>TouchGFX/App</includepath>
       <includepath>TouchGFX/target/generated</includepath>
       <includepath>TouchGFX/target</includepath>
+      <includepath>Core/Inc</includepath>
+      <includepath>AZURE_RTOS/App</includepath>
+      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
       <includepath>Drivers/STM32H5xx_HAL_Driver/Inc</includepath>
       <includepath>Drivers/STM32H5xx_HAL_Driver/Inc/Legacy</includepath>
+      <includepath>Middlewares/ST/threadx/common/inc</includepath>
       <includepath>Drivers/CMSIS/Device/ST/STM32H5xx/Include</includepath>
+      <includepath>Middlewares/ST/threadx/ports/cortex_m33/gnu/inc</includepath>
       <includepath>Drivers/CMSIS/Include</includepath>
-      <includepath>Middlewares/Third_Party/CMSIS/RTOS2/Include/</includepath>
-      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
       <includepath>Middlewares/ST/touchgfx/framework/include</includepath>
       <includepath>TouchGFX/generated/fonts/include</includepath>
       <includepath>TouchGFX/generated/gui_generated/include</includepath>
@@ -18,20 +21,33 @@
       <includepath>TouchGFX/generated/texts/include</includepath>
       <includepath>TouchGFX/generated/videos/include</includepath>
       <includepath>TouchGFX/gui/include</includepath>
-      <includepath>Core/Inc</includepath>
-      <includepath workspace_path="true">/${ProjName}/Middlewares/ST/threadx/common/inc</includepath>
-      <includepath workspace_path="true">/${ProjName}/Middlewares/ST/threadx/ports/cortex_m33/gnu/inc</includepath>
+      <includepath>Middlewares/ST/threadx/utility/low_power</includepath>
+      <includepath workspace_path="true">/MPLIB_STM32_MCU/Core/Inc</includepath>
+      <includepath>NetXDuo/App</includepath>
+      <includepath>NetXDuo/Target</includepath>
+      <includepath>Drivers/BSP/Components/lan8742</includepath>
+      <includepath>Middlewares/ST/netxduo/addons/dhcp</includepath>
+      <includepath>Middlewares/ST/netxduo/common/drivers/ethernet</includepath>
+      <includepath>Middlewares/ST/netxduo/common/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/ports/cortex_m33/gnu/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/nx_secure/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/nx_secure/ports</includepath>
+      <includepath>Middlewares/ST/netxduo/crypto_libraries/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/crypto_libraries/ports/cortex_m4/gnu/inc</includepath>
     </language>
     <language id="org.eclipse.cdt.core.gcc" name="C Source File">
-      <includepath>Core/Inc</includepath>
       <includepath>TouchGFX/App</includepath>
       <includepath>TouchGFX/target/generated</includepath>
       <includepath>TouchGFX/target</includepath>
+      <includepath>Core/Inc</includepath>
+      <includepath>AZURE_RTOS/App</includepath>
+      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
       <includepath>Drivers/STM32H5xx_HAL_Driver/Inc</includepath>
       <includepath>Drivers/STM32H5xx_HAL_Driver/Inc/Legacy</includepath>
+      <includepath>Middlewares/ST/threadx/common/inc</includepath>
       <includepath>Drivers/CMSIS/Device/ST/STM32H5xx/Include</includepath>
+      <includepath>Middlewares/ST/threadx/ports/cortex_m33/gnu/inc</includepath>
       <includepath>Drivers/CMSIS/Include</includepath>
-      <includepath>Middlewares/Third_Party/CMSIS/RTOS2/Include/</includepath>
       <includepath>Middlewares/ST/touchgfx/framework/include</includepath>
       <includepath>TouchGFX/generated/fonts/include</includepath>
       <includepath>TouchGFX/generated/gui_generated/include</includepath>
@@ -39,21 +55,32 @@
       <includepath>TouchGFX/generated/texts/include</includepath>
       <includepath>TouchGFX/generated/videos/include</includepath>
       <includepath>TouchGFX/gui/include</includepath>
-      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
       <includepath workspace_path="true">/MPLIB_STM32_MCU/Core/Inc</includepath>
-      <includepath workspace_path="true">/${ProjName}/Middlewares/ST/threadx/common/inc</includepath>
-      <includepath workspace_path="true">/${ProjName}/Middlewares/ST/threadx/ports/cortex_m33/gnu/inc</includepath>
+      <includepath>NetXDuo/App</includepath>
+      <includepath>NetXDuo/Target</includepath>
+      <includepath>Drivers/BSP/Components/lan8742</includepath>
+      <includepath>Middlewares/ST/netxduo/addons/dhcp</includepath>
+      <includepath>Middlewares/ST/netxduo/common/drivers/ethernet</includepath>
+      <includepath>Middlewares/ST/netxduo/common/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/ports/cortex_m33/gnu/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/nx_secure/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/nx_secure/ports</includepath>
+      <includepath>Middlewares/ST/netxduo/crypto_libraries/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/crypto_libraries/ports/cortex_m4/gnu/inc</includepath>
     </language>
     <language id="org.eclipse.cdt.core.g++" name="C++ Source File">
-      <includepath>Core/Inc</includepath>
       <includepath>TouchGFX/App</includepath>
       <includepath>TouchGFX/target/generated</includepath>
       <includepath>TouchGFX/target</includepath>
+      <includepath>Core/Inc</includepath>
+      <includepath>AZURE_RTOS/App</includepath>
+      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
       <includepath>Drivers/STM32H5xx_HAL_Driver/Inc</includepath>
       <includepath>Drivers/STM32H5xx_HAL_Driver/Inc/Legacy</includepath>
+      <includepath>Middlewares/ST/threadx/common/inc</includepath>
       <includepath>Drivers/CMSIS/Device/ST/STM32H5xx/Include</includepath>
+      <includepath>Middlewares/ST/threadx/ports/cortex_m33/gnu/inc</includepath>
       <includepath>Drivers/CMSIS/Include</includepath>
-      <includepath>Middlewares/Third_Party/CMSIS/RTOS2/Include/</includepath>
       <includepath>Middlewares/ST/touchgfx/framework/include</includepath>
       <includepath>TouchGFX/generated/fonts/include</includepath>
       <includepath>TouchGFX/generated/gui_generated/include</includepath>
@@ -61,11 +88,20 @@
       <includepath>TouchGFX/generated/texts/include</includepath>
       <includepath>TouchGFX/generated/videos/include</includepath>
       <includepath>TouchGFX/gui/include</includepath>
-      <includepath>Drivers/BSP/STM32H573I-DK</includepath>
       <includepath workspace_path="true">/MPLIB_STM32_MCU/Core/Inc</includepath>
-      <includepath workspace_path="true">/${ProjName}/Middlewares/ST/threadx/common/inc</includepath>
-      <includepath workspace_path="true">/${ProjName}/Middlewares/ST/threadx/ports/cortex_m33/gnu/inc</includepath>
+      <includepath>NetXDuo/App</includepath>
+      <includepath>NetXDuo/Target</includepath>
+      <includepath>Drivers/BSP/Components/lan8742</includepath>
+      <includepath>Middlewares/ST/netxduo/addons/dhcp</includepath>
+      <includepath>Middlewares/ST/netxduo/common/drivers/ethernet</includepath>
+      <includepath>Middlewares/ST/netxduo/common/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/ports/cortex_m33/gnu/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/nx_secure/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/nx_secure/ports</includepath>
+      <includepath>Middlewares/ST/netxduo/crypto_libraries/inc</includepath>
+      <includepath>Middlewares/ST/netxduo/crypto_libraries/ports/cortex_m4/gnu/inc</includepath>
     </language>
+    <language name="Object File"/>
   </section>
   <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
     <language id="org.eclipse.cdt.core.assembly" name="s,S">
@@ -74,27 +110,15 @@
         <value/>
       </macro>
       <macro>
-        <name>TOUCHGFX</name>
-        <value/>
-      </macro>
-      <macro>
-        <name>ERROR_HANDLER</name>
-        <value/>
-      </macro>
-      <macro>
-        <name>USE_HAL_DRIVER</name>
-        <value/>
-      </macro>
-      <macro>
-        <name>STM32H573xx</name>
-        <value/>
+        <name>TX_SINGLE_MODE_NON_SECURE</name>
+        <value>1</value>
       </macro>
       <macro>
         <name>AZRTOS</name>
         <value/>
       </macro>
       <macro>
-        <name>TX_INCLUDE_USER_DEFINE_FILE</name>
+        <name>TOUCHGFX</name>
         <value/>
       </macro>
     </language>
@@ -104,6 +128,14 @@
         <value/>
       </macro>
       <macro>
+        <name>TX_INCLUDE_USER_DEFINE_FILE</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>TX_SINGLE_MODE_NON_SECURE</name>
+        <value>1</value>
+      </macro>
+      <macro>
         <name>USE_HAL_DRIVER</name>
         <value/>
       </macro>
@@ -112,19 +144,19 @@
         <value/>
       </macro>
       <macro>
-        <name>TOUCHGFX</name>
-        <value/>
-      </macro>
-      <macro>
-        <name>ERROR_HANDLER</name>
-        <value/>
-      </macro>
-      <macro>
         <name>AZRTOS</name>
         <value/>
       </macro>
       <macro>
-        <name>TX_INCLUDE_USER_DEFINE_FILE</name>
+        <name>TOUCHGFX</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>NX_INCLUDE_USER_DEFINE_FILE</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>NX_SECURE_INCLUDE_USER_DEFINE_FILE</name>
         <value/>
       </macro>
     </language>
@@ -134,6 +166,14 @@
         <value/>
       </macro>
       <macro>
+        <name>TX_INCLUDE_USER_DEFINE_FILE</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>TX_SINGLE_MODE_NON_SECURE</name>
+        <value>1</value>
+      </macro>
+      <macro>
         <name>USE_HAL_DRIVER</name>
         <value/>
       </macro>
@@ -142,21 +182,22 @@
         <value/>
       </macro>
       <macro>
-        <name>TOUCHGFX</name>
-        <value/>
-      </macro>
-      <macro>
-        <name>ERROR_HANDLER</name>
-        <value/>
-      </macro>
-      <macro>
         <name>AZRTOS</name>
         <value/>
       </macro>
       <macro>
-        <name>TX_INCLUDE_USER_DEFINE_FILE</name>
+        <name>TOUCHGFX</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>NX_INCLUDE_USER_DEFINE_FILE</name>
+        <value/>
+      </macro>
+      <macro>
+        <name>NX_SECURE_INCLUDE_USER_DEFINE_FILE</name>
         <value/>
       </macro>
     </language>
+    <language name="Object File"/>
   </section>
 </cdtprojectproperties>
