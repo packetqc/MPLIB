@@ -2,12 +2,14 @@
 
 # FEATURING
 
-- HARDWARE ENCRYPTION
-- LOGS
+- HARDWARE ENCRYPTION TO SDCARD AND TO DATA
+- ECC AUTO ANNOUNCE & KEY REFRESH / ECIES DATA CRYPT
+- LOGS TO UART AND TO TOUCHGFX INTERFACE
 - LOGIN
 - CONFIG SAVE ON SDCARD
 - RESET CONFIG SAVE TO FACTORY
 - SCREEN MODE DAYLIGHT OR NIGHT
+- MULTITASK SYSTEM ENVIRONMENT
 
 <details>
 <summary>Click to view video demos</summary>
@@ -128,39 +130,8 @@ checkout main
 merge H5
 checkout AZRTOS
 commit id: "Cryptography dev"
+commit id: "NTP, MGMT monitor Tx and memory pool, ECC session & crypto token"
 ```
-
-## RTOS EQUIVALENCE
-
-
-| Asset                | Code | FreeRTOS             | AZRTOS (eclipse)      |
-| -------------------- | ---- | -------------------- | --------------------- |
-| Thread config        |      | osThreadAttr_t       | NA                    |
-| Thread               |      | osThreadId_t         | TX_THREAD             |
-| Queue                |      | osMessageQueueId_t   | TX_QUEUE              |
-| Mutex                |      | osMutexId_t          | TX_MUTEX              |
-| Event / Flags config |      | osMessageQueueAttr_t | (tbc)                 |
-| Event / Flags        |      | osEventFlagsId_t     | (tbc)                 |
-| Heap stats           |      | vPortGetHeapStats    | TX_BYTE_POOL          |
-| Memory allocation    |      | pvPortMalloc         | tx_byte_allocate      |
-| Memory free          |      | vPortFree            | tx_byte_release       |
-| Memory pool          |      | NA                   | tx_byte_pool_create   |
-| Thread sleep         |      | osThreadSuspend      | tx_thread_suspend     |
-| Thread resume        |      | osThreadResume       | tx_thread_resume      |
-| Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
-
-### FROM EXTERNAL SITE
-
-<details>
-<summary>Click to view details</summary>  
-
-https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX  
-
-![](image-3.png)
-
-![](image-4.png)
-
-</details>
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
 
@@ -675,6 +646,41 @@ In reference of ST documentation RM0481.pdf,
   MPU_InitStruct.Number = MPU_REGION_NUMBER1;
   MPU_InitStruct.BaseAddress = 0x08FFF800;
   MPU_InitStruct.LimitAddress = 0x08FFFFFF;
+
+# THREADX AND FREERTOS CONVERSION COMPARISON
+
+## RTOS EQUIVALENCE
+
+
+| Asset                | Code | FreeRTOS             | AZRTOS (eclipse)      |
+| -------------------- | ---- | -------------------- | --------------------- |
+| Thread config        |      | osThreadAttr_t       | NA                    |
+| Thread               |      | osThreadId_t         | TX_THREAD             |
+| Queue                |      | osMessageQueueId_t   | TX_QUEUE              |
+| Mutex                |      | osMutexId_t          | TX_MUTEX              |
+| Event / Flags config |      | osMessageQueueAttr_t | (tbc)                 |
+| Event / Flags        |      | osEventFlagsId_t     | (tbc)                 |
+| Heap stats           |      | vPortGetHeapStats    | TX_BYTE_POOL          |
+| Memory allocation    |      | pvPortMalloc         | tx_byte_allocate      |
+| Memory free          |      | vPortFree            | tx_byte_release       |
+| Memory pool          |      | NA                   | tx_byte_pool_create   |
+| Thread sleep         |      | osThreadSuspend      | tx_thread_suspend     |
+| Thread resume        |      | osThreadResume       | tx_thread_resume      |
+| Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
+
+### FROM EXTERNAL SITE
+
+<details>
+<summary>Click to view details</summary>  
+
+https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX  
+
+![](image-3.png)
+
+![](image-4.png)
+
+</details>
+
   MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
 ```
 
