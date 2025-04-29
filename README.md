@@ -37,9 +37,12 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 | (animated gif demo is downloading...)                           | (animated gif demo is downloading...)                          |
 | ![demo downloading...](MPLIB-SAES-hw-encryption-demo-3-1-1.gif) | ![demo downloading...](MPLIB-encrypt-on-screen-daylight-3.gif) |
 
-### DATA AT REST AND ON TRANSIT ENCRYPTION
+### DATA ON TRANSIT ENCRYPTION
 
-(dev in progress...)
+| ECC / ECIES                                                     | ECC key generation auto refresh                               |
+| --------------------------------------------------------------- | -------------------------------------------------------------- |
+| (animated gif demo is downloading...)                           | (animated gif demo is downloading...)                          |
+| ![demo downloading...](STM32H573i-Crypto-Network-Udp-Ntp-Mgmt-2.gif) | ![demo downloading...](ecc-crypto-demo.gif) |
 
 ## LOGS
 
