@@ -128,6 +128,7 @@ checkout main
 merge H5
 checkout AZRTOS
 commit id: "Cryptography dev"
+commit id: "NTP, MGMT monitor Tx and memory pool, ECC session & crypto token"
 ```
 
 ## RTOS EQUIVALENCE
