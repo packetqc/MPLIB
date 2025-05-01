@@ -651,6 +651,11 @@ In reference of ST documentation RM0481.pdf,
   MPU_InitStruct.Number = MPU_REGION_NUMBER1;
   MPU_InitStruct.BaseAddress = 0x08FFF800;
   MPU_InitStruct.LimitAddress = 0x08FFFFFF;
+  MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
+```
+
+</details>
+
 
 # THREADX AND FREERTOS CONVERSION COMPARISON
 
@@ -683,10 +688,5 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 ![](image-3.png)
 
 ![](image-4.png)
-
-</details>
-
-  MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
-```
 
 </details>
