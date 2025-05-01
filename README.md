@@ -654,6 +654,46 @@ In reference of ST documentation RM0481.pdf,
   MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
 ```
 
+```
+#define UID_BASE                (0x08FFF800UL) /*!< Unique device ID register base address */
+```
+
+```
+uint32_t uid[3];
+
+uid[0] = *(uint32_t *)UID_BASE;
+uid[1] = *(uint32_t *)(UID_BASE + 4);
+uid[2] = *(uint32_t *)(UID_BASE + 8);
+```
+
+```
+MPU_Region_InitTypeDef MPU_InitStruct = {0};
+MPU_Attributes_InitTypeDef MPU_AttributesInit = {0};
+
+/* Disables the MPU */
+HAL_MPU_Disable();
+
+/** Initializes and configures the Region and the memory to be protected
+*/
+MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+MPU_InitStruct.BaseAddress = 0x08FFF800;
+MPU_InitStruct.LimitAddress = 0x08FFFFFF;
+MPU_InitStruct.AttributesIndex = MPU_ATTRIBUTES_NUMBER0;
+MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
+MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
+MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+
+HAL_MPU_ConfigRegion(&MPU_InitStruct);
+MPU_AttributesInit.Number = MPU_REGION_NUMBER0;
+MPU_AttributesInit.Attributes = MPU_DEVICE_nGnRnE | MPU_NOT_CACHEABLE
+                            | MPU_TRANSIENT | MPU_NO_ALLOCATE;
+
+HAL_MPU_ConfigMemoryAttributes(&MPU_AttributesInit);
+/* Enables the MPU */
+HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+```
+
 ![reference](https://community.st.com/t5/stm32-mcus/how-to-obtain-and-use-the-stm32-96-bit-uid/ta-p/621443?lightbox-message-images-621443=63097iC2F7D42E3C29D670)
 
 </details>
