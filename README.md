@@ -654,6 +654,8 @@ In reference of ST documentation RM0481.pdf,
   MPU_InitStruct.AccessPermission = MPU_REGION_ALL_RO;
 ```
 
+![reference](https://community.st.com/t5/stm32-mcus/how-to-obtain-and-use-the-stm32-96-bit-uid/ta-p/621443?lightbox-message-images-621443=63097iC2F7D42E3C29D670)
+
 </details>
 
 
