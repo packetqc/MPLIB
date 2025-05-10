@@ -701,6 +701,9 @@ HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
 # THREADX AND FREERTOS CONVERSION COMPARISON
 
+<details>
+<summary>Click to view details</summary>  
+  
 ## RTOS EQUIVALENCE
 
 
@@ -721,9 +724,6 @@ HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 | Delay                |      | HAL_Delay            | tx_thread_sleep (/10) |
 
 ### FROM EXTERNAL SITE
-
-<details>
-<summary>Click to view details</summary>  
 
 https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX  
 
