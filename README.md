@@ -13,9 +13,6 @@
 - NXDUO NETWORKING
 - TX AND NX MONITORING
 
-<details>
-<summary>Click to view video demos</summary>
-
 ## STM32 LIB
 
 (animated gif demo is downloading...)
@@ -68,8 +65,6 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 
 (animated gif demo is downloading...)  
 ![demo downloading...](mplibs-freertos-screen-lite-2x-1.gif)  
-
-</details>
 
 # THE PROJECT
 
