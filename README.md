@@ -131,6 +131,9 @@ merge H5
 checkout AZRTOS
 commit id: "Cryptography dev"
 commit id: "NTP, MGMT monitor Tx and memory pool, ECC session & crypto token"
+checkout H5
+merge AZRTOS
+commit id: "Post Quantum Crypto dev"
 ```
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
