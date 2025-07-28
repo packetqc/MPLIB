@@ -134,6 +134,8 @@ commit id: "NTP, MGMT monitor Tx and memory pool, ECC session & crypto token"
 checkout H5
 merge AZRTOS
 commit id: "Post Quantum Crypto dev"
+branch WOLFSSL
+commit id: "Post Quantum Crypto liboqs and native wolfcrypt"
 ```
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
