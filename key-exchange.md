@@ -1,10 +1,6 @@
 # COMMUNICATIONS
 
 ## Communication table documentation
-
-<details>
-    
-<summary>Click to see details...</summary>
     
 |Communication|Type|Protocol|Port src/local|Port dst/remote|Description|
 |--|--|--|--|--|--|
@@ -20,12 +16,7 @@
 |Data sender|Client|UDP|34331|34333|Send tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
 |Data receiver|Server|UDP|34333|na|Receive tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
 
-</details>
-
 ## Communication between nodes
-
-<details>    
-<summary>Click to see details...</summary>
 
 ```mermaid
 sequenceDiagram
@@ -52,7 +43,7 @@ title UDP Packet
 
 |Payload type|Position|Description|
 |--|--|--|
-|Broadcast announcment|64-95|"ECC Public Key (N-TBC bytes)"|
+|Broadcast announcment|64-TBC|"ECC Public Key (N-TBC bytes)"|
 |ECC initialization|64-TBC|"TBC (N bytes)"|
 |ECC establishment|64-TBC|"TBC (N bytes)"|
 |Data communication (and response)|64-65|"Cypher tag (1 byte)"|
@@ -60,14 +51,7 @@ title UDP Packet
 |Data communication (and response)|65-TBC|"Data ecc-aes encrypted (N bytes)"|
 |Data communication (and response)|65-TBC|"Data pqc-aes-encrypted (N bytes)"|
 
-</details>
-
 ## TCP Payloads
-
-<details>
-    
-<summary>Click to see details...</summary>  
 
 (DEV, TBC)
 
-</details>
