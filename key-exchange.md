@@ -2,6 +2,9 @@
 
 ## Communication table documentation
 
+<details>
+<summary>Click to see details...</summary>
+    
 |Communication|Type|Protocol|Port src/local|Port dst/remote|Description|
 |--|--|--|--|--|--|
 |Announce|Client|UDP|13131|31313|Send announcement broadcast UDP datagram including ECC public key for session initialization with other nodes on the network lan|
@@ -16,7 +19,12 @@
 |Data sender|Client|UDP|34331|34333|Send tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
 |Data receiver|Server|UDP|34333|na|Receive tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
 
+</details>
+
 ## Communication between nodes
+
+<details>
+<summary>Click to see details...</summary>
 
 ```mermaid
 sequenceDiagram
@@ -89,7 +97,13 @@ title Data communication (and response)
 64-65: "Cypher tag (1 byte)"
 65-95: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
 ```
+</details>
 
 ## TCP Payloads
 
+<details>
+<summary>Click to see details...</summary>
+
 (DEV, TBC)
+
+</details>
