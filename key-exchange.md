@@ -3,6 +3,7 @@
 ## Communication table documentation
 
 <details>
+    
 <summary>Click to see details...</summary>
     
 |Communication|Type|Protocol|Port src/local|Port dst/remote|Description|
@@ -24,6 +25,7 @@
 ## Communication between nodes
 
 <details>
+    
 <summary>Click to see details...</summary>
 
 ```mermaid
@@ -96,12 +98,14 @@ title Data communication (and response)
 48-63: "Checksum"
 64-95: "Cypher tag (1 byte) AND Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
 ```
+
 </details>
 
 ## TCP Payloads
 
 <details>
-<summary>Click to see details...</summary>
+    
+<summary>Click to see details...</summary>  
 
 (DEV, TBC)
 
