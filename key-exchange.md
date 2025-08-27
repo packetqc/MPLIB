@@ -50,7 +50,7 @@ title Broadcast announcment
 +16: "Destination Port"
 32-47: "Length"
 48-63: "Checksum"
-64-1500: "ECC Public Key (N-TBC bytes)"
+64-95: "ECC Public Key (N-TBC bytes)"
 ```
 
 ### ECC initialization
@@ -62,7 +62,7 @@ title ECC initialization
 +16: "Destination Port"
 32-47: "Length"
 48-63: "Checksum"
-64-1500: "TBC (N bytes)"
+64-95: "TBC (N bytes)"
 ```
 
 ### ECC establishment
@@ -74,7 +74,7 @@ title ECC establishment
 +16: "Destination Port"
 32-47: "Length"
 48-63: "Checksum"
-64-1500: "TBC (N bytes)"
+64-95: "TBC (N bytes)"
 ```
 
 ### Data communication (and response)
@@ -87,7 +87,7 @@ title Data communication (and response)
 32-47: "Length"
 48-63: "Checksum"
 64-65: "Cypher tag (1 byte)"
-65-1500: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
+65-95: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
 ```
 
 ## TCP Payloads
