@@ -24,8 +24,7 @@
 
 ## Communication between nodes
 
-<details>
-    
+<details>    
 <summary>Click to see details...</summary>
 
 ```mermaid
@@ -38,7 +37,6 @@ sequenceDiagram
     N1->>N2: Data communication 
     N2->>N1: Data communication response
 ```
-
 ## UDP Payloads
 
 ```mermaid
@@ -51,53 +49,15 @@ title UDP Packet
 64-95: "Data (variable length)"
 ```
 
-### Broadcast announcment
-
-```mermaid
-packet
-title Broadcast announcment
-+16: "Source Port"
-+16: "Destination Port"
-32-47: "Length"
-48-63: "Checksum"
-64-95: "ECC Public Key (N-TBC bytes)"
-```
-
-### ECC initialization
-
-```mermaid
-packet
-title ECC initialization
-+16: "Source Port"
-+16: "Destination Port"
-32-47: "Length"
-48-63: "Checksum"
-64-95: "TBC (N bytes)"
-```
-
-### ECC establishment
-
-```mermaid
-packet
-title ECC establishment
-+16: "Source Port"
-+16: "Destination Port"
-32-47: "Length"
-48-63: "Checksum"
-64-95: "TBC (N bytes)"
-```
-
-### Data communication (and response)
-
-```mermaid
-packet
-title Data communication (and response)
-+16: "Source Port"
-+16: "Destination Port"
-32-47: "Length"
-48-63: "Checksum"
-64-95: "Cypher tag (1 byte) AND Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
-```
+|Payload type|Position|Description|
+|--|--|--|
+|Broadcast announcment|64-95|"ECC Public Key (N-TBC bytes)"|
+|ECC initialization|64-TBC|"TBC (N bytes)"|
+|ECC establishment|64-TBC|"TBC (N bytes)"|
+|Data communication (and response)|64-65|"Cypher tag (1 byte)"|
+|Data communication (and response)|65-TBC|"Data clear-text (N bytes)"|
+|Data communication (and response)|65-TBC|"Data ecc-aes encrypted (N bytes)"|
+|Data communication (and response)|65-TBC|"Data pqc-aes-encrypted (N bytes)"|
 
 </details>
 
