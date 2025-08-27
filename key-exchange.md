@@ -46,7 +46,10 @@ title UDP Packet
 ```mermaid
 packet
 title Broadcast announcment
-+63: "UDP HEADER"
++16: "Source Port"
++16: "Destination Port"
+32-47: "Length"
+48-63: "Checksum"
 64-1500: "ECC Public Key (N-TBC bytes)"
 ```
 
@@ -55,6 +58,10 @@ title Broadcast announcment
 ```mermaid
 packet
 title ECC initialization
++16: "Source Port"
++16: "Destination Port"
+32-47: "Length"
+48-63: "Checksum"
 64-1500: "TBC (N bytes)"
 ```
 
@@ -63,6 +70,10 @@ title ECC initialization
 ```mermaid
 packet
 title ECC establishment
++16: "Source Port"
++16: "Destination Port"
+32-47: "Length"
+48-63: "Checksum"
 64-1500: "TBC (N bytes)"
 ```
 
@@ -71,6 +82,10 @@ title ECC establishment
 ```mermaid
 packet
 title Data communication (and response)
++16: "Source Port"
++16: "Destination Port"
+32-47: "Length"
+48-63: "Checksum"
 64-65: "Cypher tag (1 byte)"
 65-1500: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
 ```
