@@ -94,8 +94,7 @@ title Data communication (and response)
 +16: "Destination Port"
 32-47: "Length"
 48-63: "Checksum"
-64-65: "Cypher tag (1 byte)"
-65-95: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
+65-95: "Cypher tag (1 byte) AND Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
 ```
 </details>
 
