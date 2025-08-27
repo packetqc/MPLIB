@@ -11,8 +11,23 @@
 |ECC sender initializer|Client|UDP|13133|31333|ECC Session Initialization, ECC_Session_Send|
 |ECC receiver|Server,Client|UDP|13333|33333|ECC Session Establishment, ECC_Session_Establish|
 |ECC establisher|Serer|UDP|33333|na|ECC Session Establishment|
-|Data sender|Client|UDP|34331|34333|Send tokens data example|
-|Data receiver|Server|UDP|34333|na|Receive tokens data example|
+|PQC|Client|TCP|TBD|TBD|TBC|
+|PQC|Serer|TCP|TBD|TBD|TBC|
+|Data sender|Client|UDP|34331|34333|Send tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
+|Data receiver|Server|UDP|34333|na|Receive tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
+
+## Communication between nodes
+
+```mermaid
+sequenceDiagram
+    participant N1 as Node on LAN
+    participant N2 as Node on LAN
+    N1->>N2: UDP Broadcast Announce
+    N2->>N1: ECC initialization
+    N1->>N2: ECC establishment
+    N1->>N2: Data communication
+    N2->>N1: Data communication
+```
 
 ## UDP Payloads
 
