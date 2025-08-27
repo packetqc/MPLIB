@@ -41,4 +41,39 @@ title UDP Packet
 64-95: "Data (variable length)"
 ```
 
+### Broadcast announcment
+
+```mermaid
+packet
+title Broadcast announcment
+64-TBC: "ECC Public Key (N bytes)"
+```
+
+### ECC initialization
+
+```mermaid
+packet
+title ECC initialization
+64-TBC: "TBC (N bytes)"
+```
+
+### ECC establishment
+
+```mermaid
+packet
+title ECC establishment
+64-TBC: "TBC (N bytes)"
+```
+
+### Data communication (and response)
+
+```mermaid
+packet
+title Data communication (and response)
+64-65: "Cypher tag (1 byte)"
+65-TBC: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
+```
+
 ## TCP Payloads
+
+(DEV, TBC)
