@@ -46,7 +46,7 @@ title UDP Packet
 ```mermaid
 packet
 title Broadcast announcment
-64-TBC: "ECC Public Key (N bytes)"
+64-1500: "ECC Public Key (N-TBC bytes)"
 ```
 
 ### ECC initialization
@@ -54,7 +54,7 @@ title Broadcast announcment
 ```mermaid
 packet
 title ECC initialization
-64-TBC: "TBC (N bytes)"
+64-1500: "TBC (N bytes)"
 ```
 
 ### ECC establishment
@@ -62,7 +62,7 @@ title ECC initialization
 ```mermaid
 packet
 title ECC establishment
-64-TBC: "TBC (N bytes)"
+64-1500: "TBC (N bytes)"
 ```
 
 ### Data communication (and response)
@@ -71,7 +71,7 @@ title ECC establishment
 packet
 title Data communication (and response)
 64-65: "Cypher tag (1 byte)"
-65-TBC: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
+65-1500: "Data clear-text, ecc-aes encrypted or pqc-aes-encrypted (N bytes)"
 ```
 
 ## TCP Payloads
