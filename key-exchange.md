@@ -37,6 +37,7 @@ sequenceDiagram
     N1->>N2: Data communication 
     N2->>N1: Data communication response
 ```
+
 ## UDP Payloads
 
 ```mermaid
