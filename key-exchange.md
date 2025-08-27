@@ -46,6 +46,7 @@ title UDP Packet
 ```mermaid
 packet
 title Broadcast announcment
++63: "UDP HEADER"
 64-1500: "ECC Public Key (N-TBC bytes)"
 ```
 
