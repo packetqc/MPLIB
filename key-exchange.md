@@ -45,8 +45,10 @@ In the migration transition, the ECC key exchange mechanism is still active. Nex
 
 ## PQC Sizes to consider
 
-    <iframe src="pqc-sizes.md" width="600" height="400" frameborder="0" allowfullscreen></iframe>  
-    
+<div align="center">
+<iframe src="pqc-sizes.md" width="600" height="400" frameborder="0" allowfullscreen></iframe>
+</div>
+
 ## UDP Payloads
 
 ```mermaid
