@@ -75,10 +75,9 @@ title UDP Packet
 
 ## TCP Payloads
 
----
+```mermaid  
+packet
 title: "TCP Packet"
----
-packet-beta
     0-15: "Source Port"
     16-31: "Destination Port"
     32-63: "Sequence Number"
@@ -96,7 +95,8 @@ packet-beta
     144-159: "Urgent Pointer"
     160-191: "(Options and Padding)"
     192-255: "Data (variable length)"
-    
+```
+
 <div align="center">
     
 |Payload type|Position|Description|
