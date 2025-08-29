@@ -18,8 +18,9 @@
 
 ## Communication between nodes
 
-|
-```mermaid
+|||
+|--|--|
+|```mermaid
 sequenceDiagram
     participant N1 as Node on LAN
     participant N2 as Node on LAN
@@ -28,9 +29,7 @@ sequenceDiagram
     N1->>N2: ECC establishment
     N1->>N2: Data communication 
     N2->>N1: Data communication response
-```
-|
-```mermaid
+```|```mermaid
 sequenceDiagram
     participant N1 as Node on LAN
     participant N2 as Node on LAN
@@ -39,8 +38,7 @@ sequenceDiagram
     N1->>N2: ECC establishment
     N1->>N2: Data communication 
     N2->>N1: Data communication response
-```
-|
+```|
 |description|description|
 
 ## UDP Payloads
