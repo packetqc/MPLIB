@@ -31,7 +31,7 @@
 
 In the migration transition, the ECC key exchange mechanism is still active. Next diagram only shows the PQC key exchange mechanism been involved upon UDP broadcast from a node on the network.
 
-```mermaid
+```mermaid  
   sequenceDiagram
   participant N1 as Node on LAN
   participant N2 as Node on LAN
