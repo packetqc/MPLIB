@@ -18,35 +18,35 @@
 
 ## Communication between nodes
 
-```mermaid
-  sequenceDiagram
-  participant N1 as Node on LAN
-  participant N2 as Node on LAN
-  N1->>N2: UDP Broadcast Announce
-  N2->>N1: ECC initialization
-  N1->>N2: ECC establishment
-  N1->>N2: "Data communication  (clear text token; cypher ecc-aes token in UDP payload)"
-  N2->>N1: "Data communication response (clear text token; cypher ecc-aes token in UDP payload)"
+```mermaid  
+  sequenceDiagram  
+  participant N1 as Node on LAN  
+  participant N2 as Node on LAN  
+  N1->>N2: UDP Broadcast Announce  
+  N2->>N1: ECC initialization  
+  N1->>N2: ECC establishment  
+  N1->>N2: "Data communication clear text token, cypher ecc-aes token in UDP payload"  
+  N2->>N1: "Data communication response clear text token, cypher ecc-aes token in UDP payload"  
 ```
 
 In the migration transition, the ECC key exchange mechanism is still active. Next diagram only shows the PQC key exchange mechanism been involved upon UDP broadcast from a node on the network.
 
-```mermaid
-  sequenceDiagram
-  participant N1 as Node on LAN
-  participant N2 as Node on LAN
-  N1->>N2: UDP Broadcast Announce
-  N2->>N1: "TCP Unicast Announce (includes public key and cypher text)"
-  N1->>N2: "PQC initialization (includes public key and cypher text)"
-  N2->>N1: "PQC establishment (includes cypher text data and maintain pqc session registry)"
-  N1->>N2: "Data communication (clear text token; cypher ecc-aes token; cypher pqc-aes token in tls 1.3 pqc)"
-  N2->>N1: "Data communication response (clear text token; cypher ecc-aes token; cypher pqc-aes token in tls 1.3 pqc)"
+```mermaid  
+  sequenceDiagram  
+  participant N1 as Node on LAN  
+  participant N2 as Node on LAN  
+  N1->>N2: UDP Broadcast Announce  
+  N2->>N1: "TCP Unicast Announce includes public key and cypher text"  
+  N1->>N2: "PQC initialization includes public key and cypher text"  
+  N2->>N1: "PQC establishment includes cypher text data and maintain pqc session registry"  
+  N1->>N2: "Data communication clear text token, cypher ecc-aes token, cypher pqc-aes token in tls 1.3 pqc"  
+  N2->>N1: "Data communication response clear text token, cypher ecc-aes token, cypher pqc-aes token in tls 1.3 pqc"  
 ```
 
 ## PQC Sizes to consider
 
-<iframe src="pqc-sizes.md" width="800" height="600" frameborder="0" allowfullscreen></iframe>
-    
+The migration would requires to fragment UDP communications to support the new sizes of the PQC keys. The key exchange mechanism will be accomplished with the TCP protocol. For more details of the new sizes of the PQC keys see [PQC Sizes table](pqc-sizes.md)
+
 ## UDP Payloads
 
 ```mermaid
@@ -59,17 +59,54 @@ title UDP Packet
 64-95: "Data (variable length)"
 ```
 
+<div align="center">
+    
 |Payload type|Position|Description|
 |--|--|--|
-|Broadcast announcment|64-TBC|"ECC Public Key (N-TBC bytes)"|
+|Broadcast UDP announcment|64-TBC|"ECC Public Key (N-TBC bytes)"|
 |ECC initialization|64-TBC|"TBC (N bytes)"|
 |ECC establishment|64-TBC|"TBC (N bytes)"|
 |Data communication (and response)|64-65|"Cypher tag (1 byte)"|
 |Data communication (and response)|65-TBC|"Data clear-text (N bytes)"|
 |Data communication (and response)|65-TBC|"Data ecc-aes encrypted (N bytes)"|
-|Data communication (and response)|65-TBC|"Data pqc-aes-encrypted (N bytes)"|
+|Data communication (and response)|65-TBC|"Data pqc-aes encrypted (N bytes)" once PQC established|
+
+</div>
 
 ## TCP Payloads
 
-(DEV, TBC)
+```mermaid  
+packet
+title TCP Packet
+    0-15: "Source Port"
+    16-31: "Destination Port"
+    32-63: "Sequence Number"
+    64-95: "Acknowledgment Number"
+    96-99: "Data Offset"
+    100-105: "Reserved"
+    106: "URG"
+    107: "ACK"
+    108: "PSH"
+    109: "RST"
+    110: "SYN"
+    111: "FIN"
+    112-127: "Window"
+    128-143: "Checksum"
+    144-159: "Urgent Pointer"
+    160-191: "(Options and Padding)"
+    192-255: "Data (variable length)"
+```
 
+<div align="center">
+    
+|Payload type|Position|Description|
+|--|--|--|
+|Unicast TCP announcment|192-TBC|"ECC Public Key (N-TBC bytes)"|
+|PQC initialization|192-TBC|"TBC (N bytes)"|
+|PQC establishment|192-TBC|"TBC (N bytes)"|
+|Data communication (and response)|192-193|"Cypher tag (1 byte)"|
+|Data communication (and response)|193-TBC|"Data clear-text (N bytes)"|
+|Data communication (and response)|193-TBC|"Data ecc-aes encrypted (N bytes)" if ECC established|
+|Data communication (and response)|193-TBC|"Data pqc-aes-encrypted (N bytes)"|
+
+</div>
