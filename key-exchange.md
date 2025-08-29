@@ -20,25 +20,7 @@
 
 |||
 |--|--|
-|```mermaid
-sequenceDiagram
-    participant N1 as Node on LAN
-    participant N2 as Node on LAN
-    N1->>N2: UDP Broadcast Announce
-    N2->>N1: ECC initialization
-    N1->>N2: ECC establishment
-    N1->>N2: Data communication 
-    N2->>N1: Data communication response
-```|```mermaid
-sequenceDiagram
-    participant N1 as Node on LAN
-    participant N2 as Node on LAN
-    N1->>N2: UDP Broadcast Announce
-    N2->>N1: ECC initialization
-    N1->>N2: ECC establishment
-    N1->>N2: Data communication 
-    N2->>N1: Data communication response
-```|
+|```mermaid</br> sequenceDiagram</br> participant N1 as Node on LAN</br> participant N2 as Node on LAN</br> N1->>N2: UDP Broadcast Announce</br> N2->>N1: ECC initialization</br> N1->>N2: ECC establishment</br> N1->>N2: Data communication</br> N2->>N1: Data communication response</br> ```|```mermaid</br> sequenceDiagram</br> participant N1 as Node on LAN</br> participant N2 as Node on LAN</br> N1->>N2: UDP Broadcast Announce</br> N2->>N1: ECC initialization</br> N1->>N2: ECC establishment</br> N1->>N2: Data communication </br> N2->>N1: Data communication response</br> ```|
 |description|description|
 
 ## UDP Payloads
