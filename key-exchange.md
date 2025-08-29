@@ -43,6 +43,10 @@ In the migration transition, the ECC key exchange mechanism is still active. Nex
   N2->>N1: "Data communication response (clear text token; cypher ecc-aes token; cypher pqc-aes token in tls 1.3 pqc)"
 ```
 
+## PQC Sizes to consider
+
+<iframe src="pqc-sizes.md" width="800" height="600" frameborder="0" allowfullscreen></iframe>
+    
 ## UDP Payloads
 
 ```mermaid
