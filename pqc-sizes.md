@@ -1,15 +1,66 @@
-# PQC
+# PQC Learning project
+
 Post Quantum Crypto learning project
 
-# Prerequisites
+# SIZES
 
-1. Download wolfssl, zip and cubemx pack
-2. Openssl patched for OQS Provider (required to gen pqc certificate) [link](https://github.com/wolfSSL/osp/blob/master/oqs/README.md)
-   Install wolfssl with pqc features [link](https://github.com/wolfSSL/wolfssl/blob/master/INSTALL)
-4. Or, for openssl, OpenSSL version 3.5.0 adds native support
-5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium 
+## ML-KEM
 
-# Quick examples and tests
+|GRADE|KEYGEN_SEED|ENC_SEED|PRIVKEY|PUBKEY|CIPHERTEXT|SHARED_SECRET|
+|--|--|--|--|--|--|--|
+|512|64|32|1632|800|768|32|
+|768|64|32|2400|1184|1088|32|
+|1024|64|32|3168|1568|1568|32|
+
+## ML-DSA
+
+|GRADE|HEADER_MAX|KEYGEN_SEED|SIGN_SEED|PRIVKEY|PUBKEY|SIG|
+|--|--|--|--|--|--|--|
+|44|268|32|32|2560|1312|2420|
+|65|268|32|32|4032|1952|3309|
+|87|268|32|32|4896|2592|4627|
+
+# COMPLIANT
+
+## Table of tests / comparison
+
+|Technology|ML-DSA|ML-KEM|Dev only|STM32 Tested|
+|--|--|--|--|--|
+|WolfSSL|yes|yes|no|yes,confirmed latest version 5.8.2|
+|STM32 Cryptographic (cmox)|yes|yes|no|yes, ml-dsa; ongoing, version 1.1.0 have ml-kem|
+|LIBOQS|yes|yes|yes|no|
+
+## NIST Levels
+
+### Digital Signing Algo
+
+|Levels|Algorithm at generation|
+|--|--|
+|Dilithium NIST Level 2|algorithm mldsa44|
+|Dilithium NIST Level 3|algorithm mldsa65|
+|Dilithium NIST Level 5|algorithm mldsa87|
+
+# References
+
+|Technology|URLs|
+|--|--|
+|WolfSSL github|[link](https://github.com/wolfSSL)|
+
+# WolfSSL
+
+<details>
+
+<summary>Click to see details</summary>
+
+## STM32 Installation
+
+1. configure in STM32CubeMX and generate code to STM32CubeIDE project
+2. copy and rename example settings file to user_settings.h
+3. add symbol WOLFSSL_USER_SETTINGS to the project settings
+
+## WolfSSL Linux
+
+### Quick examples and tests on unix
 For a quick start, you can run the client and server like this:
 ```
 ./examples/server/server -v 4 --pqc P521_ML_KEM_1024
@@ -18,6 +69,8 @@ For a quick start, you can run the client and server like this:
 
 Copy the certificates and keys into the certs directory of wolfssl. Now you
     can run the server and client like this:
+
+### Quick examples with certificate authentication
 
 ```
 examples/server/server -v 4 -l TLS_AES_256_GCM_SHA384 \
@@ -33,15 +86,61 @@ examples/client/client -v 4 -l TLS_AES_256_GCM_SHA384 \
    --pqc P521_ML_KEM_1024
 ```      
 
-# Generation of certificates
+</details>
 
-## NIST Levels
+# CMOX
 
-|Levels|Algorithm at generation|
-|--|--|
-|Dilithium NIST Level 2|algorithm mldsa44|
-|Dilithium NIST Level 3|algorithm mldsa65|
-|Dilithium NIST Level 5|algorithm mldsa87|
+<details>
+
+<summary>Click to see details</summary>
+
+</details>
+
+# LIBOQS
+
+<details>
+
+<summary>Click to see details</summary>
+
+## Prerequisites
+
+1. Download wolfssl, zip and cubemx pack
+2. Openssl patched for OQS Provider (required to gen pqc certificate) [link](https://github.com/wolfSSL/osp/blob/master/oqs/README.md)
+   Install wolfssl with pqc features [link](https://github.com/wolfSSL/wolfssl/blob/master/INSTALL)
+4. Or, for openssl, OpenSSL version 3.5.0 adds native support
+5. For unix install of wolfssl, ./configure --enable-kyber --enable-dilithium
+6. Liboqs static library 
+
+## Procedure for embedded
+
+1. create project with STM32CubeMX enabling wolfssl software package and PQC feature
+2. build and import liboqs to STM32CubeIDE
+
+## Embedded
+
+### LIBOQS build (liboqs is for test and dev only)
+
+[link](https://github.com/open-quantum-safe/liboqs/wiki/Customizing-liboqs/55cfed39e1027dd1d32170e6b91f557571b18d9e) can be reffered for additional details on building the library
+
+1. apt install gcc-arm-none-eabi
+2. download git liboqs
+3. cd liboqs
+4. git checkout 0.10.1 (or latest version compatible)
+1. mkdir build
+2. cd build
+3. cmake .. -DOQS_BUILD_ONLY_LIB=ON
+4. cmake .. -DOQS_BUILD_ONLY_LIB=ON;OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KEM_ML_KEM;OQS_ENABLE_SIG_DILITHIUM;OQS_ENABLE_SIG_ML_DSA"
+5. make
+
+Could be optimized with <b>OQS_MINIMAL_BUILD="OQS_ENABLE_KEM_KYBER;OQS_ENABLE_KEM_ML_KEM;OQS_ENABLE_SIG_DILITHIUM;OQS_ENABLE_SIG_ML_DSA"</b> (Not tested)
+
+</details>
+
+# Generation of PQC certificates (on Linux distribution)
+
+<details>
+
+<summary>Click to see details</summary>
 
 ## Using OpenSSL 3.5.0 (includes pqc, oqs not required anymore)
 ```
@@ -102,3 +201,4 @@ keyUsage               = critical, digitalSignature
 extendedKeyUsage       = critical, serverAuth,clientAuth
 basicConstraints       = critical, CA:false
 ```
+</details>
