@@ -25,8 +25,8 @@
   N1->>N2: UDP Broadcast Announce
   N2->>N1: ECC initialization
   N1->>N2: ECC establishment
-  N1->>N2: "Data communication  (clear text token; cypher ecc-aes token in UDP payload)"
-  N2->>N1: "Data communication response (clear text token; cypher ecc-aes token in UDP payload)"
+  N1->>N2: "Data communication clear text token; cypher ecc-aes token in UDP payload"
+  N2->>N1: "Data communication response clear text token; cypher ecc-aes token in UDP payload"
 ```
 
 In the migration transition, the ECC key exchange mechanism is still active. Next diagram only shows the PQC key exchange mechanism been involved upon UDP broadcast from a node on the network.
