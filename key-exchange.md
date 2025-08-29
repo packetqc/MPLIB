@@ -59,6 +59,8 @@ title UDP Packet
 64-95: "Data (variable length)"
 ```
 
+<div align="center">
+    
 |Payload type|Position|Description|
 |--|--|--|
 |Broadcast announcment|64-TBC|"ECC Public Key (N-TBC bytes)"|
@@ -68,6 +70,8 @@ title UDP Packet
 |Data communication (and response)|65-TBC|"Data clear-text (N bytes)"|
 |Data communication (and response)|65-TBC|"Data ecc-aes encrypted (N bytes)"|
 |Data communication (and response)|65-TBC|"Data pqc-aes-encrypted (N bytes)"|
+
+</div>
 
 ## TCP Payloads
 
