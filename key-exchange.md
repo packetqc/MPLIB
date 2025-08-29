@@ -39,8 +39,8 @@ In the migration transition, the ECC key exchange mechanism is still active. Nex
   N2->>N1: "TCP Unicast Announce (includes public key and cypher text)"
   N1->>N2: "PQC initialization (includes public key and cypher text)"
   N2->>N1: "PQC establishment (includes cypher text data and maintain pqc session registry)"
-  N1->>N2: "Data communication (clear text token; cypher ecc-aes token; cypher pqc-aes token in tls 1.3 pqc)"
-  N2->>N1: "Data communication response (clear text token; cypher ecc-aes token; cypher pqc-aes token in tls 1.3 pqc)"
+  N1->>N2: "Data communication (clear text token, cypher ecc-aes token; cypher pqc-aes token in tls 1.3 pqc)"
+  N2->>N1: "Data communication response (clear text token, cypher ecc-aes token, cypher pqc-aes token in tls 1.3 pqc)"
 ```
 
 ## PQC Sizes to consider
