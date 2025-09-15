@@ -18,6 +18,10 @@
 
 ## Communication between nodes
 
+### ECC KEM
+
+The lab prototype have been designed initially to support ECC KEM. Next diagram shows the key exchange not transported and created on both sides.
+
 ```mermaid  
   sequenceDiagram  
   participant N1 as Node on LAN  
@@ -28,6 +32,8 @@
   N1->>N2: "Data communication clear text token, cypher ecc-aes token in UDP payload"  
   N2->>N1: "Data communication response clear text token, cypher ecc-aes token in UDP payload"  
 ```
+
+### PQC ML-KEM
 
 In the migration transition, the ECC key exchange mechanism is still active. Next diagram only shows the PQC key exchange mechanism been involved upon UDP broadcast from a node on the network.
 
