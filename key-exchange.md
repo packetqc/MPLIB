@@ -4,8 +4,8 @@
     
 |Communication|Type|Protocol|Port src/local|Port dst/remote|Description|
 |--|--|--|--|--|--|
-|Announce|Client|UDP|13131|31313|Send announcement broadcast UDP datagram including ECC public key for session initialization with other nodes on the network lan|
-|Proceed|Server|UDP|31313|na|Receive announcement, coordinate ECC to initialize and PQC unicast announce to the node on the network UDP broadcasting|
+|Announce ECC|Client|UDP|13131|31313|Send announcement broadcast UDP datagram including ECC public key for session initialization with other nodes on the network lan|
+|Proceed ECC|Server|UDP|31313|na|Receive announcement, coordinate ECC to initialize and engage PQC unicast announce to the node on the network UDP broadcasting|
 |ECC sender initializer|Client|UDP|13133|31333|ECC Session Initialization, ECC_Session_Send|
 |ECC receiver|Server,Client|UDP|13333|33333|ECC Session Establishment, ECC_Session_Establish|
 |ECC establisher|Serer|UDP|33333|na|ECC Session Establishment|
