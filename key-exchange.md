@@ -36,12 +36,14 @@ In the migration transition, the ECC key exchange mechanism is still active. Nex
   participant N1 as Node on LAN  
   participant N2 as Node on LAN  
   N1->>N2: UDP Broadcast Announce  
-  N2->>N1: "TCP Unicast Announce includes public key and empty cypher text (reserved for later dev)"  
+  N2->>N1: "TCP Unicast Announce includes public key and empty cypher text (reserved for later dev)"
+  N1->>N1: "Encapsulate cypher text with received public key and create shared key to store in secret key"  
   N1->>N2: "PQC initialization includes public key and cypher text encoded with remote public key received"  
+  N2->>N2: "Decapsulate cypher text with private key and create decrypted shared key to store in secret key"  
   N1->>N1: "PQC secret key registration"
   N2->>N2: "PQC secret key registration"
-  N1->>N2: "Data communication clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
-  N2->>N1: "Data communication response clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
+  N1->>N2: "Alternative data communication clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
+  N2->>N1: "Alternative data communication response clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
 ```
 
 ## PQC Sizes to consider
