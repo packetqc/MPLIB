@@ -54,6 +54,27 @@ In the migration transition, the ECC key exchange mechanism is still active. Nex
 
 The migration would requires to fragment UDP communications to support the new sizes of the PQC keys. The key exchange mechanism will be accomplished with the TCP protocol. For more details of the new sizes of the PQC keys see [PQC Sizes table](pqc-sizes.md)
 
+### SIZES
+
+Post Quantum Crypto key sizes
+
+#### ML-KEM
+
+|GRADE|KEYGEN_SEED|ENC_SEED|PRIVKEY|PUBKEY|CIPHERTEXT|SHARED_SECRET|
+|--|--|--|--|--|--|--|
+|512|64|32|1632|800|768|32|
+|768|64|32|2400|1184|1088|32|
+|1024|64|32|3168|1568|1568|32|
+
+#### ML-DSA
+
+|GRADE|HEADER_MAX|KEYGEN_SEED|SIGN_SEED|PRIVKEY|PUBKEY|SIG|
+|--|--|--|--|--|--|--|
+|44|268|32|32|2560|1312|2420|
+|65|268|32|32|4032|1952|3309|
+|87|268|32|32|4896|2592|4627|
+
+
 ## UDP Payloads
 
 ```mermaid
