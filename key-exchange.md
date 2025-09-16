@@ -91,7 +91,7 @@ title UDP Packet
     
 |Payload type|Position|Description|
 |--|--|--|
-|Broadcast UDP announcment|64-TBC|"ECC Public Key (N-TBC bytes)"|
+|Broadcast UDP announcment|64-TBC|"PQC Public Key (N-TBC bytes)"|
 |ECC initialization|64-TBC|"TBC (N bytes)"|
 |ECC establishment|64-TBC|"TBC (N bytes)"|
 |Data communication (and response)|64-65|"Cypher tag (1 byte)"|
