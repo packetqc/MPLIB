@@ -136,7 +136,9 @@ checkout H5
 merge AZRTOS
 commit id: "Post Quantum Crypto dev"
 branch WOLFSSL
-commit id: "Post Quantum Crypto liboqs and native wolfcrypt"
+commit id: "Post Quantum Crypto WolfCrypt"
+branch CMOX
+commit id: "STM32 Post Quantum Crypto"
 ```
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
