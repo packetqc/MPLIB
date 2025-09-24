@@ -742,8 +742,11 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 <details>
 <summary>Click to view details</summary>  
   status = BSP_USBPD_PWR_VBUSOff(PortNum);
+  //and On
 
-//COPY BSP BUS & USBPD FILES TO PROJECT
+//COPY BSP STM32H573i-DK BUS & USBPD FILES TO PROJECT
+
+//COPY BSP COMPONENTS, TCPP0203 (AND THE OTHERS FROM EXAMPLE PROJECT SINCE CUBEMX DOES NOT PROVIDE THAT)
 
 //SYMBOLS:
 TCPP0203_SUPPORT
