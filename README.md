@@ -2,7 +2,7 @@
 
 # FEATURING
 
-- HARDWARE ENCRYPTION TO SDCARD AND TO DATA
+- HARDWARE SAES ENCRYPTION TO SDCARD AND AES TO DATA
 - ECC KEM, AUTO ANNOUNCE & KEY REFRESH / ECIES DATA CRYPT [doc](key-exchange.md)
 - PQC ML-KEM, POST QUANTUM CRYPTOGRAPHY [ongoing dev completed on lab prototype](https://www.linkedin.com/posts/martypacket_primer-from-quebec-city-more-details-to-activity-7373330968012562433-jv8H?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD1vQloBCFsX_wTEDglktk5vKN4V8UQPqGk)
 - LOGS TO UART AND TO TOUCHGFX INTERFACE
