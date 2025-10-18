@@ -1,0 +1,57 @@
+# STM32N6570-dk
+
+# Table Of Content
+
+- preface
+- create a tgfx project with the STM32N6570-dk
+- prepare the cubeide project configuration
+- write fsbl and app binaries to the device
+- references
+
+# Preface
+
+due to actual complexity, or interoperability to complete with this secured device, creating the cubemx
+# Create a TouchGFX project with the STM32N6570-dk
+
+- create project from tgfx
+- open cubemx and regenerate code under root
+- add BSP library in Drivers folder
+
+# Prepare the cubeide project configuration
+
+## Signing code from cubeide
+
+Sign firmware of both sub projects fsbl and app. This can be automated in the cubeide at each build with the next command.
+
+```
+cd "${ProjDirPath}/Debug" && echo y | "C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_SigningTool_CLI.exe" -bin "${ProjName}.bin" -nk -of 0x80000000 -t fsbl -o "${ProjName}-Trusted.bin" -hv 2.3 -dump "${ProjName}-Trusted.bin"
+```
+
+[signing_binary](signing_binaries_from_cubeide.png)
+
+## Debug
+
+See reference getting started for details.
+
+# Write fsbl and app binaries to the device
+
+The weights image is a ‘.hex‘ file with a predefined address (‘0x71000000‘), specified in the ‘objcopy‘ command.
+
+## fsbl binary
+
+- sign the firmware
+- upload with the programmer at address: 0x70000000
+
+note: cubeide could be adapted.
+
+## appliation binary
+
+- sign the firmware
+- upload with the programmer at address: 0x70100000
+
+# References
+
+[getting started](https://www.st.com/resource/en/application_note/an6265-getting-started-with-stm32n6-mcus-in-stm32cubeide-stmicroelectronics.pdf)
+
+[how to build ai projects](https://community.st.com/t5/stm32-mcus/how-to-build-an-ai-application-from-scratch-on-the-stm32n6570-dk/ta-p/825591)
+
