@@ -17,14 +17,14 @@
 ## STM32 LIB
 
 (animated gif demo is downloading...)
-![demo downloading...](mplibsreadyforcodemigration-1.gif)
+![demo downloading...](./Images/mplibsreadyforcodemigration-1.gif)
 
 The embedded mp4 demo video tag is not supported in github md file but could show in any preview tool supported, mp4 videos are available in this github rep listing and(https://youtube.com/@packet-yi9sq?feature=shared) portfolio.
 
-<video autoplay mute controls src="MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
+<video autoplay mute controls src="./Images/MPLIB-demo-all-devices-screen-and-camera-hr-1-1.mp4"></video>
 
 (animated gif demo is downloading...)  
-![demo downloading...](MPLIB-demo-all-devices-screen-and-camera-hr-2x-1-1.gif)  
+![demo downloading...](./Images/MPLIB-demo-all-devices-screen-and-camera-hr-2x-1-1.gif)  
 
 ## HARDWARE ENCRYPTION
 
@@ -33,39 +33,39 @@ The embedded mp4 demo video tag is not supported in github md file but could sho
 | Released                                                        | Previous dev                                                   |
 | --------------------------------------------------------------- | -------------------------------------------------------------- |
 | (animated gif demo is downloading...)                           | (animated gif demo is downloading...)                          |
-| ![demo downloading...](MPLIB-SAES-hw-encryption-demo-3-1-1.gif) | ![demo downloading...](MPLIB-encrypt-on-screen-daylight-3.gif) |
+| ![demo downloading...](./Images/MPLIB-SAES-hw-encryption-demo-3-1-1.gif) | ![demo downloading...](./Images/MPLIB-encrypt-on-screen-daylight-3.gif) |
 
 ### DATA ON TRANSIT ENCRYPTION
 
 | ECC / ECIES                                                     | ECC key generation auto refresh                               |
 | --------------------------------------------------------------- | -------------------------------------------------------------- |
 | (animated gif demo is downloading...)                           | (animated gif demo is downloading...)                          |
-| ![demo downloading...](STM32H573i-Crypto-Network-Udp-Ntp-Mgmt-2.gif) | ![demo downloading...](ecc-crypto-demo.gif) |
+| ![demo downloading...](./Images/STM32H573i-Crypto-Network-Udp-Ntp-Mgmt-2.gif) | ![demo downloading...](./Images/ecc-crypto-demo.gif) |
 
 ## LOGS
 
 (animated gif demo is downloading...)  
-![demo downloading...](MPLIB-H7-preview-1-1.gif)  
+![demo downloading...](./Images/MPLIB-H7-preview-1-1.gif)  
 
 ## LOGIN
 
 (animated gif demo is downloading...)  
-![demo downloading...](MPLIB-demo-login-1-1.gif)  
+![demo downloading...](./Images/MPLIB-demo-login-1-1.gif)  
 
 ## CONFIG SAVE ON SDCARD
 
 (animated gif demo is downloading...)
-![demo downloading...](mplibs-config-sdcard.gif)
+![demo downloading...](./Images/mplibs-config-sdcard.gif)
 
 ## RESET CONFIG SAVE TO FACTORY
 
 (animated gif demo is downloading...)  
-![demo downloading...](MPLIB-demo-tgfx-1-1.gif)  
+![demo downloading...](./Images/MPLIB-demo-tgfx-1-1.gif)  
 
 ## SCREEN MODE DAYLIGHT OR NIGHT
 
 (animated gif demo is downloading...)  
-![demo downloading...](mplibs-freertos-screen-lite-2x-1.gif)  
+![demo downloading...](./Images/mplibs-freertos-screen-lite-2x-1.gif)  
 
 # THE PROJECT
 
@@ -240,11 +240,11 @@ TBC. Notes and details on CubeMX configuration to support BSP modules. Ex: sdcar
 
 #### H5
 
-![H5](image.png)
+![H5](./Images/image.png)
 
 #### H7
 
-![H7](image-2.png)
+![H7](./Images/image-2.png)
 
 ### SYMBOLS
 
@@ -392,7 +392,7 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
 
 1. /MPLIB_STM32_MCU/Core/Inc
 
-   ![alt text](image-1.png)
+   ![alt text](./Images/image-1.png)
 
 ### PROJECT REFERENCE (in paths and symbols only )
 
@@ -630,15 +630,15 @@ In reference of ST documentation RM0481.pdf,
 <details>  
 <summary>Click to view details</summary>  
 
-![h5sec-key-management-principle-arch](image-5.png)
+![h5sec-key-management-principle-arch](./Images/image-5.png)
 
-![aes-block-diagram](image-6.png)
+![aes-block-diagram](./Images/image-6.png)
 
-![saes-block-diagram](image-7.png)
+![saes-block-diagram](./Images/image-7.png)
 
-![hash-block-diagram](image-8.png)  
+![hash-block-diagram](./Images/image-8.png)  
 
-![pka-block-diagram](image-9.png)  
+![pka-block-diagram](./Images/image-9.png)  
 
 # CRYPTOGRAPHIC LIBRARY MIDDLEWARE
 
@@ -731,9 +731,9 @@ HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
 https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX  
 
-![](image-3.png)
+![](./Images/image-3.png)
 
-![](image-4.png)
+![](./Images/image-4.png)
 
 </details>
 
