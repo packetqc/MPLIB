@@ -2,8 +2,9 @@
 
 # FEATURING
 
-- HARDWARE ENCRYPTION TO SDCARD AND TO DATA
-- ECC AUTO ANNOUNCE & KEY REFRESH / ECIES DATA CRYPT [doc](key-exchange.md)
+- HARDWARE SAES ENCRYPTION TO SDCARD AND AES TO DATA
+- ECC KEM, AUTO ANNOUNCE & KEY REFRESH / ECIES DATA CRYPT [doc](key-exchange.md)
+- PQC ML-KEM, POST QUANTUM CRYPTOGRAPHY [ongoing dev completed on lab prototype](https://www.linkedin.com/posts/martypacket_primer-from-quebec-city-more-details-to-activity-7373330968012562433-jv8H?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD1vQloBCFsX_wTEDglktk5vKN4V8UQPqGk)
 - LOGS TO UART AND TO TOUCHGFX INTERFACE
 - LOGIN
 - CONFIG SAVE ON SDCARD
@@ -135,7 +136,10 @@ checkout H5
 merge AZRTOS
 commit id: "Post Quantum Crypto dev"
 branch WOLFSSL
-commit id: "Post Quantum Crypto liboqs and native wolfcrypt"
+commit id: "Post Quantum Crypto WolfCrypt"
+checkout H5
+branch CMOX
+commit id: "STM32 Post Quantum Crypto"
 ```
 
 ## THREADS / SINGLETONS / BACKEND-SERVICES
@@ -731,4 +735,50 @@ https://wiki.st.com/stm32mcu/wiki/Introduction_to_THREADX
 
 ![](image-4.png)
 
+</details>
+
+# USB BSP POWER VOLTAGE ENABLING
+
+<details>
+<summary>Click to view details</summary>  
+  status = BSP_USBPD_PWR_VBUSOff(PortNum);
+  //and On
+
+//COPY BSP STM32H573i-DK BUS & USBPD FILES TO PROJECT
+
+//COPY BSP COMPONENTS, TCPP0203 (AND THE OTHERS FROM EXAMPLE PROJECT SINCE CUBEMX DOES NOT PROVIDE THAT)
+
+//SYMBOLS:
+TCPP0203_SUPPORT
+
+//stm32h5xx_it.c:
+
+#if defined(TCPP0203_SUPPORT)
+
+/**
+
+  * @brief  This function handles external line interrupt request.
+
+  *         (Associated to FLGn line in case of TCPP0203 management)
+
+  * @retval None
+
+  */
+
+void EXTI1_IRQHandler(void)
+{
+  /* Manage Flags */
+  if (LL_EXTI_IsActiveFallingFlag_0_31(LL_EXTI_LINE_1) != RESET)
+
+  {
+    /* Call BSP USBPD PWR callback */
+    BSP_USBPD_PWR_EventCallback(USBPD_PWR_TYPE_C_PORT_1);
+
+    /* Clear Flag */
+    LL_EXTI_ClearFallingFlag_0_31(LL_EXTI_LINE_1);
+
+  }
+}
+
+#endif /* TCPP0203_SUPPORT */
 </details>

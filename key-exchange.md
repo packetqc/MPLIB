@@ -4,19 +4,21 @@
     
 |Communication|Type|Protocol|Port src/local|Port dst/remote|Description|
 |--|--|--|--|--|--|
-|Announce|Client|UDP|13131|31313|Send announcement broadcast UDP datagram including ECC public key for session initialization with other nodes on the network lan|
-|Proceed|Server|UDP|31313|na|Receive announcement, coordinate ECC to initialize and PQC unicast announce to the node on the network UDP broadcasting|
-|Announce (TO BE MODIFIED)|Client|TCP|13131|31313|Upon UDP broadcast received by Proceed service, send announcement TCP unicast including PQC public key and cypher for session initialization with other nodes on the network lan|
-|Proceed (TO BE MODIFIED)|Server|TCP|31313|na|Receive TCP unicast announcement and coordinate PQC to initialize|
+|Announce ECC|Client|UDP|13131|31313|Send announcement broadcast UDP datagram including ECC public key for session initialization with other nodes on the network lan|
+|Proceed ECC|Server|UDP|31313|na|Receive announcement, coordinate ECC to initialize and engage PQC unicast announce to the node on the network UDP broadcasting|
 |ECC sender initializer|Client|UDP|13133|31333|ECC Session Initialization, ECC_Session_Send|
 |ECC receiver|Server,Client|UDP|13333|33333|ECC Session Establishment, ECC_Session_Establish|
 |ECC establisher|Serer|UDP|33333|na|ECC Session Establishment|
-|PQC|Client|TCP|TBD|TBD|TBC|
-|PQC|Serer|TCP|TBD|TBD|TBC|
+|Announce PQC|Client|TCP|13131|31313|Upon UDP broadcast received by Proceed service, send announcement TCP unicast including PQC public key and cypher for session initialization with other nodes on the network lan|
+|Proceed PQC|Server|TCP|31313|na|Receive TCP unicast announcement and coordinate PQC to initialize|
 |Data sender|Client|UDP|34331|34333|Send tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
 |Data receiver|Server|UDP|34333|na|Receive tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
 
 ## Communication between nodes
+
+### ECC KEM
+
+The lab prototype have been designed initially to support ECC KEM. Next diagram shows the key exchange not transported and created on both sides.
 
 ```mermaid  
   sequenceDiagram  
@@ -29,6 +31,8 @@
   N2->>N1: "Data communication response clear text token, cypher ecc-aes token in UDP payload"  
 ```
 
+### PQC ML-KEM
+
 In the migration transition, the ECC key exchange mechanism is still active. Next diagram only shows the PQC key exchange mechanism been involved upon UDP broadcast from a node on the network.
 
 ```mermaid  
@@ -36,16 +40,40 @@ In the migration transition, the ECC key exchange mechanism is still active. Nex
   participant N1 as Node on LAN  
   participant N2 as Node on LAN  
   N1->>N2: UDP Broadcast Announce  
-  N2->>N1: "TCP Unicast Announce includes public key and cypher text"  
-  N1->>N2: "PQC initialization includes public key and cypher text"  
-  N2->>N1: "PQC establishment includes cypher text data and maintain pqc session registry"  
-  N1->>N2: "Data communication clear text token, cypher ecc-aes token, cypher pqc-aes token in tls 1.3 pqc"  
-  N2->>N1: "Data communication response clear text token, cypher ecc-aes token, cypher pqc-aes token in tls 1.3 pqc"  
+  N2->>N1: "TCP Unicast Announce includes public key and empty cypher text (reserved for later dev)"
+  N1->>N1: "Encapsulate cypher text with received public key and create shared key to store in secret key"  
+  N1->>N2: "PQC initialization includes public key and cypher text encoded with remote public key received"  
+  N2->>N2: "Decapsulate cypher text with private key and create decrypted shared key to store in secret key"  
+  N1->>N1: "PQC secret key registration"
+  N2->>N2: "PQC secret key registration"
+  N1->>N2: "Alternative data communication clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
+  N2->>N1: "Alternative data communication response clear text token, cypher ecc-aes token, cypher pqc-aes token in unsecured UDP"  
 ```
 
 ## PQC Sizes to consider
 
 The migration would requires to fragment UDP communications to support the new sizes of the PQC keys. The key exchange mechanism will be accomplished with the TCP protocol. For more details of the new sizes of the PQC keys see [PQC Sizes table](pqc-sizes.md)
+
+### SIZES
+
+Post Quantum Crypto key sizes
+
+#### ML-KEM
+
+|GRADE|KEYGEN_SEED|ENC_SEED|PRIVKEY|PUBKEY|CIPHERTEXT|SHARED_SECRET|
+|--|--|--|--|--|--|--|
+|512|64|32|1632|800|768|32|
+|768|64|32|2400|1184|1088|32|
+|1024|64|32|3168|1568|1568|32|
+
+#### ML-DSA
+
+|GRADE|HEADER_MAX|KEYGEN_SEED|SIGN_SEED|PRIVKEY|PUBKEY|SIG|
+|--|--|--|--|--|--|--|
+|44|268|32|32|2560|1312|2420|
+|65|268|32|32|4032|1952|3309|
+|87|268|32|32|4896|2592|4627|
+
 
 ## UDP Payloads
 
@@ -63,7 +91,7 @@ title UDP Packet
     
 |Payload type|Position|Description|
 |--|--|--|
-|Broadcast UDP announcment|64-TBC|"ECC Public Key (N-TBC bytes)"|
+|Broadcast UDP announcment|64-TBC|"PQC Public Key (N-TBC bytes)"|
 |ECC initialization|64-TBC|"TBC (N bytes)"|
 |ECC establishment|64-TBC|"TBC (N bytes)"|
 |Data communication (and response)|64-65|"Cypher tag (1 byte)"|
