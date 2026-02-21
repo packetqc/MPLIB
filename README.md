@@ -7,6 +7,8 @@ author: "Martin Paquet"
 <!-- knowledge-version: 1 -->
 # MPLIB
 
+**v1.0** — Embedded Systems Library for STM32 MCUs (H5, H7, N6)
+
 # FEATURING
 
 - HARDWARE SAES ENCRYPTION TO SDCARD AND AES TO DATA
