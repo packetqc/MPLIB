@@ -103,6 +103,8 @@ After PRs merged by others: `wakeup` (full re-sync — ~30-60s).
 | `harvest <project>` | Pull knowledge into minds/ |
 | `harvest --healthcheck` | Full network sweep |
 | `pub list` | Publication inventory |
+| `doc create <name>` | Scaffold new doc page with frontmatter, register in index |
+| `doc update <file>` | Refresh doc page: validate frontmatter, links, images, index entry |
 | `doc review --list` | Freshness inventory |
 | `docs check --all` | Validate all doc pages |
 | `webcard <target>` | Generate OG GIFs |
@@ -137,16 +139,43 @@ MPLIB is an embedded systems library for STM32 MCUs (H5, H7, N6) featuring hardw
 
 | File | Purpose |
 |------|---------|
-| `README.md` | Project documentation, architecture, IDE config |
+| `README.md` | Project overview, feature showcase, architecture diagrams |
 | `key-exchange.md` | ECC/PQC communication protocol and sequence diagrams |
 | `pqc-sizes.md` | ML-KEM and ML-DSA key size reference |
 | `STM32N6570-dk.md` | N6 Discovery Kit project setup and flashing guide |
+| `STM32N6570-dk-specs.md` | N6 MCU hardware specifications |
+| `docs/index.md` | Documentation landing page (GitHub Pages) |
+| `docs/ide-config.md` | CubeIDE symbols, includes, libraries, source exclusions |
+| `docs/rtos-comparison.md` | FreeRTOS / ThreadX API equivalence table |
+| `docs/hardware-reference.md` | H5 security architecture, UID access, USB BSP, UART tips |
+| `docs/publications/index.md` | Technical publications index (EN) |
+| `docs/fr/publications/index.md` | Technical publications index (FR) |
 
 ### Conventions
-- Image assets in `Images/` directory, referenced as `./Images/<name>`
-- Collapsible `<details>` blocks for IDE configuration sections
+- Image assets in `Images/` directory, referenced as `./Images/<name>` (from root) or `../Images/<name>` (from docs/)
+- Dedicated doc pages in `docs/` for reference material (IDE config, RTOS, hardware)
 - Mermaid diagrams for architecture, git graphs, and protocol sequences
 - YAML frontmatter on doc pages (title, description, author)
+- New doc pages registered in both `README.md` documentation table and `docs/index.md`
+
+### Doc Commands — Implementation
+
+#### `doc create <name>`
+
+1. Scaffold `docs/<name>.md` with YAML frontmatter (title, description, author)
+2. Add initial heading and placeholder content
+3. Register in `README.md` documentation table
+4. Register in `docs/index.md` documentation table
+5. Report created file path
+
+#### `doc update <file>`
+
+1. Read the target file
+2. Validate/add YAML frontmatter (title, description, author) if missing
+3. Check image references resolve (relative paths to `Images/`)
+4. Check internal links resolve (other .md files exist)
+5. Verify entry exists in `README.md` and `docs/index.md` documentation tables
+6. Report findings and apply fixes
 
 ---
 
