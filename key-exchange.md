@@ -8,7 +8,7 @@
 |Proceed ECC|Server|UDP|31313|na|Receive announcement, coordinate ECC to initialize and engage PQC unicast announce to the node on the network UDP broadcasting|
 |ECC sender initializer|Client|UDP|13133|31333|ECC Session Initialization, ECC_Session_Send|
 |ECC receiver|Server,Client|UDP|13333|33333|ECC Session Establishment, ECC_Session_Establish|
-|ECC establisher|Serer|UDP|33333|na|ECC Session Establishment|
+|ECC establisher|Server|UDP|33333|na|ECC Session Establishment|
 |Announce PQC|Client|TCP|13131|31313|Upon UDP broadcast received by Proceed service, send announcement TCP unicast including PQC public key and cypher for session initialization with other nodes on the network lan|
 |Proceed PQC|Server|TCP|31313|na|Receive TCP unicast announcement and coordinate PQC to initialize|
 |Data sender|Client|UDP|34331|34333|Send tokens data example: clear-text, cypher-ecc-aes and cypher-pqc-aes|
