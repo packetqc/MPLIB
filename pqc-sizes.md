@@ -1,3 +1,9 @@
+---
+title: "MPLIB — PQC Key Sizes Reference"
+description: "ML-KEM and ML-DSA post-quantum cryptography key size reference tables"
+author: "Martin Paquet"
+---
+
 # SIZES
 
 Post Quantum Crypto key sizes

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+{% if page.permalink contains '/fr/' %}<html lang="fr">{% else %}<html lang="en">{% endif %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="refresh" content="60">
+  <title>{{ page.title }}</title>
+
+  <!-- Open Graph — LinkedIn, Facebook, Twitter -->
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  <meta property="og:site_name" content="MPLIB" />
+  <meta property="article:author" content="Martin Paquet" />
+  <meta property="article:published_time" content="{{ page.date | default: '2026-02-16' }}" />
+  {% if page.og_image %}<meta property="og:image" content="{{ page.og_image | absolute_url }}" />{% endif %}
+  {% if page.og_image %}<link rel="preload" as="image" href="{{ page.og_image | relative_url }}" fetchpriority="high" />{% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:description" content="{{ page.description }}" />
+  {% if page.og_image %}<meta name="twitter:image" content="{{ page.og_image | absolute_url }}" />{% endif %}
+
+  <!-- Canonical URL — LinkedIn and social crawlers use this as the definitive page URL -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+  <!-- Standard meta -->
+  <meta name="description" content="{{ page.description }}" />
+  <meta name="author" content="Martin Paquet & Claude (Anthropic, Opus 4.6)" />
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
+
+  <style>
+    /* Cayman theme (light — blue) */
+    :root {
+      --bg: #eff6ff;
+      --fg: #0f172a;
+      --accent: #1d4ed8;
+      --muted: #475569;
+      --border: #93c5fd;
+      --code-bg: #dbeafe;
+      --col-alt: rgba(29, 78, 216, 0.05);
+      --max-width: 860px;
+    }
+    /* Midnight theme (dark) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --fg: #e2e8f0;
+        --accent: #60a5fa;
+        --muted: #94a3b8;
+        --border: #334155;
+        --code-bg: #1e293b;
+        --col-alt: rgba(96, 165, 250, 0.07);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent); }
+    h2 { font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.3rem; border-bottom: 2px solid var(--border); }
+    h3 { font-size: 1.2rem; margin-top: 1.8rem; margin-bottom: 0.8rem; }
+    p { margin-bottom: 1rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { background: var(--code-bg); padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+    pre { background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+    pre code { background: none; padding: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.82rem; line-height: 1.4; }
+    th, td { padding: 0.35rem 0.5rem; border: none; border-bottom: 1px solid var(--border); text-align: left; }
+    th { background: var(--code-bg); font-weight: 600; white-space: nowrap; border-bottom: 2px solid var(--accent); }
+    td code { font-size: 0.78rem; padding: 0.1em 0.3em; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    .table-wrap table { margin: 0; }
+    blockquote { border-left: 4px solid var(--accent); padding: 0.5rem 1rem; margin: 1rem 0; color: var(--muted); font-style: italic; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    img { max-width: 100%; border-radius: 8px; }
+    .webcard-header {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+      border-bottom: 2px solid var(--border);
+    }
+    @media (prefers-color-scheme: dark) {
+      .webcard-header {
+        background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+      }
+    }
+    .webcard-header img {
+      display: block;
+      margin: 0 auto;
+      max-width: var(--max-width);
+      width: 100%;
+      border-radius: 0;
+    }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .pub-version-banner {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .pub-version-line { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
+    .pub-version-label { color: var(--muted); font-weight: 600; min-width: 5.5rem; }
+    .pub-version-id { font-weight: 700; color: var(--accent); }
+    .pub-version-ver { font-family: monospace; font-weight: 600; }
+    .pub-version-date { color: var(--fg); }
+    .pub-version-sep { color: var(--muted); }
+    .pub-version-gen { margin-top: 0.15rem; }
+    .pub-version-gen-date { font-family: monospace; color: var(--muted); }
+    .pub-version-keywords { margin-top: 0.15rem; }
+    .pub-version-kw { color: var(--muted); font-size: 0.82rem; font-style: italic; min-width: 0; flex: 1 1 0; line-height: 1.8; overflow-wrap: anywhere; word-break: break-word; }
+    .pub-version-kw .kw-sep { color: var(--border); margin: 0 0.15rem; }
+    .pub-version-banner { max-width: 100%; overflow-x: hidden; }
+    .pub-crossrefs { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .pub-crossrefs h3 { font-size: 1rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .pub-crossrefs-list { display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem; }
+    .pub-crossrefs-list a { color: var(--accent); text-decoration: none; font-size: 0.88rem; padding: 0.2rem 0.5rem; background: var(--box-bg); border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; }
+    .pub-crossrefs-list a:hover { text-decoration: underline; border-color: var(--accent); }
+    @media (max-width: 600px) {
+      .pub-version-kw { font-size: 0.75rem; }
+      .pub-crossrefs-list { gap: 0.3rem 0.5rem; }
+      .pub-crossrefs-list a { font-size: 0.82rem; padding: 0.15rem 0.4rem; }
+      .pub-version-authors { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
+      .pub-version-authors .pub-version-label { min-width: auto; }
+    }
+    .pub-version-authors { margin-top: 0.15rem; }
+    .pub-version-authors .pub-author-list { display: flex; flex-direction: column; gap: 0.1rem; }
+    .pub-author { color: var(--fg); font-size: 0.88rem; overflow-wrap: anywhere; }
+    .back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    /* Export toolbar */
+    .pub-export-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .pub-export-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .pub-export-btn {
+      background: var(--code-bg);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .pub-export-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .pub-export-btn:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+    @media print {
+      .pub-export-toolbar, .webcard-header, .back-link, .pub-crossrefs, .copy-toast { display: none; }
+    }
+    /* Harvest action commands — click-to-copy */
+    code.harvest-cmd {
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s, color 0.2s;
+      border: 1px solid transparent;
+      padding: 0.15em 0.5em;
+    }
+    code.harvest-cmd:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      border-radius: 4px;
+    }
+    code.harvest-cmd.copied {
+      background: #16a34a;
+      color: #fff;
+      border-color: #16a34a;
+    }
+    .copy-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #16a34a;
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .copy-toast.show { opacity: 1; }
+    /* Multi-column TOC */
+    .toc {
+      columns: 2;
+      column-gap: 2rem;
+      margin: 1rem 0 1.5rem;
+      padding: 1rem 1.2rem;
+      background: var(--code-bg);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+    .toc-title {
+      column-span: all;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .toc ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .toc li {
+      break-inside: avoid;
+      margin-bottom: 0.15rem;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .toc li a { color: var(--fg); }
+    .toc li a:hover { color: var(--accent); }
+    /* Nested (child headers) — indented + muted */
+    .toc ul ul {
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+      margin: 0.1rem 0 0.2rem;
+    }
+    .toc ul ul li a { color: var(--muted); font-size: 0.78rem; }
+    .toc ul ul li a:hover { color: var(--accent); }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+</head>
+<body>
+  {% if page.og_image %}
+  <div class="webcard-header">
+    <picture>
+      <source srcset="{{ page.og_image | replace: '-cayman.gif', '-midnight.gif' | relative_url }}" media="(prefers-color-scheme: dark)">
+      <img src="{{ page.og_image | relative_url }}" alt="{{ page.title }}" loading="eager" fetchpriority="high" decoding="sync" />
+    </picture>
+  </div>
+  {% endif %}
+  <div class="container">
+    {% if page.permalink contains '/fr/' %}
+    <a class="back-link" href="{{ '/fr/publications/' | relative_url }}">&larr; Toutes les publications</a>
+    {% else %}
+    <a class="back-link" href="{{ '/publications/' | relative_url }}">&larr; All Publications</a>
+    {% endif %}
+    <div class="pub-version-banner">
+      <div class="pub-version-line">
+        <span class="pub-version-label">Publication:</span>
+        <span class="pub-version-id">{{ page.pub_id }}</span>
+        <span class="pub-version-sep">&middot;</span>
+        <span class="pub-version-ver">{{ page.version | default: "v1" }}</span>
+        <span class="pub-version-sep">&middot;</span>
+        <span class="pub-version-date">{{ page.date | default: "2026-02" }}</span>
+      </div>
+      <div class="pub-version-line pub-version-gen">
+        {% if page.permalink contains '/fr/' %}
+        <span class="pub-version-label">G&eacute;n&eacute;r&eacute; :</span>
+        {% else %}
+        <span class="pub-version-label">Generated:</span>
+        {% endif %}
+        <span class="pub-version-gen-date" id="pubGenDate"></span>
+      </div>
+      {% if page.keywords %}
+      <div class="pub-version-line pub-version-keywords">
+        {% if page.permalink contains '/fr/' %}
+        <span class="pub-version-label">Mots-cl&eacute;s :</span>
+        {% else %}
+        <span class="pub-version-label">Keywords:</span>
+        {% endif %}
+        <span class="pub-version-kw" id="pubKeywords" data-raw="{{ page.keywords }}">{{ page.keywords }}</span>
+      </div>
+      {% endif %}
+      <div class="pub-version-line pub-version-authors">
+        {% if page.permalink contains '/fr/' %}
+        <span class="pub-version-label">Auteurs :</span>
+        {% else %}
+        <span class="pub-version-label">Authors:</span>
+        {% endif %}
+        <div class="pub-author-list">
+          <span class="pub-version-date">Martin Paquet</span>
+          <span class="pub-author">Claude (Anthropic, Opus 4.6)</span>
+        </div>
+      </div>
+    </div>
+    <div class="pub-export-toolbar">
+      {% if page.permalink contains '/fr/' %}
+      <span class="pub-export-label">Exporter :</span>
+      {% else %}
+      <span class="pub-export-label">Export:</span>
+      {% endif %}
+      <button class="pub-export-btn" id="exportPdf" title="{% if page.permalink contains '/fr/' %}Exporter en PDF{% else %}Export as PDF{% endif %}">PDF</button>
+      <button class="pub-export-btn" id="exportDocx" title="{% if page.permalink contains '/fr/' %}Exporter en DOCX{% else %}Export as DOCX{% endif %}">DOCX</button>
+    </div>
+    {{ content }}
+    {% if page.keywords %}
+    <div class="pub-crossrefs" id="pubCrossrefs"></div>
+    {% endif %}
+  </div>
+  <div class="copy-toast" id="copyToast">Copied to clipboard!</div>
+  <script>
+    // Webcard cache-bust — always append timestamp to force fresh image load
+    (function() {
+      var img = document.querySelector('.webcard-header img');
+      if (!img) return;
+      var src = img.getAttribute('src').split('?')[0];
+      img.src = src + '?_t=' + Date.now();
+      // Also bust the dark-mode source
+      var source = document.querySelector('.webcard-header picture source');
+      if (source) {
+        var dsrc = source.getAttribute('srcset').split('?')[0];
+        source.setAttribute('srcset', dsrc + '?_t=' + Date.now());
+      }
+      // Fallback: if image fails to load, retry with new cache-buster
+      img.addEventListener('error', function() {
+        if (!img.dataset.retried) {
+          img.dataset.retried = '1';
+          img.src = src + '?_t=' + Date.now();
+        }
+      });
+    })();
+
+    // Multi-column TOC — auto-detect "Contents" / "Table des matières"
+    (function() {
+      var strongs = document.querySelectorAll('strong');
+      for (var i = 0; i < strongs.length; i++) {
+        var t = strongs[i].textContent.trim();
+        if (t === 'Contents' || t === 'Table des matières') {
+          var p = strongs[i].parentElement;
+          if (p && p.tagName === 'P') {
+            var ul = p.nextElementSibling;
+            if (ul && ul.tagName === 'UL') {
+              var nav = document.createElement('nav');
+              nav.className = 'toc';
+              var title = document.createElement('div');
+              title.className = 'toc-title';
+              title.textContent = t;
+              nav.appendChild(title);
+              p.parentNode.insertBefore(nav, p);
+              nav.appendChild(ul);
+              p.remove();
+              break;
+            }
+          }
+        }
+      }
+    })();
+
+    // Mermaid diagram rendering — themed to match Cayman/Midnight
+    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: isDark ? {
+        background: '#0f172a',
+        primaryColor: '#1e293b',
+        primaryTextColor: '#e2e8f0',
+        primaryBorderColor: '#60a5fa',
+        secondaryColor: '#334155',
+        secondaryTextColor: '#94a3b8',
+        secondaryBorderColor: '#475569',
+        tertiaryColor: '#1e1b4b',
+        tertiaryTextColor: '#e2e8f0',
+        tertiaryBorderColor: '#a78bfa',
+        lineColor: '#60a5fa',
+        textColor: '#e2e8f0',
+        mainBkg: '#1e293b',
+        nodeBorder: '#60a5fa',
+        clusterBkg: '#0f172a',
+        clusterBorder: '#334155',
+        titleColor: '#e2e8f0',
+        edgeLabelBackground: '#1e293b',
+        nodeTextColor: '#e2e8f0'
+      } : {
+        background: '#eff6ff',
+        primaryColor: '#dbeafe',
+        primaryTextColor: '#0f172a',
+        primaryBorderColor: '#1d4ed8',
+        secondaryColor: '#eff6ff',
+        secondaryTextColor: '#475569',
+        secondaryBorderColor: '#93c5fd',
+        tertiaryColor: '#e0f2fe',
+        tertiaryTextColor: '#0f172a',
+        tertiaryBorderColor: '#0284c7',
+        lineColor: '#1d4ed8',
+        textColor: '#0f172a',
+        mainBkg: '#dbeafe',
+        nodeBorder: '#1d4ed8',
+        clusterBkg: '#eff6ff',
+        clusterBorder: '#93c5fd',
+        titleColor: '#1d4ed8',
+        edgeLabelBackground: '#eff6ff',
+        nodeTextColor: '#0f172a'
+      }
+    });
+    document.querySelectorAll('pre code.language-mermaid').forEach(function(el) {
+      var pre = el.parentElement;
+      var div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = el.textContent;
+      pre.parentNode.replaceChild(div, pre);
+    });
+    mermaid.run();
+
+    // Publication generation timestamp — shows when the page was viewed
+    (function() {
+      var el = document.getElementById('pubGenDate');
+      if (!el) return;
+      var now = new Date();
+      var y = now.getFullYear();
+      var m = String(now.getMonth() + 1).padStart(2, '0');
+      var d = String(now.getDate()).padStart(2, '0');
+      var h = String(now.getHours()).padStart(2, '0');
+      var min = String(now.getMinutes()).padStart(2, '0');
+      el.textContent = y + '-' + m + '-' + d + ' ' + h + ':' + min;
+    })();
+
+    // Keywords — plain text in banner, linked cross-references at page bottom
+    (function() {
+      var el = document.getElementById('pubKeywords');
+      if (!el) return;
+      var raw = el.getAttribute('data-raw');
+      if (!raw) return;
+      // Decode HTML entities
+      var txt = document.createElement('textarea');
+      txt.innerHTML = raw;
+      var decoded = txt.value;
+      var keywords = decoded.split(',').map(function(k) { return k.trim(); });
+      // Banner: plain text with middot separators (no links — flows on mobile)
+      el.innerHTML = keywords.join('<span class="kw-sep"> · </span>');
+      // Cross-reference section at page bottom
+      var crossEl = document.getElementById('pubCrossrefs');
+      if (!crossEl) return;
+      var base = '{{ "" | relative_url }}';
+      if (base === '/') base = '';
+      var isFr = window.location.pathname.indexOf('/fr/') >= 0;
+      var p = isFr ? '/fr/publications/' : '/publications/';
+      var map = {
+        'knowledge system': p+'knowledge-system/', 'système de connaissances': p+'knowledge-system/',
+        'bootstrap': p+'knowledge-system/#how-to-use-this-file',
+        'methodology': p+'knowledge-system/', 'méthodologie': p+'knowledge-system/',
+        'portable': p+'knowledge-system/',
+        'embedded': p+'mplib-storage-pipeline/', 'embarqué': p+'mplib-storage-pipeline/',
+        'SQLite': p+'mplib-storage-pipeline/',
+        'RTOS': p+'mplib-storage-pipeline/',
+        'ThreadX': p+'mplib-storage-pipeline/',
+        'pipeline': p+'mplib-storage-pipeline/',
+        'dual-buffer': p+'mplib-storage-pipeline/', 'double tampon': p+'mplib-storage-pipeline/',
+        'PSRAM': p+'mplib-storage-pipeline/',
+        'live session': p+'live-session-analysis/', 'session en direct': p+'live-session-analysis/',
+        'video analysis': p+'live-session-analysis/', 'analyse vidéo': p+'live-session-analysis/',
+        'UART': p+'live-session-analysis/',
+        'frame extraction': p+'live-session-analysis/', "extraction d'images": p+'live-session-analysis/',
+        'OBS': p+'live-session-analysis/',
+        'real-time': p+'live-session-analysis/', 'temps réel': p+'live-session-analysis/',
+        'session persistence': p+'ai-session-persistence/', 'persistance de session': p+'ai-session-persistence/',
+        'Free Guy': p+'ai-session-persistence/',
+        'NPC': p+'ai-session-persistence/',
+        'awareness': p+'ai-session-persistence/', 'conscience': p+'ai-session-persistence/',
+        'sunglasses': p+'ai-session-persistence/', 'lunettes': p+'ai-session-persistence/',
+        'distributed minds': p+'distributed-minds/', 'connaissances distribuées': p+'distributed-minds/',
+        'satellites': p+'distributed-minds/',
+        'bidirectional': p+'distributed-minds/', 'bidirectionnel': p+'distributed-minds/',
+        'knowledge flow': p+'distributed-minds/', 'flux de connaissances': p+'distributed-minds/',
+        'dashboard': p+'distributed-knowledge-dashboard/', 'tableau de bord': p+'distributed-knowledge-dashboard/',
+        'drift': p+'distributed-knowledge-dashboard/', 'dérive': p+'distributed-knowledge-dashboard/',
+        'severity': p+'distributed-knowledge-dashboard/', 'sévérité': p+'distributed-knowledge-dashboard/',
+        'network status': p+'distributed-knowledge-dashboard/', 'état du réseau': p+'distributed-knowledge-dashboard/',
+        'webcards': p+'webcards-social-sharing/',
+        'OG image': p+'webcards-social-sharing/', 'image OG': p+'webcards-social-sharing/',
+        'animated GIF': p+'webcards-social-sharing/', 'GIF animé': p+'webcards-social-sharing/',
+        'social sharing': p+'webcards-social-sharing/', 'partage social': p+'webcards-social-sharing/',
+        'dynamic': p+'webcards-social-sharing/full/#dynamic-webcards--living-knowledge-artifacts',
+        'dynamique': p+'webcards-social-sharing/full/#webcards-dynamiques--artefacts-de-connaissances-vivants',
+        'knowledge artifacts': p+'webcards-social-sharing/full/#dynamic-webcards--living-knowledge-artifacts',
+        'artefacts de connaissances': p+'webcards-social-sharing/full/#webcards-dynamiques--artefacts-de-connaissances-vivants',
+        'normalize': p+'normalize-structure-concordance/', 'normaliser': p+'normalize-structure-concordance/',
+        'concordance': p+'normalize-structure-concordance/',
+        'structure': p+'normalize-structure-concordance/',
+        'validation': p+'normalize-structure-concordance/',
+        'bilingual': p+'normalize-structure-concordance/', 'bilingue': p+'normalize-structure-concordance/',
+        'audit': p+'normalize-structure-concordance/',
+        'harvest': p+'harvest-protocol/', 'récolte': p+'harvest-protocol/',
+        'promotion': p+'harvest-protocol/',
+        'healthcheck': p+'harvest-protocol/', 'bilan de santé': p+'harvest-protocol/',
+        'insights': p+'harvest-protocol/', 'perspectives': p+'harvest-protocol/',
+        'version drift': p+'harvest-protocol/', 'dérive de version': p+'harvest-protocol/',
+        'session': p+'session-management/',
+        'wakeup': p+'session-management/',
+        'refresh': p+'session-management/',
+        'save': p+'session-management/', 'sauvegarde': p+'session-management/',
+        'lifecycle': p+'session-management/', 'cycle de vie': p+'session-management/',
+        'commands': p+'session-management/', 'commandes': p+'session-management/',
+        'persistence': p+'session-management/', 'persistance': p+'session-management/',
+        'notes': p+'session-management/',
+        'security': p+'security-by-design/', 'sécurité': p+'security-by-design/',
+        'PQC': p+'security-by-design/',
+        'access control': p+'security-by-design/', "contrôle d'accès": p+'security-by-design/',
+        'fork safety': p+'security-by-design/', 'fork sûr': p+'security-by-design/',
+        'privacy': p+'security-by-design/', 'confidentialité': p+'security-by-design/',
+        'owner-scoped': p+'security-by-design/', 'portée propriétaire': p+'security-by-design/',
+        'beacon': p+'live-knowledge-network/', 'balise': p+'live-knowledge-network/',
+        'discovery': p+'live-knowledge-network/', 'découverte': p+'live-knowledge-network/',
+        'subnet': p+'live-knowledge-network/', 'sous-réseau': p+'live-knowledge-network/',
+        'inter-instance': p+'live-knowledge-network/',
+        'ML-KEM': p+'live-knowledge-network/'
+      };
+      var currentPath = window.location.pathname;
+      var links = [];
+      keywords.forEach(function(kw) {
+        var url = map[kw] || map[kw.toLowerCase()];
+        if (url) {
+          var fullUrl = base + url;
+          if (currentPath !== fullUrl && currentPath !== fullUrl.replace(/\/$/, '')) {
+            links.push('<a href="' + fullUrl + '">' + kw + '</a>');
+          }
+        }
+      });
+      if (links.length > 0) {
+        var heading = isFr ? 'Références croisées' : 'Cross-references';
+        crossEl.innerHTML = '<h3>' + heading + '</h3><div class="pub-crossrefs-list">' + links.join('') + '</div>';
+      }
+    })();
+
+    // Make harvest commands clickable — copy to clipboard on click
+    document.querySelectorAll('code').forEach(function(el) {
+      var text = el.textContent.trim();
+      if (text.indexOf('harvest --') === 0) {
+        el.classList.add('harvest-cmd');
+        el.title = 'Click to copy: ' + text;
+        el.addEventListener('click', function() {
+          navigator.clipboard.writeText(text).then(function() {
+            el.classList.add('copied');
+            var toast = document.getElementById('copyToast');
+            toast.textContent = 'Copied: ' + text;
+            toast.classList.add('show');
+            setTimeout(function() {
+              el.classList.remove('copied');
+              toast.classList.remove('show');
+            }, 1500);
+          });
+        });
+      }
+    });
+
+    // PDF/DOCX Export — client-side document conversion
+    (function() {
+      var isFr = window.location.pathname.indexOf('/fr/') >= 0;
+
+      function getCleanContent() {
+        var container = document.querySelector('.container');
+        var clone = container.cloneNode(true);
+        // Remove non-content elements
+        var els = clone.querySelectorAll('.pub-export-toolbar, .back-link, .pub-crossrefs');
+        els.forEach(function(el) { el.remove(); });
+        // Remove Mermaid source code blocks (keep rendered SVGs)
+        clone.querySelectorAll('pre code.language-mermaid').forEach(function(el) { el.parentElement.remove(); });
+        return clone;
+      }
+
+      function getFilename() {
+        return document.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-').substring(0, 80);
+      }
+
+      function showToast(msg) {
+        var toast = document.getElementById('copyToast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(function() { toast.classList.remove('show'); }, 2000);
+      }
+
+      // PDF export — lazy-loads html2pdf.js from CDN
+      document.getElementById('exportPdf').addEventListener('click', function() {
+        var btn = this;
+        btn.disabled = true;
+        var origText = btn.textContent;
+        btn.textContent = '...';
+
+        function generatePdf() {
+          var content = getCleanContent();
+          var opt = {
+            margin: [15, 15, 15, 15],
+            filename: getFilename() + '.pdf',
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, useCORS: true, logging: false },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          };
+          html2pdf().set(opt).from(content).save().then(function() {
+            btn.disabled = false;
+            btn.textContent = origText;
+            showToast(isFr ? 'PDF exporté !' : 'PDF exported!');
+          }).catch(function() {
+            btn.disabled = false;
+            btn.textContent = origText;
+          });
+        }
+
+        if (typeof html2pdf === 'undefined') {
+          var script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js';
+          script.onload = generatePdf;
+          script.onerror = function() {
+            btn.disabled = false;
+            btn.textContent = origText;
+            showToast(isFr ? 'Échec du chargement de la bibliothèque PDF' : 'Failed to load PDF library');
+          };
+          document.head.appendChild(script);
+        } else {
+          generatePdf();
+        }
+      });
+
+      // DOCX export — HTML-to-Word blob (opens in Word, LibreOffice, Google Docs)
+      document.getElementById('exportDocx').addEventListener('click', function() {
+        var content = getCleanContent();
+        var css = 'body{font-family:Calibri,sans-serif;font-size:11pt;line-height:1.5;color:#333;max-width:700pt;margin:0 auto;}' +
+          'h1{font-size:20pt;color:#1d4ed8;margin-bottom:6pt;}' +
+          'h2{font-size:15pt;color:#1d4ed8;border-bottom:1pt solid #93c5fd;padding-bottom:3pt;margin-top:18pt;}' +
+          'h3{font-size:12pt;margin-top:12pt;}' +
+          'table{border-collapse:collapse;width:100%;}' +
+          'th,td{border:1px solid #ccc;padding:3pt 6pt;font-size:9pt;}' +
+          'th{background:#f0f4ff;font-weight:bold;}' +
+          'code{background:#f4f4f4;padding:1pt 3pt;font-family:Consolas,monospace;font-size:9pt;}' +
+          'pre{background:#f4f4f4;padding:6pt;font-family:Consolas,monospace;font-size:9pt;white-space:pre-wrap;}' +
+          'blockquote{border-left:3pt solid #1d4ed8;padding:4pt 8pt;color:#666;font-style:italic;}';
+        var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+          'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+          'xmlns="http://www.w3.org/TR/REC-html40">' +
+          '<head><meta charset="utf-8"><style>' + css + '</style></head>' +
+          '<body>' + content.innerHTML + '</body></html>';
+        var blob = new Blob(['\ufeff' + html], { type: 'application/msword' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = getFilename() + '.doc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast(isFr ? 'DOCX exporté !' : 'DOCX exported!');
+      });
+    })();
+  </script>
+</body>
+</html>

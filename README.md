@@ -1,3 +1,9 @@
+---
+title: "MPLIB — Embedded Systems Library for STM32"
+description: "Hardware SAES/AES encryption, ECC/PQC key exchange, TouchGFX UI, RTOS multitasking, SD card persistence, and network services for STM32 MCUs"
+author: "Martin Paquet"
+---
+
 <!-- knowledge-version: 1 -->
 # MPLIB
 
@@ -222,7 +228,7 @@ View ->> Screen TouchGFX: set & invalidate
 
 ## APPLICATION FRAMEWORK
 
-* [ ] TBC...
+*Section pending — application framework documentation to be added.*
 
 ---
 
@@ -274,7 +280,7 @@ FreeRTOSConfig.h
 
 #### AZURE RTOS
 
-...
+*Config files to be documented.*
 
 #### H5
 
@@ -423,7 +429,7 @@ Middlewares/ST/threadx
 
 #### AZRTOS
 
-...
+*Excludes to be documented.*
 
 </details>
 
