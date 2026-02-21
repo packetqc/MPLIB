@@ -410,7 +410,7 @@ Drivers/BSP/Components/mx25lm51245g
 
 Drivers/BSP/STM32H573I-DK
 Drivers/BSP/STM32H743I-EVAL/stm32h743i_eval_sd.c
-Drivers/STM32H5xx_HAL_Driver
+Drivers/STM32H5xx_HAL_Drier
 Drivers/CMSIS/Device/ST/STM32H5xx
 Middlewares/ST/threadx/ports/cortex_m33
 Middlewares/ST/touchgfx/framework/source
