@@ -1,0 +1,31 @@
+title: "MPLIB — Technical Publications"
+description: "Embedded systems library for STM32 MCUs: hardware SAES/AES encryption, ECC/PQC key exchange, TouchGFX UI, RTOS multitasking, SD card persistence, and network services"
+url: "https://packetqc.github.io"
+baseurl: "/MPLIB"
+
+# GitHub Pages theme
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# SEO defaults
+author: "Martin Paquet & Claude (Anthropic)"
+locale: "en_US"
+
+# Default front matter
+defaults:
+  - scope:
+      path: "docs/publications"
+      type: "pages"
+    values:
+      layout: "publication"
+
+# Include docs folder
+include:
+  - docs
+
+# Markdown rendering
+markdown: kramdown
+kramdown:
+  input: GFM

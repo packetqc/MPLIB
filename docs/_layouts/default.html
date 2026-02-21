@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+{% if page.permalink contains '/fr/' %}<html lang="fr">{% else %}<html lang="en">{% endif %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="refresh" content="60">
+  <title>{{ page.title | default: site.title }}</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page.title | default: site.title }}" />
+  <meta property="og:description" content="{{ page.description | default: site.description }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  <meta property="og:site_name" content="MPLIB" />
+  {% if page.og_image %}<meta property="og:image" content="{{ page.og_image | absolute_url }}" />{% endif %}
+  {% if page.og_image %}<link rel="preload" as="image" href="{{ page.og_image | relative_url }}" fetchpriority="high" />{% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+  <meta name="twitter:description" content="{{ page.description | default: site.description }}" />
+  {% if page.og_image %}<meta name="twitter:image" content="{{ page.og_image | absolute_url }}" />{% endif %}
+
+  <!-- Canonical URL — LinkedIn and social crawlers use this as the definitive page URL -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+
+  <style>
+    /* Cayman theme (light — blue) */
+    :root {
+      --bg: #eff6ff;
+      --fg: #0f172a;
+      --accent: #1d4ed8;
+      --muted: #475569;
+      --border: #93c5fd;
+      --code-bg: #dbeafe;
+      --col-alt: rgba(29, 78, 216, 0.05);
+      --max-width: 860px;
+    }
+    /* Midnight theme (dark) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --fg: #e2e8f0;
+        --accent: #60a5fa;
+        --muted: #94a3b8;
+        --border: #334155;
+        --code-bg: #1e293b;
+        --col-alt: rgba(96, 165, 250, 0.07);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: var(--max-width); margin: 0 auto; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent); }
+    h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+    p { margin-bottom: 1rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.82rem; line-height: 1.4; }
+    th, td { padding: 0.35rem 0.5rem; border: none; border-bottom: 1px solid var(--border); text-align: left; }
+    th { background: var(--code-bg); font-weight: 600; white-space: nowrap; border-bottom: 2px solid var(--accent); }
+    td code { font-size: 0.78rem; padding: 0.1em 0.3em; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    .table-wrap table { margin: 0; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    .pub-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 1rem 0; transition: border-color 0.2s; }
+    .pub-card:hover { border-color: var(--accent); }
+    .pub-card h3 { margin: 0 0 0.5rem 0; }
+    .pub-card p { color: var(--muted); margin: 0; }
+    .pub-card .version { font-size: 0.85rem; color: var(--muted); }
+    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+    /* Export toolbar */
+    .pub-export-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .pub-export-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .pub-export-btn {
+      background: var(--code-bg);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .pub-export-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .pub-export-btn:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+    @media print {
+      .pub-export-toolbar, .webcard-header { display: none; }
+    }
+    .webcard-header {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+      border-bottom: 2px solid var(--border);
+    }
+    @media (prefers-color-scheme: dark) {
+      .webcard-header {
+        background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+      }
+    }
+    .webcard-header img {
+      display: block;
+      margin: 0 auto;
+      max-width: var(--max-width);
+      width: 100%;
+      border-radius: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+</head>
+<body>
+  {% if page.og_image %}
+  <div class="webcard-header">
+    <picture>
+      <source srcset="{{ page.og_image | replace: '-cayman.gif', '-midnight.gif' | relative_url }}" media="(prefers-color-scheme: dark)">
+      <img src="{{ page.og_image | relative_url }}" alt="{{ page.title | default: site.title }}" loading="eager" fetchpriority="high" decoding="sync" />
+    </picture>
+  </div>
+  {% endif %}
+  <div class="container">
+    <div class="pub-export-toolbar">
+      {% if page.permalink contains '/fr/' %}
+      <span class="pub-export-label">Exporter :</span>
+      {% else %}
+      <span class="pub-export-label">Export:</span>
+      {% endif %}
+      <button class="pub-export-btn" id="exportPdf" title="{% if page.permalink contains '/fr/' %}Exporter en PDF{% else %}Export as PDF{% endif %}">PDF</button>
+      <button class="pub-export-btn" id="exportDocx" title="{% if page.permalink contains '/fr/' %}Exporter en DOCX{% else %}Export as DOCX{% endif %}">DOCX</button>
+    </div>
+    {{ content }}
+  </div>
+  <script>
+    // Webcard cache-bust — always append timestamp to force fresh image load
+    (function() {
+      var img = document.querySelector('.webcard-header img');
+      if (!img) return;
+      var src = img.getAttribute('src').split('?')[0];
+      img.src = src + '?_t=' + Date.now();
+      // Also bust the dark-mode source
+      var source = document.querySelector('.webcard-header picture source');
+      if (source) {
+        var dsrc = source.getAttribute('srcset').split('?')[0];
+        source.setAttribute('srcset', dsrc + '?_t=' + Date.now());
+      }
+      // Fallback: if image fails to load, retry with new cache-buster
+      img.addEventListener('error', function() {
+        if (!img.dataset.retried) {
+          img.dataset.retried = '1';
+          img.src = src + '?_t=' + Date.now();
+        }
+      });
+    })();
+
+    // Mermaid diagram rendering — themed to match Cayman/Midnight
+    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      themeVariables: isDark ? {
+        background: '#0f172a',
+        primaryColor: '#1e293b',
+        primaryTextColor: '#e2e8f0',
+        primaryBorderColor: '#60a5fa',
+        secondaryColor: '#334155',
+        secondaryTextColor: '#94a3b8',
+        secondaryBorderColor: '#475569',
+        tertiaryColor: '#1e1b4b',
+        tertiaryTextColor: '#e2e8f0',
+        tertiaryBorderColor: '#a78bfa',
+        lineColor: '#60a5fa',
+        textColor: '#e2e8f0',
+        mainBkg: '#1e293b',
+        nodeBorder: '#60a5fa',
+        clusterBkg: '#0f172a',
+        clusterBorder: '#334155',
+        titleColor: '#e2e8f0',
+        edgeLabelBackground: '#1e293b',
+        nodeTextColor: '#e2e8f0'
+      } : {
+        background: '#eff6ff',
+        primaryColor: '#dbeafe',
+        primaryTextColor: '#0f172a',
+        primaryBorderColor: '#1d4ed8',
+        secondaryColor: '#eff6ff',
+        secondaryTextColor: '#475569',
+        secondaryBorderColor: '#93c5fd',
+        tertiaryColor: '#e0f2fe',
+        tertiaryTextColor: '#0f172a',
+        tertiaryBorderColor: '#0284c7',
+        lineColor: '#1d4ed8',
+        textColor: '#0f172a',
+        mainBkg: '#dbeafe',
+        nodeBorder: '#1d4ed8',
+        clusterBkg: '#eff6ff',
+        clusterBorder: '#93c5fd',
+        titleColor: '#1d4ed8',
+        edgeLabelBackground: '#eff6ff',
+        nodeTextColor: '#0f172a'
+      }
+    });
+    document.querySelectorAll('pre code.language-mermaid').forEach(function(el) {
+      var pre = el.parentElement;
+      var div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = el.textContent;
+      pre.parentNode.replaceChild(div, pre);
+    });
+    mermaid.run();
+
+    // PDF/DOCX Export — client-side document conversion
+    (function() {
+      var isFr = window.location.pathname.indexOf('/fr/') >= 0;
+
+      function getCleanContent() {
+        var container = document.querySelector('.container');
+        var clone = container.cloneNode(true);
+        // Remove export toolbar
+        var toolbar = clone.querySelector('.pub-export-toolbar');
+        if (toolbar) toolbar.remove();
+        // Remove Mermaid source code blocks (keep rendered SVGs)
+        clone.querySelectorAll('pre code.language-mermaid').forEach(function(el) { el.parentElement.remove(); });
+        return clone;
+      }
+
+      function getFilename() {
+        return document.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-').substring(0, 80);
+      }
+
+      // PDF export — lazy-loads html2pdf.js from CDN
+      document.getElementById('exportPdf').addEventListener('click', function() {
+        var btn = this;
+        btn.disabled = true;
+        var origText = btn.textContent;
+        btn.textContent = '...';
+
+        function generatePdf() {
+          var content = getCleanContent();
+          var opt = {
+            margin: [15, 15, 15, 15],
+            filename: getFilename() + '.pdf',
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, useCORS: true, logging: false },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          };
+          html2pdf().set(opt).from(content).save().then(function() {
+            btn.disabled = false;
+            btn.textContent = origText;
+          }).catch(function() {
+            btn.disabled = false;
+            btn.textContent = origText;
+          });
+        }
+
+        if (typeof html2pdf === 'undefined') {
+          var script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js';
+          script.onload = generatePdf;
+          script.onerror = function() {
+            btn.disabled = false;
+            btn.textContent = origText;
+          };
+          document.head.appendChild(script);
+        } else {
+          generatePdf();
+        }
+      });
+
+      // DOCX export — HTML-to-Word blob (opens in Word, LibreOffice, Google Docs)
+      document.getElementById('exportDocx').addEventListener('click', function() {
+        var content = getCleanContent();
+        var css = 'body{font-family:Calibri,sans-serif;font-size:11pt;line-height:1.5;color:#333;max-width:700pt;margin:0 auto;}' +
+          'h1{font-size:20pt;color:#1d4ed8;margin-bottom:6pt;}' +
+          'h2{font-size:15pt;color:#1d4ed8;border-bottom:1pt solid #93c5fd;padding-bottom:3pt;margin-top:18pt;}' +
+          'h3{font-size:12pt;margin-top:12pt;}' +
+          'table{border-collapse:collapse;width:100%;}' +
+          'th,td{border:1px solid #ccc;padding:3pt 6pt;font-size:9pt;}' +
+          'th{background:#f0f4ff;font-weight:bold;}' +
+          'code{background:#f4f4f4;padding:1pt 3pt;font-family:Consolas,monospace;font-size:9pt;}' +
+          'pre{background:#f4f4f4;padding:6pt;font-family:Consolas,monospace;font-size:9pt;white-space:pre-wrap;}' +
+          'blockquote{border-left:3pt solid #1d4ed8;padding:4pt 8pt;color:#666;font-style:italic;}';
+        var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+          'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+          'xmlns="http://www.w3.org/TR/REC-html40">' +
+          '<head><meta charset="utf-8"><style>' + css + '</style></head>' +
+          '<body>' + content.innerHTML + '</body></html>';
+        var blob = new Blob(['\ufeff' + html], { type: 'application/msword' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = getFilename() + '.doc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    })();
+  </script>
+</body>
+</html>
