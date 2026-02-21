@@ -183,6 +183,9 @@ MPLIB is an embedded systems library for STM32 MCUs (H5, H7, N6) featuring hardw
 
 | Command | Action |
 |---------|--------|
-| *(none yet)* | Project-specific commands will be added as needed |
+| `doc create <name>` | Scaffold doc page in `docs/`, register in README + index |
+| `doc update <file>` | Validate/repair doc page: frontmatter, image refs, links, index |
+
+<!-- harvest-promote: doc create, doc update — candidate for core Publications group -->
 
 Knowledge commands come from core on wakeup.
