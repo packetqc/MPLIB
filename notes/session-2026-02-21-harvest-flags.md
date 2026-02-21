@@ -36,3 +36,36 @@
 - `doc update <file>` → validation + repair of standalone doc pages
 
 **Proposed core location**: Universal command in Publications group, alongside `doc create` and `docs check`.
+
+---
+
+### remember harvest: `recall` satellite promotion hook — new core behavior
+
+**Origin**: MPLIB satellite (requested by user during harvest promotion session)
+
+**What it does**: Extends the new core `recall` command with a satellite-side promotion hook. After `recall` displays its result on a satellite, it offers the user a choice to stage that result as promoted intel for core harvest.
+
+**UX flow**:
+1. User calls `recall <query>` on a satellite
+2. `recall` retrieves and displays the stored intel/notes as normal
+3. **Promotion offer** — uses Human Bridge priority order:
+   - **(1) AskUserQuestion popup** (preferred): "Stage this recall result as promoted intel for core?" → Yes / No
+   - **(2) ⏸ action-required block** (fallback): reply "promote" or "skip"
+4. If user confirms: write `remember harvest:` entry to `notes/session-YYYY-MM-DD-harvest-flags.md` with origin, query, result summary, rationale
+5. If user declines: no action, result stays local
+
+**Why it belongs in core**: `recall` is a core command. The promotion hook is satellite-aware behavior that should be defined in core so every satellite inherits it consistently. Without this, each satellite would need to independently document the promotion flow, leading to drift. Core defines the hook; satellites just inherit it.
+
+**Relationship to existing commands**:
+- `recall` (core) → retrieves stored intel — no promotion awareness currently
+- `remember ...` (core) → appends to local session notes — no harvest flag
+- `harvest <project>` (core) → pulls intel from satellites — reads `notes/` harvest flags
+- `recall` + promotion hook → closes the loop: recall → user confirms → harvest flag → next harvest picks it up
+
+**Proposed core location**: Enhancement to `recall` command definition in core CLAUDE.md. Add a "Satellite Hook" section to recall's implementation spec:
+```
+### recall — Satellite Promotion Hook
+When running on a satellite (detected via `<!-- satellite-of: -->` marker):
+  After displaying result → offer promotion via Human Bridge priority
+  If accepted → write harvest flag to notes/
+```

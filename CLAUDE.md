@@ -108,6 +108,7 @@ After PRs merged by others: `wakeup` (full re-sync — ~30-60s).
 | `doc review --list` | Freshness inventory |
 | `docs check --all` | Validate all doc pages |
 | `webcard <target>` | Generate OG GIFs |
+| `recall` | Retrieve stored intel/notes — on satellite, offers promotion prompt |
 | `weblinks` | Print all GitHub Pages URLs |
 | `I'm live` | Live clip analysis |
 
@@ -176,6 +177,28 @@ MPLIB is an embedded systems library for STM32 MCUs (H5, H7, N6) featuring hardw
 4. Check internal links resolve (other .md files exist)
 5. Verify entry exists in `README.md` and `docs/index.md` documentation tables
 6. Report findings and apply fixes
+
+### Recall — Satellite Promotion Hook
+
+When `recall` is called on a satellite, after displaying the recall result:
+
+1. **AskUserQuestion popup** (preferred — when supported by context):
+   - Question: "Stage this recall result as promoted intel for core?"
+   - Options: "Yes — stage for harvest" / "No — local only"
+2. **⏸ action-required fallback** (when popup not supported):
+   ```
+   ⏸ Pause — action required
+     What just happened: recall result displayed
+     What you need to do: reply "promote" to stage this as harvest intel for core, or "skip" to keep local only
+     What happens next: if promoted, result is written to notes/ as a harvest flag for next core healthcheck
+   ```
+3. If user confirms promotion:
+   - Write a `remember harvest:` entry to `notes/session-YYYY-MM-DD-harvest-flags.md`
+   - Include origin satellite, recall query, result summary, and rationale
+   - Add `<!-- harvest-promote: recall:<query> -->` marker to CLAUDE.md
+4. If user declines: no action, recall result stays local only
+
+<!-- harvest-promote: recall satellite hook — new core recall command gains promotion offer on satellites -->
 
 ---
 
